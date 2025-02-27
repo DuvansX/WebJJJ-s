@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos JJJ´s</title>
+    <link rel="icon" href="Imagenes/Logo Restaurante.PNG">
+    <link rel="stylesheet" href="ProductosCigarreria.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="sidebar1">
+        <div class="logo_content1">
+            <div class="logo1">
+                <img src="Imagenes/Logo Licor.png" alt="Logo del Restaurante" width="53" height="50">
+                <div class="logo_name1">JJJ´s Beer</div>
+            </div>
+            <i class='bx bx-menu' id='btn1'></i>
+        </div>
+
+        <div class="src1">
+            <i class='bx bx-search-alt'></i>
+            <input type="text" placeholder="Buscar...">
+        </div>
+
+        <ul class="nav1">
+            <li>
+                <a href="Principal.html">
+                    <i class='bx bx-store-alt'></i>
+                     <span class="link_name1">Principal</span>
+                </a>
+                <span class="tooltip1">Principal</span>
+            </li> 
+            <li>
+                <a href="InicioSs.html">
+                    <i class='bx bxs-user-circle'></i>
+                     <span class="link_name1">Inicia sesión</span>
+                </a>
+                <span class="tooltip1">Inicia sesión</span>
+            </li> 
+            <li>
+                <a href="Producto.html">
+                    <i class='bx bxs-pizza' ></i>
+                     <span class="link_name1">Productos Food</span>
+                </a>
+                <span class="tooltip1">Productos Food</span>
+            </li> 
+            <li>
+                <a href="#">
+                    <i class='bx bx-package'></i>
+                     <span class="link_name1">Pedidos</span>
+                </a>
+                <span class="tooltip1">Pedidos</span>
+            </li> 
+            <li>
+                <a href="Nosotros.html">
+                    <i class='bx bx-conversation'></i>
+                     <span class="link_name1">Nosotros</span>
+                </a>
+                <span class="tooltip1">Nosotros</span>
+            </li> 
+            <li>
+                <a href="Horarios.html">
+                    <i class='bx bxs-calendar' ></i>
+                     <span class="link_name1">Horarios</span>
+                </a>
+                <span class="tooltip1">Horarios</span>
+            </li> 
+        </ul>
+    </div>
+    
+    <!-- Ícono flotante de WhatsApp con texto "Contáctanos" -->
+<div class="whatsapp-icon">
+    <a href="https://wa.me/573105813873?text=¡Hola!%20Me%20gustaría%20saber%20más%20sobre%20sus%20productos." target="_blank">
+        <i class='bx bxl-whatsapp'></i> Realiza tu pedido.
+    </a>
+</div>
+
+    <script>
+        let btn1 = document.querySelector('#btn1');
+        let sidebar1 = document.querySelector('.sidebar1');
+        let srcBtn1 = document.querySelector('.bx-search');
+
+        btn1.onclick = function(){
+            sidebar1.classList.toggle('active1');
+        }
+        srcBtn1.onclick = function(){
+            sidebar1.classList.toggle('active1');
+        }
+    </script>
+    <script>
+        document.documentElement.style.overflow = 'hidden'; // oculta la barra esa de google
+        document.addEventListener('wheel', function(e) {
+          window.scrollBy(0, e.deltaY); // Scroll rueda del mouse XD
+        });
+      
+        document.addEventListener('touchmove', function(e) {
+          window.scrollBy(0, e.touches[0].clientY); // Scroll Tactil
+        });
+      </script>
+      
+</body>
+<body>
+    <header class="nav-bar">
+        <div class="cart-icon" onclick="toggleCart()">
+            <img src="Diseño_sin_título-removebg-preview.png" alt="Carrito" width="40">
+            <span id="cart-count">0</span>
+        </div>
+        <h1>Productos JJJ´s Beer</h1>
+    </header>
+    <div class="menu1">
+        <button id="category-btn" onclick="toggleCategories()">Categorías</button>
+        <div class="categories" id="category-list">
+            <button onclick="filterCategory('all')">Todos</button>
+            <button onclick="filterCategory('Vino')">Vinos</button>
+            <button onclick="filterCategory('Bicardi')">Bicardi</button>
+            <button onclick="filterCategory('Whiskys')">Whiskys</button>
+            <button onclick="filterCategory('Cremas')">Cremas</button>
+            <button onclick="filterCategory('Coctel')">Cocteles</button>
+            <button onclick="filterCategory('Tequila')">Tequila</button>
+            <button onclick="filterCategory('Ron')">Ron y Brandy</button>
+            <button onclick="filterCategory('Cerveza')">Cerveza</button>
+        </div>
+    </div>
+    <script>
+        function toggleCategories() {
+            const list = document.getElementById('category-list');
+            list.classList.toggle('show');
+        }
+
+        function filterCategory(category) {
+            const products = document.querySelectorAll('.product');
+            products.forEach(product => {
+                if (category === 'all') {
+                    product.style.display = 'flex';
+                } else if (product.getAttribute('data-category') === category) {
+                    product.style.display = 'flex';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+
+            document.querySelectorAll('.categories button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            const activeBtn = document.querySelector(`.categories button[data-category="${category}"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+            } else {
+                document.querySelector('.categories button').classList.add('active');
+            }
+
+            // Cerrar el menú después de seleccionar
+            const list = document.getElementById('category-list');
+            list.classList.remove('show');
+        }
+
+        window.onload = function() {
+            const firstBtn = document.querySelector('.categories button');
+            if (firstBtn) firstBtn.classList.add('active');
+
+            document.querySelectorAll('.categories button').forEach(button => {
+                button.addEventListener('click', function() {
+                    document.querySelectorAll('.categories button').forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Cerrar el menú al hacer clic
+                    const list = document.getElementById('category-list');
+                    list.classList.remove('show');
+                });
+            });
+        };
+    </script>
+
+    <main>
+        <div class="product-list">
+            <!-- Ejemplo de productos -->
+            <div class="product" data-category="Bicardi">
+                <img src="Bebidas/bicardi/Bicadi-Carta-Blanca.webp" alt="Producto 1">
+                <h2>Bicardi Carta Blanca</h2>
+                <p class="price">$62.000</p>
+                <button onclick="addToCart('B.C. Blanca', 62)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>            
+            <div class="product" data-category="Bicardi">
+                <img src="Bebidas/bicardi/Bicardi Mojito.webp" alt="Producto 2">
+                <h2>Bicardi Mojito</h2>
+                <p class="price">$52.000</p>
+                <button onclick="addToCart('B. Mojito', 52)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product"  data-category="Bicardi">
+                <img src="Bebidas/bicardi/Bicardi Añejo.webp" alt="Producto 3">
+                <h2>Bicadi Añejo</h2>
+                <p class="price">$52.000</p>
+                <button onclick="addToCart('B. Añejo', 52)">Agregar al Carrito</button>
+                <button1 class="ml-button">200 ml</button1>
+            </div>
+            <div class="product" data-category="Bicardi">
+                <img src="Bebidas/bicardi/Bicardi Bahama Mama.webp" alt="Producto 4">
+                <h2>Bicardi Bahama Mama</h2>
+                <p class="price">$52.000</p>
+                <button onclick="addToCart('B. Bahama M.', 52)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Bicardi">
+                <img src="Bebidas/bicardi/Bicardi Island Tea.webp" alt="Producto 5">
+                <h2>Bicardi Island Tea</h2>
+                <p class="price">$52.000</p>
+                <button onclick="addToCart('B. Island Tea', 52)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Bicardi">
+                <img src="Bebidas/bicardi/Bicardi Limon.webp" alt="Producto 6">
+                <h2>Bicardi Limon</h2>
+                <p class="price">$52.000</p>
+                <button onclick="addToCart('B. Limon', 52)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Bicardi">
+                <img src="Bebidas/bicardi/Bicardi Mandarina.webp" alt="Producto 7">
+                <h2>Bicardi Mandarina</h2>
+                <p class="price">$52.000</p>
+                <button onclick="addToCart('B. Mandarina', 52)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Whiskys">
+                <img src="Bebidas/Whiskys/Red label.webp" alt="Producto 8">
+                <h2>Red Label</h2>
+                <p class="price">$??</p>
+                <button onclick="addToCart('Red label', 0)">Agregar al Carrito</button>
+                <button1 class="ml-button">375 ml</button1>
+            </div>
+            <div class="product" data-category="Whiskys">
+                <img src="Bebidas/Whiskys/Monkey Shoulder.webp" alt="Producto 9">
+                <h2>Monkey Shoulder</h2>
+                <p class="price">$147.000</p>
+                <button onclick="addToCart('Monkey Shoulder', 147)">Agregar al Carrito</button>
+                <button1 class="ml-button">700 ml</button1>
+            </div>
+            <div class="product" data-category="Whiskys">
+                <img src="Bebidas/Whiskys/Black Label.webp" alt="Producto 10">
+                <h2>Black Label</h2>
+                <p class="price">$??</p>
+                <button onclick="addToCart('Black Label', 0)">Agregar al Carrito</button>
+                <button1 class="ml-button">700 ml</button1>
+            </div>
+            <div class="product" data-category="Whiskys">
+                <img src="Bebidas/Whiskys/Old Parr.webp" alt="Producto 11">
+                <h2>old Parr</h2>
+                <p class="price">$??</p>
+                <button onclick="addToCart('Old Parr', 0)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Whiskys">
+                <img src="Bebidas/Whiskys/Buchanans Deluxe G.webp" alt="Producto 12">
+                <h2>Buchanan's Deluxe</h2>
+                <p class="price">$166.000</p>
+                <button onclick="addToCart('Buchanans D.', 166)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Whiskys">
+                <img src="Bebidas/Whiskys/Buchanans Deluxe M.webp" alt="Producto 13">
+                <h2>Buchanan's Deluxe M</h2>
+                <p class="price">$97.000</p>
+                <button onclick="addToCart('Buchanans D.M.', 97)">Agregar al Carrito</button>
+                <button1 class="ml-button">375 ml</button1>
+            </div>
+            <div class="product" data-category="Whiskys">
+                <img src="Bebidas/Whiskys/Chivas Regal.webp" alt="Producto 14">
+                <h2>Chivas Regal 18Y</h2>
+                <p class="price">$??</p>
+                <button onclick="addToCart('Chivas R.18Y', 0)">Agregar al Carrito</button>
+                <button1 class="ml-button">700 ml</button1>
+            </div>
+            <div class="product" data-category="Whiskys">
+                <img src="Bebidas/Whiskys/Jameson.webp" alt="Producto 15">
+                <h2> Whikskey Jameson</h2>
+                <p class="price">$90.000</p>
+                <button onclick="addToCart('W. Jameson', 90)">Agregar al Carrito</button>
+                <button1 class="ml-button">700 ml</button1>
+            </div>
+            <div class="product" data-category="Whiskys">
+                <img src="Bebidas/Whiskys/Something especial.webp" alt="Producto 16">
+                <h2>Something Especial</h2>
+                <p class="price">$96.000</p>
+                <button onclick="addToCart('Something S.', 96)">Agregar al Carrito</button>
+                <button1 class="ml-button">1000 ml</button1>
+            </div>
+            <div class="product" data-category="Whiskys">
+                <img src="Bebidas/Whiskys/Something Especial Botella.webp" alt="Producto 17">
+                <h2>Something Especial B</h2>
+                <p class="price">$71.000</p>
+                <button onclick="addToCart('Something S.B.', 71)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Whiskys">
+                <img src="Bebidas/Whiskys/Something Especial Media.webp" alt="Producto 18">
+                <h2>Something Especial M</h2>
+                <p class="price">$46.000</p>
+                <button onclick="addToCart('Something S.M.', 46)">Agregar al Carrito</button>
+                <button1 class="ml-button">360 ml</button1>
+            </div>
+            <div class="product" data-category="Whiskys">
+                <img src="Bebidas/Whiskys/Ballantinea finest.webp" alt="Producto 19">
+                <h2>Ballantine's Whisky</h2>
+                <p class="price">$35.000</p>
+                <button onclick="addToCart('Ballantines', 35)">Agregar al Carrito</button>
+                <button1 class="ml-button">700 ml</button1>
+            </div>
+            <div class="product" data-category="Whiskys">
+                <img src="Bebidas/Whiskys/Grant's Wood.webp" alt="Producto 20">
+                <h2>Whisky Grants</h2>
+                <p class="price">$86.000</p>
+                <button onclick="addToCart('Whisky Grant', 86)">Agregar al Carrito</button>
+                <button1 class="ml-button">1000 ml</button1>
+            </div>
+            <div class="product" data-category="Whiskys">
+                <img src="Bebidas/Whiskys/Grant's Wood.webp" alt="Producto 21">
+                <h2>Whisky Grants B</h2>
+                <p class="price">$64.000</p>
+                <button onclick="addToCart('Whisky Grant B.', 64)">Agregar al Carrito</button>
+                <button1 class="ml-button">700 ml</button1>
+            </div>
+            <div class="product" data-category="Whiskys">
+                <img src="Bebidas/Whiskys/Double Black.webp" alt="Producto 22">
+                <h2>Double Black Label</h2>
+                <p class="price">$??</p>
+                <button onclick="addToCart('Double Jack', 0)">Agregar al Carrito</button>
+                <button1 class="ml-button">700 ml</button1>
+            </div>
+            <div class="product" data-category="Whiskys">
+                <img src="Bebidas/Whiskys/Chivas 12Y.webp" alt="Producto 23">
+                <h2>Chivas Regal 12Y</h2>
+                <p class="price">$146.000</p>
+                <button onclick="addToCart('Chivas R.12Y', 146)">Agregar al Carrito</button>
+                <button1 class="ml-button">700 ml</button1>
+            </div>
+            <div class="product" data-category="Whiskys">
+                <img src="Bebidas/Whiskys/Jack daniels Black.webp" alt="Producto 24">
+                <h2>Whisky Jack Daniels M</h2>
+                <p class="price">$143.000</p>
+                <button onclick="addToCart('W.M. Jack Daniels', 143)">Agregar al Carrito</button>
+                <button1 class="ml-button">375 ml</button1>
+            </div>            
+            <div class="product" data-category="Whiskys">
+                <img src="Bebidas/Whiskys/Jack daniels Black.webp" alt="Producto 25">
+                <h2>Whisky Jack Daniels</h2>
+                <p class="price">$143.000</p>
+                <button onclick="addToCart('W. Jack Daniels', 143)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Whiskys">
+                <img src="Bebidas/Whiskys/Jack daniels Honey.webp" alt="Producto 26">
+                <h2>Jack Daniels Honey</h2>
+                <p class="price">$143.000</p>
+                <button onclick="addToCart('Jack Daniels H.', 143)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Whiskys">
+                <img src="Bebidas/Whiskys/Black and White.webp" alt="Producto 27">
+                <h2>Black and white</h2>
+                <p class="price">$57.000</p>
+                <button onclick="addToCart('Black White', 57)">Agregar al Carrito</button>
+                <button1 class="ml-button">700 ml</button1>
+            </div>
+            <div class="product" data-category="Whiskys">
+                <img src="Bebidas/Whiskys/Blakck and white M.webp" alt="Producto 28">
+                <h2>Black and White M.</h2>
+                <p class="price">$31.000</p>
+                <button onclick="addToCart('Black White M.', 31)">Agregar al Carrito</button>
+                <button1 class="ml-button">375 ml</button1>
+            </div>
+            <div class="product" data-category="Whiskys">
+                <img src="Bebidas/Whiskys/Chivas Regal 13Y.webp" alt="Producto 29">
+                <h2>Chivas Regal 13Y</h2>
+                <p class="price">$40.000</p>
+                <button onclick="addToCart('Chivas R.13Y', 40)">Agregar al Carrito</button>
+                <button1 class="ml-button">375 ml</button1>
+            </div>
+            <div class="product" data-category="Whiskys">
+                <img src="Bebidas/Whiskys/Buchanans Malts.webp" alt="Producto 30">
+                <h2>Buchanans Malts</h2>
+                <p class="price">$??</p>
+                <button onclick="addToCart('Buchanans Malts', 0)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Vino">
+                <img src="Bebidas/Vinos/Leyenda Vino tinto.webp" alt="Producto 31">
+                <h2>Leyenda Cabernet Sauviginon</h2>
+                <p class="price">$68.000</p>
+                <button onclick="addToCart('Vino Leyenda C.S.', 68)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Vino">
+                <img src="Bebidas/Vinos/Mirador Merlot 2019.webp" alt="Producto 32">
+                <h2>Mirador Merlot 2019</h2>
+                <p class="price">$68.000</p>
+                <button onclick="addToCart(' Mirador Merl. 2019', 68)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Vino">
+                <img src="Bebidas/Vinos/Lambrusco Rose-Dolce 1911.webp" alt="Producto 33">
+                <h2>Vino Rosado Lambrusco   Rose-Dolce</h2>
+                <p class="price">$46.000</p>
+                <button onclick="addToCart('Lambrusco R.D ', 46)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Vino">
+                <img src="Bebidas/Vinos/3 Medallas Vino tinto.webp" alt="Producto 34">
+                <h2>Tres Medallas Cabernet Sauviginon 2021</h2>
+                <p class="price">$44.000</p>
+                <button onclick="addToCart('Cabernet 21', 44)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Vino">
+                <img src="Bebidas/Vinos/Wine Of Chile  Chiloe.webp" alt="Producto 35">
+                <h2>Chiloe Cabernet Sauvignon 2020</h2>
+                <p class="price">$40.000</p>
+                <button onclick="addToCart('Cabernet 20', 40)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Vino">
+                <img src="Bebidas/Vinos/3Tres Medallas Carmenere2020.webp" alt="Producto 36">
+                <h2>Tres Medallas Carmenere 2020</h2>
+                <p class="price">$44.000</p>
+                <button onclick="addToCart('Carmenere 20.', 44)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Vino">
+                <img src="Bebidas/Vinos/Leyenda Vino Carmenere 2021.webp" alt="Producto 37">
+                <h2>Vino Tinto Leyenda Carmenere 2021</h2>
+                <p class="price">$68.000</p>
+                <button onclick="addToCart('Vino Ley. Carme.', 68)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Vino">
+                <img src="Bebidas/Vinos/Vino Stefanya Lambrusco.webp" alt="Producto 38">
+                <h2>Estedanya Lambrusco Vino-Roso Dulce</h2>
+                <p class="price">$46.000</p>
+                <button onclick="addToCart('Vino Estefanya', 46)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Vino">
+                <img src="Bebidas/Vinos/Gato Negro Malbec.webp" alt="Producto 39">
+                <h2>Vino Tinto Gato Negro Malbec ARG</h2>
+                <p class="price">$51.000</p>
+                <button onclick="addToCart('Malbec GatoNegro', 51)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Vino">
+                <img src="Bebidas/Vinos/Cabernet Vientos del Sur 2020.png" alt="Producto 40">
+                <h2>Cabernet Sauvignon Vientos del Sur 2020</h2>
+                <p class="price">$31.000</p>
+                <button onclick="addToCart('Cabern. V.del Sur', 31)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Vino">
+                <img src="Bebidas/Vinos/Merlot Maipo.webp" alt="Producto 41">
+                <h2>Merlot Viña Maipo</h2>
+                <p class="price">$68.000</p>
+                <button onclick="addToCart('Merlot Viña Maipo', 68)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Vino">
+                <img src="Bebidas/Vinos/Manischewitz.webp" alt="Producto 42">
+                <h2>Manischewitz</h2>
+                <p class="price">$60.000</p>
+                <button onclick="addToCart('Manischewitz', 60)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Vino">
+                <img src="Bebidas/Vinos/Chiloe Merlot.webp" alt="Producto 43">
+                <h2>Chiloe Merlot</h2>
+                <p class="price">$40.000</p>
+                <button onclick="addToCart('Chiloe Merlot', 40)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Vino">
+                <img src="Bebidas/Vinos/Gato Negro Cabernet Merlo chile.webp" alt="Producto 44">
+                <h2>Gato Negro Cabernet Merlot</h2>
+                <p class="price">$51.000</p>
+                <button onclick="addToCart('C.M. GatoNegro', 51)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>           
+            <div class="product" data-category="Vino">
+                <img src="Bebidas/Vinos/Tocornal Carmenere.webp" alt="Producto 45">
+                <h2>Tocornal Carmenere 2020</h2>
+                <p class="price">$39.000</p>
+                <button onclick="addToCart('Tocornal 2020', 39)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>            
+            <div class="product" data-category="Vino">
+                <img src="Bebidas/Vinos/Vientos del sur merlot.webp" alt="Producto 46">
+                <h2>Vientos del Sur Merlot 2020</h2>
+                <p class="price">$31.000</p>
+                <button onclick="addToCart('V.Sur Merlot 20', 31)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>            
+            <div class="product" data-category="Vino">
+                <img src="Bebidas/Vinos/3 Medallas Merlot 21.webp" alt="Producto 47">
+                <h2>Tres medallas Merlot 2021</h2>
+                <p class="price">$44.000</p>
+                <button onclick="addToCart('3M. Merlot 21', 44)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>            
+            <div class="product" data-category="Vino">
+                <img src="Bebidas/Vinos/Leyenda Merlot 2020.webp" alt="Producto 48">
+                <h2>Vino Leyenda Merlot 2020</h2>
+                <p class="price">$68.000</p>
+                <button onclick="addToCart('Leyenda Merlot20', 68)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Vino">
+                <img src="Bebidas/Vinos/120 Santa Rita.webp" alt="Producto 49">
+                <h2>120 Cabernet Sauviginon 2021</h2>
+                <p class="price">$68.000</p>
+                <button onclick="addToCart('120 Reserva E.', 68)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Vino">
+                <img src="Bebidas/Vinos/Santa Ana Reserve.webp" alt="Producto 50">
+                <h2>Santa Ana Reserve 2020</h2>
+                <p class="price">$77.000</p>
+                <button onclick="addToCart('Santa Ana 20', 77)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Vino">
+                <img src="Bebidas/Vinos/GatoNegro Sauvigion.webp" alt="Producto 51">
+                <h2>Cabernet Sauviginon</h2>
+                <p class="price">$51.000</p>
+                <button onclick="addToCart('GatoNegro C.S.', 51)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Vino">
+                <img src="Bebidas/Vinos/IL DOUMO.webp" alt="Producto 52">
+                <h2>Vino IL DUOMO</h2>
+                <p class="price">$40.000</p>
+                <button onclick="addToCart('IL DUOMO', 40)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Vino">
+                <img src="Bebidas/Vinos/Indomita.webp" alt="Producto 53">
+                <h2>Vino Indomita</h2>
+                <p class="price">$57.000</p>
+                <button onclick="addToCart('V. Indomita', 57)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Vino">
+                <img src="Bebidas/Vinos/Vino la escondida rose.webp" alt="Producto 54">
+                <h2>La Escondida Rose 2020</h2>
+                <p class="price">$25.000</p>
+                <button onclick="addToCart('Escondida R.20', 25)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Vino">
+                <img src="Bebidas/Vinos/Casillro del Diablo.webp" alt="Producto 55">
+                <h2>Casillero Carbernet</h2>
+                <p class="price">$68.000</p>
+                <button onclick="addToCart('Casillero Caber.', 68)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Vino">
+                <img src="Bebidas/Vinos/Casillero del Diablo Merlot.webp" alt="Producto 56">
+                <h2>Casillero Merlot</h2>
+                <p class="price">$68.000</p>
+                <button onclick="addToCart('Casillero Merlot', 68)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Vino">
+                <img src="Bebidas/Vinos/120 Rose.webp" alt="Producto 57">
+                <h2>120 Rosé Cabernet</h2>
+                <p class="price">$68.000</p>
+                <button onclick="addToCart('120 Rosé', 68)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Vino">
+                <img src="Bebidas/Vinos/Cono sur Cabernet.webp" alt="Producto 58">
+                <h2>Cono Sur Cabernet</h2>
+                <p class="price">$68.000</p>
+                <button onclick="addToCart('Cono Cabernet.', 68)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Vino">
+                <img src="Bebidas/Vinos/Cono Sur Rose'.webp" alt="Producto 59">
+                <h2>Cono Sur Rosé</h2>
+                <p class="price">$68.000</p>
+                <button onclick="addToCart('Cono Rosé', 68)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Vino">
+                <img src="Bebidas/Vinos/Leyenda Rose.webp" alt="Producto 60">
+                <h2>Vino Leyenda Rosé SYRAH</h2>
+                <p class="price">$68.000</p>
+                <button onclick="addToCart('Leyenda Rosé', 68)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+            <div class="product" data-category="Cremas">
+                <img src="Bebidas/Cremas/Jack 315.webp" alt="Producto 61">
+                <h2>Black Jack M</h2>
+                <p class="price">$22.000</p>
+                <button onclick="addToCart('Black Jack M', 22)">Agregar al Carrito</button>
+                <button1 class="ml-button">375 ml</button1>
+            </div>
+            <div class="product" data-category="Cremas>
+                <img src="Bebidas/Cremas/.Blanck Jack" alt="Producto 62">
+                <h2>Black Jack G</h2>
+                <p class="price">$??</p>
+                <button onclick="addToCart('Black Jack', 22)">Agregar al Carrito</button>
+                <button1 class="ml-button">750 ml</button1>
+            </div>
+        </div>
+    </main>
+
+    <div class="cart-details" id="cart-details">
+        <h2>Tu Carrito</h2>
+        <ul id="cart-items"></ul>
+        <p class="total">
+            Total: <span id="cart-total">0</span>
+            <span id="cart-warning" class="cart-warning"></span>
+        </p>
+        <button onclick="sendWhatsAppOrder()" class="buy-button">Comprar</button>
+    </div>
+    <script src="Producto.js"></script>
+</body>
+</html>
+
+
