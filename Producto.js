@@ -102,10 +102,13 @@ function toggleCart() {
     
     if (window.innerWidth <= 600) {
         cartDetails.style.width = "80%"; 
-        cartDetails.style.right = "10%"; 
+        cartDetails.style.left = "50%"; 
+        cartDetails.style.transform = "translateX(-50%)";
     } else {
         cartDetails.style.width = "400px";
         cartDetails.style.right = "0";
+        cartDetails.style.left = "auto";
+        cartDetails.style.transform = "none";
     }
 }
 
