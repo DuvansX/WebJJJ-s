@@ -2,7 +2,6 @@ let cart = JSON.parse(localStorage.getItem("carrito")) || [];
 let cartTotal = 0;
 const MAX_PRODUCTS = 20; // Límite de productos en el carrito
 
-// Calcular el total al cargar la página
 cart.forEach(producto => {
     cartTotal += producto.price * producto.quantity;
 });
@@ -98,7 +97,16 @@ function sendWhatsAppOrder() {
 }
 
 function toggleCart() {
-    document.getElementById('cart-details').classList.toggle('active');
+    const cartDetails = document.getElementById('cart-details');
+    cartDetails.classList.toggle('active');
+    
+    if (window.innerWidth <= 600) {
+        cartDetails.style.width = "80%"; 
+        cartDetails.style.right = "10%"; 
+    } else {
+        cartDetails.style.width = "400px";
+        cartDetails.style.right = "0";
+    }
 }
 
 updateCart();
