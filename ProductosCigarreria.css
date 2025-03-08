@@ -357,15 +357,16 @@ border-top-right-radius: 4px;
 /* 🔹 SOLO en celulares (pantallas de 600px o menos) */
 @media screen and (max-width: 600px) {
     .cart-details {
-        width: 70% !important;  /* 70% más pequeño */
-        right: auto !important; /* Quitamos el desplazamiento extra a la derecha */
-        left: 30% !important;   /* Lo centramos como en PC */
-        font-size: 0.8em !important; /* Reducimos el tamaño del texto */
-        padding: 0.5rem !important;  /* Reducimos el padding */
-        max-height: 70vh !important; /* Limitamos la altura */
-        overflow-y: auto !important; /* Permitir scroll si es necesario */
+        width: 60% !important;  /* 🔥 Un 10% más grande (antes 50%, ahora 60%) */
+        right: auto !important;
+        left: 20% !important;   /* 🔥 Mejor ubicación, más centrado */
+        font-size: 0.85em !important; /* 🔥 Un poco más grande el texto */
+        padding: 0.6rem !important;  /* 🔥 Un poco más de padding */
+        max-height: 75vh !important; /* 🔥 Ligera mejora en altura */
+        overflow-y: auto !important;
     }
 }
+
 
 
 
