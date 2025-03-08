@@ -357,8 +357,8 @@ border-top-right-radius: 4px;
 /* 🔹 SOLO en celulares (pantallas de 600px o menos) */
 @media screen and (max-width: 600px) {
     .cart-details {
-        width: 50% !important;  /* 50% más pequeño */
-        right: 10% !important;   /* Lo movemos más a la derecha */
+        width: 60% !important;  /* 50% más pequeño */
+        right: 50% !important;   /* Lo movemos más a la derecha */
         font-size: 0.8em !important; /* Reducimos el tamaño del texto */
         padding: 0.5rem !important;  /* Reducimos el padding */
         max-height: 70vh !important; /* Limitamos la altura */
