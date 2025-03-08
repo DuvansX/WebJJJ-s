@@ -102,9 +102,13 @@ function toggleCart() {
 
     if (window.innerWidth <= 600) { // Solo en celulares
         if (cartDetails.classList.contains("active")) {
-            cartDetails.style.right = "5%";  // Lo movemos un poco a la derecha
+            cartDetails.style.width = "70%";  // 30% más pequeño que antes
+            cartDetails.style.right = "5%";   // Sigue movido un poco a la derecha
+            cartDetails.style.fontSize = "0.9em"; // Reduce el tamaño del texto ligeramente
+            cartDetails.style.padding = "8px"; // Ajuste del padding
         } else {
-            cartDetails.style.right = "-100%"; // Ocultarlo cuando no está activo
+            cartDetails.style.width = "0";
+            cartDetails.style.right = "-100%";
         }
     } else { // En PC sigue igual
         cartDetails.style.width = "400px";
@@ -115,3 +119,4 @@ function toggleCart() {
 }
 
 updateCart();
+
