@@ -10,7 +10,7 @@ body {
     position: relative;
     min-height: 100vh;
     width: 100%;
-    background: url('Imagenes/Licor.jpg') no-repeat center center fixed; /* Usar imagen de fondo */
+    background: url('Imagenes/Cigarreria/Licor.jpg') no-repeat center center fixed; /* Usar imagen de fondo */
     background-size: cover; /* Hace que la imagen cubra todo el fondo */
 }
 
@@ -348,28 +348,19 @@ border-top-right-radius: 4px;
     padding: 1rem;
     display: none;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 300px; /* Tamaño normal en PC */
-    height: auto;
-    max-height: 90vh;
+    width: 300px;
     z-index: 999;
 }
 
 /* 🔹 SOLO en celulares (pantallas de 600px o menos) */
 @media screen and (max-width: 600px) {
     .cart-details {
-        width: 60% !important;  /* 🔥 Un 10% más grande (antes 50%, ahora 60%) */
-        right: auto !important;
-        left: 20% !important;   /* 🔥 Mejor ubicación, más centrado */
-        font-size: 0.85em !important; /* 🔥 Un poco más grande el texto */
-        padding: 0.6rem !important;  /* 🔥 Un poco más de padding */
-        max-height: 75vh !important; /* 🔥 Ligera mejora en altura */
-        overflow-y: auto !important;
+        width: 50%; /* 30% más pequeño */
+        right: 5%;  /* Lo movemos un poco a la derecha */
+        font-size: 0.9em; /* Reducimos el tamaño del texto */
+        padding: 0.8rem; /* Ajustamos el padding */
     }
 }
-
-
-
-
 
 .cart-details.active {
     display: block;
@@ -529,6 +520,16 @@ border-top-right-radius: 4px;
     background-color: transparent;
     padding: 5px;
 }
+
+/* Cuando el ancho de la pantalla sea menor o igual a 768px (típico en móviles) */
+@media (max-width: 768px) {
+    .menu1 {
+        top: 35px;  /* Baja 5px */
+        left: 85px; /* Se mueve 5px a la izquierda */
+    }
+}
+
+
 .menu1 button {
     margin: 5px;
     padding: 8px 16px;
@@ -555,7 +556,7 @@ border-top-right-radius: 4px;
     display: flex;
     flex-direction: column;
     margin-top: 5px;
-    background-image: url('2520.jpg');
+    background-image: url('Imagenes/Cigarreria/ImagenMenuBebidas.jpg');
     border-radius: 5px;
     padding: 5px;
     opacity: 0;
