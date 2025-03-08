@@ -100,23 +100,26 @@ function toggleCart() {
     const cartDetails = document.getElementById('cart-details');
     cartDetails.classList.toggle('active');
 
-    // Ajuste para celulares
-    if (window.innerWidth <= 600) {
+    if (window.innerWidth <= 600) { // Solo afecta a celulares
         if (cartDetails.classList.contains("active")) {
-            cartDetails.style.width = "90%";
-            cartDetails.style.right = "5%";
-            cartDetails.style.top = "10%"; 
-            cartDetails.style.height = "80vh"; 
-            cartDetails.style.overflowY = "auto"; 
+            cartDetails.style.width = "70%";  // Reducido para que no ocupe toda la pantalla
+            cartDetails.style.right = "15%";  
+            cartDetails.style.top = "15%";  
+            cartDetails.style.height = "60vh";  // Menos alto
+            cartDetails.style.overflowY = "auto";  
+            cartDetails.style.background = "#fff";  
+            cartDetails.style.borderRadius = "10px";  
+            cartDetails.style.boxShadow = "0px 0px 10px rgba(0, 0, 0, 0.2)";
+            cartDetails.style.padding = "10px";  
         } else {
             cartDetails.style.width = "0";
             cartDetails.style.right = "-100%";
         }
-    } else {
+    } else { // En PC sigue igual
         cartDetails.style.width = "400px";
         cartDetails.style.right = "0";
         cartDetails.style.top = "0";
-        cartDetails.style.height = "100vh"; 
+        cartDetails.style.height = "100vh";  
     }
 }
 
