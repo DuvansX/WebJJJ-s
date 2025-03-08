@@ -99,16 +99,24 @@ function sendWhatsAppOrder() {
 function toggleCart() {
     const cartDetails = document.getElementById('cart-details');
     cartDetails.classList.toggle('active');
-    
+
+    // Ajuste para celulares
     if (window.innerWidth <= 600) {
-        cartDetails.style.width = "80%"; 
-        cartDetails.style.left = "50%"; 
-        cartDetails.style.transform = "translateX(-50%)";
+        if (cartDetails.classList.contains("active")) {
+            cartDetails.style.width = "90%";
+            cartDetails.style.right = "5%";
+            cartDetails.style.top = "10%"; 
+            cartDetails.style.height = "80vh"; 
+            cartDetails.style.overflowY = "auto"; 
+        } else {
+            cartDetails.style.width = "0";
+            cartDetails.style.right = "-100%";
+        }
     } else {
         cartDetails.style.width = "400px";
         cartDetails.style.right = "0";
-        cartDetails.style.left = "auto";
-        cartDetails.style.transform = "none";
+        cartDetails.style.top = "0";
+        cartDetails.style.height = "100vh"; 
     }
 }
 
