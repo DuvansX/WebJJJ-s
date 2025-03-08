@@ -31,7 +31,7 @@ body {
 
 .sidebar1 .logo_content1 .logo1 {
     display: flex;
-    color: #ffb700;
+    color: 
     height: 50px;
     width: 100%;
     font-size: 30px;
@@ -211,7 +211,7 @@ body {
     display: grid;
     align-items: center;
     justify-content: center;
-    background: url('8451.jpg') no-repeat center center fixed;
+    background: url('Imagenes/Nosotros/Fondo\ Nostros.jpg') no-repeat center center fixed;
     background-size: cover;
     z-index: -2;
 }
@@ -272,7 +272,7 @@ svg circle {
 }
 
 .card {
-    background: url('FondoParaNosotros.webp');
+    background: url('Imagenes/Nosotros/FondoParaNosotros.webp');
     border-radius: 20px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     overflow: hidden;
