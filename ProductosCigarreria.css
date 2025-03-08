@@ -348,19 +348,24 @@ border-top-right-radius: 4px;
     padding: 1rem;
     display: none;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 300px;
+    width: 300px; /* Tamaño normal en PC */
+    height: auto;
+    max-height: 90vh;
     z-index: 999;
 }
 
 /* 🔹 SOLO en celulares (pantallas de 600px o menos) */
 @media screen and (max-width: 600px) {
     .cart-details {
-        width: 50%; /* 30% más pequeño */
-        right: 5%;  /* Lo movemos un poco a la derecha */
-        font-size: 0.9em; /* Reducimos el tamaño del texto */
-        padding: 0.8rem; /* Ajustamos el padding */
+        width: 50% !important;  /* 50% más pequeño */
+        right: 10% !important;   /* Lo movemos más a la derecha */
+        font-size: 0.8em !important; /* Reducimos el tamaño del texto */
+        padding: 0.5rem !important;  /* Reducimos el padding */
+        max-height: 70vh !important; /* Limitamos la altura */
+        overflow-y: auto !important; /* Permitir scroll si es necesario */
     }
 }
+
 
 
 .cart-details.active {
