@@ -99,24 +99,6 @@ function sendWhatsAppOrder() {
 function toggleCart() {
     const cartDetails = document.getElementById('cart-details');
     cartDetails.classList.toggle('active');
-
-    if (window.innerWidth <= 600) { // Solo en celulares
-        if (cartDetails.classList.contains("active")) {
-            cartDetails.style.width = "70%";  // 30% más pequeño que antes
-            cartDetails.style.right = "5%";   // Sigue movido un poco a la derecha
-            cartDetails.style.fontSize = "0.9em"; // Reduce el tamaño del texto ligeramente
-            cartDetails.style.padding = "8px"; // Ajuste del padding
-        } else {
-            cartDetails.style.width = "0";
-            cartDetails.style.right = "-100%";
-        }
-    } else { // En PC sigue igual
-        cartDetails.style.width = "400px";
-        cartDetails.style.right = "0";
-        cartDetails.style.top = "0";
-        cartDetails.style.height = "100vh";  
-    }
 }
 
 updateCart();
-
