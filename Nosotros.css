@@ -23,6 +23,7 @@ body {
     height: 100%;
     box-shadow: 5px 0 30px rgba(0,0,0,.1);
     transition: all .5s ease;
+    z-index: 9998;
 }
 
 .sidebar1.active1 {
@@ -216,63 +217,6 @@ body {
     z-index: -2;
 }
 
-main {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    cursor: pointer;
-}
-
-.icon {
-    position: relative;
-    width: 80px;
-    height: 80px;
-    margin: 550px 0 0 20px; 
-    border-radius: 50%;
-    transition: all .8s;
-}
-
-.icon:hover {
-    background-color: #e60073;
-    box-shadow: 0 0 20px #e60073;
-}
-
-.icon:hover:nth-child(2) {
-    background-color: #1877f2;
-    box-shadow: 0 0 40px #1877f2;
-}
-
-.icon:hover:nth-child(3) {
-    background-color: #25d366;
-    box-shadow: 0 0 60px #25d366;
-}
-
-.icon:hover:nth-child(4) {
-    background-color: #000000;
-    box-shadow: 0 0 80px #000000;
-}
-
-.icon i {
-    color: #ffffff;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    font-size: 1.7rem;
-}
-
-svg circle {
-    stroke-dasharray: 150;
-    transition: all .8s ease-in-out;
-}
-
-.icon:hover circle {
-    stroke-dasharray: 220;
-}
-
-
-
 .cards-container {
     position: relative;
 }
@@ -288,7 +232,7 @@ svg circle {
     text-align: center;
     position: absolute;
     top: 25px;
-    z-index: -1;
+    z-index: -2;
 }
 
 .card:nth-child(1) { left: 180px; }
@@ -307,19 +251,13 @@ svg circle {
         position: static; /* Elimina la posición absoluta en móviles */
         width: 75%; /* Hace las cartas más angostas */
         max-width: 320px; /* No permite que sean muy anchas */
-        height: 520px; /* Aumenta la altura para alargarlas */
+        height: 530px; /* Aumenta la altura para alargarlas */
         margin-left: 92px; /* Mueve las cartas 75px a la derecha */
         margin-right: 20px; /* Espaciado para que no toquen el borde derecho */
         margin-top: 15px; /* Separa la primera carta del límite superior */
         margin-bottom: 15px; /* Espaciado entre las cartas */
     }
 }
-
-
-
-
-
-
 .image-container {
     width: 100%;
     height: 200px;
@@ -359,6 +297,7 @@ svg circle {
     outline: none; 
     transition: background-color 0.3s, border-color 0.3s;
     transform: translateY(10px); 
+    z-index: -1;
 }
 
 .content button:hover {
@@ -370,3 +309,41 @@ svg circle {
   box-shadow: 0 0 5px rgba(44, 62, 80, 0.6); 
 }
 
+.social-icons {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    padding-right: 15px; /* Ajusta este valor para mover más a la izquierda o derecha */
+    position: relative;
+    top: 100px; /* Baja los iconos en PC */
+}
+
+.icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: white;
+    font-size: 30px;
+    text-decoration: none;
+    transition: box-shadow 0.3s ease;
+}
+.whatsapp { background-color: #25D366; }
+.tiktok { background-color: #000; }
+.instagram { background: linear-gradient(45deg, #833AB4, #FD1D1D, #FCB045); }
+.facebook { background-color: #1877F2; }
+
+.whatsapp:hover { box-shadow: 0px 0px 20px rgba(37, 211, 102, 0.8); }
+.tiktok:hover { box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8); }
+.instagram:hover { box-shadow: 0px 0px 20px rgba(253, 29, 29, 0.8); }
+.facebook:hover { box-shadow: 0px 0px 20px rgba(24, 119, 242, 0.8); }
+
+@media (max-width: 768px) {
+    .social-icons {
+        justify-content: flex-end;
+        top: 10px;
+        padding-right: 10px; /* Ajusta este valor para cambiar la posición en móviles */
+    }
+}
