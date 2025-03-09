@@ -31,7 +31,7 @@ body {
 
 .sidebar1 .logo_content1 .logo1 {
     display: flex;
-    color: 
+    color: #ffb700;
     height: 50px;
     width: 100%;
     font-size: 30px;
@@ -271,6 +271,13 @@ svg circle {
     stroke-dasharray: 220;
 }
 
+
+
+.cards-container {
+    position: relative;
+}
+
+/* Estilo para PC (Sin cambios) */
 .card {
     background: url('Imagenes/Nosotros/FondoParaNosotros.webp');
     border-radius: 20px;
@@ -284,9 +291,34 @@ svg circle {
     z-index: -1;
 }
 
-.card:nth-child(1) { left: 130px; }
-.card:nth-child(2) { left: 500px; }
-.card:nth-child(3) { left: 870px; }
+.card:nth-child(1) { left: 180px; }
+.card:nth-child(2) { left: 540px; }
+.card:nth-child(3) { left: 900px; }
+
+/* Ajustes solo para móviles */
+@media (max-width: 768px) {
+    .cards-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end; /* Alinea las cartas a la derecha */
+    }
+
+    .card {
+        position: static; /* Elimina la posición absoluta en móviles */
+        width: 75%; /* Hace las cartas más angostas */
+        max-width: 320px; /* No permite que sean muy anchas */
+        height: 520px; /* Aumenta la altura para alargarlas */
+        margin-left: 92px; /* Mueve las cartas 75px a la derecha */
+        margin-right: 20px; /* Espaciado para que no toquen el borde derecho */
+        margin-top: 15px; /* Separa la primera carta del límite superior */
+        margin-bottom: 15px; /* Espaciado entre las cartas */
+    }
+}
+
+
+
+
+
 
 .image-container {
     width: 100%;
