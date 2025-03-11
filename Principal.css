@@ -88,6 +88,7 @@ body {
     background: #ffffff;
     padding-left: 50px;
     font-size: 15px;
+    z-index: 9998;
     color: #000000;
     box-shadow: 0 5px 10px rgba(0,0,0,.2);
     transition: all .5s ease;
@@ -95,6 +96,7 @@ body {
 .sidebar1 .src1 .bx-search-alt {
     position: absolute;
     font-size: 22px;
+    z-index:9998;
     color: #000000;
     transition: all .5s ease;
 }
