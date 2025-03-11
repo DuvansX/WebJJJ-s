@@ -29,6 +29,7 @@ body {
     height: 100%;
     box-shadow: 5px 0 30px rgba(0,0,0,.1);
     transition: all .5s ease;
+    z-index: 9999;
 }
 .sidebar1.active1 {
     width: 240px;
@@ -93,7 +94,6 @@ body {
 }
 .sidebar1 .src1 .bx-search-alt {
     position: absolute;
-    z-index: 99;
     font-size: 22px;
     color: #000000;
     transition: all .5s ease;
