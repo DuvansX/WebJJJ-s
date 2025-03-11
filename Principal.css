@@ -14,7 +14,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url("Imagenes/Food/Fondo\ Perros.jpeg") no-repeat center center fixed;
+    background: url("Imagenes/ImagenesPrincipal/Perros.webp") no-repeat center center fixed;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -29,7 +29,7 @@ body {
     height: 100%;
     box-shadow: 5px 0 30px rgba(0,0,0,.1);
     transition: all .5s ease;
-    z-index: 9999;
+    z-index: 9996;
 }
 .sidebar1.active1 {
     width: 240px;
@@ -96,6 +96,7 @@ body {
     position: absolute;
     font-size: 22px;
     color: #000000;
+    z-index: 9997;
     transition: all .5s ease;
 }
 .sidebar1 .src1 .bx-search-alt:hover {
@@ -234,8 +235,9 @@ body {
     cursor: pointer;
     font-size: 16px;
     border-radius: 15px;
-    z-index: 1000;
+    z-index: 9999;
 }
+
 
 
     
@@ -256,7 +258,7 @@ background: rgba(0, 0, 0, 0.9);
 justify-content: center;
 align-items: center;
 flex-direction: column;
-z-index: 999;
+z-index: 9998;
 }
     
         .carta-container img {
