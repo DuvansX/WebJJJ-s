@@ -29,7 +29,7 @@ body {
     height: 100%;
     box-shadow: 5px 0 30px rgba(0,0,0,.1);
     transition: all .5s ease;
-    z-index: 9999;
+    z-index: 9997;
 }
 .sidebar1.active1 {
     width: 240px;
