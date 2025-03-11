@@ -24,6 +24,7 @@ body {
     height: 100%;
     box-shadow: 5px 0 30px rgba(0,0,0,.1);
     transition: all .5s ease;
+    z-index: 9995;
 }
 .sidebar1.active1 {
     width: 240px;
@@ -500,3 +501,140 @@ border-top-right-radius: 4px;
     100% { opacity: 0.6; }
 }
 
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease-out, visibility 1s ease-out;
+    z-index: 9999;
+}
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+.loader {
+    border: 8px solid rgba(255, 255, 255, 0.2);
+    border-top: 8px solid #ffb700;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 1s ease-in-out infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(180deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+
+.carta-btn {
+    position:absolute;
+    top: 20px;
+    left: 150px;
+    background-color: black;
+    color: #ffb700;
+    padding: 7px 15px;
+    border: 2px solid black;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold; /* Texto en negrita */
+    border-radius: 15px;
+    z-index: 9994;
+}
+
+.carta-btn:hover {
+background-color: #000000;
+color: rgb(255, 255, 255);
+}
+    
+/* Contenedor de la carta */
+.carta-container {
+display: none;
+position: fixed;
+top: 0;
+left: 10;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.9);
+justify-content: center;
+align-items: center;
+flex-direction: column;
+z-index: 9996;
+}
+    
+.carta-container img {
+max-width: 90%;
+max-height: 80%;
+cursor: zoom-in;
+transition: transform 0.3s ease-in-out;
+}
+    
+.carta-container.zoom img {
+transform: scale(2);
+cursor: zoom-out;
+}
+    
+/* Botones de navegación con diseño cuadrado y bordes redondeados */
+.toggle-img-btn {
+position: absolute;
+width: 50px;
+height: 50px;
+font-size: 24px;
+color: rgb(0, 0, 0);
+background-color: rgba(255, 255, 255, 0.8);
+border-radius: 100px;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: background 0.3s;
+}
+    
+.toggle-img-btn:hover {
+background-color: rgb(255, 255, 255);
+}
+    
+.btn-down {
+bottom: 10px;
+}
+    
+.btn-up {
+top: 10px;
+display: none;
+}
+
+#volverBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgb(0, 0, 0);
+    color: #ffb700;
+    font-weight: bold;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+#volverBtn:hover {
+    background-color: darkred;
+}
+@media (max-width: 768px) {
+    .carta-btn {
+        position:absolute;
+        top: 30px;
+        left: 135px;
+        transform: translateX(-50%);
+        padding: 5px 10px;
+        border-radius: 7px;
+        font-size: 14px;
+    } 
+}  
