@@ -1,6 +1,7 @@
 let cart = JSON.parse(localStorage.getItem("carrito")) || [];
 let cartTotal = 0;
 const MAX_PRODUCTS = 20; // Límite de productos en el carrito
+const MAX_VISIBLE_PRODUCTS = 5; // Máximo de productos visibles antes de mostrar scroll
 
 cart.forEach(producto => {
     cartTotal += producto.price * producto.quantity;
@@ -25,14 +26,16 @@ function addToCart(productName, price) {
 }
 
 function removeFromCart(index) {
-    cartTotal -= cart[index].price * cart[index].quantity;
-    cart.splice(index, 1);
-    updateCart();
+    if (index >= 0 && index < cart.length) {
+        cartTotal = Math.max(0, cartTotal - cart[index].price * cart[index].quantity);
+        cart.splice(index, 1);
+        updateCart();
+    }
 }
 
 function incrementQuantity(index) {
     const totalProducts = cart.reduce((total, item) => total + item.quantity, 0);
-    if (totalProducts < MAX_PRODUCTS) {
+    if (totalProducts < MAX_PRODUCTS && index >= 0 && index < cart.length) {
         cart[index].quantity += 1;
         cartTotal += cart[index].price;
         updateCart();
@@ -40,30 +43,87 @@ function incrementQuantity(index) {
 }
 
 function decrementQuantity(index) {
-    if (cart[index].quantity > 1) {
-        cart[index].quantity -= 1;
-        cartTotal -= cart[index].price;
-        updateCart();
-    } else {
-        removeFromCart(index);
+    if (index >= 0 && index < cart.length) {
+        if (cart[index].quantity > 1) {
+            cart[index].quantity -= 1;
+            cartTotal = Math.max(0, cartTotal - cart[index].price);
+            updateCart();
+        } else {
+            removeFromCart(index);
+        }
     }
 }
 
 function updateCart() {
+    cartTotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
     const totalProducts = cart.reduce((total, item) => total + item.quantity, 0);
+    
     document.getElementById('cart-count').textContent = totalProducts;
     document.getElementById('cart-total').textContent = formatPrice(cartTotal);
 
     const cartItems = document.getElementById('cart-items');
     cartItems.innerHTML = '';
+    cartItems.style.maxHeight = "200px";
+    cartItems.style.overflowY = "auto";
+
     cart.forEach((item, index) => {
         const li = document.createElement('li');
-        li.innerHTML = `
-            ${item.name} - ${formatPrice(item.price * item.quantity)}
-            <button onclick="incrementQuantity(${index})">+</button>
-            <button onclick="decrementQuantity(${index})">-</button>
-            <button onclick="removeFromCart(${index})">Eliminar</button>
-        `;
+        li.style.display = "flex";
+        li.style.justifyContent = "space-between";
+        li.style.alignItems = "center";
+        li.style.padding = "5px 0";
+
+        const nameSpan = document.createElement('span');
+        let productText = `${item.name} - ${formatPrice(item.price * item.quantity)}`;
+        if (item.quantity >= 2) {
+            productText += ` (x${item.quantity})`;
+        }
+        nameSpan.textContent = productText;
+        nameSpan.style.fontWeight = "bold";
+
+        const buttonContainer = document.createElement('div');
+        buttonContainer.style.display = "flex";
+        buttonContainer.style.gap = "5px";
+
+        const incrementBtn = document.createElement('button');
+        incrementBtn.textContent = "+";
+        incrementBtn.style.backgroundColor = "black";
+        incrementBtn.style.color = "white";
+        incrementBtn.style.border = "none";
+        incrementBtn.style.padding = "5px 10px";
+        incrementBtn.style.cursor = "pointer";
+        incrementBtn.style.borderRadius = "5px";
+        incrementBtn.style.fontWeight = "bold";
+        incrementBtn.onclick = () => incrementQuantity(index);
+
+        const decrementBtn = document.createElement('button');
+        decrementBtn.textContent = "-";
+        decrementBtn.style.backgroundColor = "black";
+        decrementBtn.style.color = "white";
+        decrementBtn.style.border = "none";
+        decrementBtn.style.padding = "5px 10px";
+        decrementBtn.style.cursor = "pointer";
+        decrementBtn.style.borderRadius = "5px";
+        decrementBtn.style.fontWeight = "bold";
+        decrementBtn.onclick = () => decrementQuantity(index);
+
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = "Eliminar";
+        removeBtn.style.backgroundColor = "#ffb700";
+        removeBtn.style.color = "black";
+        removeBtn.style.border = "none";
+        removeBtn.style.padding = "5px 10px";
+        removeBtn.style.cursor = "pointer";
+        removeBtn.style.borderRadius = "5px";
+        removeBtn.style.fontWeight = "bold";
+        removeBtn.onclick = () => removeFromCart(index);
+
+        buttonContainer.appendChild(incrementBtn);
+        buttonContainer.appendChild(decrementBtn);
+        buttonContainer.appendChild(removeBtn);
+
+        li.appendChild(nameSpan);
+        li.appendChild(buttonContainer);
         cartItems.appendChild(li);
     });
 
@@ -77,23 +137,6 @@ function updateCart() {
     }
 
     localStorage.setItem("carrito", JSON.stringify(cart));
-}
-
-function sendWhatsAppOrder() {
-    if (cart.length === 0) {
-        alert("Tu carrito está vacío");
-        return;
-    }
-
-    let message = "Hola, quiero hacer un pedido de:\n";
-    cart.forEach(item => {
-        message += `- ${item.name} x${item.quantity} - ${formatPrice(item.price * item.quantity)}\n`;
-    });
-    message += `Total: ${formatPrice(cartTotal)}`;
-
-    const phoneNumber = "573105813873";
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(url, "_blank");
 }
 
 function toggleCart() {

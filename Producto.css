@@ -347,18 +347,18 @@ border-top-right-radius: 4px;
     padding: 1rem;
     display: none;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 300px; /* Tamaño normal en PC */
+    width: 450px; /* Tamaño normal en PC */
     height: auto;
     max-height: 90vh;
-    z-index: 999;
+    z-index: 9998;
 }
 
 /* 🔹 SOLO en celulares (pantallas de 600px o menos) */
 @media screen and (max-width: 600px) {
     .cart-details {
-        width: 60% !important;  /* 🔥 Un 10% más grande (antes 50%, ahora 60%) */
+        width: 65% !important;  /* 🔥 Un 10% más grande (antes 50%, ahora 60%) */
         right: auto !important;
-        left: 20% !important;   /* 🔥 Mejor ubicación, más centrado */
+        left: 26% !important;   /* 🔥 Mejor ubicación, más centrado */
         font-size: 0.85em !important; /* 🔥 Un poco más grande el texto */
         padding: 0.6rem !important;  /* 🔥 Un poco más de padding */
         max-height: 75vh !important; /* 🔥 Ligera mejora en altura */
