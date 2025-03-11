@@ -8,39 +8,6 @@
     <link rel="stylesheet" href="Principal.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
-<style>
-    /* Estilos para la pantalla de carga */
-    #loading-screen {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background: #000;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: opacity 1s ease-out, visibility 1s ease-out;
-        z-index: 9999;
-    }
-    .hidden {
-        opacity: 0;
-        visibility: hidden;
-    }
-    .loader {
-        border: 8px solid rgba(255, 255, 255, 0.2);
-        border-top: 8px solid #ffb700;
-        border-radius: 50%;
-        width: 80px;
-        height: 80px;
-        animation: spin 1s ease-in-out infinite;
-    }
-    @keyframes spin {
-        0% { transform: rotate(0deg); }
-        50% { transform: rotate(180deg); }
-        100% { transform: rotate(360deg); }
-    }
-</style>
 </head>
 <body>
 <!-- Pantalla de carga -->
@@ -63,7 +30,7 @@
 <!-- Botón para abrir la carta -->
 <button class="carta-btn" onclick="toggleCarta()">Carta</button>
     
-<!-- Contenedor de la imagen de la carta -->
+
 <div class="carta-container" id="carta" onclick="toggleZoom(event)">
     <button class="toggle-img-btn btn-up" id="btnUp" onclick="toggleImagen(event)">⬆</button>
     <img src="Imagenes/carta.jpg" alt="Carta del Restaurante" id="cartaImg">
@@ -228,5 +195,48 @@ function toggleImagen(event) {
             sidebar1.classList.toggle('active1');
         }
     </script>
+
+<div id="image-container">
+    <button class="arrow left" onclick="prevImage()">◀</button>
+    <img class="image active" src="Imagenes/ImagenesPrincipal/1.jpeg" alt="Imagen 1">
+    <img class="image" src="Imagenes/ImagenesPrincipal/2.jpeg" alt="Imagen 2">
+    <img class="image" src="Imagenes/ImagenesPrincipal/3.jpeg" alt="Imagen 3">
+    <img class="image" src="Imagenes/ImagenesPrincipal/4.jpeg" alt="Imagen 4">
+    <img class="image" src="Imagenes/ImagenesPrincipal/5.jpeg" alt="Imagen 5">
+    <img class="image" src="Imagenes/ImagenesPrincipal/6.jpeg" alt="Imagen 6">
+    <img class="image" src="Imagenes/ImagenesPrincipal/7.jpeg" alt="Imagen 7">
+    <img class="image" src="Imagenes/ImagenesPrincipal/8.jpeg" alt="Imagen 8">
+    <img class="image" src="Imagenes/ImagenesPrincipal/9.jpeg" alt="Imagen 9">
+    <button class="arrow right" onclick="nextImage()">▶</button>
+</div>
+<script>
+    let index = 0;
+    const images = document.querySelectorAll('.image');
+    let interval;
+
+    function showImage(newIndex) {
+        images[index].classList.remove('active');
+        index = (newIndex + images.length) % images.length;
+        images[index].classList.add('active');
+        resetTimer();
+    }
+
+    function nextImage() {
+        showImage(index + 1);
+    }
+
+    function prevImage() {
+        showImage(index - 1);
+    }
+
+    function resetTimer() {
+        clearInterval(interval);
+        interval = setInterval(nextImage, 4000);
+    }
+
+    interval = setInterval(nextImage, 4000);
+</script>
+
+
 </body>
 </html>
