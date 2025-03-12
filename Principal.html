@@ -152,6 +152,24 @@
 
     interval = setInterval(nextImage, 4000);
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    if ("Notification" in window) {
+        Notification.requestPermission().then(function (permission) {
+            if (permission === "granted") {
+                new Notification("Permisos concedidos", {
+                    body: "Has activado las notificaciones!",
+                    icon: "https://via.placeholder.com/100"
+                });
+            } else if (permission === "denied") {
+                console.log("El usuario denegó los permisos de notificación.");
+            }
+        });
+    } else {
+        console.log("Las notificaciones no son compatibles con este navegador.");
+    }
+});
+</script>
 
 
 </body>
