@@ -15,6 +15,12 @@
     <div class="loader"></div>
 </div>
 
+<body>
+    <div class="top-center">
+      <span class="black">Welcome to</span>
+    </div>
+  </body>
+
 <script>
     window.addEventListener("load", function() {
         let loadingScreen = document.getElementById("loading-screen");
@@ -112,6 +118,7 @@
         }
     </script>
 
+
 <div id="image-container">
     <button class="arrow left" onclick="prevImage()">◀</button>
     <img class="image active" src="Imagenes/ImagenesPrincipal/1.jpeg" alt="Imagen 1">
@@ -125,6 +132,16 @@
     <img class="image" src="Imagenes/ImagenesPrincipal/9.jpeg" alt="Imagen 9">
     <button class="arrow right" onclick="nextImage()">▶</button>
 </div>
+
+
+<div id="image-container1">
+    <button class="arrow1 left1" onclick="prevImage1()">◀</button>
+    <img class="image1 active1" src="Imagenes/ImagenesPrincipal/11.png" alt="Imagen 1">
+    <img class="image1" src="Imagenes/ImagenesPrincipal/12.png" alt="Imagen 2">
+    <img class="image1" src="Imagenes/ImagenesPrincipal/13.png" alt="Imagen 3">
+    <button class="arrow1 right1" onclick="nextImage1()">▶</button>
+</div>
+
 <script>
     let index = 0;
     const images = document.querySelectorAll('.image');
@@ -152,24 +169,40 @@
 
     interval = setInterval(nextImage, 4000);
 </script>
+
+
+
+
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    if ("Notification" in window) {
-        Notification.requestPermission().then(function (permission) {
-            if (permission === "granted") {
-                new Notification("Permisos concedidos", {
-                    body: "Has activado las notificaciones!",
-                    icon: "https://via.placeholder.com/100"
-                });
-            } else if (permission === "denied") {
-                console.log("El usuario denegó los permisos de notificación.");
-            }
-        });
-    } else {
-        console.log("Las notificaciones no son compatibles con este navegador.");
+    let index1 = 0;
+    const images1 = document.querySelectorAll('.image1');
+    let interval1;
+
+    function showImage1(newIndex1) {
+        images1[index1].classList.remove('active1');
+        index1 = (newIndex1 + images1.length) % images1.length;
+        images1[index1].classList.add('active1');
+        resetTimer1();
     }
-});
+
+    function nextImage1() {
+        showImage1(index1 + 1);
+    }
+
+    function prevImage1() {
+        showImage1(index1 - 1);
+    }
+
+    function resetTimer1() {
+        clearInterval(interval1);
+        interval1 = setInterval(nextImage1, 5200);
+    }
+
+    interval1 = setInterval(nextImage1, 5200);
 </script>
+
+
+
 
 
 </body>
