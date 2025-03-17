@@ -507,3 +507,40 @@ z-index: 9998;
       top: 10px;
     }
   }
+
+
+  .contenedor {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  /* --- Estilos para PANTALLAS GRANDES (PC) --- */
+  .imagen-ajustable {
+    position: absolute;
+    
+    /* Posición en PC */
+    top: 25px;
+    left: 600px;
+    z-index: 20;
+    
+    /* Tamaño en PC */
+    width: 400px;
+    height: 250px;
+    
+    object-fit: contain;
+  }
+  
+  /* --- Estilos para CELULARES --- */
+  @media (max-width: 768px) {
+    .imagen-ajustable {
+      /* Nueva posición para móvil */
+      top: 40px;
+      left: 100px;
+  
+      /* Nuevo tamaño para móvil */
+      width: 300px;
+      height: 200px;
+    }
+  }
