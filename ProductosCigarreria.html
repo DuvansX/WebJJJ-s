@@ -23,80 +23,72 @@
         }, 1000);
     });
 </script>
-</body>
-<body>
-    <div class="sidebar1">
-        <div class="logo_content1">
-            <div class="logo1">
-                <img src="Imagenes/Logo Licor.png" alt="Logo del Restaurante" width="53" height="50">
-                <div class="logo_name1">JJJ´s Beer</div>
-            </div>
-            <i class='bx bx-menu' id='btn1'></i>
+<div class="sidebar1">
+    <div class="logo_content1">
+        <div class="logo1">
+            <img src="Imagenes/Logo Licor.png" alt="Logo del Restaurante" width="53" height="50">
+            <div class="logo_name1">JJJ´s Beer</div>
         </div>
-
-        <div class="src1">
-            <i class='bx bx-search-alt'></i>
-            <input type="text" placeholder="Buscar...">
-        </div>
-
-        <ul class="nav1">
-            <li>
-                <a href="Principal.html">
-                    <i class='bx bx-store-alt'></i>
-                     <span class="link_name1">Principal</span>
-                </a>
-                <span class="tooltip1">Principal</span>
-            </li> 
-            <li>
-                <a href="InicioSs.html">
-                    <i class='bx bxs-user-circle'></i>
-                     <span class="link_name1">Inicia sesión</span>
-                </a>
-                <span class="tooltip1">Inicia sesión</span>
-            </li> 
-            <li>
-                <a href="Producto.html">
-                    <i class='bx bxs-pizza' ></i>
-                     <span class="link_name1">Productos Food</span>
-                </a>
-                <span class="tooltip1">Productos Food</span>
-            </li> 
-            <li>
-                <a href="#">
-                    <i class='bx bx-package'></i>
-                     <span class="link_name1">Pedidos</span>
-                </a>
-                <span class="tooltip1">Pedidos</span>
-            </li> 
-            <li>
-                <a href="Nosotros.html">
-                    <i class='bx bx-conversation'></i>
-                     <span class="link_name1">Nosotros</span>
-                </a>
-                <span class="tooltip1">Nosotros</span>
-            </li> 
-            <li>
-                <a href="Horarios.html">
-                    <i class='bx bxs-calendar' ></i>
-                     <span class="link_name1">Horarios</span>
-                </a>
-                <span class="tooltip1">Horarios</span>
-            </li> 
-        </ul>
+        <i class='bx bx-menu' id='btn1'></i>
     </div>
-    
-    <!-- Ícono flotante de WhatsApp con texto "Contáctanos" -->
+    <div class="src1">
+        <i class='bx bx-search-alt'></i>
+        <input type="text" placeholder="Buscar...">
+    </div>
+    <ul class="nav1">
+        <li>
+            <a href="Principal.html">
+                <i class='bx bx-store-alt'></i>
+                <span class="link_name1">Principal</span>
+            </a>
+            <span class="tooltip1">Principal</span>
+        </li>
+        <li>
+            <a href="InicioSs.html">
+                <i class='bx bxs-user-circle'></i>
+                <span class="link_name1">Inicia sesión</span>
+            </a>
+            <span class="tooltip1">Inicia sesión</span>
+        </li>
+        <li>
+            <a href="Producto.html">
+                <i class='bx bxs-pizza'></i>
+                <span class="link_name1">Productos Food</span>
+            </a>
+            <span class="tooltip1">Productos Food</span>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bx-package'></i>
+                <span class="link_name1">Pedidos</span>
+            </a>
+            <span class="tooltip1">Pedidos</span>
+        </li>
+        <li>
+            <a href="Nosotros.html">
+                <i class='bx bx-conversation'></i>
+                <span class="link_name1">Nosotros</span>
+            </a>
+            <span class="tooltip1">Nosotros</span>
+        </li>
+        <li>
+            <a href="Horarios.html">
+                <i class='bx bxs-calendar'></i>
+                <span class="link_name1">Horarios</span>
+            </a>
+            <span class="tooltip1">Horarios</span>
+        </li>
+    </ul>
+</div>
 <div class="whatsapp-icon">
     <a href="https://wa.me/573105813873?text=¡Hola!%20Me%20gustaría%20saber%20más%20sobre%20sus%20productos." target="_blank">
         <i class='bx bxl-whatsapp'></i> Realiza tu pedido.
     </a>
 </div>
-
 <script>
     let btn1 = document.querySelector('#btn1');
     let sidebar1 = document.querySelector('.sidebar1');
     let srcBtn1 = document.querySelector('.bx-search');
-
     btn1.onclick = function () {
         sidebar1.classList.toggle('active1');
     }
@@ -104,36 +96,31 @@
         sidebar1.classList.toggle('active1');
     }
 </script>
-
-      
-</body>
-<body>
-    <header class="nav-bar">
-        <div class="cart-icon" onclick="toggleCart()">
-            <img src="Imagenes/Cigarreria/CarritoCigarreria.png" alt="Carrito" width="40">
-            <span id="cart-count">0</span>
-        </div>
-        <h1>Cigarreria JJJ´s</h1>
-    </header>
-    <div class="menu1">
-        <button id="category-btn" onclick="toggleCategories()">Categorías</button>
-        <div class="categories" id="category-list">
-            <button onclick="filterCategory('all')">Todos</button>
-            <button onclick="filterCategory('Vino')">Vinos</button>
-            <button onclick="filterCategory('Bacardi')">Bacardi</button>
-            <button onclick="filterCategory('Whiskys')">Whiskys</button>
-            <button onclick="filterCategory('Cremas')">Cremas</button>
-            <button onclick="filterCategory('Coctel')">Cocteles</button>
-            <button onclick="filterCategory('Tequila')">Tequila</button>
-            <button onclick="filterCategory('Ron')">Ron</button>
-            <button onclick="filterCategory('Cerveza')">Cerveza</button>
-            <button onclick="filterCategory('Licor-Destilado')">Licor Destilado</button>
-            <button onclick="filterCategory('Vodka')">Vodka</button>
-            <button onclick="filterCategory('Brandy')">Brandy</button>
-            <button onclick="filterCategory('Aguardientes')">Aguardientes</button>
-        </div>
+<header class="nav-bar">
+    <div class="cart-icon" onclick="toggleCart()">
+        <img src="Imagenes/Cigarreria/CarritoCigarreria.png" alt="Carrito" width="40">
+        <span id="cart-count">0</span>
     </div>
-    <script>
+    <h1>Cigarreria JJJ´s</h1>
+</header>
+<div class="menu1">
+    <button id="category-btn" onclick="toggleCategories()">Categorías</button>
+    <div class="categories" id="category-list">
+        <button onclick="filterCategory('all')">Todos</button>
+        <button onclick="filterCategory('Vino')">Vinos</button>
+        <button onclick="filterCategory('Bacardi')">Bacardi</button>
+        <button onclick="filterCategory('Whiskys')">Whiskys</button>
+        <button onclick="filterCategory('Cremas')">Cremas</button>
+        <button onclick="filterCategory('Coctel')">Cocteles</button>
+        <button onclick="filterCategory('Tequila')">Tequila</button>
+        <button onclick="filterCategory('Ron y Brandy')">Ron y Brandy</button>
+        <button onclick="filterCategory('Cerveza')">Cerveza</button>
+        <button onclick="filterCategory('Licor-Destilado')">Licor Destilado</button>
+        <button onclick="filterCategory('Vodka')">Vodka</button>
+        <button onclick="filterCategory('Aguardientes')">Aguardientes</button>
+    </div>
+</div>
+<script>
     function toggleCategories() {
         const list = document.getElementById('category-list');
         list.classList.toggle('show');
@@ -625,7 +612,7 @@
         <div class="product" data-category="Licor-Destilado">
             <img src="Bebidas/Licores Destilados/Bombay-Saphire.webp" alt="Producto 63">
             <h2>Bombay Saphire</h2>
-            <p class="price">$145.000</p>
+            <p class="price">$152.000</p>
             <button onclick="addToCart('Bombay Saphire', 145)">Agregar al Carrito</button>
             <button1 class="ml-button">700 ml</button1>
         </div>
@@ -639,15 +626,15 @@
         <div class="product" data-category="Vodka">
             <img src="Bebidas/Vodka/SMIRNOFF-LULO.webp" alt="Producto 64">
             <h2>Sminrnoff Lulo</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Smi', 25)">Agregar al Carrito</button>
+            <p class="price">$47.000</p>
+            <button onclick="addToCart('Sminrnoff', 47)">Agregar al Carrito</button>
             <button1 class="ml-button">750 ml</button1>
         </div>
         <div class="product" data-category="Licor-Destilado">
             <img src="Bebidas/Licores Destilados/Axis-Licor-De-Ginebra.webp" alt="Producto 65">
             <h2>Axis Licor De Ginebra</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Axis L. Ginebra', 25)">Agregar al Carrito</button>
+            <p class="price">$49.000</p>
+            <button onclick="addToCart('Axis L. Ginebra', 49)">Agregar al Carrito</button>
             <button1 class="ml-button">750 ml</button1>
         </div>
         <div class="product" data-category="Licor-Destilado">
@@ -660,8 +647,8 @@
         <div class="product" data-category="Vodka">
             <img src="Bebidas/Vinos/Convier-Vermouth.webp" alt="Producto 67">
             <h2>Convier Vermouth</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Convier Vermouth', 25)">Agregar al Carrito</button>
+            <p class="price">$32.000</p>
+            <button onclick="addToCart('Convier Vermouth', 32)">Agregar al Carrito</button>
             <button1 class="ml-button">750 ml</button1>
         </div>
         <div class="product" data-category="Licor-Destilado">
@@ -674,43 +661,43 @@
         <div class="product" data-category="Vodka">
             <img src="Bebidas/Vodka/Absolut_Citron.webp" alt="Producto 69">
             <h2>Absolut Citron</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Absolut Citron', 25)">Agregar al Carrito</button>
+            <p class="price">$97.000</p>
+            <button onclick="addToCart('Absolut Citron', 97)">Agregar al Carrito</button>
             <button1 class="ml-button">750 ml</button1>
         </div>
         <div class="product" data-category="Vodka">
             <img src="Bebidas/Licores Destilados/Tanqueray_Imported.webp" alt="Producto 70">
             <h2>Tanqueray Improted</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Tanqueray Imported', 25)">Agregar al Carrito</button>
+            <p class="price">$86.000</p>
+            <button onclick="addToCart('Tanqueray Imported', 86)">Agregar al Carrito</button>
             <button1 class="ml-button">750 ml</button1>
         </div>
         <div class="product" data-category="Tequila">
             <img src="Bebidas/Tequila/TEQUILA-LA-MISION-SIGLO-XXI-750.webp" alt="Producto 71">
             <h2>Tequila La Mision (XXI)</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Tequila La Mision', 25)">Agregar al Carrito</button>
+            <p class="price">$57.500</p>
+            <button onclick="addToCart('Tequila La Mision', 57.5)">Agregar al Carrito</button>
             <button1 class="ml-button">750 ml</button1>
         </div>
         <div class="product" data-category="Tequila">
             <img src="Bebidas/Tequila/Tequila-Jaileza-Oro.webp" alt="Producto 72">
             <h2>Tequila Jaileza Oro</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Tequila Jaileza Oro', 25)">Agregar al Carrito</button>
+            <p class="price">$79.000</p>
+            <button onclick="addToCart('Tequila Jaileza Oro', 79)">Agregar al Carrito</button>
             <button1 class="ml-button">750 ml</button1>
         </div>
         <div class="product" data-category="Tequila">
             <img src="Bebidas/Tequila/Jose-Cuervo-Especial.webp" alt="Producto 73">
             <h2>Tequila Jose Cuervo Especial</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Tequila Jose Cuervo Especial', 25)">Agregar al Carrito</button>
+            <p class="price">$89.000</p>
+            <button onclick="addToCart('Tequila Jose Cuervo Especial', 89)">Agregar al Carrito</button>
             <button1 class="ml-button">750 ml</button1>
         </div>
         <div class="product" data-category="Tequila">
             <img src="Bebidas/Tequila/Reposado-Patrón.webp" alt="Producto 74">
-            <h2>Resposado Patrón</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Reposado Patrón', 25)">Agregar al Carrito</button>
+            <h2>Reposado Patrón</h2>
+            <p class="price">$286.000</p>
+            <button onclick="addToCart('Reposado Patrón', 286)">Agregar al Carrito</button>
             <button1 class="ml-button">750 ml</button1>
         </div>
         <div class="product" data-category="Vodka">
@@ -720,7 +707,7 @@
             <button onclick="addToCart('Sminorff Lulo 375ML', 25)">Agregar al Carrito</button>
             <button1 class="ml-button">375 ml</button1>
         </div>
-        <div class="product" data-category="Tequila">
+        <div class="product" data-category="Ron y Brandy">
             <img src="Bebidas/Tequila/Altos-Plata-Tequila.webp" alt="Producto 76">
             <h2>Altos Plata</h2>
             <p class="price">$25.000</p>
@@ -730,8 +717,8 @@
         <div class="product" data-category="Tequila">
             <img src="Bebidas/Tequila/Bandolero-Reposado.webp" alt="Producto 77">
             <h2>Bandolero Reposado</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Bandolero Reposado', 25)">Agregar al Carrito</button>
+            <p class="price">$96.000</p>
+            <button onclick="addToCart('Bandolero Reposado', 96)">Agregar al Carrito</button>
             <button1 class="ml-button">375 ml</button1>
         </div>
         <div class="product" data-category="Tequila">
@@ -741,35 +728,35 @@
             <button onclick="addToCart('Caballos Tequila', 25)">Agregar al Carrito</button>
             <button1 class="ml-button">375 ml</button1>
         </div>
-        <div class="product" data-category="Tequila">
+        <div class="product" data-category="Ron y Brandy">
             <img src="Bebidas/Ron/Havana-Club.webp" alt="Producto 79">
             <h2>Havanna Club</h2>
             <p class="price">$25.000</p>
             <button onclick="addToCart('Havanna Club', 25)">Agregar al Carrito</button>
             <button1 class="ml-button">375 ml</button1>
         </div>
-        <div class="product" data-category="Tequila">
+        <div class="product" data-category="Ron y Brandy">
             <img src="Bebidas/Ron/Ron-Viejo-De-Caldas.webp" alt="Producto 80">
             <h2>Ron Viejo De Caldas</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Ron Viejo De Caldas', 25)">Agregar al Carrito</button>
+            <p class="price">$58.000</p>
+            <button onclick="addToCart('Ron Viejo De Caldas', 58)">Agregar al Carrito</button>
             <button1 class="ml-button">375 ml</button1>
         </div>
-        <div class="product" data-category="Bacardi">
+        <div class="product"  data-category="Bacardi">
             <img src="Bebidas/Bacardi/Bacardi-Añejo-750ML.webp" alt="Producto 81">
             <h2>Bacardi Añejo</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Bacardi Añejo', 25)">Agregar al Carrito</button>
+            <p class="price">$52.000</p>
+            <button onclick="addToCart('Bacardi Añejo', 52)">Agregar al Carrito</button>
             <button1 class="ml-button">750 ml</button1>
         </div>
-        <div class="product" data-category="Brandy">
+        <div class="product" data-category="Ron y Brandy">
             <img src="Bebidas/Brandy/Domeco-Brandy-350ML.webp" alt="Producto 82">
             <h2>Domeco Brandy</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Domeco Brandy 350ML', 25)">Agregar al Carrito</button>
+            <p class="price">$32.000</p>
+            <button onclick="addToCart('Domeco Brandy 350ML', 32)">Agregar al Carrito</button>
             <button1 class="ml-button">350 ml</button1>
         </div>
-        <div class="product" data-category="Brandy">
+        <div class="product" data-category="Ron y Brandy">
             <img src="Bebidas/Brandy/Domeco-Brandy-750ML.webp" alt="Producto 83">
             <h2>Domeco Brandy</h2>
             <p class="price">$25.000</p>
@@ -779,8 +766,8 @@
         <div class="product" data-category="Tequila">
             <img src="Bebidas/Tequila/Onix-Sello-Negro-2.webp" alt="Producto 84">
             <h2>Onix Sello Negro</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Onix Sello Negro', 25)">Agregar al Carrito</button>
+            <p class="price">$157.000</p>
+            <button onclick="addToCart('Onix Sello Negro', 157)">Agregar al Carrito</button>
             <button1 class="ml-button">750 ml</button1>
         </div>
         <div class="product" data-category="Tequila">
@@ -793,50 +780,50 @@
         <div class="product" data-category="Aguardientes">
             <img src="Bebidas/Aguardientes/Aguardiente-Lider-750ML.webp" alt="Producto 86">
             <h2>Aguerdiente Lider</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Aguardiente Lider 750ML', 25)">Agregar al Carrito</button>
+            <p class="price">$50.000</p>
+            <button onclick="addToCart('Aguardiente Lider 750ML', 50)">Agregar al Carrito</button>
             <button1 class="ml-button">750 ml</button1>
         </div>
         <div class="product" data-category="Aguardientes">
             <img src="Bebidas/Aguardientes/Aguardiente-Lider.webp" alt="Producto 87">
             <h2>Aguerdiente Lider</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Aguardiente Lider 350ML', 25)">Agregar al Carrito</button>
+            <p class="price">$30.000</p>
+            <button onclick="addToCart('Aguardiente Lider 350ML', 30)">Agregar al Carrito</button>
             <button1 class="ml-button">350 ml</button1>
         </div>
         <div class="product" data-category="Cerveza">
             <img src="Bebidas/Cervezas/Aguila-Light-6-Pack.webp" alt="Producto 88">
             <h2>Aguila Light-Six Pack</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Aguila Light-Six Pack', 25)">Agregar al Carrito</button>
+            <p class="price">$20.000</p>
+            <button onclick="addToCart('Aguila Light-Six Pack', 20)">Agregar al Carrito</button>
             <button1 class="ml-button">350 ml</button1>
         </div>
         <div class="product" data-category="Cerveza">
             <img src="Bebidas/Cervezas/Heineken-6-pack.webp" alt="Producto 89">
             <h2>Heineken-Six Pack</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Heineken-Six Pack', 25)">Agregar al Carrito</button>
+            <p class="price">$15.000</p>
+            <button onclick="addToCart('Heineken-Six Pack', 15)">Agregar al Carrito</button>
             <button1 class="ml-button">350 ml</button1>
         </div>
         <div class="product" data-category="Cerveza">
             <img src="Bebidas/Cervezas/FOUR-LOKO-SANDIA.webp" alt="Producto 90">
             <h2>Four Loko Sandia</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Four-Loko-Sandia', 25)">Agregar al Carrito</button>
+            <p class="price">$18.000</p>
+            <button onclick="addToCart('Four-Loko-Sandia', 18)">Agregar al Carrito</button>
             <button1 class="ml-button">350 ml</button1>
         </div>
         <div class="product" data-category="Cerveza">
             <img src="Bebidas/Cervezas/FOUR-LOKO-GOLD.webp" alt="Producto 91">
             <h2>Four Loko Gold</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Four-Loko-Gold', 25)">Agregar al Carrito</button>
+            <p class="price">$18.000</p>
+            <button onclick="addToCart('Four-Loko-Gold', 18)">Agregar al Carrito</button>
             <button1 class="ml-button">350 ml</button1>
         </div>
         <div class="product" data-category="Cerveza">
             <img src="Bebidas/Cervezas/FOUR-LOKO-PONCHE.webp" alt="Producto 92">
             <h2>Four Loko Ponche</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Four-Loko-Ponche', 25)">Agregar al Carrito</button>
+            <p class="price">$18.000</p>
+            <button onclick="addToCart('Four-Loko-Ponche', 18)">Agregar al Carrito</button>
             <button1 class="ml-button">350 ml</button1>
         </div>
         <div class="product" data-category="Cerveza">
@@ -849,22 +836,22 @@
         <div class="product" data-category="Cerveza">
             <img src="Bebidas/Cervezas/Costeña-Bacana-Six-Pack.webp" alt="Producto 94">
             <h2>Costeña Bacana-Six Pack</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Costeña Bacana-Six Pack', 25)">Agregar al Carrito</button>
+            <p class="price">$16.000</p>
+            <button onclick="addToCart('Costeña Bacana-Six Pack', 16)">Agregar al Carrito</button>
             <button1 class="ml-button">350 ml</button1>
         </div>
         <div class="product" data-category="Cerveza">
             <img src="Bebidas/Cervezas/Budweiser-Six-Pack.webp" alt="Producto 95">
             <h2>Budweiser-Six Pack</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Budweiser-Six Pack', 25)">Agregar al Carrito</button>
+            <p class="price">$15.000</p>
+            <button onclick="addToCart('Budweiser-Six Pack', 15)">Agregar al Carrito</button>
             <button1 class="ml-button">350 ml</button1>
         </div>
         <div class="product" data-category="Cerveza">
             <img src="Bebidas/Cervezas/Corona-Six-Pack.webp" alt="Producto 96">
             <h2>Corona-Six Pack</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Corona-Six Pack', 25)">Agregar al Carrito</button>
+            <p class="price">$20.000</p>
+            <button onclick="addToCart('Corona-Six Pack', 20)">Agregar al Carrito</button>
             <button1 class="ml-button">350 ml</button1>
         </div>
         <div class="product" data-category="Cerveza">
@@ -877,36 +864,36 @@
         <div class="product" data-category="Cerveza">
             <img src="Bebidas/Cervezas/Cerveza-Poker-6-Pack.webp" alt="Producto 98">
             <h2>Poker-Six Pack</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Poker-Six Pack', 25)">Agregar al Carrito</button>
-            <button1 class="ml-button">350 ml</button1>
+            <p class="price">$19.000</p>
+            <button onclick="addToCart('Poker-Six Pack', 19)">Agregar al Carrito</button>
+            <button1 class="ml-button">350 ml </button1>
         </div>
         <div class="product" data-category="Cerveza">
             <img src="Bebidas/Cervezas/Cerveza-Andina-6-Pack.webp" alt="Producto 99">
             <h2>Cerveza Andinda-Six Pack</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Cerveza Andina-Six Pack', 25)">Agregar al Carrito</button>
+            <p class="price">$13.000</p>
+            <button onclick="addToCart('Cerveza Andina-Six Pack', 13)">Agregar al Carrito</button>
             <button1 class="ml-button">350 ml</button1>
         </div>
         <div class="product" data-category="Cerveza">
             <img src="Bebidas/Cervezas/Coronitas-6-Pack.webp" alt="Producto 100">
             <h2>Coronitas-Six Pack</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Coronitas-Six Pack', 25)">Agregar al Carrito</button>
+            <p class="price">$20.000</p>
+            <button onclick="addToCart('Coronitas-Six Pack', 20)">Agregar al Carrito</button>
             <button1 class="ml-button">350 ml</button1>
         </div>
         <div class="product" data-category="Cerveza">
             <img src="Bebidas/Cervezas/Sminroff-Ice-Original-Lata.webp" alt="Producto 101">
             <h2>Sminroff Ice Lata</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Sminroff Ice Lata', 25)">Agregar al Carrito</button>
+            <p class="price">$8.000</p>
+            <button onclick="addToCart('Sminroff Ice Lata', 8)">Agregar al Carrito</button>
             <button1 class="ml-button">350 ml</button1>
         </div>
         <div class="product" data-category="Cerveza">
             <img src="Bebidas/Cervezas/Smirnoff-Ice-Original.webp" alt="Producto 102">
             <h2>Sminroff Ice Botella</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Sminroff Ice Botella', 25)">Agregar al Carrito</button>
+            <p class="price">$9.000</p>
+            <button onclick="addToCart('Sminroff Ice Botella', 9)">Agregar al Carrito</button>
             <button1 class="ml-button">350 ml</button1>
         </div>
         <div class="product" data-category="Cerveza">
@@ -940,22 +927,22 @@
         <div class="product" data-category="Cerveza">
             <img src="Bebidas/Cervezas/AGUILA-LIGHT-ORIGINAL-SIX-PACK.webp" alt="Producto 107">
             <h2>Aguila Original-Six Pack</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Aguila Original-Six Pack', 25)">Agregar al Carrito</button>
+            <p class="price">$19.000</p>
+            <button onclick="addToCart('Aguila Original-Six Pack', 19)">Agregar al Carrito</button>
             <button1 class="ml-button">350 ml</button1>
         </div>
         <div class="product" data-category="Vodka">
             <img src="Bebidas/Vodka/Hi-Mo-Shi-Club-Licor-Morado.webp" alt="Producto 108">
-            <h2>HiMoShi Club Licor De Vodka</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('HiMoShi Club Licor De Vodka', 25)">Agregar al Carrito</button>
+            <h2>HiMoShi Club Licor De Vodka I</h2>
+            <p class="price">$470.000</p>
+            <button onclick="addToCart('HiMoShi Club Licor De Vodka I', 470)">Agregar al Carrito</button>
             <button1 class="ml-button">350 ml</button1>
         </div>
         <div class="product" data-category="Vodka">
             <img src="Bebidas/Vodka/Hi-Mo-Shi-Club-Licor-Verde.webp" alt="Producto 109">
-            <h2>HiMoShi Club Licor De Vodka</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('HiMoShi Club Licor De Vodka', 25)">Agregar al Carrito</button>
+            <h2>HiMoShi Club Licor De Vodka II</h2>
+            <p class="price">$470.000</p>
+            <button onclick="addToCart('HiMoShi Club Licor De Vodka II', 470)">Agregar al Carrito</button>
             <button1 class="ml-button">350 ml</button1>
         </div>
     </div>

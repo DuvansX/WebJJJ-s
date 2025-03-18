@@ -6,6 +6,7 @@
     margin: 0;
     padding: 0;
 }
+
 body {
     position: relative;
     min-height: 100vh;
@@ -20,6 +21,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 }
+
 .sidebar1 {
     position: fixed;
     top: 0;
@@ -32,9 +34,11 @@ body {
     transition: all .5s ease;
     z-index: 9996;
 }
+
 .sidebar1.active1 {
     width: 240px;
 }
+
 .sidebar1 .logo_content1 .logo1 {
     display: flex;
     color: #ffb700;
@@ -51,11 +55,13 @@ body {
 .sidebar1.active1 .logo_content1 .logo1 {
     opacity: 1;
 }
+
 .sidebar1 .logo_content1 .logo1 .logo_name1 {
     font-size: 23px;
     font-weight: 600;
     margin: 0 10px;
 }
+
 .sidebar1 #btn1 {
     position: absolute;
     color: #ffffff;
@@ -68,15 +74,18 @@ body {
     line-height: 50px;
     transform: translate(-50%);
 }
+
 .sidebar1.active1 #btn1 {
     left: 85%;
 }
+
 .sidebar1 .src1 {
     position: relative;
     height: 50px;
     width: 100%;
     margin-top: 20px;
 }
+
 .sidebar1 .src1 input {
     position: absolute;
     height: 100%;
@@ -93,6 +102,7 @@ body {
     box-shadow: 0 5px 10px rgba(0,0,0,.2);
     transition: all .5s ease;
 }
+
 .sidebar1 .src1 .bx-search-alt {
     position: absolute;
     font-size: 22px;
@@ -100,12 +110,15 @@ body {
     z-index: 9997;
     transition: all .5s ease;
 }
+
 .sidebar1 .src1 .bx-search-alt:hover {
     background: rgb(255, 255, 255);
 }
+
 .sidebar1 .src1 .bx-search-alt:hover ~ input {
     background: #ffffff;
 }
+
 .sidebar1 i {
     height: 50px;
     min-width: 50px;
@@ -114,9 +127,11 @@ body {
     text-align: center;
     font-size: 25px;
 }
+
 .sidebar1 ul {
     margin-top: 20px;
 }
+
 .sidebar1 ul li {
     position: relative;
     height: 50px;
@@ -125,6 +140,7 @@ body {
     list-style: none;
     line-height: 50px;
 }
+
 .sidebar1 ul li a {
     color: #ffffff;
     display: flex;
@@ -135,19 +151,23 @@ body {
     white-space: nowrap;
     transition: all .5s ease;
 }
+
 .sidebar1 ul li a:hover {
     color: #000000;
     background: #ffb700;
 }
+
 .sidebar1 .link_name1 {
     opacity: 0;
     pointer-events: none;
 }
+
 .sidebar1.active1 .link_name1 {
     opacity: 1;
     font-weight: 550;
     pointer-events: auto;
 }
+
 .sidebar1 ul li .tooltip1 {
     position: absolute;
     left: 140px;
@@ -167,13 +187,16 @@ body {
     opacity: 0;
     transition: all 0.5s ease;
 }
+
 .sidebar1.active1 ul li .tooltip1 {
     display: none;
 }
+
 .sidebar1 ul li:hover .tooltip1 {
     opacity: 1;
     top: 50%;
 }
+
 .home_content1 {
     position: absolute;
     height: 100%;
@@ -181,24 +204,25 @@ body {
     left: 80px;
     transition: all .5s ease;
 }
+
 .home_content1 .text1 {
     font-size: 25px;
     font-weight: 500;
     color: #242424;
     padding: 12px 24px;
 }
+
 .sidebar1.active1 ~ .home_content1 {
     left: 300px;
 }
 
-/* Estilos para el botón flotante de WhatsApp con ícono a la izquierda, pequeño y en la parte inferior derecha */
 .whatsapp-icon {
-    position: fixed; /* Cambiado a absolute para que se mueva con el contenido */
-    bottom: 20px; /* Posición en la parte inferior */
-    right: 20px;  /* Posición a la derecha */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
     background-color: #00a03b;
-    padding: 5px 15px;  /* Ajustado el tamaño del botón */
-    border-radius: 30px;  /* Bordes redondeados */
+    padding: 5px 15px;
+    border-radius: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -211,20 +235,18 @@ body {
     text-decoration: none;
     display: flex;
     align-items: center;
-    font-weight: bold
+    font-weight: bold;
 }
 
 .whatsapp-icon i {
-    margin-right: 8px; /* Menos espacio entre el ícono y el texto */
-    font-size: 35px;  /* Tamaño más pequeño para el ícono */
+    margin-right: 8px;
+    font-size: 35px;
 }
 
 .whatsapp-icon:hover {
     background-color: #00af40;
 }
 
-
-/* Estilos para el botón principal */
 .carta-btn {
     position: absolute;
     top: 20px;
@@ -239,105 +261,99 @@ body {
     z-index: 9999;
 }
 
-
-
-    
 .carta-btn:hover {
-background-color: #000000;
-color: rgb(255, 255, 255);
+    background-color: #000000;
+    color: rgb(255, 255, 255);
 }
-    
-/* Contenedor de la carta */
+
 .carta-container {
-display: none;
-position: fixed;
-top: 0;
-left: 10;
-width: 100%;
-height: 100%;
-background: rgba(0, 0, 0, 0.9);
-justify-content: center;
-align-items: center;
-flex-direction: column;
-z-index: 9998;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 10;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9998;
 }
-    
-        .carta-container img {
-            max-width: 90%;
-            max-height: 80%;
-            cursor: zoom-in;
-            transition: transform 0.3s ease-in-out;
-        }
-    
-        .carta-container.zoom img {
-            transform: scale(2);
-            cursor: zoom-out;
-        }
-    
-        /* Botones de navegación con diseño cuadrado y bordes redondeados */
-        .toggle-img-btn {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            font-size: 24px;
-            color: rgb(0, 0, 0);
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 100px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s;
-        }
-    
-        .toggle-img-btn:hover {
-            background-color: rgb(255, 255, 255);
-        }
-    
-        .btn-down {
-            bottom: 10px;
-        }
-    
-        .btn-up {
-            top: 10px;
-            display: none;
-        }
 
-        #loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 1s ease-out, visibility 1s ease-out;
-            z-index: 9999;
-        }
-        .hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-        .loader {
-            border: 8px solid rgba(255, 255, 255, 0.2);
-            border-top: 8px solid #ffb700;
-            border-radius: 50%;
-            width: 80px;
-            height: 80px;
-            animation: spin 1s ease-in-out infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            50% { transform: rotate(180deg); }
-            100% { transform: rotate(360deg); }
-        }
+.carta-container img {
+    max-width: 90%;
+    max-height: 80%;
+    cursor: zoom-in;
+    transition: transform 0.3s ease-in-out;
+}
 
+.carta-container.zoom img {
+    transform: scale(2);
+    cursor: zoom-out;
+}
 
+.toggle-img-btn {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    color: rgb(0, 0, 0);
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 100px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
 
+.toggle-img-btn:hover {
+    background-color: rgb(255, 255, 255);
+}
 
-/* Estilos para #image-container */
+.btn-down {
+    bottom: 10px;
+}
+
+.btn-up {
+    top: 10px;
+    display: none;
+}
+
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease-out, visibility 1s ease-out;
+    z-index: 9999;
+}
+
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader {
+    border: 8px solid rgba(255, 255, 255, 0.2);
+    border-top: 8px solid #ffb700;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(180deg); }
+    100% { transform: rotate(360deg); }
+}
+
 #image-container {
     width: 450px;
     height: 400px;
@@ -361,50 +377,53 @@ z-index: 9998;
         top: 185px;
     }
 }
-        
-        .image {
-            width: 100%;
-            height: 80%;
-            position: absolute;
-            opacity: 0;
-            transition: opacity 1s;
-            border-radius: 20px;
-            z-index: 10;
-        }
-        .active {
-            opacity: 1;
-        }
-        .arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            color: #ffffff;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            font-size: 35px;
-            z-index: 99;
-            width: auto;
-            height: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .arrow:hover {
-            color: rgba(0, 0, 0, 0.856);
-        }
-        .left {
-            left: 0px;
-        }
-        .right {
-            right: 0px;
-        }
 
+.image {
+    width: 100%;
+    height: 80%;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1s;
+    border-radius: 20px;
+    z-index: 10;
+}
 
-/* Estilos para #image-container1 */
+.active {
+    opacity: 1;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 35px;
+    z-index: 99;
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrow:hover {
+    color: rgba(0, 0, 0, 0.856);
+}
+
+.left {
+    left: 0px;
+}
+
+.right {
+    right: 0px;
+}
+
 #image-container1 {
-    width: 450px; /* Cambiado a 800px */
+    width: 450px;
     height: 400px;
     overflow: hidden;
     position: relative;
@@ -420,15 +439,15 @@ z-index: 9998;
 
 @media (max-width: 768px) {
     #image-container1 {
-        width: 300px; /* Cambiado a 800px */
+        width: 300px;
         height: 280px;
         display: flex;
-        gap: 20px; /* espacio entre ellos */
+        gap: 20px;
         transform: translateX(-110px);
         top: -50px;
     }
 }
-        
+
 .image1 {
     width: 100%;
     height: 80%;
@@ -474,9 +493,8 @@ z-index: 9998;
 }
 
 #image-container, #image-container1 {
-    flex-shrink: 0; /* No se achican */
+    flex-shrink: 0;
 }
-
 
 .top-center {
     position: fixed;
@@ -485,62 +503,49 @@ z-index: 9998;
     transform: translateX(-110%);
     display: flex;
     align-items: baseline;
-  }
-  .black {
+}
+
+.black {
     color: #000;
     font-family: 'Oswald', sans-serif;
     font-weight: 700;
     font-size: 3rem;
     margin-right: 0.5rem;
-    text-shadow:
-      -1px -1px 0 #ffb700,
-       1px -1px 0 #ffb700,
-      -1px  1px 0 #ffb700,
-       1px  1px 0 #ffb700;
-  }
-  @media (max-width: 600px) {
+    text-shadow: -1px -1px 0 #ffb700, 1px -1px 0 #ffb700, -1px 1px 0 #ffb700, 1px 1px 0 #ffb700;
+}
+
+@media (max-width: 600px) {
     .black {
-      font-size: 2.3rem;
+        font-size: 2.3rem;
     }
     .top-center {
         transform: translateX(-50%);
-      top: 10px;
+        top: 10px;
     }
-  }
+}
 
-
-  .contenedor {
+.contenedor {
     position: absolute;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-  }
-  
-  /* --- Estilos para PANTALLAS GRANDES (PC) --- */
-  .imagen-ajustable {
+}
+
+.imagen-ajustable {
     position: absolute;
-    
-    /* Posición en PC */
     top: 25px;
     left: 600px;
     z-index: 20;
-    
-    /* Tamaño en PC */
     width: 400px;
     height: 250px;
-    
     object-fit: contain;
-  }
-  
-  /* --- Estilos para CELULARES --- */
-  @media (max-width: 768px) {
+}
+
+@media (max-width: 768px) {
     .imagen-ajustable {
-      /* Nueva posición para móvil */
-      top: 40px;
-      left: 100px;
-  
-      /* Nuevo tamaño para móvil */
-      width: 300px;
-      height: 200px;
+        top: 40px;
+        left: 100px;
+        width: 300px;
+        height: 200px;
     }
-  }
+}

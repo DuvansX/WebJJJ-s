@@ -10,8 +10,8 @@ body {
     position: relative;
     min-height: 100vh;
     width: 100%;
-    background: url('Imagenes/Food/Fondo\ Perros.jpeg') no-repeat center center fixed; /* Usar imagen de fondo */
-    background-size: cover; /* Hace que la imagen cubra todo el fondo */
+    background: url('Imagenes/Food/Fondo Perros.jpeg') no-repeat center center fixed;
+    background-size: cover;
 }
 
 .sidebar1 {
@@ -22,13 +22,15 @@ body {
     background: #000000;
     padding: 6px 16px;
     height: 100%;
-    box-shadow: 5px 0 30px rgba(0,0,0,.1);
+    box-shadow: 5px 0 30px rgba(0, 0, 0, .1);
     transition: all .5s ease;
     z-index: 9995;
 }
+
 .sidebar1.active1 {
     width: 240px;
 }
+
 .sidebar1 .logo_content1 .logo1 {
     display: flex;
     color: #ffb700;
@@ -40,14 +42,17 @@ body {
     pointer-events: none;
     opacity: 0;
 }
+
 .sidebar1.active1 .logo_content1 .logo1 {
     opacity: 1;
 }
+
 .sidebar1 .logo_content1 .logo1 .logo_name1 {
     font-size: 23px;
     font-weight: 600;
     margin: 0 10px;
 }
+
 .sidebar1 #btn1 {
     position: absolute;
     color: #ffffff;
@@ -60,15 +65,18 @@ body {
     line-height: 50px;
     transform: translate(-50%);
 }
+
 .sidebar1.active1 #btn1 {
     left: 85%;
 }
+
 .sidebar1 .src1 {
     position: relative;
     height: 50px;
     width: 100%;
     margin-top: 20px;
 }
+
 .sidebar1 .src1 input {
     position: absolute;
     height: 100%;
@@ -82,9 +90,10 @@ body {
     padding-left: 50px;
     font-size: 15px;
     color: #000000;
-    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
     transition: all .5s ease;
 }
+
 .sidebar1 .src1 .bx-search-alt {
     position: absolute;
     z-index: 99;
@@ -92,12 +101,11 @@ body {
     color: #000000;
     transition: all .5s ease;
 }
-.sidebar1 .src1 .bx-search-alt:hover {
-    background: rgb(255, 255, 255);
-}
+
 .sidebar1 .src1 .bx-search-alt:hover ~ input {
     background: #ffffff;
 }
+
 .sidebar1 i {
     height: 50px;
     min-width: 50px;
@@ -106,9 +114,11 @@ body {
     text-align: center;
     font-size: 25px;
 }
+
 .sidebar1 ul {
     margin-top: 20px;
 }
+
 .sidebar1 ul li {
     position: relative;
     height: 50px;
@@ -117,6 +127,7 @@ body {
     list-style: none;
     line-height: 50px;
 }
+
 .sidebar1 ul li a {
     color: #ffffff;
     display: flex;
@@ -127,19 +138,23 @@ body {
     white-space: nowrap;
     transition: all .5s ease;
 }
+
 .sidebar1 ul li a:hover {
     color: #000000;
     background: #ffb700;
 }
+
 .sidebar1 .link_name1 {
     opacity: 0;
     pointer-events: none;
 }
+
 .sidebar1.active1 .link_name1 {
     opacity: 1;
     font-weight: 550;
     pointer-events: auto;
 }
+
 .sidebar1 ul li .tooltip1 {
     position: absolute;
     left: 140px;
@@ -154,18 +169,21 @@ body {
     font-size: 13px;
     display: block;
     color: #242424;
-    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
     pointer-events: none;
     opacity: 0;
     transition: all 0.5s ease;
 }
+
 .sidebar1.active1 ul li .tooltip1 {
     display: none;
 }
+
 .sidebar1 ul li:hover .tooltip1 {
     opacity: 1;
     top: 50%;
 }
+
 .home_content1 {
     position: absolute;
     height: 100%;
@@ -173,12 +191,14 @@ body {
     left: 80px;
     transition: all .5s ease;
 }
+
 .home_content1 .text1 {
     font-size: 25px;
     font-weight: 500;
     color: #242424;
     padding: 12px 24px;
 }
+
 .sidebar1.active1 ~ .home_content1 {
     left: 300px;
 }
@@ -187,9 +207,8 @@ body {
     display: flex;
     align-items: end;
     color: rgb(255, 255, 255);
-    margin: 40px 40px; 
+    margin: 40px 40px;
 }
-
 
 .nav-bar h1 {
     font-weight: bold;
@@ -199,18 +218,16 @@ body {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: -30px; /* Ajusta el valor según necesites (mueve el texto hacia abajo) */
+    top: -30px;
 }
 
-
-/* Fijar el carrito de compras */
 .cart-icon {
-    position: fixed;  /* Fija el carrito */
-    top: 20px;        /* Distancia desde la parte superior */
-    right: 20px;      /* Distancia desde la derecha */
-    background-color: rgba(0, 0, 0, 0.61); /* Fondo oscuro con transparencia */
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.61);
     padding: 10px;
-    border-radius: 50%; /* Hace el carrito redondo */
+    border-radius: 50%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -237,13 +254,13 @@ main {
 
 .product-list {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Cuadrícula de 4 columnas en PC */
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     padding: 10px;
 }
 
 .product {
-    background-image: url('Imagenes/FONDO\ 2.jpg'); /* Reemplaza con la URL de tu textura */
+    background-image: url('Imagenes/FONDO 2.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -262,60 +279,51 @@ main {
     margin-left: 43.5px;
 }
 
-/* Espaciado extra para la primera carta de cada fila */
 .product:nth-child(4n+1) {
-    margin-left: 45px; /* Solo las cartas en posiciones 1, 5, 9, ... tendrán este margen */
+    margin-left: 45px;
 }
 
-/* Ajuste para móviles */
 @media (max-width: 768px) {
     .product-list {
-        grid-template-columns: 1fr; /* Cambia a una sola columna en pantallas pequeñas */
-        justify-items: start; /* Asegura que se alineen desde la izquierda */
+        grid-template-columns: 1fr;
+        justify-items: start;
     }
 
     .product {
-        max-width: 250px; /* Reduce el tamaño de la carta */
-        margin-left: 70px; /* Mueve todas las cartas un 80px a la derecha */
+        max-width: 250px;
+        margin-left: 70px;
     }
 
     .product:nth-child(4n+1) {
-        margin-left: 70px; /* Asegura que TODAS las cartas se muevan */
+        margin-left: 70px;
     }
 }
 
-
-
-/* Estilo de las imágenes de los productos */
 .product img {
     width: 100%;
     height: auto;
-    max-height: 180px; /* Limitamos la altura de las imágenes */
-    object-fit: contain; /* Ajusta la imagen sin recortarla */
+    max-height: 180px;
+    object-fit: contain;
 }
 
-
-/* Estilo del título del producto */
 .product h2 {
     font-size: 16px;
     color: #ffffff;
     margin: 8px 0;
 }
 
-/* Estilo del precio del producto */
 .product .price {
     font-size: 16px;
-    font-weight: 600; /* Este es un grosor intermedio */
-    color:#ffffff;
+    font-weight: 600;
+    color: #ffffff;
 }
 
-/* Estilo del botón de agregar al carrito */
 .product button {
     background-color: #ffb700;
     color: #ffffff;
     border: none;
     border-top-left-radius: 4px;
-border-top-right-radius: 4px;
+    border-top-right-radius: 4px;
     padding: 8px 12px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -323,20 +331,10 @@ border-top-right-radius: 4px;
     font-weight: 600;
 }
 
-.product button h1{
-    color: #000000;
-
-}
-
-/* Estilo cuando se pasa el ratón sobre el botón */
 .product button:hover {
     background-color: #000000e0;
 }
 
-
-
-
-/* Cart Details */
 .cart-details {
     position: fixed;
     top: 60px;
@@ -347,25 +345,23 @@ border-top-right-radius: 4px;
     padding: 1rem;
     display: none;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 450px; /* Tamaño normal en PC */
+    width: 450px;
     height: auto;
     max-height: 90vh;
     z-index: 9998;
 }
 
-/* 🔹 SOLO en celulares (pantallas de 600px o menos) */
 @media screen and (max-width: 600px) {
     .cart-details {
-        width: 65% !important;  /* 🔥 Un 10% más grande (antes 50%, ahora 60%) */
+        width: 65% !important;
         right: auto !important;
-        left: 26% !important;   /* 🔥 Mejor ubicación, más centrado */
-        font-size: 0.85em !important; /* 🔥 Un poco más grande el texto */
-        padding: 0.6rem !important;  /* 🔥 Un poco más de padding */
-        max-height: 75vh !important; /* 🔥 Ligera mejora en altura */
+        left: 26% !important;
+        font-size: 0.85em !important;
+        padding: 0.6rem !important;
+        max-height: 75vh !important;
         overflow-y: auto !important;
     }
 }
-
 
 .cart-details.active {
     display: block;
@@ -397,7 +393,6 @@ border-top-right-radius: 4px;
     font-weight: bold;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .nav-bar h1 {
         font-size: 1.2rem;
@@ -413,17 +408,6 @@ border-top-right-radius: 4px;
         padding: 1rem;
     }
 
-    .cart-details {
-        width: 100%;
-        left: 0;
-        right: 0;
-    }
-
-    .product-list {
-        padding: 1rem;
-        gap: 1rem;
-    }
-
     .home_content1 {
         width: calc(100% - 80px);
     }
@@ -434,12 +418,12 @@ border-top-right-radius: 4px;
 }
 
 .whatsapp-icon {
-    position:fixed; /* Cambiado a absolute para que se mueva con el contenido */
-    bottom: 20px; /* Posición en la parte inferior */
-    right: 20px;  /* Posición a la derecha */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
     background-color: #00a03b;
-    padding: 5px 15px;  /* Ajustado el tamaño del botón */
-    border-radius: 30px;  /* Bordes redondeados */
+    padding: 5px 15px;
+    border-radius: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -452,19 +436,17 @@ border-top-right-radius: 4px;
     text-decoration: none;
     display: flex;
     align-items: center;
-    font-weight: bold
+    font-weight: bold;
 }
 
 .whatsapp-icon i {
-    margin-right: 8px; /* Menos espacio entre el ícono y el texto */
-    font-size: 35px;  /* Tamaño más pequeño para el ícono */
+    margin-right: 8px;
+    font-size: 35px;
 }
 
 .whatsapp-icon:hover {
     background-color: #00af40;
 }
-
-
 
 .buy-button {
     background-color: white;
@@ -482,8 +464,6 @@ border-top-right-radius: 4px;
     color: white;
 }
 
-
-
 .cart-warning {
     display: inline-block;
     background-color: rgba(255, 0, 0, 0.2);
@@ -497,8 +477,12 @@ border-top-right-radius: 4px;
 }
 
 @keyframes blink {
-    0% { opacity: 1; }
-    100% { opacity: 0.6; }
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.6;
+    }
 }
 
 #loading-screen {
@@ -514,10 +498,12 @@ border-top-right-radius: 4px;
     transition: opacity 1s ease-out, visibility 1s ease-out;
     z-index: 9999;
 }
+
 .hidden {
     opacity: 0;
     visibility: hidden;
 }
+
 .loader {
     border: 8px solid rgba(255, 255, 255, 0.2);
     border-top: 8px solid #ffb700;
@@ -526,16 +512,21 @@ border-top-right-radius: 4px;
     height: 80px;
     animation: spin 1s ease-in-out infinite;
 }
+
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    50% { transform: rotate(180deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
-
-
 .carta-btn {
-    position:absolute;
+    position: absolute;
     top: 20px;
     left: 150px;
     background-color: black;
@@ -544,70 +535,68 @@ border-top-right-radius: 4px;
     border: 2px solid black;
     cursor: pointer;
     font-size: 16px;
-    font-weight: bold; /* Texto en negrita */
+    font-weight: bold;
     border-radius: 15px;
     z-index: 9994;
 }
 
 .carta-btn:hover {
-background-color: #000000;
-color: rgb(255, 255, 255);
+    background-color: #000000;
+    color: rgb(255, 255, 255);
 }
-    
-/* Contenedor de la carta */
+
 .carta-container {
-display: none;
-position: fixed;
-top: 0;
-left: 10;
-width: 100%;
-height: 100%;
-background: rgba(0, 0, 0, 0.9);
-justify-content: center;
-align-items: center;
-flex-direction: column;
-z-index: 9996;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 10;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9996;
 }
-    
+
 .carta-container img {
-max-width: 90%;
-max-height: 80%;
-cursor: zoom-in;
-transition: transform 0.3s ease-in-out;
+    max-width: 90%;
+    max-height: 80%;
+    cursor: zoom-in;
+    transition: transform 0.3s ease-in-out;
 }
-    
+
 .carta-container.zoom img {
-transform: scale(2);
-cursor: zoom-out;
+    transform: scale(2);
+    cursor: zoom-out;
 }
-    
-/* Botones de navegación con diseño cuadrado y bordes redondeados */
+
 .toggle-img-btn {
-position: absolute;
-width: 50px;
-height: 50px;
-font-size: 24px;
-color: rgb(0, 0, 0);
-background-color: rgba(255, 255, 255, 0.8);
-border-radius: 100px;
-cursor: pointer;
-display: flex;
-align-items: center;
-justify-content: center;
-transition: background 0.3s;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    color: rgb(0, 0, 0);
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 100px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
 }
-    
+
 .toggle-img-btn:hover {
-background-color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
 }
-    
+
 .btn-down {
-bottom: 10px;
+    bottom: 10px;
 }
-    
+
 .btn-up {
-top: 10px;
-display: none;
+    top: 10px;
+    display: none;
 }
 
 #volverBtn {
@@ -627,14 +616,15 @@ display: none;
 #volverBtn:hover {
     background-color: darkred;
 }
+
 @media (max-width: 768px) {
     .carta-btn {
-        position:absolute;
+        position: absolute;
         top: 30px;
         left: 135px;
         transform: translateX(-50%);
         padding: 5px 10px;
         border-radius: 7px;
         font-size: 14px;
-    } 
-}  
+    }
+}

@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="Principal.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
-</head>
 <body>
 <!-- Pantalla de carga -->
 <div id="loading-screen">
@@ -16,14 +15,10 @@
 </div>
 <div class="contenedor">
     <img src="Imagenes/Logo Pricipal.png" alt="Imagen Movible" class="imagen-ajustable" />
-  </div>
-
-<body>
-    <div class="top-center">
-      <span class="black">Welcome to</span>
-    </div>
-  </body>
-
+</div>
+<div class="top-center">
+    <span class="black">Welcome to</span>
+</div>
 <script>
     window.addEventListener("load", function() {
         let loadingScreen = document.getElementById("loading-screen");
@@ -33,95 +28,84 @@
         }, 1000);
     });
 </script>
-</body>
-<body>
-
-    <div class="sidebar1">
-        <div class="logo_content1">
-            <div class="logo1">
-                <img src="Imagenes/Logo JJJs.png" alt="Logo Restaurante" width="150" height="50">
-                <div class="logo_name1"></div>
-            </div>
-            <i class='bx bx-menu' id='btn1'></i>
+<div class="sidebar1">
+    <div class="logo_content1">
+        <div class="logo1">
+            <img src="Imagenes/Logo JJJs.png" alt="Logo Restaurante" width="150" height="50">
+            <div class="logo_name1"></div>
         </div>
-
-        <div class="src1">
-            <i class='bx bx-search-alt'></i>
-            <input type="text" placeholder="Buscar...">
-        </div>
-
-        <ul class="nav1">
-            <li>
-                <a href="InicioSs.html">
-                    <i class='bx bxs-user-circle'></i>
-                     <span class="link_name1">Inicia sesión</span>
-                </a>
-                <span class="tooltip1">Inicia sesión</span>
-            </li> 
-            <li>
-                <a href="Producto.html">
-                    <i class='bx bxs-pizza' ></i>
-                     <span class="link_name1">Productos Food</span>
-                </a>
-                <span class="tooltip1">Productos Food</span>
-            </li> 
-            <li>
-                <a href="ProductosCigarreria.html">
-                    <i class='bx bxs-drink'></i>
-                     <span class="link_name1">Productos Beer</span>
-                </a>
-                <span class="tooltip1">Productos Beer</span>
-            </li>
-            <li>
-                <a href="#">
-                    <i class='bx bx-package'></i>
-                     <span class="link_name1">Pedidos</span>
-                </a>
-                <span class="tooltip1">Pedidos</span>
-            </li> 
-            <li>
-                <a href="Nosotros.html">
-                    <i class='bx bx-conversation'></i>
-                     <span class="link_name1">Nosotros</span>
-                </a>
-                <span class="tooltip1">Nosotros</span>
-            </li> 
-            <li>
-                <a href="Horarios.html">
-                    <i class='bx bxs-calendar'></i>
-                     <span class="link_name1">Horarios</span>
-                </a>
-                <span class="tooltip1">Horarios</span>
-            </li> 
-        </ul>
+        <i class='bx bx-menu' id='btn1'></i>
     </div>
-
-    <div class="home_content1">
-        <div class="text1"></div>
+    <div class="src1">
+        <i class='bx bx-search-alt'></i>
+        <input type="text" placeholder="Buscar...">
     </div>
-
+    <ul class="nav1">
+        <li>
+            <a href="InicioSs.html">
+                <i class='bx bxs-user-circle'></i>
+                <span class="link_name1">Inicia sesión</span>
+            </a>
+            <span class="tooltip1">Inicia sesión</span>
+        </li>
+        <li>
+            <a href="Producto.html">
+                <i class='bx bxs-pizza'></i>
+                <span class="link_name1">Productos Food</span>
+            </a>
+            <span class="tooltip1">Productos Food</span>
+        </li>
+        <li>
+            <a href="ProductosCigarreria.html">
+                <i class='bx bxs-drink'></i>
+                <span class="link_name1">Productos Beer</span>
+            </a>
+            <span class="tooltip1">Productos Beer</span>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bx-package'></i>
+                <span class="link_name1">Pedidos</span>
+            </a>
+            <span class="tooltip1">Pedidos</span>
+        </li>
+        <li>
+            <a href="Nosotros.html">
+                <i class='bx bx-conversation'></i>
+                <span class="link_name1">Nosotros</span>
+            </a>
+            <span class="tooltip1">Nosotros</span>
+        </li>
+        <li>
+            <a href="Horarios.html">
+                <i class='bx bxs-calendar'></i>
+                <span class="link_name1">Horarios</span>
+            </a>
+            <span class="tooltip1">Horarios</span>
+        </li>
+    </ul>
+</div>
+<div class="home_content1">
+    <div class="text1"></div>
+</div>
 <!-- Ícono flotante de WhatsApp con texto "Contáctanos" -->
 <div class="whatsapp-icon">
     <a href="https://wa.me/573105813873?text=¡Hola!%20Me%20gustaría%20saber%20más%20sobre%20sus%20productos." target="_blank">
         <i class='bx bxl-whatsapp'></i> Realiza tu pedido.
     </a>
 </div>
+<script>
+    let btn1 = document.querySelector('#btn1');
+    let sidebar1 = document.querySelector('.sidebar1');
+    let srcBtn1 = document.querySelector('.bx-search');
 
-
-    <script>
-        let btn1 = document.querySelector('#btn1');
-        let sidebar1 = document.querySelector('.sidebar1');
-        let srcBtn1 = document.querySelector('.bx-search');
-
-        btn1.onclick = function(){
-            sidebar1.classList.toggle('active1');
-        }
-        srcBtn1.onclick = function(){
-            sidebar1.classList.toggle('active1');
-        }
-    </script>
-
-
+    btn1.onclick = function(){
+        sidebar1.classList.toggle('active1');
+    }
+    srcBtn1.onclick = function(){
+        sidebar1.classList.toggle('active1');
+    }
+</script>
 <div id="image-container">
     <button class="arrow left" onclick="prevImage()">◀</button>
     <img class="image active" src="Imagenes/ImagenesPrincipal/1.jpeg" alt="Imagen 1">
@@ -135,8 +119,6 @@
     <img class="image" src="Imagenes/ImagenesPrincipal/9.jpeg" alt="Imagen 9">
     <button class="arrow right" onclick="nextImage()">▶</button>
 </div>
-
-
 <div id="image-container1">
     <button class="arrow1 left1" onclick="prevImage1()">◀</button>
     <img class="image1 active1" src="Imagenes/ImagenesPrincipal/11.png" alt="Imagen 1">
@@ -144,7 +126,6 @@
     <img class="image1" src="Imagenes/ImagenesPrincipal/13.png" alt="Imagen 3">
     <button class="arrow1 right1" onclick="nextImage1()">▶</button>
 </div>
-
 <script>
     let index = 0;
     const images = document.querySelectorAll('.image');
@@ -172,10 +153,6 @@
 
     interval = setInterval(nextImage, 4000);
 </script>
-
-
-
-
 <script>
     let index1 = 0;
     const images1 = document.querySelectorAll('.image1');
@@ -203,10 +180,5 @@
 
     interval1 = setInterval(nextImage1, 5200);
 </script>
-
-
-
-
-
 </body>
 </html>
