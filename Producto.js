@@ -139,23 +139,6 @@ function updateCart() {
     localStorage.setItem("carrito", JSON.stringify(cart));
 }
 
-function sendWhatsAppOrder() {
-    if (cart.length === 0) {
-        alert("Tu carrito está vacío");
-        return;
-    }
-
-    let message = "Hola, quiero hacer un pedido de:\n";
-    cart.forEach(item => {
-        message += `- ${item.name} x${item.quantity} - ${formatPrice(item.price * item.quantity)}\n`;
-    });
-    message += `Total: ${formatPrice(cartTotal)}`;
-
-    const phoneNumber = "573105813873";
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(url, "_blank");
-}
-
 function toggleCart() {
     const cartDetails = document.getElementById('cart-details');
     cartDetails.classList.toggle('active');
