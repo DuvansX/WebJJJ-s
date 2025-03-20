@@ -144,4 +144,26 @@ function toggleCart() {
     cartDetails.classList.toggle('active');
 }
 
+function sendWhatsAppOrder() {
+    if (cart.length === 0) {
+        alert("Tu carrito está vacío.");
+        return;
+    }
+
+    let mensaje = "¡Hola! Quiero hacer un pedido:\n\n";
+
+    cart.forEach(item => {
+        mensaje += `- ${item.name} x${item.quantity}: $${formatPrice(item.price * item.quantity)}\n`;
+    });
+
+    mensaje += `\nTotal: $${formatPrice(cartTotal)}`;
+
+    const numeroWhatsApp = "573105813873"; // Reemplaza con tu número real
+    const mensajeCodificado = encodeURIComponent(mensaje);
+    const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
+    window.open(urlWhatsApp, "_blank");
+}
+
+
 updateCart();
+
