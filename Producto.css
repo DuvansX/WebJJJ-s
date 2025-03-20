@@ -10,6 +10,7 @@ body {
     position: relative;
     min-height: 100vh;
     width: 100%;
+    background-color: #000000;
     background: url('Imagenes/Food/Fondo Perros.jpeg') no-repeat center center fixed;
     background-size: cover;
 }
@@ -348,7 +349,7 @@ main {
     width: 450px;
     height: auto;
     max-height: 90vh;
-    z-index: 9998;
+    z-index: 999;
 }
 
 @media screen and (max-width: 600px) {
@@ -537,7 +538,7 @@ main {
     font-size: 16px;
     font-weight: bold;
     border-radius: 15px;
-    z-index: 9994;
+    z-index: 998;
 }
 
 .carta-btn:hover {

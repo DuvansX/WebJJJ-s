@@ -10,6 +10,7 @@ body {
     position: relative;
     min-height: 100vh;
     width: 100%;
+    background-color: #000000;
     background: url('Imagenes/Cigarreria/Licor.jpg') no-repeat center center fixed;
     background-size: cover;
 }
@@ -100,10 +101,6 @@ body {
     font-size: 22px;
     color: #000000;
     transition: all .5s ease;
-}
-
-.sidebar1 .src1 .bx-search-alt:hover {
-    background: rgb(255, 255, 255);
 }
 
 .sidebar1 .src1 .bx-search-alt:hover ~ input {
@@ -353,7 +350,7 @@ main {
     width: 450px;
     height: auto;
     max-height: 90vh;
-    z-index: 9998;
+    z-index: 999;
 }
 
 @media screen and (max-width: 600px) {

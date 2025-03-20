@@ -102,10 +102,6 @@ body {
     transition: all .5s ease;
 }
 
-.sidebar1 .src1 .bx-search-alt:hover {
-    background: rgb(255, 255, 255);
-}
-
 .sidebar1 .src1 .bx-search-alt:hover ~ input {
     background: #ffffff;
 }
