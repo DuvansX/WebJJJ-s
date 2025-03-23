@@ -7,6 +7,8 @@
     <link rel="icon" href="Imagenes/Logo Restaurante.PNG">
     <link rel="stylesheet" href="Producto.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
 </head>
 <body>
 <!-- Pantalla de carga -->
@@ -267,7 +269,7 @@
             <span class="tooltip1">Productos Beer</span>
         </li> 
         <li>
-            <a href="#">
+            <a href="Pedidos.html">
                 <i class='bx bx-package'></i>
                  <span class="link_name1">Pedidos</span>
             </a>
@@ -348,6 +350,11 @@
     </div>
 </main>
 
+<script>
+    localStorage.setItem("tipoProducto", "comida");
+  </script>
+  
+
 
 <div class="cart-details" id="cart-details">
     <h2>Tu Carrito</h2>
@@ -356,7 +363,7 @@
         Total: <span id="cart-total">0</span>
         <span id="cart-warning" class="cart-warning"></span>
     </p>
-    <button onclick="sendWhatsAppOrder()" class="buy-button">Comprar</button>
+    <button onclick="window.location.href='Pedidos.html'" class="buy-button">Comprar</button>
 </div>
     
     

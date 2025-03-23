@@ -1,7 +1,15 @@
+
+
 let cart = JSON.parse(localStorage.getItem("carrito")) || [];
 let cartTotal = 0;
-const MAX_PRODUCTS = 20; // Límite de productos en el carrito
-const MAX_VISIBLE_PRODUCTS = 5; // Máximo de productos visibles antes de mostrar scroll
+const MAX_PRODUCTS = 20;
+
+let tipoProducto = localStorage.getItem("tipoProducto");
+if (!tipoProducto) {
+    const url = window.location.href;
+    tipoProducto = url.includes("Productocigarreria.html") ? "licor" : "comida";
+    localStorage.setItem("tipoProducto", tipoProducto);
+}
 
 cart.forEach(producto => {
     cartTotal += producto.price * producto.quantity;
@@ -19,7 +27,8 @@ function addToCart(productName, price) {
     if (existingProduct) {
         existingProduct.quantity += 1;
     } else {
-        cart.push({ name: productName, price: price, quantity: 1 });
+        const tipoProducto = localStorage.getItem("tipoProducto") || "comida";
+        cart.push({ name: productName, price: price, quantity: 1, fuente: tipoProducto });
     }
     cartTotal += price;
     updateCart();
@@ -57,7 +66,7 @@ function decrementQuantity(index) {
 function updateCart() {
     cartTotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
     const totalProducts = cart.reduce((total, item) => total + item.quantity, 0);
-    
+
     document.getElementById('cart-count').textContent = totalProducts;
     document.getElementById('cart-total').textContent = formatPrice(cartTotal);
 
@@ -74,12 +83,22 @@ function updateCart() {
         li.style.padding = "5px 0";
 
         const nameSpan = document.createElement('span');
-        let productText = `${item.name} - ${formatPrice(item.price * item.quantity)}`;
-        if (item.quantity >= 2) {
-            productText += ` (x${item.quantity})`;
-        }
-        nameSpan.textContent = productText;
         nameSpan.style.fontWeight = "bold";
+        nameSpan.style.display = "flex";
+        nameSpan.style.alignItems = "center";
+        nameSpan.style.gap = "5px";
+
+        // Crear icono Lucide
+        const iconElement = document.createElement('i');
+        iconElement.setAttribute('data-lucide', item.fuente === "licor" ? "wine" : "utensils");
+        iconElement.style.width = "18px";
+        iconElement.style.height = "18px";
+
+        const productText = document.createElement('span');
+        productText.textContent = `${item.name} - ${formatPrice(item.price * item.quantity)}${item.quantity >= 2 ? ` (x${item.quantity})` : ''}`;
+
+        nameSpan.appendChild(iconElement);
+        nameSpan.appendChild(productText);
 
         const buttonContainer = document.createElement('div');
         buttonContainer.style.display = "flex";
@@ -87,35 +106,17 @@ function updateCart() {
 
         const incrementBtn = document.createElement('button');
         incrementBtn.textContent = "+";
-        incrementBtn.style.backgroundColor = "black";
-        incrementBtn.style.color = "white";
-        incrementBtn.style.border = "none";
-        incrementBtn.style.padding = "5px 10px";
-        incrementBtn.style.cursor = "pointer";
-        incrementBtn.style.borderRadius = "5px";
-        incrementBtn.style.fontWeight = "bold";
+        styleButton(incrementBtn, "black", "white");
         incrementBtn.onclick = () => incrementQuantity(index);
 
         const decrementBtn = document.createElement('button');
         decrementBtn.textContent = "-";
-        decrementBtn.style.backgroundColor = "black";
-        decrementBtn.style.color = "white";
-        decrementBtn.style.border = "none";
-        decrementBtn.style.padding = "5px 10px";
-        decrementBtn.style.cursor = "pointer";
-        decrementBtn.style.borderRadius = "5px";
-        decrementBtn.style.fontWeight = "bold";
+        styleButton(decrementBtn, "black", "white");
         decrementBtn.onclick = () => decrementQuantity(index);
 
         const removeBtn = document.createElement('button');
         removeBtn.textContent = "Eliminar";
-        removeBtn.style.backgroundColor = "#ffb700";
-        removeBtn.style.color = "black";
-        removeBtn.style.border = "none";
-        removeBtn.style.padding = "5px 10px";
-        removeBtn.style.cursor = "pointer";
-        removeBtn.style.borderRadius = "5px";
-        removeBtn.style.fontWeight = "bold";
+        styleButton(removeBtn, "#ffb700", "black");
         removeBtn.onclick = () => removeFromCart(index);
 
         buttonContainer.appendChild(incrementBtn);
@@ -137,6 +138,17 @@ function updateCart() {
     }
 
     localStorage.setItem("carrito", JSON.stringify(cart));
+    lucide.createIcons();  // Cargar iconos Lucide en la lista
+}
+
+function styleButton(btn, bgColor, textColor) {
+    btn.style.backgroundColor = bgColor;
+    btn.style.color = textColor;
+    btn.style.border = "none";
+    btn.style.padding = "5px 10px";
+    btn.style.cursor = "pointer";
+    btn.style.borderRadius = "5px";
+    btn.style.fontWeight = "bold";
 }
 
 function toggleCart() {
@@ -153,17 +165,17 @@ function sendWhatsAppOrder() {
     let mensaje = "¡Hola! Quiero hacer un pedido:\n\n";
 
     cart.forEach(item => {
-        mensaje += `- ${item.name} x${item.quantity}: $${formatPrice(item.price * item.quantity)}\n`;
+        const iconoTexto = item.fuente === "licor" ? "🍷" : "🍔";  // Emojis solo para WhatsApp
+        mensaje += `- ${iconoTexto} ${item.name} x${item.quantity}: $${formatPrice(item.price * item.quantity)}\n`;
     });
 
     mensaje += `\nTotal: $${formatPrice(cartTotal)}`;
 
-    const numeroWhatsApp = "573105813873"; // Reemplaza con tu número real
+    const numeroWhatsApp = "573105813873";
     const mensajeCodificado = encodeURIComponent(mensaje);
     const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
     window.open(urlWhatsApp, "_blank");
 }
 
-
+// Mostrar carrito al cargar
 updateCart();
-
