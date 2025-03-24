@@ -236,7 +236,7 @@ body {
 .card:nth-child(3) { left: 900px; }
 
 /* Ajustes solo para móviles */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     .cards-container {
         display: flex;
         flex-direction: column;
@@ -254,6 +254,7 @@ body {
         margin-bottom: 15px; /* Espaciado entre las cartas */
     }
 }
+
 .image-container {
     width: 100%;
     height: 200px;
@@ -336,10 +337,77 @@ body {
 .instagram:hover { box-shadow: 0px 0px 20px rgba(253, 29, 29, 0.8); }
 .facebook:hover { box-shadow: 0px 0px 20px rgba(24, 119, 242, 0.8); }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     .social-icons {
         justify-content: flex-end;
         top: 10px;
         padding-right: 10px; /* Ajusta este valor para cambiar la posición en móviles */
+    }
+}
+
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease-out, visibility 1s ease-out;
+    z-index: 9999;
+}
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+.loader {
+    border: 8px solid rgba(255, 255, 255, 0.2);
+    border-top: 8px solid #ffb700;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 1s ease-in-out infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(180deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#suggestions {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+    z-index: 1000;
+}
+
+/* Cada item sugerido */
+#suggestions div {
+    padding: 12px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.2s;
+}
+
+#suggestions div:hover {
+    background-color: #f5f5f5;
+}
+
+/* Responsive para móviles */
+@media (max-width: 600px) {
+    #suggestions div {
+        font-size: 14px;
+        padding: 10px 12px;
     }
 }

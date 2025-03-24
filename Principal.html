@@ -9,25 +9,17 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-<!-- Pantalla de carga -->
+
 <div id="loading-screen">
     <div class="loader"></div>
 </div>
+
 <div class="contenedor">
     <img src="Imagenes/Logo Pricipal.png" alt="Imagen Movible" class="imagen-ajustable" />
 </div>
 <div class="top-center">
     <span class="black">Welcome to</span>
 </div>
-<script>
-    window.addEventListener("load", function() {
-        let loadingScreen = document.getElementById("loading-screen");
-        loadingScreen.classList.add("hidden");
-        setTimeout(() => {
-            loadingScreen.style.display = "none";
-        }, 1000);
-    });
-</script>
 <div class="sidebar1">
     <div class="logo_content1">
         <div class="logo1">
@@ -37,218 +29,10 @@
         <i class='bx bx-menu' id='btn1'></i>
     </div>
     <div class="src1" style="position: relative;">
-        <i class='bx bx-search-alt'></i>
+        <i class='bx bx-search-alt' id="srcBtn1"></i>
         <input type="text" id="searchInput" placeholder="Buscar..." autocomplete="off">
-        <div id="suggestions" style="
-            position: absolute; 
-            top: 100%; 
-            left: 0; 
-            right: 0; 
-            background: white; 
-            border: 1px solid #ccc; 
-            max-height: 150px; 
-            overflow-y: auto;
-            display: none;
-            z-index: 1000;
-        "></div>
+        <div id="suggestions" class="suggestions"></div>
     </div>
-    
-    <style>
-   #suggestions {
-    position: absolute;
-    top: 110%;
-    left: 0;
-    right: 0;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    overflow: hidden;
-    border: 1px solid #e0e0e0;
-    max-height: 200px;
-    overflow-y: auto;
-    display: none;
-    z-index: 1000;
-}
-
-/* Cada item sugerido */
-#suggestions div {
-    padding: 12px 15px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background 0.2s;
-}
-
-#suggestions div:hover {
-    background-color: #f5f5f5;
-}
-
-/* Responsive para móviles */
-@media (max-width: 600px) {
-    #suggestions div {
-        font-size: 14px;
-        padding: 10px 12px;
-    }
-}
-    </style>
-    
-    <script>
-        const productos = [
-            { nombre: "HiMoShi Club Licor De Vodka II", id: "himoshi-vodka", pagina: "ProductosCigarreria.html" },
-            { nombre: "HiMoShi Club Licor De Vodka I", id: "himoshi-vodka", pagina: "ProductosCigarreria.html" },
-            { nombre: "Aguila Original-Six Pack", id: "Aguila 6Pack", pagina: "ProductosCigarreria.html" },
-            { nombre: "Erdinger Dunkel", id: "Erdinger Dunkel", pagina: "ProductosCigarreria.html" },
-            { nombre: "Liefmans Fruitesse", id: "Liefmans-Fruitesse", pagina: "ProductosCigarreria.html" },
-            { nombre: "Corona Frutos Rojos", id: "Corona Tropical-Frutos", pagina: "ProductosCigarreria.html" },
-            { nombre: "Corona Tropical Limon ", id: "Corona Tropical-Limon", pagina: "ProductosCigarreria.html" },
-            { nombre: "Sminorff Ice", id: "Sminorff Ice", pagina: "ProductosCigarreria.html" },
-            { nombre: "Coronitas Six-Pack", id: "Coronita-Six-Pack", pagina: "ProductosCigarreria.html" },
-            { nombre: "Andina Six-Pack", id: "Cerveza-Andina-6-Pack", pagina: "ProductosCigarreria.html" },
-            { nombre: "Poker Six-Pack", id: "Cerveza-Poker-6-Pack", pagina: "ProductosCigarreria.html" },
-            { nombre: "Club Colombia Six-Pack", id: "Cerveza-Club-Colombia-6-Pack", pagina: "ProductosCigarreria.html" },
-            { nombre: "Corona Six-Pack", id: "Corona-Six-Pack", pagina: "ProductosCigarreria.html" },
-            { nombre: "Budweiser Six-Pack", id: "Budweiser-Six", pagina: "ProductosCigarreria.html" },
-            { nombre: "Costeña Bacana Six-Pack", id: "Costeña", pagina: "ProductosCigarreria.html" },
-            { nombre: "Michelob Ultra Six-Pack", id: "Michelob", pagina: "ProductosCigarreria.html" },
-            { nombre: "Four Loko Ponche", id: "Four-Loko-Ponche", pagina: "ProductosCigarreria.html" },
-            { nombre: "Four Loko Gold", id: "Four-Loko-Gold", pagina: "ProductosCigarreria.html" },
-            { nombre: "Four loko Sandia", id: "Four-Loko-Sandia", pagina: "ProductosCigarreria.html" },
-            { nombre: "Heineken Six-Pack", id: "Heineken-6-pack", pagina: "ProductosCigarreria.html" },
-            { nombre: "Aguila Light Six-Pack", id: "Aguila-Light-6-Pack", pagina: "ProductosCigarreria.html" },
-            { nombre: "Aguardiente Lider Pequeño", id: "Aguardiente-Lider", pagina: "ProductosCigarreria.html" },
-            { nombre: "Aguardiente Lider Grande", id: "Aguardiente", pagina: "ProductosCigarreria.html" },
-            { nombre: "Onix Sello Negro 2", id: "Onix-Sello-Negro-2", pagina: "ProductosCigarreria.html" },
-            { nombre: "Onix Sello Negro ", id: "Onix-Sello-Negro", pagina: "ProductosCigarreria.html" },
-            { nombre: "Domeco Brandy Grande", id: "Domeco Brandy", pagina: "ProductosCigarreria.html" },
-            { nombre: "Domeco Brandy Pequeño", id: "Domeco", pagina: "ProductosCigarreria.html" },
-            { nombre: "Bacardí Añejo Grande", id: "Bacardi-Añejo-750ML", pagina: "ProductosCigarreria.html" },
-            { nombre: "Ron Viejo de Caldas", id: "Ron-Viejo-De-Caldas", pagina: "ProductosCigarreria.html" },
-            { nombre: "Havanna Club", id: "Havana-Club", pagina: "ProductosCigarreria.html" },
-            { nombre: "Caballos Tequila", id: "Caballos-Tequila", pagina: "ProductosCigarreria.html" },
-            { nombre: "Bandolero Reposado", id: "Bandolero-Reposado", pagina: "ProductosCigarreria.html" },
-            { nombre: "Altos Plata", id: "Altos-Plata-Tequila", pagina: "ProductosCigarreria.html" },
-            { nombre: "Sminorff Lulo Pequeño", id: "Sminorff Lulo", pagina: "ProductosCigarreria.html" },
-            { nombre: "Reposado Patrón", id: "Reposado-Patrón", pagina: "ProductosCigarreria.html" },
-            { nombre: "Jose Cuervo Especial", id: "Tequila Jose-Cuervo-Especial", pagina: "ProductosCigarreria.html" },
-            { nombre: "Jaileza Oro", id: "Tequila-Jaileza-Oro", pagina: "ProductosCigarreria.html" },
-            { nombre: "La Mision XXI", id: "La-Mision-XXI", pagina: "ProductosCigarreria.html" },
-            { nombre: "Tanqueray Imported", id: "Tanqueray Imported", pagina: "ProductosCigarreria.html" },
-            { nombre: "Absolut Citron", id: "Absolut Citron", pagina: "ProductosCigarreria.html" },
-            { nombre: "La Botija Tabernero", id: "La_Botija-Tabernero", pagina: "ProductosCigarreria.html" },
-            { nombre: "Convier Vermouth", id: "Convier-Vermouth", pagina: "ProductosCigarreria.html" },
-            { nombre: "Axis Triple Seco", id: "Axis-Triple-Sec", pagina: "ProductosCigarreria.html" },
-            { nombre: "Axis Licor de Ginebra", id: "Axis-Licor-De-Ginebra", pagina: "ProductosCigarreria.html" },
-            { nombre: "Sminorff Lulo Grande", id: "Sminorff Lulo Grande", pagina: "ProductosCigarreria.html" },
-            { nombre: "Licor Stolichnaya", id: "Licor Stolichnaya", pagina: "ProductosCigarreria.html" },
-            { nombre: "Bombay Shaphire", id: "Bombay-Saphire", pagina: "ProductosCigarreria.html" },
-            { nombre: "Black Jack Grande", id: "Black Jack Grande", pagina: "ProductosCigarreria.html" },
-            { nombre: "Black Jack Mediano", id: "Black Jack Mediano", pagina: "ProductosCigarreria.html" },
-            { nombre: "vino Leyenda Rose SYRAH", id: "vino Leyenda Rose SYRAH", pagina: "ProductosCigarreria.html" },
-            { nombre: "Cono Sur Rosé", id: "Cono Sur Rosé", pagina: "ProductosCigarreria.html" },
-            { nombre: "Cono Sur Cabernet", id: "Cono Sur Cabernet", pagina: "ProductosCigarreria.html" },
-            { nombre: "120 Rosé Cabernet", id: "120 Rosé Cabernet", pagina: "ProductosCigarreria.html" },
-            { nombre: "Casillero Cabernet", id: "Casillero Cabernet", pagina: "ProductosCigarreria.html" },
-            { nombre: "La Escondida Rose 2020", id: "La Escondida Rose 2020", pagina: "ProductosCigarreria.html" },
-            { nombre: "Vino Indomita", id: "Vino Indomita", pagina: "ProductosCigarreria.html" },
-            { nombre: "Vino IL DUOMO", id: "Vino IL DUOMO", pagina: "ProductosCigarreria.html" },
-            { nombre: "Cabernet Sauviginon", id: "Cabernet Sauviginon", pagina: "ProductosCigarreria.html" },
-            { nombre: "Santa Ana Reserve 2020", id: "Santa Ana Reserve 2020", pagina: "ProductosCigarreria.html" },
-            { nombre: "120 Cabernet Sauviginon 2021", id: "120 Cabernet Sauviginon 2021", pagina: "ProductosCigarreria.html" },
-            { nombre: "Vino Leyenda Merlot 2020", id: "Vino Leyenda Merlot 2020", pagina: "ProductosCigarreria.html" },
-            { nombre: "Tres medallas Merlot 2021", id: "Tres medallas Merlot 2021", pagina: "ProductosCigarreria.html" },
-            { nombre: "Vientos del Sur Merlot 2020", id: "Vientos del Sur Merlot 2020", pagina: "ProductosCigarreria.html" },
-            { nombre: "Tocornal Carmenere 2020", id: "Tocornal Carmenere 2020", pagina: "ProductosCigarreria.html" },
-            { nombre: "Gato Negro Cabernet Merlot", id: "Gato Negro Cabernet Merlot", pagina: "ProductosCigarreria.html" },
-            { nombre: "Chiloe Merlot", id: "Chiloe Merlot", pagina: "ProductosCigarreria.html" },
-            { nombre: "Manischewitz", id: "Manischewitz", pagina: "ProductosCigarreria.html" },
-            { nombre: "Merlot Viña Maipo", id: "Merlot Viña Maipo", pagina: "ProductosCigarreria.html" },
-            { nombre: "Cabernet Sauvignon Vientos del Sur 2020", id: "Cabernet Sauvignon Vientos del Sur 2020", pagina: "ProductosCigarreria.html" },
-            { nombre: "Vino Tinto Gato Negro Malbec ARG", id: "Vino Tinto Gato Negro Malbec ARG", pagina: "ProductosCigarreria.html" },
-            { nombre: "Vino Tinto Leyenda Carmenere 2021", id: "Vino Tinto Leyenda Carmenere 21", pagina: "ProductosCigarreria.html" },
-            { nombre: "Tres Medallas Carmenere 2020", id: "Vino tres medallas 2020", pagina: "ProductosCigarreria.html" },
-            { nombre: "Chiloe Cabernet Sauvignon 2020", id: "Chiloe Cabernet Sauviginon 2020", pagina: "ProductosCigarreria.html" },
-            { nombre: "Tres Medallas Cabernet Sauviginon 2021", id: "Tres medallas Cabernet 2021", pagina: "ProductosCigarreria.html" },
-            { nombre: "Vino Rosado Lambrusco Rosé Dolce", id: "Vino RosadoLambrusco Rosé-Dolce", pagina: "ProductosCigarreria.html" },
-            { nombre: "Mirador Merlot 2019", id: "Mirador Merlot 19", pagina: "ProductosCigarreria.html" },
-            { nombre: "Leyenda Cabernet Sauviginon", id: "Leyenda Cabernet Sauviginon", pagina: "ProductosCigarreria.html" },
-            { nombre: "Buchanans Malts", id: "Buchanans Malts", pagina: "ProductosCigarreria.html" },
-            { nombre: "Chivas Regal 13Y", id: "Chivas Regal 13Y", pagina: "ProductosCigarreria.html" },
-            { nombre: "Black and White Mediano", id: "Black and White M.", pagina: "ProductosCigarreria.html" },
-            { nombre: "Black and White", id: "Black and White G.", pagina: "ProductosCigarreria.html" },
-            { nombre: "Jack Daniels Honey", id: "Jack Daniels Honey", pagina: "ProductosCigarreria.html" },
-            { nombre: "Whisky Jack Daniels", id: "Whisky Jack Daniels", pagina: "ProductosCigarreria.html" },
-            { nombre: "Whisky Jack Daniels Mediano", id: "Whisky Jack Daniels M.", pagina: "ProductosCigarreria.html" },
-            { nombre: "Chivas Regal 12Y", id: "Chivas regal 12Y", pagina: "ProductosCigarreria.html" },
-            { nombre: "Double Black Label", id: "Double Label", pagina: "ProductosCigarreria.html" },
-            { nombre: "Whisky Grants Mediano", id: "Whisky Grants B.", pagina: "ProductosCigarreria.html" },
-            { nombre: "Whisky Grants ", id: "Whisky Grants ", pagina: "ProductosCigarreria.html" },
-            { nombre: "Whisky Ballantine's", id: "Ballantine", pagina: "ProductosCigarreria.html" },
-            { nombre: "Something Especial Pequeño", id: "Something Especial Pequeño", pagina: "ProductosCigarreria.html" },
-            { nombre: "Something Especial Mediano", id: "Something Especial Mediano", pagina: "ProductosCigarreria.html" },
-            { nombre: "Something Especial", id: "Something Especial", pagina: "ProductosCigarreria.html" },
-            { nombre: "Whisky Jameson", id: "Whisky Jameson", pagina: "ProductosCigarreria.html" },
-            { nombre: "Chivas Regal 18Y", id: "Chivas Regal 18Y", pagina: "ProductosCigarreria.html" },
-            { nombre: "Buchanan's Deluxe Media", id: "Buchanans Deluxe M", pagina: "ProductosCigarreria.html" },
-            { nombre: "Buchanan's Deluxe", id: "Buchanans Deluxe", pagina: "ProductosCigarreria.html" },
-            { nombre: "Old Parr", id: "old Parr", pagina: "ProductosCigarreria.html" },
-            { nombre: "Black Label", id: "Black Label", pagina: "ProductosCigarreria.html" },
-            { nombre: "Monkey Shoulder", id: "Monkey Shoulder", pagina: "ProductosCigarreria.html" },
-            { nombre: "Red Label", id: "Red Label", pagina: "ProductosCigarreria.html" },
-            { nombre: "Bacardí Mandarina", id: "Bacardi Mandarina", pagina: "ProductosCigarreria.html" },
-            { nombre: "Bacardí Limón", id: "Bacardi Limon", pagina: "ProductosCigarreria.html" },
-            { nombre: "Bacardí Island Tea", id: "Bacardi Island", pagina: "ProductosCigarreria.html" },
-            { nombre: "Bacardí Bahama Mama", id: "Bacardi Bahama", pagina: "ProductosCigarreria.html" },
-            { nombre: "Bacardí Añejo Pequeño", id: "Bacardi Añejo Pe", pagina: "ProductosCigarreria.html" },
-            { nombre: "Bacardí Mojito", id: "Mojito", pagina: "ProductosCigarreria.html" },
-            { nombre: "Bacardí Carta Blanca", id: "Bacardi Carta B", pagina: "ProductosCigarreria.html" },
-            
-            
-        
-
-
-
-
-            { nombre: "Coca-Cola", id: "coca-cola", pagina: "Producto.html" },
-            { nombre: "Pepsi", id: "pepsi", pagina: "Producto.html" },
-        ];
-        
-        const searchInput = document.getElementById('searchInput');
-        const suggestionsBox = document.getElementById('suggestions');
-        
-        searchInput.addEventListener('input', function() {
-            const query = this.value.toLowerCase().trim();
-            suggestionsBox.innerHTML = '';
-        
-            if (query === '') {
-                suggestionsBox.style.display = 'none';
-                return;
-            }
-        
-            // 🔍 Solo productos cuyo nombre EMPIEZA con la letra
-            const coincidencias = productos.filter(p => p.nombre.toLowerCase().startsWith(query));
-        
-            if (coincidencias.length > 0) {
-                coincidencias.forEach(p => {
-                    const div = document.createElement('div');
-                    div.textContent = p.nombre;
-                    div.addEventListener('click', () => {
-                        window.location.href = `${p.pagina}#${p.id}`;
-                    });
-                    suggestionsBox.appendChild(div);
-                });
-                suggestionsBox.style.display = 'block';
-            } else {
-                suggestionsBox.style.display = 'none';
-            }
-        });
-        
-        // Ocultar sugerencias al hacer clic fuera
-        document.addEventListener('click', function(e) {
-            if (!document.querySelector('.src1').contains(e.target)) {
-                suggestionsBox.style.display = 'none';
-            }
-        });
-        </script>
-    
     
     <ul class="nav1">
         <li>
@@ -298,24 +82,12 @@
 <div class="home_content1">
     <div class="text1"></div>
 </div>
-<!-- Ícono flotante de WhatsApp con texto "Contáctanos" -->
+
 <div class="whatsapp-icon">
     <a href="https://wa.me/573105813873?text=¡Hola!%20Me%20gustaría%20saber%20más%20sobre%20sus%20productos." target="_blank">
         <i class='bx bxl-whatsapp'></i> Realiza tu pedido.
     </a>
 </div>
-<script>
-    let btn1 = document.querySelector('#btn1');
-    let sidebar1 = document.querySelector('.sidebar1');
-    let srcBtn1 = document.querySelector('.bx-search');
-
-    btn1.onclick = function(){
-        sidebar1.classList.toggle('active1');
-    }
-    srcBtn1.onclick = function(){
-        sidebar1.classList.toggle('active1');
-    }
-</script>
 <div id="image-container">
     <button class="arrow left" onclick="prevImage()">◀</button>
     <img class="image active" src="Imagenes/ImagenesPrincipal/1.jpeg" alt="Imagen 1">
@@ -336,59 +108,9 @@
     <img class="image1" src="Imagenes/ImagenesPrincipal/13.png" alt="Imagen 3">
     <button class="arrow1 right1" onclick="nextImage1()">▶</button>
 </div>
-<script>
-    let index = 0;
-    const images = document.querySelectorAll('.image');
-    let interval;
-
-    function showImage(newIndex) {
-        images[index].classList.remove('active');
-        index = (newIndex + images.length) % images.length;
-        images[index].classList.add('active');
-        resetTimer();
-    }
-
-    function nextImage() {
-        showImage(index + 1);
-    }
-
-    function prevImage() {
-        showImage(index - 1);
-    }
-
-    function resetTimer() {
-        clearInterval(interval);
-        interval = setInterval(nextImage, 4000);
-    }
-
-    interval = setInterval(nextImage, 4000);
-</script>
-<script>
-    let index1 = 0;
-    const images1 = document.querySelectorAll('.image1');
-    let interval1;
-
-    function showImage1(newIndex1) {
-        images1[index1].classList.remove('active1');
-        index1 = (newIndex1 + images1.length) % images1.length;
-        images1[index1].classList.add('active1');
-        resetTimer1();
-    }
-
-    function nextImage1() {
-        showImage1(index1 + 1);
-    }
-
-    function prevImage1() {
-        showImage1(index1 - 1);
-    }
-
-    function resetTimer1() {
-        clearInterval(interval1);
-        interval1 = setInterval(nextImage1, 5200);
-    }
-
-    interval1 = setInterval(nextImage1, 5200);
-</script>
+<script src="PantallaCarga.js"></script>
+<script src="Buscador.js"></script>
+<script src="Siderbar.js"></script>
+<script src="SelectorImagenes.js"></script>
 </body>
 </html>
