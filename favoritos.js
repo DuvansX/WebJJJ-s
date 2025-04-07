@@ -1,7 +1,7 @@
 // Lista de TODOS los productos disponibles
 const productos = [
     {
-        id: "bacardi-carta-blanca",
+        id: "Bacardi Carta B",
         nombre: "Bacardi Carta Blanca",
         precio: 62000,
         imagen: "Bebidas/Bacardi/Bicadi-Carta-Blanca.webp"
