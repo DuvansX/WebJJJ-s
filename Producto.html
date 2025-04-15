@@ -30,63 +30,62 @@
         <div id="suggestions" class="suggestions"></div>
     </div>
     
-
     <ul class="nav1">
         <li>
             <a href="Principal.html">
                 <i class='bx bx-store-alt'></i>
-                 <span class="link_name1">Principal</span>
+                <span class="link_name1">Principal</span>
             </a>
             <span class="tooltip1">Principal</span>
         </li> 
         <li>
             <a href="InicioSs.html">
                 <i class='bx bxs-user-circle'></i>
-                 <span class="link_name1">Inicia sesión</span>
+                <span class="link_name1">Inicia sesión</span>
             </a>
             <span class="tooltip1">Inicia sesión</span>
         </li> 
         <li>
             <a href="ProductosCigarreria.html">
                 <i class='bx bxs-drink'></i>
-                 <span class="link_name1">Productos Beer</span>
+                <span class="link_name1">Productos Beer</span>
             </a>
             <span class="tooltip1">Productos Beer</span>
         </li> 
         <li>
             <a href="Pedidos.html">
                 <i class='bx bx-package'></i>
-                 <span class="link_name1">Pedidos</span>
+                <span class="link_name1">Pedidos</span>
             </a>
             <span class="tooltip1">Pedidos</span>
         </li> 
         <li>
             <a href="Nosotros.html">
                 <i class='bx bx-conversation'></i>
-                 <span class="link_name1">Nosotros</span>
+                <span class="link_name1">Nosotros</span>
             </a>
             <span class="tooltip1">Nosotros</span>
         </li> 
         <li>
             <a href="Horarios.html">
-                <i class='bx bxs-calendar' ></i>
-                 <span class="link_name1">Horarios</span>
+                <i class='bx bxs-calendar'></i>
+                <span class="link_name1">Horarios</span>
             </a>
             <span class="tooltip1">Horarios</span>
         </li> 
+        <li>
+            <a href="favoritos.html">
+                <i class='bx bxs-heart-circle'></i>
+                <span class="link_name1">Favoritos</span>
+            </a>
+            <span class="tooltip1">Favoritos</span>
+        </li>
     </ul>
-</div>
-    
-<!-- Ícono flotante de WhatsApp con texto "Contáctanos" -->
-<div class="whatsapp-icon">
-    <a href="https://wa.me/573105813873?text=¡Hola!%20Me%20gustaría%20saber%20más%20sobre%20sus%20productos." target="_blank">
-        <i class='bx bxl-whatsapp'></i> Realiza tu pedido.
-    </a>
 </div>
 
 <header class="nav-bar">
     <div class="cart-icon" onclick="toggleCart()">
-        <img src="Imagenes/Food/CarritoDeCompras.png" alt="Carrito" width="35">
+        <img src="Imagenes/Food/CarritoDeCompras.png" alt="Carrito de compras" width="35">
         <span id="cart-count">0</span>
     </div>
     <h1>Productos JJJ´s Food</h1>
@@ -96,7 +95,7 @@
     <div class="product-list">
         <!-- Ejemplo de productos -->
         <div class="product">
-            <img src="Comida/Mexico.webp" alt="Producto 1">
+            <img src="Comida/Mexico.webp" alt="Producto Mexicano">
             <h2>Mexicano</h2>
             <p class="price">$20.000</p>
             <button onclick="addToCart('Mexicano', 20)">
@@ -104,9 +103,8 @@
             </button>
         </div>
         
-                    
         <div class="product">
-            <img src="Comida/Burger Ranch.webp" alt="Producto 2">
+            <img src="Comida/Burger Ranch.webp" alt="Producto Burger Ranch">
             <h2>Burger Ranch</h2>
             <p class="price">$28.000</p>
             <button onclick="addToCart('Burger Ranch', 28)">Agregar al Carrito</button>
@@ -128,9 +126,7 @@
 
 <script>
     localStorage.setItem("tipoProducto", "comida");
-  </script>
-  
-
+</script>
 
 <div class="cart-details" id="cart-details">
     <h2>Tu Carrito</h2>
@@ -141,11 +137,8 @@
     </p>
     <button onclick="window.location.href='Pedidos.html'" class="buy-button">Comprar</button>
 </div>
-    
-
 
 <button class="carta-btn" onclick="toggleCarta()">Carta</button>
-    
 
 <div class="carta-container" id="carta" onclick="toggleZoom(event)">
     <button class="toggle-img-btn btn-up" id="btnUp" onclick="toggleImagen(event)">⬆</button>
@@ -154,14 +147,12 @@
     <button id="volverBtn" onclick="toggleCarta()">Volver</button>
 </div>
 
-
-
 <script src="Producto.js"></script>
 <script src="CartaProductos.js"></script>
 <script src="PantallaCarga.js"></script>
 <script src="Buscador.js"></script>
 <script src="Siderbar.js"></script>
-
+<script src="Bot.js"></script>
 
 </body>
 </html>
