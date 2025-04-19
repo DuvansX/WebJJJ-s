@@ -665,6 +665,144 @@ const productos = [
         nombre: "Bacardí Carta Blanca",
         precio: 62000,
         imagen: "Bebidas/Bacardi/Bicadi-Carta-Blanca.webp"
+    },
+    {
+        id: "J.P.-Chenet-Blanco",
+        nombre: "J.P.Chenet Blanco",
+        precio: 78000,
+        imagen: "Bebidas/Vinos/J.P.-Chenet-Blanco.webp"
+    },
+    {
+        id: "J.P.-Chenet-Rosado",
+        nombre: "J.P.Chenet Rosado",
+        precio: 78000,
+        imagen: "Bebidas/Vinos/J.P.-Chenet-Rosado.webp"
+    },
+    {
+        id: "J.P.-Chenet-De-Fresa",
+        nombre: "J.P.Chenet De Fresa",
+        precio: 78000,
+        imagen: "Bebidas/Vinos/J.P.-Chenet-De-Fresa.webp"
+    },
+    {
+        id: "Bacardi-Zombie",
+        nombre: "Bacardi Zombie",
+        precio: 56000,
+        imagen: "Bebidas/Bacardi/Bacardi-Zombie.webp"
+    },
+    {
+        id: "Bacardi-Hurricane",
+        nombre: "Bacardi Hurricane",
+        precio: 56000,
+        imagen: "Bebidas/Bacardi/Bacardi-Hurricane.webp"
+    },
+    {
+        id: "Leyenda-Sauvignon-Blanco",
+        nombre: "Leyenda Sauvignon Blanco",
+        precio: 36000,
+        imagen: "Bebidas/vinos/Leyenda-Sauvignon-Blanco.webp"
+    },
+    {
+        id: "Buchanans-Master",
+        nombre: "Buchanans Master",
+        precio: 36000,
+        imagen: "Bebidas/Whiskys/Buchanans-Master.webp"
+    },
+    {
+        id: "Lider-Caja-Sin-Azucar",
+        nombre: "Lider Caja Sin Azucar",
+        precio: 60000,
+        imagen: "Bebidas/Aguardientes/Lider-Caja-Sin-Azucar.webp"
+    },
+    {
+        id: "Lider-Sin-Azucar-Verde",
+        nombre: "Lider Sin Azucar Verde",
+        precio: 24000,
+        imagen: "Bebidas/Aguardientes/Lider-Sin-Azucar-Verde.webp"
+    },
+    {
+        id: "La-Escondida-Malbec",
+        nombre: "La Escondida Malbec",
+        precio: 25000,
+        imagen: "Bebidas/Vinos/La-Escondida-Malbec.webp"
+    },
+    {
+        id: "Embajador Merlot Argentina",
+        nombre: "Embajador Merlot Argentina",
+        precio: 23000,
+        imagen: "Bebidas/Vinos/Embajador Merlot Argentina.webp"
+    },
+    {
+        id: "Embajador Merlot Chile",
+        nombre: "Embajador Merlot Chile",
+        precio: 23000,
+        imagen: "Bebidas/Vinos/Embajador Merlot Chile.webp"
+    },
+    {
+        id: "Tres Caballos Gold",
+        nombre: "Tres Caballos Gold",
+        precio: 104000,
+        imagen: "Bebidas/Tequila/Tres Caballos Gold.webp"
+    },
+    {
+        id: "Tequila 1800 Reposado",
+        nombre: "Tequila 1800 Reposado",
+        precio: 233000,
+        imagen: "Bebidas/Tequila/Tequila 1800 Reposado.webp"
+    },
+    {
+        id: "OLMECA Dark Chocolate",
+        nombre: "OLMECA Dark Chocolate",
+        precio: 90000,
+        imagen: "Bebidas/Tequila/OLMECA Dark Chocolate.webp"
+    },
+    {
+        id: "Buchanans Two Souls",
+        nombre: "Buchanan's Two Souls",
+        precio: 206000,
+        imagen: "Bebidas/Whiskys/Buchanan's Two Souls.webp"
+    },
+    {
+        id: "Buchanans Red Seal",
+        nombre: "Buchanans Red Seal",
+        precio: 925000,
+        imagen: "Bebidas/Whiskys/Buchanans Red Seal.webp"
+    },
+    {
+        id: "Blue Label",
+        nombre: "Blue Label",
+        precio: 1150000,
+        imagen: "Bebidas/Whiskys/Blue Label.webp"
+    },
+    {
+        id: "Ron Cienfuegos",
+        nombre: "Ron Cienfuegos",
+        precio: 46000,
+        imagen: "Bebidas/Ron/Ron Cienfuegos.webp"
+    },
+    {
+        id: "El Aguardientero Santa Lucia Sandia",
+        nombre: "El Aguardientero Santa Lucia Sandia",
+        precio: 30000,
+        imagen: "Bebidas/Aguardientes/El Aguardientero Santa Lucia Sandia.webp"
+    },
+    {
+        id: "El aguardientero Santa Lucia Maracuyá",
+        nombre: "El aguardientero Santa Lucia Maracuyá",
+        precio: 30000,
+        imagen: "Bebidas/Aguardientes/El aguardientero Santa Lucia Maracuyá.webp"
+    },
+    {
+        id: "Ónix Sello Negro Añejo",
+        nombre: "Ónix Sello Negro Añejo",
+        precio: 100000,
+        imagen: "Bebidas/Tequila/Ónix Sello Negro Añejo.webp"
+    },
+    {
+        id: "Onix sello negro nada a medias todo al 100",
+        nombre: "Onix sello negro nada a medias todo al 100",
+        precio: 55000,
+        imagen: "Bebidas/Tequila/Onix sello negro nada a medias todo al 100.webp"
     }
 ];
 
