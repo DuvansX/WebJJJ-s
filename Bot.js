@@ -1,9 +1,8 @@
-type="text/javascript">
   (function(d, t) {
       var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
       v.onload = function() {
         window.voiceflow.chat.load({
-          verify: { projectID: '67e718ea35cfb3ecc9d6d682' },
+          verify: { projectID: '6803e17bde7198d1aec894b1' },
           url: 'https://general-runtime.voiceflow.com',
           versionID: 'production',
           voice: {
