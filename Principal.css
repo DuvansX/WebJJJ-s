@@ -212,110 +212,6 @@ body {
     left: 300px;
 }
 
-.whatsapp-icon {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #00a03b;
-    padding: 5px 15px;
-    border-radius: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.whatsapp-icon a {
-    color: rgb(255, 255, 255);
-    font-size: 20px;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-}
-
-.whatsapp-icon i {
-    margin-right: 8px;
-    font-size: 35px;
-}
-
-.whatsapp-icon:hover {
-    background-color: #00af40;
-}
-
-.carta-btn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background-color: #ffffff00;
-    color: rgb(0, 0, 0);
-    padding: 7px 15px;
-    border: 2px solid black; 
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 15px;
-    z-index: 9999;
-}
-
-.carta-btn:hover {
-    background-color: #000000;
-    color: rgb(255, 255, 255);
-}
-
-.carta-container {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 10;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    z-index: 9998;
-}
-
-.carta-container img {
-    max-width: 90%;
-    max-height: 80%;
-    cursor: zoom-in;
-    transition: transform 0.3s ease-in-out;
-}
-
-.carta-container.zoom img {
-    transform: scale(2);
-    cursor: zoom-out;
-}
-
-.toggle-img-btn {
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    font-size: 24px;
-    color: rgb(0, 0, 0);
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 100px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.3s;
-}
-
-.toggle-img-btn:hover {
-    background-color: rgb(255, 255, 255);
-}
-
-.btn-down {
-    bottom: 10px;
-}
-
-.btn-up {
-    top: 10px;
-    display: none;
-}
-
 #loading-screen {
     position: fixed;
     top: 0;
@@ -350,147 +246,105 @@ body {
     100% { transform: rotate(360deg); }
 }
 
-#image-container {
-    width: 450px;
-    height: 400px;
-    overflow: hidden;
-    position: relative;
-    border: 4px;
-    border-radius: 20px;
-    transform: translateX(-10px);
+
+
+
+.slider-wrapper {
     display: flex;
-    align-items: center;
     justify-content: center;
-    top: 85px;
-    z-index: 10;
-}
-
-@media (max-width: 600px) {
-    #image-container {
-        width: 300px;
-        height: 280px;
-        transform: translateX(190px);
-        top: 185px;
-    }
-}
-
-.image {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 100px;
+  }
+  
+  .slider {
+    position: relative;
+    width: 400px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+  
+  .slide {
     width: 100%;
-    height: 80%;
+    height: 100%;
     position: absolute;
     opacity: 0;
-    transition: opacity 1s;
-    border-radius: 20px;
-    z-index: 10;
-}
-
-.active {
+    transition: opacity 0.6s ease;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+  
+  .slide.active {
     opacity: 1;
-}
-
-.arrow {
+  }
+  
+  .arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: none;
-    color: #ffffff;
+    background: rgba(255, 255, 255, 0.8);
     border: none;
-    padding: 10px;
+    font-size: 25px;
     cursor: pointer;
-    font-size: 35px;
-    z-index: 99;
-    width: auto;
-    height: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.arrow:hover {
-    color: rgba(0, 0, 0, 0.856);
-}
-
-.left {
-    left: 0px;
-}
-
-.right {
-    right: 0px;
-}
-
-#image-container1 {
-    width: 450px;
-    height: 400px;
-    overflow: hidden;
-    position: relative;
-    border: 4px;
-    border-radius: 20px;
-    transform: translateX(80px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    top: 85px;
+    padding: 5px 15px;
     z-index: 10;
-}
-
-@media (max-width: 600px) {
-    #image-container1 {
-        width: 300px;
-        height: 280px;
-        display: flex;
-        gap: 20px;
-        transform: translateX(-110px);
-        top: -50px;
+    border-radius: 100px;
+  }
+  
+  .arrow.left {
+    left: 10px;
+  }
+  
+  .arrow.right {
+    right: 10px;
+  }
+  
+  @media (max-width: 600px) {
+    .slider-wrapper {
+      margin-left: 80px;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
     }
-}
+  
+    .slider {
+      width: 75vw;
+      height: 250px;
+      background-color: transparent;
+      box-shadow: none;
+    }
+    
 
-.image1 {
-    width: 100%;
-    height: 80%;
-    position: absolute;
-    opacity: 0;
-    transition: opacity 1s;
-    border-radius: 20px;
-    z-index: 10;
-}
+    .slider img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: contain;
+        background-color: transparent;
+        clip-path: inset(0 round 20px); /* esto asegura que se corte de verdad en las esquinas */
+      }
 
-.active1 {
-    opacity: 1;
-}
+      .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.8);
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 0px 10px;
+        z-index: 10;
+        border-radius: 10px ;
+      }
+      
+      
+  }
 
-.arrow1 {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    color: #000000;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 35px;
-    z-index: 99;
-    width: auto;
-    height: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
-.arrow1:hover {
-    color: rgba(31, 31, 31, 0.856);
-}
-
-.left1 {
-    left: 0px;
-}
-
-.right1 {
-    right: 0px;
-}
-
-#image-container, #image-container1 {
-    flex-shrink: 0;
-}
+  
 
 .top-center {
     position: fixed;
@@ -543,39 +397,5 @@ body {
         left: 100px;
         width: 300px;
         height: 200px;
-    }
-}
-
-#suggestions {
-    position: absolute;
-    top: 110%;
-    left: 0;
-    right: 0;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    overflow: hidden;
-    border: 1px solid #e0e0e0;
-    max-height: 200px;
-    overflow-y: auto;
-    display: none;
-    z-index: 1000;
-}
-
-#suggestions div {
-    padding: 12px 15px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background 0.2s;
-}
-
-#suggestions div:hover {
-    background-color: #f5f5f5;
-}
-
-@media (max-width: 600px) {
-    #suggestions div {
-        font-size: 14px;
-        padding: 10px 12px;
     }
 }
