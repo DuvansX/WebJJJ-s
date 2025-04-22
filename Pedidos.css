@@ -459,3 +459,104 @@ body {
       padding: 10px 12px;
   }
 }
+
+
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* ✅ Caja blanca centrada perfectamente */
+.modal-contenido {
+  background-color: #fff;
+  padding: 2rem 1.5rem;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 350px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* 👈 centrado real */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  animation: aparecer 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+@keyframes aparecer {
+  from { transform: translate(-50%, -50%) scale(0.95); opacity: 0; }
+  to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+.modal-contenido h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  text-align: center;
+  color: #333;
+}
+
+.modal-contenido input,
+.modal-contenido select {
+  padding: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.modal-contenido button {
+  background-color: #000000;
+  color: white;
+  border: none;
+  padding: 0.9rem;
+  font-size: 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.modal-contenido button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.cerrar-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background-color: #eee;        /* Fondo suave */
+  color: #000;
+  border: none;
+  width: 36px;                   /* Ancho fijo */
+  height: 36px;                  /* Alto fijo */
+  border-radius: 50%;            /* 👈 Esto lo hace circular */
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cerrar-modal:hover {
+  background-color: #0000005e;
+  color: #ffffff;
+}
+
+
+
+select:focus {
+  outline: none;
+  border-color: #ffb700;
+  box-shadow: 0 0 0 3px rgba(255, 230, 0, 0.2); /* Glow verde */
+}
+

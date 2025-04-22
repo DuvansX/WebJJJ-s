@@ -102,6 +102,24 @@
       <i data-lucide="check-circle" class="icon-inline"></i> Confirmar Pedido
     </button>
   </div>
+  <div id="modal-formulario" class="modal">
+    <div class="modal-contenido">
+      <button class="cerrar-modal" onclick="cerrarFormulario()">✖</button>
+      <h3>Completa tus datos</h3>
+      <input type="text" id="direccion" placeholder="Dirección">
+      <input type="text" id="telefono" placeholder="Teléfono">
+      <select id="metodo-pago">
+        <option value="">Selecciona un método de pago</option>
+        <option value="Bancolombia">🏦 Bancolombia</option>
+        <option value="Nequi">📲 Nequi</option>
+        <option value="Daviplata">💳 Daviplata</option>
+        <option value="Físico">💵 Pago físico</option>
+      </select>
+      
+      <button id="enviar-pedido" disabled>Enviar pedido por WhatsApp</button>
+    </div>
+  </div>
+  
 
   <!-- Scripts -->
   <script src="Pedidos.js"></script>

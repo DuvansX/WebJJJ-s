@@ -4,6 +4,19 @@ function formatPrice(price) {
   return (price * 1000).toLocaleString("es-CO");
 }
 
+function cerrarFormulario() {
+  document.getElementById("modal-formulario").style.display = "none";
+}
+
+function mostrarFormulario() {
+  document.getElementById("modal-formulario").style.display = "block";
+}
+
+function sendWhatsAppOrder() {
+  mostrarFormulario(); // 👈 esta se debe poder ejecutar sin ser bloqueada
+}
+
+
 function mostrarPedido() {
   const listaPedidos = document.getElementById("pedido-lista");
   const totalPrecio = document.getElementById("total-precio");
@@ -21,7 +34,6 @@ function mostrarPedido() {
     const nombre = document.createElement("span");
     nombre.classList.add("producto-nombre");
 
-    // ⬇️ DETECCIÓN DE ÍCONO SEGÚN FUENTE
     let icono = producto.fuente === "licor" ? "wine" : "utensils";
     nombre.innerHTML = `<i data-lucide="${icono}" class="icon-inline"></i> ${producto.name}`;
 
@@ -79,25 +91,57 @@ function disminuirCantidad(index) {
   mostrarPedido();
 }
 
-function sendWhatsAppOrder() {
-  if (cart.length === 0) {
-    alert("Tu carrito está vacío.");
-    return;
-  }
-
-  let mensaje = "¡Hola! Quiero hacer un pedido:\n\n";
-
-  cart.forEach(item => {
-    mensaje += `- ${item.name} x${item.quantity}: $${formatPrice(item.price * item.quantity)}\n`;
-  });
-
-  let cartTotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
-  mensaje += `\nTotal: $${formatPrice(cartTotal)}`;
-
-  const numeroWhatsApp = "573105813873";
-  const mensajeCodificado = encodeURIComponent(mensaje);
-  const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
-  window.open(urlWhatsApp, "_blank");
+// Mostrar modal con formulario
+function mostrarFormulario() {
+  document.getElementById("modal-formulario").style.display = "block";
 }
 
-document.addEventListener("DOMContentLoaded", mostrarPedido);
+// Evento para mostrar el formulario cuando se quiera comprar
+function sendWhatsAppOrder() {
+  mostrarFormulario();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  mostrarPedido();
+
+  const direccionInput = document.getElementById("direccion");
+  const telefonoInput = document.getElementById("telefono");
+  const metodoPagoSelect = document.getElementById("metodo-pago");
+  const botonEnviar = document.getElementById("enviar-pedido");
+
+  [direccionInput, telefonoInput, metodoPagoSelect].forEach(el => {
+    el.addEventListener("input", () => {
+      const todosCompletos =
+        direccionInput.value.trim() &&
+        telefonoInput.value.trim() &&
+        metodoPagoSelect.value;
+      botonEnviar.disabled = !todosCompletos;
+    });
+  });
+
+  botonEnviar.addEventListener("click", () => {
+    if (cart.length === 0) {
+      alert("Tu carrito está vacío.");
+      return;
+    }
+
+    let mensaje = "¡Hola! Quiero hacer un pedido:\n\n";
+
+    cart.forEach(item => {
+      mensaje += `- ${item.name} x${item.quantity}: $${formatPrice(item.price * item.quantity)}\n`;
+    });
+
+    let total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    mensaje += `\nTotal: $${formatPrice(total)}\n\n`;
+
+    mensaje += `📍 Dirección: ${direccionInput.value}\n📞 Teléfono: ${telefonoInput.value}\n💳 Método de pago: ${metodoPagoSelect.value}`;
+
+    const numeroWhatsApp = "573105813873";
+    const mensajeCodificado = encodeURIComponent(mensaje);
+    const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
+    window.open(urlWhatsApp, "_blank");
+
+    
+    
+  });
+});
