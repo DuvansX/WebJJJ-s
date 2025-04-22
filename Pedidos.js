@@ -109,11 +109,29 @@ document.addEventListener("DOMContentLoaded", () => {
   const metodoPagoSelect = document.getElementById("metodo-pago");
   const botonEnviar = document.getElementById("enviar-pedido");
 
-  [direccionInput, telefonoInput, metodoPagoSelect].forEach(el => {
+  // Función para validar el campo de teléfono
+  telefonoInput.addEventListener("input", () => {
+    // Eliminar cualquier carácter que no sea un número
+    telefonoInput.value = telefonoInput.value.replace(/[^0-9]/g, '');
+
+    // Truncar a 10 dígitos si se ingresan más
+    if (telefonoInput.value.length > 10) {
+      telefonoInput.value = telefonoInput.value.slice(0, 10);
+    }
+
+    // Actualizar el estado del botón Enviar
+    const todosCompletos =
+      direccionInput.value.trim() &&
+      telefonoInput.value.trim().length === 10 && // Verificar que tenga 10 dígitos
+      metodoPagoSelect.value;
+    botonEnviar.disabled = !todosCompletos;
+  });
+
+  [direccionInput, metodoPagoSelect].forEach(el => {
     el.addEventListener("input", () => {
       const todosCompletos =
         direccionInput.value.trim() &&
-        telefonoInput.value.trim() &&
+        telefonoInput.value.trim().length === 10 && // Verificar que tenga 10 dígitos
         metodoPagoSelect.value;
       botonEnviar.disabled = !todosCompletos;
     });
@@ -122,6 +140,11 @@ document.addEventListener("DOMContentLoaded", () => {
   botonEnviar.addEventListener("click", () => {
     if (cart.length === 0) {
       alert("Tu carrito está vacío.");
+      return;
+    }
+
+    if (telefonoInput.value.length !== 10) {
+      alert("Por favor, ingresa un número de teléfono de 10 dígitos.");
       return;
     }
 
@@ -140,8 +163,5 @@ document.addEventListener("DOMContentLoaded", () => {
     const mensajeCodificado = encodeURIComponent(mensaje);
     const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
     window.open(urlWhatsApp, "_blank");
-
-    
-    
   });
 });
