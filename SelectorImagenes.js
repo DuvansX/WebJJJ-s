@@ -1,51 +1,44 @@
-let index = 0;
-const images = document.querySelectorAll('.image');
-let interval;
+const sliders = {
+    1: { current: 0, slides: [], interval: null, delay: 4000 },
+    2: { current: 0, slides: [], interval: null, delay: 5200 }
+};
 
-function showImage(newIndex) {
-    images[index].classList.remove('active');
-    index = (newIndex + images.length) % images.length;
-    images[index].classList.add('active');
-    resetTimer();
+window.onload = () => {
+    for (let i = 1; i <= 2; i++) {
+        sliders[i].slides = document.querySelectorAll(`#slider${i} .slide`);
+        showSlide(i, sliders[i].current);
+        startAutoSlide(i);
+    }
+};
+
+function showSlide(sliderId, index) {
+    const slider = sliders[sliderId];
+    slider.slides.forEach((slide, i) => {
+        slide.classList.toggle("active", i === index);
+    });
+    slider.current = index;
+    resetTimer(sliderId);
 }
 
-function nextImage() {
-    showImage(index + 1);
+function nextSlide(sliderId) {
+    const slider = sliders[sliderId];
+    const newIndex = (slider.current + 1) % slider.slides.length;
+    showSlide(sliderId, newIndex);
 }
 
-function prevImage() {
-    showImage(index - 1);
+function prevSlide(sliderId) {
+    const slider = sliders[sliderId];
+    const newIndex = (slider.current - 1 + slider.slides.length) % slider.slides.length;
+    showSlide(sliderId, newIndex);
 }
 
-function resetTimer() {
-    clearInterval(interval);
-    interval = setInterval(nextImage, 4000);
+function resetTimer(sliderId) {
+    const slider = sliders[sliderId];
+    clearInterval(slider.interval);
+    startAutoSlide(sliderId);
 }
 
-interval = setInterval(nextImage, 4000);
-
-let index1 = 0;
-const images1 = document.querySelectorAll('.image1');
-let interval1;
-
-function showImage1(newIndex1) {
-    images1[index1].classList.remove('active1');
-    index1 = (newIndex1 + images1.length) % images1.length;
-    images1[index1].classList.add('active1');
-    resetTimer1();
+function startAutoSlide(sliderId) {
+    const slider = sliders[sliderId];
+    slider.interval = setInterval(() => nextSlide(sliderId), slider.delay);
 }
-
-function nextImage1() {
-    showImage1(index1 + 1);
-}
-
-function prevImage1() {
-    showImage1(index1 - 1);
-}
-
-function resetTimer1() {
-    clearInterval(interval1);
-    interval1 = setInterval(nextImage1, 5200);
-}
-
-interval1 = setInterval(nextImage1, 5200);
