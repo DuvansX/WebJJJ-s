@@ -23,7 +23,6 @@
       sessionStorage.setItem('anuncioMostrado', 'true');
     }
 
-    // Detectar si se mostró el anuncio en esta sesión
     window.addEventListener('pageshow', () => {
       if (!sessionStorage.getItem('anuncioMostrado')) {
         document.getElementById('anuncioOverlay').style.display = 'flex';
