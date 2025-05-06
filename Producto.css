@@ -223,6 +223,13 @@ body {
     top: -30px;
 }
 
+.nav1 a.active {
+    background-color: #ffb700;
+    pointer-events: none; 
+    cursor: default; 
+    color: rgb(0, 0, 0);
+}
+
 .cart-icon {
     position: fixed;
     top: 20px;
@@ -419,36 +426,6 @@ main {
     }
 }
 
-.whatsapp-icon {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #00a03b;
-    padding: 5px 15px;
-    border-radius: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.whatsapp-icon a {
-    color: rgb(255, 255, 255);
-    font-size: 20px;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-}
-
-.whatsapp-icon i {
-    margin-right: 8px;
-    font-size: 35px;
-}
-
-.whatsapp-icon:hover {
-    background-color: #00af40;
-}
 
 .buy-button {
     background-color: white;

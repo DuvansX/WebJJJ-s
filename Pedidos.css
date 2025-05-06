@@ -188,7 +188,12 @@ body {
   top: 50%;
 }
 
-
+.nav1 a.active {
+  background-color: #ffb700;
+  pointer-events: none; 
+  cursor: default; 
+  color: rgb(0, 0, 0);
+}
 
 
 

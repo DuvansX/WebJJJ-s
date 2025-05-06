@@ -222,6 +222,13 @@ body {
     top: -30px;
 }
 
+.nav1 a.active {
+    background-color: #ffb700;
+    pointer-events: none; 
+    cursor: default; 
+    color: rgb(0, 0, 0);
+}
+
 .cart-icon {
     position: fixed;
     top: 20px;
