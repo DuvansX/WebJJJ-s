@@ -36,12 +36,11 @@ body {
 
 .sidebar1 .logo_content1 .logo1 {
   display: flex;
-  color: #ffb700;
   height: 50px;
   width: 100%;
   font-size: 30px;
-  margin-left: 30px; 
-  margin-top: 5px;  
+  margin-left: 30px;
+  margin-top: 6px; 
   align-items: center;
   pointer-events: none;
   opacity: 0;

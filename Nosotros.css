@@ -7,10 +7,13 @@
 }
 
 body {
-    position: relative;
-    min-height: 100vh;
-    width: 100%;
-    background: #ff0000;
+    height: 100vh;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    background: url('Imagenes/Nosotros/Fondo\ Nostros.jpg') no-repeat center center fixed;
+    background-size: cover;
+    z-index: -2;
 }
 
 .sidebar1 {
@@ -36,8 +39,8 @@ body {
     height: 50px;
     width: 100%;
     font-size: 30px;
-    margin-left: 30px; 
-    margin-top: 5px;  
+    margin-left: 30px;
+    margin-top: 6px; 
     align-items: center;
     pointer-events: none;
     opacity: 0;
@@ -184,40 +187,11 @@ body {
     top: 50%;
 }
 
-.home_content1 {
-    position: absolute;
-    height: 100%;
-    width: calc(100% - 300px);
-    left: 80px;
-    transition: all .5s ease;
-}
-
-.home_content1 .text1 {
-    font-size: 25px;
-    font-weight: 500;
-    color: #242424;
-    padding: 12px 24px;
-}
-
-.sidebar1.active1 ~ .home_content1 {
-    left: 300px;
-}
-
 .nav1 a.active {
     background-color: #ffb700;
     pointer-events: none; 
     cursor: default; 
     color: rgb(0, 0, 0);
-}
-
-body {
-    height: 100vh;
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    background: url('Imagenes/Nosotros/Fondo\ Nostros.jpg') no-repeat center center fixed;
-    background-size: cover;
-    z-index: -2;
 }
 
 .cards-container {

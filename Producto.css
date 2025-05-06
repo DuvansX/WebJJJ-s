@@ -464,45 +464,49 @@ main {
     }
 }
 
-#loading-screen {
+/* Bloquear la interacción del usuario mientras carga */
+.locked {
+    pointer-events: none;
+    user-select: none;
+    overflow: hidden;
+  }
+  
+  /* Pantalla de carga */
+  #loading-screen {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
-    background: #000;
+    height: 100%;
+    background: black;
     display: flex;
-    justify-content: center;
     align-items: center;
-    transition: opacity 1s ease-out, visibility 1s ease-out;
-    z-index: 9999;
-}
-
-.hidden {
-    opacity: 0;
-    visibility: hidden;
-}
-
-.loader {
-    border: 8px solid rgba(255, 255, 255, 0.2);
-    border-top: 8px solid #ffb700;
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    animation: spin 1s ease-in-out infinite;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    50% {
-        transform: rotate(180deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
+    justify-content: center;
+    z-index: 99999; /* muy por encima de todo */
+  }
+  
+  /* Ícono de bebida animado y brillante */
+  #loading-screen i {
+    color: #ffb700;
+    font-size: 6rem;
+    filter: drop-shadow(0 0 12px #ffb700aa);
+    animation: spinBounce 2s ease-in-out infinite;
+  }
+  
+  /* Animación */
+  @keyframes spinBounce {
+    0%   { transform: rotate(0deg) scale(1); }
+    25%  { transform: rotate(90deg) scale(1.1); }
+    50%  { transform: rotate(180deg) scale(1); }
+    75%  { transform: rotate(270deg) scale(1.1); }
+    100% { transform: rotate(360deg) scale(1); }
+  }
+  
+  /* Ocultar el contenido mientras la carga */
+  .hidden {
+    display: none;
+  }
+  
 
 .carta-btn {
     position: absolute;
