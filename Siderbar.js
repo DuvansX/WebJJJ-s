@@ -1,40 +1,50 @@
-let btn1 = document.querySelector('#btn1');
-let sidebar1 = document.querySelector('.sidebar1');
-let srcBtn1 = document.querySelector('#srcBtn1');
+// Elementos
+const btn1 = document.querySelector('#btn1');
+const sidebar1 = document.querySelector('.sidebar1');
+const srcBtn1 = document.querySelector('#srcBtn1');
 
+// Alternar visibilidad de la barra lateral
 function toggleSidebar() {
     sidebar1.classList.toggle('active1');
 }
 
-btn1.onclick = toggleSidebar;
-srcBtn1.onclick = toggleSidebar;
+// Abrir y cerrar según dirección
+function openSidebar() {
+    sidebar1.classList.add('active1');
+}
 
-// Variables para el gesto táctil
+function closeSidebar() {
+    sidebar1.classList.remove('active1');
+}
+
+// Asignar eventos de clic
+if (btn1) btn1.addEventListener('click', toggleSidebar);
+if (srcBtn1) srcBtn1.addEventListener('click', toggleSidebar);
+
+// Variables para detección de gesto táctil
 let touchStartX = 0;
 let touchEndX = 0;
 
-// Función para manejar el gesto
+// Manejar gesto táctil
 function handleGesture() {
-    let deltaX = touchEndX - touchStartX;
+    const deltaX = touchEndX - touchStartX;
 
-    // Umbral mínimo para considerar que es un deslizamiento
+    // Umbral mínimo de deslizamiento
     if (Math.abs(deltaX) > 50) {
         if (deltaX > 0) {
-            // Deslizó hacia la derecha
-            sidebar1.classList.add('active1');
+            openSidebar(); // deslizó hacia la derecha
         } else {
-            // Deslizó hacia la izquierda
-            sidebar1.classList.remove('active1');
+            closeSidebar(); // deslizó hacia la izquierda
         }
     }
 }
 
-// Escuchamos los eventos táctiles
-document.addEventListener('touchstart', e => {
+// Escuchar gestos táctiles (para móviles)
+document.addEventListener('touchstart', (e) => {
     touchStartX = e.changedTouches[0].screenX;
 }, false);
 
-document.addEventListener('touchend', e => {
+document.addEventListener('touchend', (e) => {
     touchEndX = e.changedTouches[0].screenX;
     handleGesture();
 }, false);

@@ -137,8 +137,37 @@ const productos = [
 const searchInput = document.getElementById('searchInput');
 const suggestionsBox = document.getElementById('suggestions');
 
+// Normaliza texto para ignorar acentos y mayúsculas
+function normalizar(texto) {
+    return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+}
+
+// Calcula la distancia de Levenshtein (errores entre 2 palabras)
+function distanciaLevenshtein(a, b) {
+    const m = a.length, n = b.length;
+    const dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
+
+    for (let i = 0; i <= m; i++) dp[i][0] = i;
+    for (let j = 0; j <= n; j++) dp[0][j] = j;
+
+    for (let i = 1; i <= m; i++) {
+        for (let j = 1; j <= n; j++) {
+            if (a[i - 1] === b[j - 1]) {
+                dp[i][j] = dp[i - 1][j - 1];
+            } else {
+                dp[i][j] = 1 + Math.min(
+                    dp[i - 1][j],    // eliminación
+                    dp[i][j - 1],    // inserción
+                    dp[i - 1][j - 1] // sustitución
+                );
+            }
+        }
+    }
+    return dp[m][n];
+}
+
 searchInput.addEventListener('input', function() {
-    const query = this.value.toLowerCase().trim();
+    const query = normalizar(this.value.trim());
     suggestionsBox.innerHTML = '';
 
     if (query === '') {
@@ -146,30 +175,40 @@ searchInput.addEventListener('input', function() {
         return;
     }
 
-    // 🔍 Solo productos cuyo nombre EMPIEZA con la letra
-    const coincidencias = productos.filter(p => p.nombre.toLowerCase().startsWith(query));
+    const coincidencias = productos
+        .map(p => {
+            const nombreNormalizado = normalizar(p.nombre);
+            const distancia = distanciaLevenshtein(query, nombreNormalizado);
+            return { ...p, distancia };
+        })
+        .filter(p => p.distancia <= 3 || normalizar(p.nombre).includes(query)) // permite cierta tolerancia
+        .sort((a, b) => a.distancia - b.distancia); // más parecidos arriba
+
+    suggestionsBox.style.display = 'block';
 
     if (coincidencias.length > 0) {
         coincidencias.forEach(p => {
             const div = document.createElement('div');
             div.textContent = p.nombre;
             div.addEventListener('click', () => {
-                // Autocompletar el campo de búsqueda
-                searchInput.value = p.nombre; // Establece el valor del input
-                // Redirigir a la página del producto
+                searchInput.value = p.nombre;
                 window.location.href = `${p.pagina}#${p.id}`;
             });
             suggestionsBox.appendChild(div);
         });
-        suggestionsBox.style.display = 'block';
     } else {
-        suggestionsBox.style.display = 'none';
+        const noEncontrado = document.createElement('div');
+        noEncontrado.textContent = 'Producto no encontrado';
+        noEncontrado.style.color = 'gray';
+        noEncontrado.style.padding = '8px';
+        suggestionsBox.appendChild(noEncontrado);
     }
 });
 
-// Ocultar sugerencias al hacer clic fuera
 document.addEventListener('click', function(e) {
     if (!document.querySelector('.src1').contains(e.target)) {
         suggestionsBox.style.display = 'none';
     }
 });
+
+
