@@ -8,20 +8,24 @@
   <link rel="stylesheet" href="Pedidos.css">
   <link rel="icon" href="Imagenes/Logo Restaurante.PNG">
   <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-  <body class="locked">
-    <!-- Pantalla de carga -->
-    <div id="loading-screen">
-      <i class='bx bx-package'></i>
-    </div>
+<body class="locked">
+
+
+
+  <!-- Pantalla de carga -->
+  <div id="loading-screen">
+    <i class='bx bx-package'></i>
+  </div>
 
   <!-- Barra lateral -->
   <div class="sidebar1">
     <div class="logo_content1">
       <div class="logo1">
         <img src="Imagenes/Logo JJJs.png" alt="Logo Restaurante" width="150" height="50">
-        <div class="logo_name1"></div>
       </div>
       <i class='bx bx-menu' id='btn1'></i>
     </div>
@@ -31,83 +35,31 @@
       <div id="suggestions" class="suggestions"></div>
     </div>
     <ul class="nav1">
-      <li>
-        <a href="Principal.html">
-          <i class='bx bx-store-alt'></i>
-          <span class="link_name1">Principal</span>
-        </a>
-        <span class="tooltip1">Principal</span>
-      </li>
-      <li>
-        <a href="InicioSs.html">
-          <i class='bx bxs-user-circle'></i>
-          <span class="link_name1">Inicia sesión</span>
-        </a>
-        <span class="tooltip1">Inicia sesión</span>
-      </li>
-      <li>
-        <a href="Producto.html">
-          <i class='bx bxs-pizza'></i>
-          <span class="link_name1">Productos Food</span>
-        </a>
-        <span class="tooltip1">Productos Food</span>
-      </li>
-      <li>
-        <a href="ProductosCigarreria.html">
-          <i class='bx bxs-drink'></i>
-          <span class="link_name1">Productos Beer</span>
-        </a>
-        <span class="tooltip1">Productos Beer</span>
-      </li>
-      <li>
-        <a href="Pedidos.html">
-            <i class='bx bx-package'></i>
-            <span class="link_name1">Pedidos</span>
-        </a>
-        <span class="tooltip1">Pedidos</span>
-    </li>
-      <li>
-        <a href="Nosotros.html">
-          <i class='bx bx-conversation'></i>
-          <span class="link_name1">Nosotros</span>
-        </a>
-        <span class="tooltip1">Nosotros</span>
-      </li>
-      <li>
-        <a href="Horarios.html">
-          <i class='bx bxs-calendar'></i>
-          <span class="link_name1">Horarios</span>
-        </a>
-        <span class="tooltip1">Horarios</span>
-      </li>
-      <li>
-        <a href="favoritos.html">
-            <i class='bx bxs-heart-circle'></i>
-            <span class="link_name1">Favoritos</span>
-        </a>
-        <span class="tooltip1">Favoritos</span>
-      </li>
+      <li><a href="Principal.html"><i class='bx bx-store-alt'></i><span class="link_name1">Principal</span></a></li>
+      <li><a href="InicioSs.html"><i class='bx bxs-user-circle'></i><span class="link_name1">Inicia sesión</span></a></li>
+      <li><a href="Producto.html"><i class='bx bxs-pizza'></i><span class="link_name1">Productos Food</span></a></li>
+      <li><a href="ProductosCigarreria.html"><i class='bx bxs-drink'></i><span class="link_name1">Productos Beer</span></a></li>
+      <li><a href="Pedidos.html"><i class='bx bx-package'></i><span class="link_name1">Pedidos</span></a></li>
+      <li><a href="Nosotros.html"><i class='bx bx-conversation'></i><span class="link_name1">Nosotros</span></a></li>
+      <li><a href="Horarios.html"><i class='bx bxs-calendar'></i><span class="link_name1">Horarios</span></a></li>
+      <li><a href="favoritos.html"><i class='bx bxs-heart-circle'></i><span class="link_name1">Favoritos</span></a></li>
     </ul>
   </div>
 
   <!-- Contenedor del pedido -->
   <div class="pedido-container">
     <h2><i data-lucide="shopping-cart" class="icon-title"></i> Tu Pedido</h2>
-
-    <!-- Lista de pedidos -->
     <div id="pedido-lista" class="pedido-lista"></div>
-
-    <!-- Total del pedido -->
     <div class="pedido-total">
       <span><i data-lucide="wallet" class="icon-inline"></i> Total:</span>
       <span id="total-precio">$0</span>
     </div>
-
-    <!-- Botón para confirmar pedido -->
     <button class="btn-confirmar" onclick="sendWhatsAppOrder()">
       <i data-lucide="check-circle" class="icon-inline"></i> Confirmar Pedido
     </button>
   </div>
+
+  <!-- Modal formulario de pedido -->
   <div id="modal-formulario" class="modal">
     <div class="modal-contenido">
       <button class="cerrar-modal" onclick="cerrarFormulario()">✖</button>
@@ -121,11 +73,28 @@
         <option value="Daviplata">💳 Daviplata</option>
         <option value="Físico">💵 Pago físico</option>
       </select>
-      
       <button id="enviar-pedido" disabled>Enviar pedido por WhatsApp</button>
     </div>
   </div>
-  
+
+<!-- Botón flotante para abrir el modal -->
+  <button class="btn-abrir-rastreo" onclick="abrirRastreo()">
+  <i class="fas fa-map-marker-alt"></i> ID Pedido
+</button>
+
+
+  <!-- Modal de rastreo -->
+  <div id="modal-rastreo" class="rastreo-modal">
+    <div class="rastreo-modal-contenido">
+      <button class="cerrar-rastreo-modal" onclick="cerrarRastreo()">✖</button>
+      <h3>Rastrear Pedido</h3>
+      <input type="text" id="rastreo-input-id" placeholder="Ingresa tu ID de pedido" />
+      <button onclick="verUbicacion()">Ver ubicación</button>
+      <div id="rastreo-mapa"></div>
+      <p id="rastreo-estado" class="estado-pedido"></p>
+
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script src="Pedidos.js"></script>
@@ -134,7 +103,284 @@
   <script src="Siderbar.js"></script>
   <script src="Bot.js"></script>
   <script src="Seleccion.js"></script>
+<script>
+  // Abrir y cerrar modal
+  function abrirRastreo() {
+    document.getElementById("modal-rastreo").classList.add("active");
+  }
 
+  function cerrarRastreo() {
+    document.getElementById("modal-rastreo").classList.remove("active");
+    document.getElementById("rastreo-mapa").style.display = "none"; // Ocultar mapa al cerrar
+    document.getElementById("rastreo-estado").innerHTML = "";
+    // Reiniciar estado para que al abrir el modal otra vez se centre el mapa
+    if (rastreoMapa) rastreoMapa.iniciado = false;
+    marcadorOrigen = null;
+    marcadorDestino = null;
+    lineaRuta = null;
+  }
+
+  // Configuración Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyD7s5mmGYkvAFbCXZrYNwefh9RnmNwQuzi0",
+    authDomain: "idtrabajadores.firebaseapp.com",
+    projectId: "idtrabajadores",
+    storageBucket: "idtrabajadores.appspot.com",
+    messagingSenderId: "476040391869",
+    appId: "1:476040391869:web:342d794ed1aaf54ce49bd4",
+    measurementId: "G-9XR5E02ZZ2"
+  };
+
+  let app, db, rastreoMapa;
+  let marcadorOrigen, marcadorDestino, lineaRuta;
+
+  // Inicializar el mapa
+  async function initMap() {
+    const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js");
+    const { getFirestore } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+
+    app = initializeApp(firebaseConfig);
+    db = getFirestore(app);
+
+    rastreoMapa = new google.maps.Map(document.getElementById("rastreo-mapa"), {
+      center: { lat: 4.60971, lng: -74.08175 },
+      zoom: 13,
+      minZoom: 13,
+      maxZoom: 17,
+      mapTypeControl: false,
+      streetViewControl: false,
+      fullscreenControl: false,
+      zoomControl: true,
+      rotateControl: false,
+      scaleControl: false
+    });
+
+    document.getElementById("rastreo-mapa").style.display = "none";
+
+    // Inicializar bandera para centrar mapa solo una vez
+    rastreoMapa.iniciado = false;
+  }
+
+  // Ver ubicación del pedido
+  async function verUbicacion() {
+    const id = document.getElementById("rastreo-input-id").value.trim();
+    const estadoElem = document.getElementById("rastreo-estado");
+
+    if (!id || !db) {
+      estadoElem.innerHTML = `<i class='bx bx-error-circle' style="font-size: 22px;"></i> Ingresa un ID válido.`;
+      document.getElementById("rastreo-mapa").style.display = "none";
+      return;
+    }
+
+    const { doc, onSnapshot } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+    const docRef = doc(db, "pedidos", id);
+
+    onSnapshot(docRef, (docSnap) => {
+      if (!docSnap.exists()) {
+        estadoElem.innerHTML = `<i class='bx bx-error-circle' style="font-size: 22px;"></i> ID no encontrado.`;
+        document.getElementById("rastreo-mapa").style.display = "none";
+        return;
+      }
+
+      const data = docSnap.data();
+      const origen = data.ubicacionOrigen;
+      const destino = data.ubicacionDestino;
+
+      if (origen && destino) {
+        document.getElementById("rastreo-mapa").style.display = "block";
+
+        if (data.activo) {
+          estadoElem.innerHTML = `<i class='bx bxs-truck' style="font-size: 22px;"></i> Repartidor en camino...`;
+        } else {
+          estadoElem.innerHTML = `<i class='bx bx-check-circle' style="font-size: 22px;"></i> Pedido finalizado.`;
+        }
+
+        mostrarRastreoMapa(origen, destino);
+      } else {
+        estadoElem.innerHTML = `<i class='bx bx-time-five' style="font-size: 22px;"></i> Ubicación no disponible aún.`;
+        document.getElementById("rastreo-mapa").style.display = "none";
+      }
+    });
+  }
+
+  // Mostrar mapa con origen y destino, centrar sólo la primera vez
+  function mostrarRastreoMapa(origen, destino) {
+    const posOrigen = { lat: origen.lat, lng: origen.lon };
+    const posDestino = { lat: destino.lat, lng: destino.lon };
+
+    const motoIcon = {
+      url: "https://cdn-icons-png.flaticon.com/512/5637/5637217.png",
+      scaledSize: new google.maps.Size(40, 40),
+      origin: new google.maps.Point(0, 0),
+      anchor: new google.maps.Point(20, 20)
+    };
+
+    if (!marcadorOrigen) {
+      marcadorOrigen = new google.maps.Marker({
+        position: posOrigen,
+        map: rastreoMapa,
+        icon: motoIcon,
+        title: "Ubicación Origen (Repartidor)"
+      });
+    } else {
+      marcadorOrigen.setPosition(posOrigen);
+    }
+
+    if (!marcadorDestino) {
+      marcadorDestino = new google.maps.Marker({
+        position: posDestino,
+        map: rastreoMapa,
+        label: "🏠",
+        title: "Destino del pedido"
+      });
+    } else {
+      marcadorDestino.setPosition(posDestino);
+    }
+
+    if (lineaRuta) {
+      lineaRuta.setMap(null);
+    }
+    lineaRuta = new google.maps.Polyline({
+      path: [posOrigen, posDestino],
+      geodesic: true,
+      strokeColor: "#00BFFF",
+      strokeOpacity: 1.0,
+      strokeWeight: 4,
+      map: rastreoMapa
+    });
+
+    if (!rastreoMapa.iniciado) {
+      rastreoMapa.setCenter(posOrigen);
+      rastreoMapa.setZoom(15);
+      rastreoMapa.iniciado = true;
+    }
+  }
+
+  window.initMap = initMap;
+  window.verUbicacion = verUbicacion;
+  window.abrirRastreo = abrirRastreo;
+  window.cerrarRastreo = cerrarRastreo;
+</script>
+
+<!-- Google Maps API -->
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGD7q6pdLPd5FV7gyy0h1bK6a1F2eFnsY&callback=initMap">
+</script>
+
+  <!-- Estilos extra para modal -->
+  <style>
+  
+  .btn-abrir-rastreo {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 10000;
+      background-color: #000000;
+      color: white;
+      border: none;
+      padding: 4px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+#rastreo-estado {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #000;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+#rastreo-estado::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-image: url('https://i.imgur.com/jTJ7Rkp.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+
+
+    /* Modal */
+    .rastreo-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 9999;
+      padding: 1rem;
+    }
+
+    .rastreo-modal.active {
+      display: flex;
+    }
+
+    .rastreo-modal-contenido {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .cerrar-rastreo-modal {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: #666;
+    }
+
+    #rastreo-input-id {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    .rastreo-modal-contenido button {
+      padding: 5px;
+      font-size: 16px;
+      background: #000000;
+      color: #fff;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+    }
+
+    #rastreo-mapa {
+      height: 300px;
+      width: 100%;
+      position: hidden;
+      border: 2px solid #000000;
+      border-radius: 10px;
+    }
+
+    @media (min-width: 768px) {
+      #rastreo-mapa {
+        height: 400px;
+      }
+    }
+
+
+  </style>
 </body>
 </html>
-
