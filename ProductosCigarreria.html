@@ -75,18 +75,20 @@
     <main>
         <div class="product-list">
             <div id="Bacardi-Carta-B" class="product" data-category="Bacardi">
-                <img src="Bebidas/Bacardi/Bicadi-Carta-Blanca.webp" alt="Producto 1">
+              <div class="discount-badge">
+                <span class="discount-text">NEW!!</span>
+              </div>
+              <img src="Bebidas/Bacardi/Bicadi-Carta-Blanca.webp" alt="Producto 1">
                 <h2>Bacardi Carta Blanca</h2>
-                <p class="price">$62.000</p>
-                <button onclick="addToCart('Bacadi Carta Blanca', 62)">
-                    <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+              <p class="price">$62.000</p>
+              <button onclick="addToCart('Bacadi Carta Blanca', 62)">
+               <i class="fas fa-shopping-cart"></i> Agregar al Carrito
                 </button>
                 <button onclick="likeProduct(this)" class="like-button">
-                    <i class="fas fa-heart"></i>
+               <i class="fas fa-heart"></i>
                 </button>
                 <button1 class="ml-button">750 ml</button1>
             </div>
-            
             <div id="Mojito" class="product" data-category="Bacardi">
                 <img src="Bebidas/Bacardi/Bicardi Mojito.webp" alt="Producto 2">
                 <h2>Bacardi Mojito</h2>
@@ -114,6 +116,9 @@
             </div>
             
             <div id="Bacardi-Bahama" class="product" data-category="Bacardi">
+                <div class="discount-badge">
+                    <span class="discount-text">-50%</span>
+                </div>
                 <img src="Bebidas/Bacardi/Bicardi Bahama Mama.webp" alt="Producto 4">
                 <h2>Bacardi Bahama Mama</h2>
                 <p class="price">$52.000</p>
@@ -996,7 +1001,7 @@
             <div id="La-Mision-XXI" class="product" data-category="Tequila">
                 <img src="Bebidas/Tequila/TEQUILA-LA-MISION-SIGLO-XXI-750.webp" alt="Producto 71">
                 <h2>Tequila La Misión XXI</h2>
-                <p class="price">$57.500</p>
+                <p class class="price">$57.500</p>
                 <button onclick="addToCart('Tequila La Mision XXI', 57.5)">
                     <i class="fas fa-shopping-cart"></i> Agregar al Carrito
                 </button>
@@ -1066,7 +1071,7 @@
                 </button>
                 <button onclick="likeProduct(this)" class="like-button">
                     <i class="fas fa-heart"></i>
-                </button>ssss
+                </button>
                 <button1 class="ml-button">375 ml</button1>
             </div>
             
@@ -1254,7 +1259,7 @@
             <div id="Four-Loko-Gold" class="product" data-category="Cerveza">
                 <img src="Bebidas/Cervezas/FOUR-LOKO-GOLD.webp" alt="Producto 91">
                 <h2>Four Loko Gold</h2>
-                <p class="price">$18.000</p>
+                <p class class="price">$18.000</p>
                 <button onclick="addToCart('Four Loko Gold', 18)">
                     <i class="fas fa-shopping-cart"></i> Agregar al Carrito
                 </button>
@@ -1318,7 +1323,7 @@
             <div id="Corona-Six-Pack" class="product" data-category="Cerveza">
                 <img src="Bebidas/Cervezas/Corona-Six-Pack.webp" alt="Producto 96">
                 <h2>Corona - Six Pack</h2>
-                <p class="price">$20.000</p>
+                <p class class="price">$20.000</p>
                 <button onclick="addToCart('Corona - Six Pack', 20)">
                     <i class="fas fa-shopping-cart"></i> Agregar al Carrito
                 </button>
@@ -1512,7 +1517,7 @@
             <div id="J.P.-Chenet-Rosado" class="product" data-category="Vino">
                 <img src="Bebidas/Vinos/J.P.-Chenet-Rosado.webp" alt="Producto 111">
                 <h2>J.P.Chenet Rosado</h2>
-                <p class="price">$78.000</p>
+                <p class class="price">$78.000</p>
                 <button onclick="addToCart('J.P.Chenet rosado', 78)">
                     <i class="fas fa-shopping-cart"></i> Agregar al Carrito
                 </button>
@@ -1551,7 +1556,7 @@
             <div id="Bacardi-Hurricane" class="product" data-category="Bacardi">
                 <img src="Bebidas/Bacardi/Bacardi-Hurricane.webp" alt="Producto 114">
                 <h2>Bacardi Hurricane</h2>
-                <p class="price">$56.000</p>
+                <p class class="price">$56.000</p>
                 <button onclick="addToCart('Bacardi-Hurricane', 56)">
                     <i class="fas fa-shopping-cart"></i> Agregar al Carrito
                 </button>
@@ -1692,7 +1697,7 @@
             </div>
 
             <div id="Buchanans Two Souls" class="product" data-category="Whiskys">
-                <img src="Bebidas/Whiskys/Buchanan's Two Souls.webp" alt="Producto 125">
+                <img src="Bebidas/Whiskys/Buchanans-Master.webp" alt="Producto 125">
                 <h2>Buchanan's Two Souls</h2>
                 <p class="price">$206.000</p>
                 <button onclick="addToCart('Buchanans Two Souls', 206)">
@@ -1808,6 +1813,12 @@
         <button onclick="window.location.href='Pedidos.html'" class="buy-button">Comprar</button>
     </div>
 
+    <button id="btnSubir" title="Volver arriba" aria-label="Volver arriba">
+  <!-- Flecha SVG -->
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
 
     <!-- Scripts -->
     <script>
@@ -1819,7 +1830,6 @@
     <script src="Buscador.js"></script>
     <script src="Siderbar.js"></script>
     <script src="CategoriasCigarreria.js"></script>
-    <script src="Bot.js"></script>
     <script src="Seleccion.js"></script>
 
 </html>
