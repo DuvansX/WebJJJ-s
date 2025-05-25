@@ -20,31 +20,3 @@ function closeSidebar() {
 // Asignar eventos de clic
 if (btn1) btn1.addEventListener('click', toggleSidebar);
 if (srcBtn1) srcBtn1.addEventListener('click', toggleSidebar);
-
-// Variables para detección de gesto táctil
-let touchStartX = 0;
-let touchEndX = 0;
-
-// Manejar gesto táctil
-function handleGesture() {
-    const deltaX = touchEndX - touchStartX;
-
-    // Umbral mínimo de deslizamiento
-    if (Math.abs(deltaX) > 50) {
-        if (deltaX > 0) {
-            openSidebar(); // deslizó hacia la derecha
-        } else {
-            closeSidebar(); // deslizó hacia la izquierda
-        }
-    }
-}
-
-// Escuchar gestos táctiles (para móviles)
-document.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-}, false);
-
-document.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleGesture();
-}, false);
