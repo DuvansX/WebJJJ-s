@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horarios de Atención</title>
+    <link rel="stylesheet" href="CSS/Horarios.css">
+    <link rel="icon" href="Imagenes/Logo Restaurante.PNG">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+    <body class="locked">
+        <!-- Pantalla de carga -->
+        <div id="loading-screen">
+          <i class='bx bxs-calendar'></i>
+        </div>
+
+    <!-- Barra lateral -->
+    <div class="sidebar1">
+        <div class="logo_content1">
+            <div class="logo1">
+                <img src="Imagenes/Logo JJJs.png" alt="Logo Restaurante" width="150" height="50">
+                <div class="logo_name1"></div>
+            </div>
+            <i class='bx bx-menu' id='btn1'></i>
+        </div>
+        <div class="src1" style="position: relative;">
+            <i class='bx bx-search-alt' id="srcBtn1"></i>
+            <input type="text" id="searchInput" placeholder="Buscar..." autocomplete="off">
+            <div id="suggestions" class="suggestions"></div>
+        </div>
+        <ul class="nav1">
+            <li>
+                <a href="Principal.html">
+                    <i class='bx bx-store-alt'></i>
+                    <span class="link_name1">Principal</span>
+                </a>
+                <span class="tooltip1">Principal</span>
+            </li>
+            <li>
+                <a href="InicioSs.html">
+                    <i class='bx bxs-user-circle'></i>
+                    <span class="link_name1">Inicia sesión</span>
+                </a>
+                <span class="tooltip1">Inicia sesión</span>
+            </li>
+            <li>
+                <a href="Producto.html">
+                    <i class='bx bxs-pizza'></i>
+                    <span class="link_name1">Productos Food</span>
+                </a>
+                <span class="tooltip1">Productos Food</span>
+            </li>
+            <li>
+                <a href="ProductosCigarreria.html">
+                    <i class='bx bxs-drink'></i>
+                    <span class="link_name1">Productos Beer</span>
+                </a>
+                <span class="tooltip1">Productos Beer</span>
+            </li>
+            <li>
+                <a href="Pedidos.html">
+                    <i class='bx bx-package'></i>
+                    <span class="link_name1">Pedidos</span>
+                </a>
+                <span class="tooltip1">Pedidos</span>
+            </li>
+            <li>
+                <a href="Nosotros.html">
+                  <i class='bx bx-conversation'></i>
+                  <span class="link_name1">Nosotros</span>
+                </a>
+                <span class="tooltip1">Nosotros</span>
+              </li>
+            <li>
+                <a href="Horarios.html">
+                    <i class='bx bxs-calendar'></i>
+                    <span class="link_name1">Horarios</span>
+                </a>
+                <span class="tooltip1">Horarios</span>
+            </li>
+            <li>
+                <a href="favoritos.html">
+                    <i class='bx bxs-heart-circle'></i>
+                    <span class="link_name1">favoritos</span>
+                </a>
+                <span class="tooltip1">favoritos</span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Contenedor de horarios -->
+    <div class="container-wrapper">
+        <!-- Contenedor 1 -->
+        <div class="schedule-container contenedor1">
+            <h2 class="schedule-header">Horarios de Atención</h2>
+            <h1>Food and Drinks</h1>
+            <div class="day-card"><div class="day-name">Domingo</div><div class="day-hours">2:00 PM - 12:00 AM<i class="bx bxs-time-five"></i></div></div>
+            <div class="day-card"><div class="day-name">Lunes</div><div class="day-hours">2:00 PM - 12:00 AM<i class="bx bxs-time-five"></i></div></div>
+            <div class="day-card"><div class="day-name">Martes</div><div class="day-hours">2:00 PM - 12:00 AM<i class="bx bxs-time-five"></i></div></div>
+            <div class="day-card"><div class="day-name">Miércoles</div><div class="day-hours">2:00 PM - 12:00 AM<i class="bx bxs-time-five"></i></div></div>
+            <div class="day-card"><div class="day-name">Jueves</div><div class="day-hours">2:00 PM - 12:00 AM<i class="bx bxs-time-five"></i></div></div>
+            <div class="day-card"><div class="day-name">Viernes</div><div class="day-hours">2:00 PM - 12:30 AM<i class="bx bxs-time-five"></i></div></div>
+            <div class="day-card"><div class="day-name">Sábado</div><div class="day-hours">2:00 PM - 12:00 AM<i class="bx bxs-time-five"></i></div></div>
+        </div>
+
+        <!-- Contenedor 2 -->
+        <div class="schedule-container contenedor2">
+            <h2 class="schedule-header">Horarios de Atención</h2>
+            <h1>Cigarreria Los JJJ´s</h1>
+            <div class="day-card"><div class="day-name">Domingo</div><div class="day-hours">11:00 AM - 12:00 PM<i class="bx bxs-time-five"></i></div></div>
+            <div class="day-card"><div class="day-name">Lunes</div><div class="day-hours">11:00 AM - 12:00 PM<i class="bx bxs-time-five"></i></div></div>
+            <div class="day-card"><div class="day-name">Martes</div><div class="day-hours">11:00 AM - 12:00 PM<i class="bx bxs-time-five"></i></div></div>
+            <div class="day-card"><div class="day-name">Miércoles</div><div class="day-hours">11:00 AM - 12:00 PM<i class="bx bxs-time-five"></i></div></div>
+            <div class="day-card"><div class="day-name">Jueves</div><div class="day-hours">11:00 AM - 12:00 PM<i class="bx bxs-time-five"></i></div></div>
+            <div class="day-card"><div class="day-name">Viernes</div><div class="day-hours">11:00 AM - 2:00 AM<i class="bx bxs-time-five"></i></div></div>
+            <div class="day-card"><div class="day-name">Sábado</div><div class="day-hours">11:00 AM - 2:00 AM<i class="bx bxs-time-five"></i></div></div>
+        </div>
+
+        <!-- Contenedor 3 -->
+        <div class="schedule-container contenedor">
+            <h2 class="schedule-header">Horarios de Atención</h2>
+            <h1>Food Bomba La Virginia</h1>
+            <div class="day-card"><div class="day-name">Domingo</div><div class="day-hours">4:00 PM - 12:00 PM<i class="bx bxs-time-five"></i></div></div>
+            <div class="day-card"><div class="day-name">Lunes</div><div class="day-hours">4:00 PM - 12:00 PM<i class="bx bxs-time-five"></i></div></div>
+            <div class="day-card"><div class="day-name">Martes</div><div class="day-hours">4:00 PM - 12:00 PM<i class="bx bxs-time-five"></i></div></div>
+            <div class="day-card"><div class="day-name">Miércoles</div><div class="day-hours">4:00 PM - 12:00 PM<i class="bx bxs-time-five"></i></div></div>
+            <div class="day-card"><div class="day-name">Jueves</div><div class="day-hours">4:00 PM - 12:00 PM<i class="bx bxs-time-five"></i></div></div>
+            <div class="day-card"><div class="day-name">Viernes</div><div class="day-hours">4:00 PM - 1:30 AM<i class="bx bxs-time-five"></i></div></div>
+            <div class="day-card"><div class="day-name">Sábado</div><div class="day-hours">4:00 PM - 1:30 AM<i class="bx bxs-time-five"></i></div></div>
+        </div>
+
+        <!-- Contenedor 4 -->
+        <div class="schedule-container contenedor4">
+            <h2 class="schedule-header">Horarios de Atención</h2>
+            <h1>Licoreria Bomba La Virginia</h1>
+            <div class="day-card"><div class="day-name">Domingo</div><div class="day-hours">7:00 AM - 12:00 PM<i class="bx bxs-time-five"></i></div></div>
+            <div class="day-card"><div class="day-name">Lunes</div><div class="day-hours">7:00 AM - 12:00 PM<i class="bx bxs-time-five"></i></div></div>
+            <div class="day-card"><div class="day-name">Martes</div><div class="day-hours">7:00 AM - 12:00 PM<i class="bx bxs-time-five"></i></div></div>
+            <div class="day-card"><div class="day-name">Miércoles</div><div class="day-hours">7:00 AM - 12:00 PM<i class="bx bxs-time-five"></i></div></div>
+            <div class="day-card"><div class="day-name">Jueves</div><div class="day-hours">7:00 AM - 2:00 AM<i class="bx bxs-time-five"></i></div></div>
+            <div class="day-card"><div class="day-name">Viernes</div><div class="day-hours">7:00 AM - 2:00 AM<i class="bx bxs-time-five"></i></div></div>
+            <div class="day-card"><div class="day-name">Sábado</div><div class="day-hours">7:00 AM - 2:00 AM<i class="bx bxs-time-five"></i></div></div>
+        </div>
+
+        <!-- Contenedor 5 -->
+        <div class="schedule-container contenedor5">
+            <h2 class="schedule-header">Horarios de Atención 5</h2>
+            <div class="day-card"><div class="day-name">Domingo</div><div class="day-hours">4:00 PM - 11:30 PM<i class="bx bxs-time-five"></i></div></div>
+            <div class="day-card"><div class="day-name">Lunes</div><div class="day-hours">4:00 PM - 11:30 PM<i class="bx bxs-time-five"></i></div></div>
+            <div class="day-card"><div class="day-name">Martes</div><div class="day-hours">4:00 PM - 11:30 PM<i class="bx bxs-time-five"></i></div></div>
+            <div class="day-card"><div class="day-name">Miércoles</div><div class="day-hours">4:00 PM - 11:30 PM<i class="bx bxs-time-five"></i></div></div>
+            <div class="day-card"><div class="day-name">Jueves</div><div class="day-hours">4:00 PM - 11:30 PM<i class="bx bxs-time-five"></i></div></div>
+            <div class="day-card"><div class="day-name">Viernes</div><div class="day-hours">4:00 PM - 1:30 AM<i class="bx bxs-time-five"></i></div></div>
+            <div class="day-card"><div class="day-name">Sábado</div><div class="day-hours">4:00 PM - 1:30 AM<i class="bx bxs-time-five"></i></div></div>
+        </div>
+    </div>
+    <script src="JS/Producto.js"></script>
+    <script src="JS/Siderbar.js"></script>
+    <script src="JS/DiasHorarios.js"></script>
+    <script src="JS/PantallaCarga.js"></script>
+    <script src="JS/Buscador.js"></script>
+    <script src="JS/Bot.js"></script>
+    <script src="JS/Seleccion.js"></script>
+    
+</body>
+</html>

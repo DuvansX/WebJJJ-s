@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JJJ´s FOOD</title>
+    <link rel="icon" href="Imagenes/Logo Restaurante.PNG">
+    <link rel="stylesheet" href="CSS/Nosotros.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body class="locked">
+    <!-- Pantalla de carga -->
+    <div id="loading-screen">
+      <i class='bx bx-conversation'></i>
+    </div>
+
+    <!-- Barra lateral -->
+    <div class="sidebar1">
+        <div class="logo_content1">
+            <div class="logo1">
+                <img src="Imagenes/Logo JJJs.png" alt="Logo Restaurante" width="150" height="50">
+                <div class="logo_name1"></div>
+            </div>
+            <i class='bx bx-menu' id='btn1'></i>
+        </div>
+        <div class="src1" style="position: relative;">
+            <i class='bx bx-search-alt' id="srcBtn1"></i>
+            <input type="text" id="searchInput" placeholder="Buscar..." autocomplete="off">
+            <div id="suggestions" class="suggestions"></div>
+        </div>
+        <ul class="nav1">
+            <li>
+                <a href="Principal.html">
+                    <i class='bx bx-store-alt'></i>
+                    <span class="link_name1">Principal</span>
+                </a>
+                <span class="tooltip1">Principal</span>
+            </li>
+            <li>
+                <a href="InicioSs.html">
+                    <i class='bx bxs-user-circle'></i>
+                    <span class="link_name1">Inicia sesión</span>
+                </a>
+                <span class="tooltip1">Inicia sesión</span>
+            </li>
+            <li>
+                <a href="Producto.html">
+                    <i class='bx bxs-pizza'></i>
+                    <span class="link_name1">Productos Food</span>
+                </a>
+                <span class="tooltip1">Productos Food</span>
+            </li>
+            <li>
+                <a href="ProductosCigarreria.html">
+                    <i class='bx bxs-drink'></i>
+                    <span class="link_name1">Productos Beer</span>
+                </a>
+                <span class="tooltip1">Productos Beer</span>
+            </li>
+            <li>
+                <a href="Pedidos.html">
+                    <i class='bx bx-package'></i>
+                    <span class="link_name1">Pedidos</span>
+                </a>
+                <span class="tooltip1">Pedidos</span>
+            </li>
+            <li>
+                <a href="Nosotros.html">
+                  <i class='bx bx-conversation'></i>
+                  <span class="link_name1">Nosotros</span>
+                </a>
+                <span class="tooltip1">Nosotros</span>
+              </li>
+            <li>
+                <a href="Horarios.html">
+                    <i class='bx bxs-calendar'></i>
+                    <span class="link_name1">Horarios</span>
+                </a>
+                <span class="tooltip1">Horarios</span>
+            </li>
+            <li>
+                <a href="favoritos.html">
+                    <i class='bx bxs-heart-circle'></i>
+                    <span class="link_name1">favoritos</span>
+                </a>
+                <span class="tooltip1">favoritos</span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="container">
+        <div class="card">
+            <div class="image-container">
+                <img src="Imagenes/food-local.webp" alt="Imagen">
+            </div>
+            <div class="content">
+                <h2>Restaurante Food/Drinks</h2>
+                <p>
+                    Nuestro local de comida y bebidas queda ubicado al lado de la Universidad UniBoyaca y en el local puedes hacer pedido tanto de tu comida favorita como una buena y refrescante bebida.
+                </p>
+                <a href="https://www.google.com/maps/@5.728531,-72.9208828,3a,41.2y,113.88h,90.34t/data=!3m7!1e1!3m5!1sqxBLy30r3BnV327urK8T7A!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-0.3404186200738195%26panoid%3DqxBLy30r3BnV327urK8T7A%26yaw%3D113.88304600931262!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI1MDMwMi4wIKXMDSoASAFQAw%3D%3D" style="text-decoration: none;">
+                    <button>Ubicación</button>
+                </a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="image-container">
+                <img src="Imagenes/Nosotros/Personal.png" alt="Imagen">
+            </div>
+            <div class="content">
+                <h2>Personal JJJ´s</h2>
+                <p>
+                    El equipo JJJ´s se caracteriza por su atención excepcional y dedicación. Siempre listos para asesorarte, nuestros expertos te guiarán en la elección de las mejores bebidas y comidas. ¡Ven y disfruta con nosotros!
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="image-container">
+                <img src="Imagenes/Cigarreria-local.png" alt="Imagen">
+            </div>
+            <div class="content">
+                <h2>Cigarreria Los JJJ´s</h2>
+                <p>
+                    Visítanos en la Cigarrería JJJ´s, nuestro local principal de bebidas, ubicado junto a Los Chachos. Disfruta de una gran variedad de licores y cócteles preparados por expertos en un ambiente único. ¡Te esperamos!
+                </p>
+                <a href="https://www.google.com/maps/@5.7223291,-72.9241592,3a,20.6y,121.09h,88.8t/data=!3m7!1e1!3m5!1s0l4_bG1kG5bR3k8KnTFygw!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D1.19647065245789%26panoid%3D0l4_bG1kG5bR3k8KnTFygw%26yaw%3D121.09163021214903!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI1MDMwMi4wIKXMDSoASAFQAw%3D%3D" style="text-decoration: none;">
+                    <button>Ubicación</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Redes sociales -->
+    <div class="social-icons">
+        <a href="https://wa.me/573105813873" class="icon whatsapp"><i class="bx bxl-whatsapp"></i></a>
+        <a href="https://www.tiktok.com/@licores_losjjjs" class="icon tiktok"><i class="bx bxl-tiktok"></i></a>
+        <a href="https://www.instagram.com/los3jjjs?igsh=ZHJ2NnE2aGtldm10" class="icon instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="https://www.facebook.com/share/163NAzH8kZ/?mibextid=wwXIfr" class="icon facebook"><i class="bx bxl-facebook-circle"></i></a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="JS/Producto.js"></script>
+    <script src="JS/PantallaCarga.js"></script>
+    <script src="JS/Buscador.js"></script>
+    <script src="JS/Siderbar.js"></script>
+    <script src="Seleccion.js"></script>
+    
+</body>
+</html>
