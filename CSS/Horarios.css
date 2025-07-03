@@ -1,0 +1,442 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;1,400&display=swap');
+
+* {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+body {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.5;
+    background-color: #000000;
+    background: url("/Imagenes/PERROS BLACK 4.png") no-repeat center center fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    overflow-x: hidden;
+    touch-action: pan-y; /* Permite solo el desplazamiento vertical */
+    z-index: 10;
+}
+
+
+.sidebar1 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50px;
+    background: #000000;
+    padding: 6px 16px;
+    height: 100%;
+    box-shadow: 5px 0 30px rgba(0, 0, 0, .1);
+    transition: all .5s ease;
+    z-index: 9995;
+}
+
+.sidebar1.active1 {
+    width: 240px;
+}
+
+.sidebar1 .logo_content1 .logo1 {
+    display: flex;
+    color: #ffb700;
+    height: 50px;
+    width: 100%;
+    font-size: 30px;
+    margin-left: 30px;
+    margin-top: 6px; 
+    align-items: center;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.sidebar1.active1 .logo_content1 .logo1 {
+    opacity: 1;
+}
+
+.sidebar1 .logo_content1 .logo1 .logo_name1 {
+    font-size: 23px;
+    font-weight: 600;
+    margin: 0 10px;
+}
+
+.sidebar1 #btn1 {
+    position: absolute;
+    color: #ffffff;
+    left: 50%;
+    top: 6px;
+    font-size: 20px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    transform: translate(-50%);
+}
+
+.sidebar1.active1 #btn1 {
+    left: 85%;
+}
+
+.sidebar1 .src1 {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.sidebar1 .src1 input {
+    position: absolute;
+    height: 100%;
+    width: calc(100% - 50px);
+    left: 0;
+    top: 0;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    background: #ffffff;
+    padding-left: 50px;
+    font-size: 15px;
+    color: #000000;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+    transition: all .5s ease;
+}
+
+.sidebar1 .src1 .bx-search-alt {
+    position: absolute;
+    z-index: 99;
+    font-size: 22px;
+    color: #000000;
+    transition: all .5s ease;
+}
+
+.sidebar1 .src1 .bx-search-alt:hover ~ input {
+    background: #ffffff;
+}
+
+.sidebar1 i {
+    height: 50px;
+    min-width: 50px;
+    border-radius: 12px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 25px;
+}
+
+.sidebar1 ul {
+    margin-top: 20px;
+}
+
+.sidebar1 ul li {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin: 0;
+    list-style: none;
+    line-height: 50px;
+}
+
+.sidebar1 ul li a {
+    color: #ffffff;
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    border-radius: 20px;
+    font-size: 13px;
+    white-space: nowrap;
+    transition: all .5s ease;
+}
+
+.sidebar1 ul li a:hover {
+    color: #000000;
+    background: #ffb700;
+}
+
+.sidebar1 .link_name1 {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sidebar1.active1 .link_name1 {
+    opacity: 1;
+    font-weight: 550;
+    pointer-events: auto;
+}
+
+.sidebar1 ul li .tooltip1 {
+    position: absolute;
+    left: 140px;
+    top: 0;
+    transform: translate(-45%, -50%);
+    border-radius: 10px;
+    height: 35px;
+    width: 130px;
+    background: #ffffff;
+    line-height: 35px;
+    text-align: center;
+    font-size: 13px;
+    display: block;
+    color: #242424;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.sidebar1.active1 ul li .tooltip1 {
+    display: none;
+}
+
+.sidebar1 ul li:hover .tooltip1 {
+    opacity: 1;
+    top: 50%;
+}
+
+.nav-bar {
+    display: flex;
+    align-items: end;
+    color: rgb(255, 255, 255);
+    margin: 40px 40px;
+}
+
+.nav-bar h1 {
+    font-weight: bold;
+    text-shadow: 4px 4px 7px #ffb700, -4px -4px 6px #ffffff;
+    font-weight: 1000;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -30px;
+}
+
+.nav1 a.active {
+    background-color: #ffb700;
+    pointer-events: none; 
+    cursor: default; 
+    color: rgb(0, 0, 0);
+}
+
+
+
+
+.container-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.schedule-container {
+    width: 100%;
+    max-width: 450px; /* Tamaño normal en pantallas grandes */
+    padding: 20px;
+    background: url('/Imagenes/Horarios/Textura\ \ Horario.jpg'); 
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    border: 2px solid #ffb700;
+    color: white;
+    text-align: center;
+    z-index: 20;
+    
+    /* Variables para ajuste de posición */
+    position: relative;
+    --x: 0px; /* Desplazamiento horizontal */
+    --y: 0px; /* Desplazamiento vertical */
+    transform: translate(var(--x), var(--y));
+}
+
+/* Solo en celulares (max-width: 480px) */
+@media screen and (max-width: 480px) {
+    .schedule-container {
+        --x: 20px; /* Mover a la derecha */
+        max-width: 250px; /* Reducir ancho en móviles */
+        padding: 10px; /* Reducir padding en móviles */
+    }
+
+    .schedule-container h2 {
+        font-size: 16px; /* Hacer título más pequeño */
+    }
+
+    .schedule-container p {
+        font-size: 14px; /* Hacer texto más pequeño */
+    }
+}
+
+/* Ajuste individual de cada contenedor */
+.container-1 { --x: 50px; --y: 20px; }  /* Se mueve 50px a la derecha y 20px abajo */
+.container-2 { --x: -30px; --y: 10px; } /* Se mueve 30px a la izquierda y 10px abajo */
+.container-3 { --x: 70px; --y: -10px; } /* Se mueve 70px a la derecha y 10px arriba */
+.container-4 { --x: -40px; --y: -30px; } /* Se mueve 40px a la izquierda y 30px arriba */
+.container-5 { --x: 0px; --y: 50px; }  /* Se queda centrado pero baja 50px */
+
+
+.schedule-header {
+    text-align: center;
+    color: #ffb700;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+h1 {
+    margin-bottom: 10px;
+}
+.day-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 12px 16px;
+    background-color: #ffb700;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.day-card:hover {
+    background-color: #ffffff;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+
+}
+.day-card.today {
+    background-color: #ffffff;
+    font-weight: 600;
+    color: #01579b;
+    border: 2px solid #ffb700;
+}
+.day-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000000;
+    text-transform: capitalize;
+    letter-spacing: 0.5px;
+}
+.day-hours {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000000;
+    letter-spacing: 0.5px;
+}
+.closed {
+    color: #e57373;
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+@media (max-width: 600px) {
+    .schedule-container {
+        padding: 16px;
+    }
+    .schedule-header {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    .day-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 12px;
+    }
+    .day-name {
+        font-size: 14px;
+    }
+    .day-hours {
+        font-size: 12px;
+    }
+}
+.day-hours {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000000;
+    letter-spacing: 0.5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.day-hours i {
+    font-size: 18px;
+    color: #000000;
+    margin-left: 8px;
+}
+
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+  }
+  
+  #loading-screen i {
+    color: #ffb700;
+    font-size: 6rem;
+    filter: drop-shadow(0 0 12px #ffb700aa);
+    animation: spinBounce 2s ease-in-out infinite;
+  }
+  
+  @keyframes spinBounce {
+    0%   { transform: rotate(0deg) scale(1); }
+    25%  { transform: rotate(90deg) scale(1.1); }
+    50%  { transform: rotate(180deg) scale(1); }
+    75%  { transform: rotate(270deg) scale(1.1); }
+    100% { transform: rotate(360deg) scale(1); }
+  }
+  
+  .locked {
+    pointer-events: none;
+    user-select: none;
+    overflow: hidden;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+
+    #suggestions {
+        position: absolute;
+        top: 110%;
+        left: 0;
+        right: 0;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        overflow: hidden;
+        border: 1px solid #e0e0e0;
+        max-height: 200px;
+        overflow-y: auto;
+        display: none;
+        z-index: 1000;
+    }
+    
+    #suggestions div {
+        padding: 12px 15px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background 0.2s;
+    }
+    
+    #suggestions div:hover {
+        background-color: #f5f5f5;
+    }
+    
+    @media (max-width: 600px) {
+        #suggestions div {
+            font-size: 14px;
+            padding: 10px 12px;
+        }
+    }

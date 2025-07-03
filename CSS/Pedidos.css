@@ -1,0 +1,749 @@
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+
+body {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background: url("/Imagenes/ImagenesPrincipal/Perros.webp") no-repeat center center fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+.sidebar1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50px;
+  background: #000000;
+  padding: 6px 16px;
+  height: 100%;
+  box-shadow: 5px 0 30px rgba(0,0,0,.1);
+  transition: all .5s ease;
+  z-index: 9998;
+}
+
+.sidebar1.active1 {
+  width: 240px;
+}
+
+.sidebar1 .logo_content1 .logo1 {
+  display: flex;
+  height: 50px;
+  width: 100%;
+  font-size: 30px;
+  margin-left: 30px;
+  margin-top: 6px; 
+  align-items: center;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.sidebar1.active1 .logo_content1 .logo1 {
+  opacity: 1;
+}
+
+.sidebar1 .logo_content1 .logo1 .logo_name1 {
+  font-size: 23px;
+  font-weight: 600;
+  margin: 0 10px;
+}
+
+.sidebar1 #btn1 {
+  position: absolute;
+  color: #ffffff;
+  left: 50%;
+  top: 6px;
+  font-size: 20px;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  line-height: 50px;
+  transform: translate(-50%);
+}
+
+.sidebar1.active1 #btn1 {
+  left: 85%;
+}
+
+.sidebar1 .src1 {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.sidebar1 .src1 input {
+  position: absolute;
+  height: 100%;
+  width: calc(100% - 50px);
+  left: 0;
+  top: 0;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  background: #ffffff;
+  padding-left: 50px;
+  font-size: 15px;
+  color: #000000;
+  box-shadow: 0 5px 10px rgba(0,0,0,.2);
+  transition: all .5s ease;
+}
+
+.sidebar1 .src1 .bx-search-alt {
+  position: absolute;
+  z-index: 99;
+  font-size: 22px;
+  color: #000000;
+  transition: all .5s ease;
+}
+
+.sidebar1 .src1 .bx-search-alt:hover ~ input {
+  background: #ffffff;
+}
+
+.sidebar1 i {
+  height: 50px;
+  min-width: 50px;
+  border-radius: 12px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 25px;
+}
+
+.sidebar1 ul {
+  margin-top: 20px;
+}
+
+.sidebar1 ul li {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  margin: 0;
+  list-style: none;
+  line-height: 50px;
+}
+
+.sidebar1 ul li a {
+  color: #ffffff;
+  display: flex;
+  text-decoration: none;
+  align-items: center;
+  border-radius: 20px;
+  font-size: 13px;
+  white-space: nowrap;
+  transition: all .5s ease;
+}
+
+.sidebar1 ul li a:hover {
+  color: #000000;
+  background: #ffb700;
+}
+
+.sidebar1 .link_name1 {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sidebar1.active1 .link_name1 {
+  opacity: 1;
+  font-weight: 550;
+  pointer-events: auto;
+}
+
+.sidebar1 ul li .tooltip1 {
+  position: absolute;
+  left: 140px;
+  top: 0;
+  transform: translate(-45%, -50%);
+  border-radius: 10px;
+  height: 35px;
+  width: 130px;
+  background: #ffffff;
+  line-height: 35px;
+  text-align: center;
+  font-size: 13px;
+  display: block;
+  color: #242424;
+  box-shadow: 0 5px 10px rgba(0,0,0,.2);
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.sidebar1.active1 ul li .tooltip1 {
+  display: none;
+}
+
+.sidebar1 ul li:hover .tooltip1 {
+  opacity: 1;
+  top: 50%;
+}
+
+.nav1 a.active {
+  background-color: #ffb700;
+  pointer-events: none; 
+  cursor: default; 
+  color: rgb(0, 0, 0);
+}
+
+
+
+
+
+
+
+     
+    /* Centrado vertical y horizontal del contenedor */
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Altura completa de la pantalla */
+  margin: 0;
+  background-color: #f5f5f5; /* Fondo suave */
+}
+
+/* Contenedor del pedido */
+.pedido-container {
+  max-width: 500px; /* Más ancho */
+  width: 100%;
+  background: url("/Imagenes/Pedidos/FondoRC.jpg") no-repeat center center fixed;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  padding: 30px; /* Más padding */
+  animation: fadeIn 0.5s ease-in-out;
+  max-height: 90vh; /* Más largo visualmente */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilos específicos para móviles */
+@media (max-width: 600px) {
+  .pedido-container {
+    max-width: 66%; /* Que use el 80% del ancho disponible */
+    padding: 20px; /* Menos padding si quieres */
+    border-radius: 12px; /* Menor borde redondeado si deseas */
+    max-height: none; /* Si quieres que crezca más */
+    height: auto; /* Para que se ajuste al contenido */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra más sutil */
+
+    margin-left: 85px; /* Esto lo alinea a la derecha */
+  }
+}
+
+
+
+/* Título */
+.pedido-container h2 {
+  text-align: center;
+  color: #2c3e50;
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Lista de productos, con scroll más alto */
+.pedido-lista {
+  max-height: 350px; /* Más alto que antes */
+  overflow-y: auto;
+  flex: 1; /* Que ocupe todo el espacio disponible */
+  margin-bottom: 20px;
+}
+
+
+/* Estilos específicos para móviles */
+@media (max-width: 600px) {
+  .pedido-lista {
+    max-height: 380px; /* Más bajo si quieres que se vea menos en móvil */
+    margin-bottom: 15px; /* Menos margen inferior */
+    padding-right: 5px; /* Por si quieres espacio con scroll */
+  }
+}
+
+
+.producto-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.producto-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.producto-nombre {
+  font-weight: 600;
+  font-size: 1em;
+  color: #000000;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.producto-precio {
+  color: #2c3e50;
+  font-size: 0.9em;
+}
+
+.cantidad-controles {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 15px;
+}
+
+.cantidad-btn {
+  background-color: #000000c4;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+  font-size: 1em;
+}
+
+.cantidad-btn:hover {
+  background-color: #191a1b;
+}
+
+.cantidad-numero {
+  font-weight: 600;
+  font-size: 1em;
+  color: #2c3e50;
+  min-width: 20px;
+  text-align: center;
+}
+
+.pedido-total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 1.2em;
+  color: #2c3e50;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.btn-confirmar {
+  width: 100%;
+  background-color: #00c954;
+  color: white;
+  border: none;
+  padding: 15px;
+  font-size: 1em;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-confirmar:hover {
+  background-color: #111111;
+}
+
+.icon-title {
+  width: 24px;
+  height: 24px;
+}
+
+.icon-inline {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scroll estilizado */
+.pedido-lista::-webkit-scrollbar {
+  width: 6px;
+}
+.pedido-lista::-webkit-scrollbar-thumb {
+  background-color: #79797983;
+  border-radius: 3px;
+}
+
+
+
+
+
+
+
+#loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
+
+#loading-screen i {
+  color: #ffb700;
+  font-size: 6rem;
+  filter: drop-shadow(0 0 12px #ffb700aa);
+  animation: spinBounce 2s ease-in-out infinite;
+}
+
+@keyframes spinBounce {
+  0%   { transform: rotate(0deg) scale(1); }
+  25%  { transform: rotate(90deg) scale(1.1); }
+  50%  { transform: rotate(180deg) scale(1); }
+  75%  { transform: rotate(270deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+.locked {
+  pointer-events: none;
+  user-select: none;
+  overflow: hidden;
+}
+
+.hidden {
+  display: none;
+}
+
+
+
+
+
+#suggestions {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+  max-height: 200px;
+  overflow-y: auto;
+  display: none;
+  z-index: 1000;
+}
+
+/* Cada item sugerido */
+#suggestions div {
+  padding: 12px 15px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.2s;
+}
+
+#suggestions div:hover {
+  background-color: #f5f5f5;
+}
+
+/* Responsive para móviles */
+@media (max-width: 600px) {
+  #suggestions div {
+      font-size: 14px;
+      padding: 10px 12px;
+  }
+}
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.4);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ✅ Caja blanca centrada perfectamente */
+.modal-contenido {
+  background-color: #fff;
+  padding: 2rem 1.5rem;
+  border-radius: 20px;
+  width: 90%; /* Ocupa el 90% del ancho en pantallas grandes */
+  max-width: 350px; /* Ancho máximo en pantallas grandes */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* 👈 centrado real */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  animation: aparecer 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  font-family: 'Poppins', sans-serif; /* 👈 Aplicamos la fuente Poppins aquí */
+}
+
+@keyframes aparecer {
+  from { transform: translate(-50%, -50%) scale(0.95); opacity: 0; }
+  to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+.modal-contenido h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  text-align: center;
+  color: #333;
+  font-family: 'Poppins', sans-serif; /* Aseguramos que el título también use Poppins */
+}
+
+.modal-contenido input,
+.modal-contenido select {
+  padding: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif; /* Aseguramos que los inputs y selects usen Poppins */
+}
+
+.modal-contenido button {
+  background-color: #000000;
+  color: white;
+  border: none;
+  padding: 0.9rem;
+  font-size: 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: 'Poppins', sans-serif; /* Aseguramos que los botones usen Poppins */
+}
+
+.modal-contenido button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  font-family: 'Poppins', sans-serif; /* Aseguramos que el botón disabled use Poppins */
+}
+
+.cerrar-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background-color: #eee;        /* Fondo suave */
+  color: #000;
+  border: none;
+  width: 36px;                   /* Ancho fijo */
+  height: 36px;                  /* Alto fijo */
+  border-radius: 50%;            /* 👈 Esto lo hace circular */
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: 'Poppins', sans-serif; /* Opcional: aplica Poppins al botón de cerrar también */
+}
+
+.cerrar-modal:hover {
+  background-color: #0000005e;
+  color: #ffffff;
+}
+
+select:focus {
+  outline: none;
+  border-color: #ffb700;
+  box-shadow: 0 0 0 3px rgba(255, 230, 0, 0.2); /* Glow verde */
+}
+
+/* 📱 Media query para pantallas más pequeñas (ejemplo: hasta 768px de ancho) */
+@media (max-width: 768px) {
+  .modal-contenido {
+    width: 95%; /* Ocupa un poco más de ancho en pantallas pequeñas */
+    max-width: 90%; /* El ancho máximo ahora es un porcentaje de la pantalla */
+    padding: 1.5rem 1rem; /* Reduce el padding para más espacio */
+    gap: 1rem; /* Reduce el espacio entre elementos */
+    font-size: 0.95rem; /* Ajusta el tamaño de la fuente si es necesario */
+  }
+
+  .modal-contenido h3 {
+    font-size: 1.1rem; /* Reduce el tamaño del título */
+  }
+
+  .modal-contenido input,
+  .modal-contenido select,
+  .modal-contenido button {
+    font-size: 0.9rem; /* Reduce el tamaño de la fuente de los elementos */
+    padding: 0.6rem; /* Reduce el padding de los elementos */
+  }
+
+  .cerrar-modal {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+    top: 5px;
+    right: 10px;
+  }
+}
+
+/* 📱 Media query para pantallas aún más pequeñas (ejemplo: hasta 480px de ancho) */
+@media (max-width: 480px) {
+  .modal-contenido {
+    padding: 1rem 0.8rem;
+    gap: 0.8rem;
+    font-size: 0.9rem; /* Ajusta el tamaño de la fuente si es necesario */
+  }
+
+  .modal-contenido h3 {
+    font-size: 1rem;
+  }
+
+  .modal-contenido input,
+  .modal-contenido select,
+  .modal-contenido button {
+    font-size: 0.85rem;
+    padding: 0.5rem;
+  }
+
+  .cerrar-modal {
+    width: 28px;
+    height: 28px;
+    font-size: 0.9rem;
+    top: 3px;
+    right: 8px;
+  }
+}
+
+.btn-rastrear {
+  background-color: #ff6b00;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease;
+}
+.btn-rastrear:hover {
+  background-color: #e85c00;
+}
+
+.btn-abrir-rastreo {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 10000;
+      background-color: #000000;
+      color: white;
+      border: none;
+      padding: 4px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    #rastreo-estado {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: 500;
+      color: #000;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    #rastreo-estado::before {
+      content: "";
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      background-image: url('https://i.imgur.com/jTJ7Rkp.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+    .rastreo-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 9999;
+      padding: 1rem;
+    }
+    .rastreo-modal.active {
+      display: flex;
+    }
+    .rastreo-modal-contenido {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .cerrar-rastreo-modal {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: #666;
+    }
+    #rastreo-input-id {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    .rastreo-modal-contenido button {
+      padding: 5px;
+      font-size: 16px;
+      background: #000000;
+      color: #fff;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+    }
+    #rastreo-mapa {
+      height: 300px;
+      width: 100%;
+      position: hidden;
+      border: 2px solid #000000;
+      border-radius: 10px;
+    }
+    @media (min-width: 768px) {
+      #rastreo-mapa {
+        height: 400px;
+      }
+    }
