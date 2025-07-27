@@ -6,316 +6,19 @@
     <title>Inicio Sesión</title>
     <link rel="icon" href="Imagenes/Logo Restaurante.PNG">
     <link rel="stylesheet" href="CSS/InicioSs.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    
 </head>
-<style>
-    /* Estilos para la pantalla de carga */
-    #loading-screen {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background: #000;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: opacity 1s ease-out, visibility 1s ease-out;
-        z-index: 9999;
-    }
-    .hidden {
-        opacity: 0;
-        visibility: hidden;
-    }
-    .loader {
-        border: 8px solid rgba(255, 255, 255, 0.2);
-        border-top: 8px solid #ffb700;
-        border-radius: 50%;
-        width: 80px;
-        height: 80px;
-        animation: spin 1s ease-in-out infinite;
-    }
-    @keyframes spin {
-        0% { transform: rotate(0deg); }
-        50% { transform: rotate(180deg); }
-        100% { transform: rotate(360deg); }
-    }
-</style>
-</head>
-<body>
-<!-- Pantalla de carga -->
-<div id="loading-screen">
-    <div class="loader"></div>
-</div>
-
-<script>
-    window.addEventListener("load", function() {
-        let loadingScreen = document.getElementById("loading-screen");
-        loadingScreen.classList.add("hidden");
-        setTimeout(() => {
-            loadingScreen.style.display = "none";
-        }, 1000);
-    });
-</script>
-</body>
-    <style>
-        /* Estilos previos */
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        .error {
-            color: red;
-            font-size: 0.9rem;
-            margin-top: 5px;
-            display: none;
-        }
-
-        .toggle-link {
-            color: white;
-            font-weight: bold;
-            font-size: 0.9rem;
-            margin-top: 15px;
-        }
-
-        .toggle-link span {
-            color: #007bff;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .toggle-link span::after {
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            background-color: #007bff8e;
-            bottom: -2px;
-            left: 0;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
-        }
-
-        .toggle-link span:hover::after {
-            transform: scaleX(1);
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .password-container {
-            position: relative;
-        }
-
-        .password-container input[type="password"] {
-            padding-right: 30px;
-        }
-
-        .password-container .toggle-password {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-        }
-
-        .input-field input[type="tel"] {
-            -webkit-text-fill-color: white;
-            padding-left: 10px;
-            text-transform: uppercase;
-            color: white;
-            background-color: transparent;
-        }
-
-        /* Estilos para el popup */
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-        }
-
-        .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            z-index: 1000;
-            width: 350px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            font-family: 'Arial', sans-serif;
-        }
-
-        .popup h3 {
-            text-align: center;
-            color: #333;
-            font-size: 1.4rem;
-            margin-bottom: 20px;
-        }
-
-        .popup input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            background-color: #f9f9f9;
-            font-size: 1rem;
-        }
-
-        .popup input[type="file"] {
-            padding: 8px;
-            margin-bottom: 15px;
-        }
-
-        .popup button {
-            width: 100%;
-            padding: 12px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .popup button:hover {
-            background-color: #0056b3;
-        }
-
-        .popup img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            display: block;
-            margin: 0 auto;
-        }
-
-    </style>
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
-        import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js";
-        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyApSaOgcRtzrjRwpte-ildmMWjJOJGh8A4",
-            authDomain: "pag-jjjs-food.firebaseapp.com",
-            projectId: "pag-jjjs-food",
-            storageBucket: "pag-jjjs-food.firebasestorage.app",
-            messagingSenderId: "814785661667",
-            appId: "1:814785661667:web:986deef1b40342131613d6",
-            measurementId: "G-DE8V6BR2GS"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const provider = new GoogleAuthProvider();
-        const db = getFirestore(app);
-
-        const overlay = document.getElementById('overlay');
-        const popup = document.getElementById('popup');
-        const profilePicture = document.getElementById('profilePicture');
-        const userName = document.getElementById('userName');
-        const userEmail = document.getElementById('userEmail');
-        const phoneNumber = document.getElementById('phoneNumber');
-        const documentNumber = document.getElementById('documentNumber');
-
-        async function loginWithGoogle() {
-            try {
-                const result = await signInWithPopup(auth, provider);
-                const user = result.user;
-                console.log("Usuario autenticado con Google:", user);
-
-                // Mostrar popup
-                overlay.style.display = 'block';
-                popup.style.display = 'block';
-
-                // Rellenar los campos del formulario con los datos del usuario
-                profilePicture.src = user.photoURL || 'default-avatar.png';
-                userName.value = user.displayName || '';
-                userEmail.value = user.email || '';
-
-                // Guardar datos en Firestore
-                await setDoc(doc(db, "users", user.uid), {
-                    displayName: user.displayName,
-                    email: user.email,
-                    photoURL: user.photoURL
-                });
-
-            } catch (error) {
-                console.error("Error en autenticación con Google:", error);
-                alert('Error en autenticación con Google');
-            }
-        }
-
-        window.onload = function() {
-            document.getElementById("googleSignInButton").addEventListener('click', loginWithGoogle);
-        };
-
-        document.getElementById('changePhoto').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    profilePicture.src = event.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        document.getElementById('saveButton').addEventListener('click', async () => {
-            const data = {
-                name: userName.value,
-                phone: phoneNumber.value,
-                email: userEmail.value,
-                document: documentNumber.value
-            };
-
-            // Validaciones
-            if (!/^[0-9]+$/.test(phoneNumber.value)) {
-                alert('El número de teléfono debe contener solo números.');
-                return;
-            }
-
-            if (!/^[0-9]+$/.test(documentNumber.value)) {
-                alert('El número de documento debe contener solo números.');
-                return;
-            }
-
-            try {
-                // Guardar datos adicionales en Firestore
-                const user = auth.currentUser;
-                await setDoc(doc(db, "users", user.uid), data, { merge: true });
-
-                alert('Datos guardados correctamente.');
-                overlay.style.display = 'none';
-                popup.style.display = 'none';
-                window.location.href = 'Principal.html';
-            } catch (error) {
-                console.error("Error al guardar los datos:", error);
-                alert('Error al guardar los datos');
-            }
-        });
-    </script>
-</head>
-<body>
-    <a href="javascript:history.back()" class="back-button">
-        <img src="Imagenes/VOLVER.png" alt="Regresar" />
-    </a>    
+<body class="locked">
+    <!-- Pantalla de carga -->
+    <div id="loading-screen">
+        <i class='bx bx-conversation'></i>
+    </div>
 
     <div class="wrapper">
         <form id="loginForm" class="active">
@@ -352,24 +55,367 @@
         </form>
     </div>
 
-    <!-- Popup -->
-    <div class="overlay" id="overlay"></div>
-    <div class="popup" id="popup">
-        <form id="userDataForm">
-            <h3>Completa tu perfil</h3>
-            <img id="profilePicture" src="" alt="Foto de perfil">
-            <input type="file" id="changePhoto" accept="image/*">
-            <input type="text" id="userName" maxlength="14" placeholder="Nombre de la cuenta">
-            <input type="tel" id="phoneNumber" placeholder="Número de teléfono" maxlength="10" pattern="[0-9]{10}">
-            <input type="email" id="userEmail" placeholder="Correo electrónico">
-            <input type="text" id="documentNumber" placeholder="Número de documento">
-            <button id="saveButton">Guardar</button>
-        </form>
-    </div>
+    <script>
+        // ========== CONFIGURACIÓN DE FIREBASE ==========
+        const firebaseConfig = {
+            apiKey: "AIzaSyCbemUTCYHJYcbiX5U4DaQuaJa8Mh6EdyY",
+            authDomain: "login-pagina-9a2b2.firebaseapp.com",
+            projectId: "login-pagina-9a2b2",
+            storageBucket: "login-pagina-9a2b2.firebasestorage.app",
+            messagingSenderId: "676654795358",
+            appId: "1:676654795358:web:c455962c22670fd0b002cf",
+            measurementId: "G-TE86DMGMBV"
+        };
 
-    <!-- Scripts -->
-    <script src="JS/PantallaCarga.js"></script>
-    <script src="JS/Buscador.js"></script>
-    <script src="JS/Siderbar.js"></script>
+        // Inicializar Firebase
+        let app, auth, db;
+        try {
+            app = firebase.initializeApp(firebaseConfig);
+            auth = firebase.auth();
+            db = firebase.firestore();
+            console.log('✅ Firebase inicializado correctamente');
+        } catch (error) {
+            console.error('❌ Error al inicializar Firebase:', error);
+            console.log('🔧 Para configurar Firebase, sigue estos pasos:');
+            console.log('1. Ve a https://console.firebase.google.com/');
+            console.log('2. Crea un nuevo proyecto');
+            console.log('3. Habilita Authentication y Firestore');
+            console.log('4. Copia tu configuración aquí');
+        }
+
+        // ========== PANTALLA DE CARGA ==========
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                const loadingScreen = document.getElementById('loading-screen');
+                loadingScreen.classList.add('hidden');
+                document.body.classList.remove('locked');
+            }, 2000);
+        });
+
+        // ========== FUNCIONES DE FIREBASE ==========
+        async function loginWithFirebase(email, password) {
+            try {
+                const userCredential = await auth.signInWithEmailAndPassword(email, password);
+                const user = userCredential.user;
+                
+                // Obtener datos adicionales del usuario desde Firestore
+                const userDoc = await db.collection('users').doc(user.uid).get();
+                const userData = userDoc.data();
+                
+                return {
+                    success: true,
+                    user: {
+                        uid: user.uid,
+                        email: user.email,
+                        name: userData?.name || 'Usuario',
+                        emailVerified: user.emailVerified,
+                        createdAt: userData?.createdAt,
+                        lastLogin: new Date().toISOString()
+                    }
+                };
+            } catch (error) {
+                return {
+                    success: false,
+                    error: error.code,
+                    message: getFirebaseErrorMessage(error.code)
+                };
+            }
+        }
+
+        async function registerWithFirebase(email, password, name) {
+            try {
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                const user = userCredential.user;
+                
+                // Actualizar perfil con el nombre
+                await user.updateProfile({
+                    displayName: name
+                });
+                
+                // Guardar datos adicionales en Firestore
+                await db.collection('users').doc(user.uid).set({
+                    name: name,
+                    email: email,
+                    createdAt: new Date().toISOString(),
+                    emailVerified: false
+                });
+                
+                // Enviar email de verificación
+                await user.sendEmailVerification();
+                
+                return {
+                    success: true,
+                    user: {
+                        uid: user.uid,
+                        email: user.email,
+                        name: name,
+                        emailVerified: false
+                    }
+                };
+            } catch (error) {
+                return {
+                    success: false,
+                    error: error.code,
+                    message: getFirebaseErrorMessage(error.code)
+                };
+            }
+        }
+
+        async function loginWithGoogle() {
+            try {
+                const provider = new firebase.auth.GoogleAuthProvider();
+                const result = await auth.signInWithPopup(provider);
+                const user = result.user;
+                
+                // Guardar o actualizar datos en Firestore
+                await db.collection('users').doc(user.uid).set({
+                    name: user.displayName,
+                    email: user.email,
+                    lastLogin: new Date().toISOString(),
+                    provider: 'google'
+                }, { merge: true });
+                
+                return {
+                    success: true,
+                    user: {
+                        uid: user.uid,
+                        email: user.email,
+                        name: user.displayName,
+                        photoURL: user.photoURL,
+                        provider: 'google'
+                    }
+                };
+            } catch (error) {
+                return {
+                    success: false,
+                    error: error.code,
+                    message: getFirebaseErrorMessage(error.code)
+                };
+            }
+        }
+
+        function getFirebaseErrorMessage(errorCode) {
+            const messages = {
+                'auth/user-not-found': 'No existe una cuenta con este correo electrónico.',
+                'auth/wrong-password': 'Contraseña incorrecta.',
+                'auth/email-already-in-use': 'Ya existe una cuenta con este correo electrónico.',
+                'auth/weak-password': 'La contraseña debe tener al menos 6 caracteres.',
+                'auth/invalid-email': 'El correo electrónico no es válido.',
+                'auth/too-many-requests': 'Demasiados intentos fallidos. Intenta más tarde.',
+                'auth/network-request-failed': 'Error de conexión. Verifica tu internet.',
+                'auth/popup-closed-by-user': 'Ventana de autenticación cerrada.',
+                'auth/cancelled-popup-request': 'Solicitud cancelada.',
+                'default': 'Error de autenticación. Intenta nuevamente.'
+            };
+            return messages[errorCode] || messages['default'];
+        }
+
+        // ========== FUNCIONES DE UTILIDAD ==========
+        function loadRememberedEmail() {
+            const remembered = localStorage.getItem('rememberedEmail');
+            if (remembered) {
+                document.getElementById('email').value = remembered;
+                document.getElementById('remember').checked = true;
+            }
+        }
+
+        function saveRememberedEmail(email, remember) {
+            if (remember) {
+                localStorage.setItem('rememberedEmail', email);
+            } else {
+                localStorage.removeItem('rememberedEmail');
+            }
+        }
+
+        function saveUserSession(userData) {
+            sessionStorage.setItem('currentUser', JSON.stringify(userData));
+        }
+
+        function showLoginSuccess(userData) {
+            const submitButton = document.querySelector('button[type="submit"]');
+            submitButton.textContent = '¡Bienvenido!';
+            submitButton.style.background = '#28a745';
+            
+            setTimeout(() => {
+                alert(`¡Bienvenido ${userData.name}! 🎉\n\n` +
+                      `Email: ${userData.email}\n` +
+                      `Última conexión: ${new Date().toLocaleString()}\n\n` +
+                      `Datos guardados en Firebase ✅`);
+                
+                console.log('Usuario autenticado:', userData);
+                resetForm();
+                
+                // Aquí redirigirías a tu página principal
+                // window.location.href = 'dashboard.html';
+            }, 1000);
+        }
+
+        function showLoginError(message) {
+            const submitButton = document.querySelector('button[type="submit"]');
+            submitButton.textContent = 'Error de acceso';
+            submitButton.style.background = '#dc3545';
+            
+            setTimeout(() => {
+                alert(`❌ Error: ${message}`);
+                resetForm();
+            }, 1000);
+        }
+
+        // ========== VALIDACIÓN DEL FORMULARIO ==========
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const remember = document.getElementById('remember').checked;
+            const emailError = document.getElementById('emailError');
+            const passwordError = document.getElementById('passwordError');
+            const submitButton = this.querySelector('button[type="submit"]');
+            
+            // Reset errores
+            emailError.classList.remove('show');
+            passwordError.classList.remove('show');
+            
+            let hasErrors = false;
+            
+            // Validar email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email || !emailRegex.test(email)) {
+                emailError.textContent = 'Por favor, introduce un correo válido.';
+                emailError.classList.add('show');
+                hasErrors = true;
+            }
+            
+            // Validar contraseña
+            if (!password || password.length < 6) {
+                passwordError.textContent = 'La contraseña debe tener al menos 6 caracteres.';
+                passwordError.classList.add('show');
+                hasErrors = true;
+            }
+            
+            if (hasErrors) return;
+            
+            // Mostrar estado de carga
+            submitButton.textContent = 'Conectando a Firebase...';
+            submitButton.disabled = true;
+            
+            // Intentar login con Firebase
+            const result = await loginWithFirebase(email, password);
+            
+            if (result.success) {
+                // LOGIN EXITOSO
+                saveUserSession(result.user);
+                saveRememberedEmail(email, remember);
+                showLoginSuccess(result.user);
+            } else {
+                // LOGIN FALLIDO
+                showLoginError(result.message);
+                
+                // Mostrar error específico en el campo correspondiente
+                if (result.error === 'auth/user-not-found') {
+                    emailError.textContent = result.message;
+                    emailError.classList.add('show');
+                } else if (result.error === 'auth/wrong-password') {
+                    passwordError.textContent = result.message;
+                    passwordError.classList.add('show');
+                }
+            }
+        });
+
+        function resetForm() {
+            const submitButton = document.querySelector('button[type="submit"]');
+            submitButton.textContent = 'Entrar';
+            submitButton.disabled = false;
+            submitButton.style.background = '';
+        }
+
+        // ========== BOTONES SOCIALES ==========
+        document.getElementById('googleSignInButton').addEventListener('click', async function() {
+            const button = this;
+            button.textContent = 'Conectando con Google...';
+            button.disabled = true;
+            
+            const result = await loginWithGoogle();
+            
+            if (result.success) {
+                saveUserSession(result.user);
+                showLoginSuccess(result.user);
+            } else {
+                showLoginError(result.message);
+            }
+            
+            button.textContent = 'Iniciar sesión con Google';
+            button.disabled = false;
+        });
+
+        document.querySelector('.facebook-button').addEventListener('click', function() {
+            alert('🔧 Facebook Login en desarrollo\n\n' +
+                  'Para implementar Facebook necesitas:\n' +
+                  '• Habilitar Facebook en Firebase Authentication\n' +
+                  '• Configurar Facebook App ID\n' +
+                  '• Agregar dominio autorizado');
+        });
+
+        // ========== FUNCIONES DE DESARROLLO ==========
+        function showFirebaseStatus() {
+            console.log('=== ESTADO DE FIREBASE ===');
+            console.log('Auth:', auth ? '✅ Conectado' : '❌ No inicializado');
+            console.log('Firestore:', db ? '✅ Conectado' : '❌ No inicializado');
+            console.log('Usuario actual:', auth?.currentUser || 'No autenticado');
+            console.log('Sesión local:', JSON.parse(sessionStorage.getItem('currentUser') || 'null'));
+        }
+
+        async function createTestUser() {
+            const email = prompt('Email del usuario de prueba:');
+            const password = prompt('Contraseña (mínimo 6 caracteres):');
+            const name = prompt('Nombre del usuario:') || 'Usuario Test';
+            
+            if (email && password) {
+                const result = await registerWithFirebase(email, password, name);
+                if (result.success) {
+                    alert(`✅ Usuario ${name} creado exitosamente!\n\nRevisa tu email para verificar la cuenta.`);
+                } else {
+                    alert(`❌ Error: ${result.message}`);
+                }
+            }
+        }
+
+        function toggleForms() {
+            alert('🚧 Página de registro en desarrollo\n\n¿Quieres que te ayude a crearla?\n\nMientras tanto, usa createTestUser() en la consola para crear usuarios.');
+        }
+
+        // ========== MONITOREO DE AUTENTICACIÓN ==========
+        auth?.onAuthStateChanged(function(user) {
+            if (user) {
+                console.log('👤 Usuario autenticado:', user.email);
+                // Actualizar última conexión
+                if (db) {
+                    db.collection('users').doc(user.uid).update({
+                        lastLogin: new Date().toISOString()
+                    }).catch(console.error);
+                }
+            } else {
+                console.log('👤 Usuario no autenticado');
+            }
+        });
+
+        // ========== INICIALIZACIÓN ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            loadRememberedEmail();
+            
+            // Funciones disponibles en consola
+            window.showFirebaseStatus = showFirebaseStatus;
+            window.createTestUser = createTestUser;
+            
+            console.log('=== SISTEMA DE LOGIN CON FIREBASE ===');
+            console.log('🔧 Funciones disponibles en consola:');
+            console.log('• showFirebaseStatus() - Ver estado de Firebase');
+            console.log('• createTestUser() - Crear usuario de prueba');
+            console.log('\n📋 Para configurar Firebase:');
+            console.log('1. Ve a https://console.firebase.google.com/');
+            console.log('2. Crea proyecto → Habilita Authentication y Firestore');
+            console.log('3. Copia tu config en firebaseConfig');
+        });
+    </script>
 </body>
 </html>
