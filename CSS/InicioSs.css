@@ -13,7 +13,7 @@ body {
     justify-content: center;
     min-height: 100vh;
     padding: 0 10px;
-    background: url("/Imagenes/PERROS BLACK 4.png") center / cover no-repeat;
+    background: url("../Imagenes/PERROS BLACK 4.png") center / cover no-repeat;
     position: relative;
     overflow: hidden;
 }

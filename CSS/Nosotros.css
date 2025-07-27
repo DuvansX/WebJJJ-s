@@ -11,7 +11,7 @@ body {
     display: grid;
     align-items: center;
     justify-content: center;
-    background: url('/Imagenes/Nosotros/Fondo\ Nostros.jpg') no-repeat center center fixed;
+    background: url('../Imagenes/Nosotros/Fondo\ Nostros.jpg') no-repeat center center fixed;
     background-size: cover;
     z-index: -2;
 }
@@ -200,7 +200,7 @@ body {
 
 /* Estilo para PC (Sin cambios) */
 .card {
-    background: url('/Imagenes/Nosotros/FondoParaNosotros.webp');
+    background: url('../Imagenes/Nosotros/FondoParaNosotros.webp');
     border-radius: 20px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     overflow: hidden;

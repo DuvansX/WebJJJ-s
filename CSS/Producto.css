@@ -12,7 +12,7 @@ body {
     min-height: 100vh;
     width: 100%;
     background-color: #000000;
-    background: url('/Imagenes/Food/Fondo Perros.jpeg') no-repeat center center fixed;
+    background: url('../Imagenes/Food/Fondo Perros.jpeg') no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -269,7 +269,7 @@ main {
 }
 
 .product {
-    background-image: url('/Imagenes/Food/Carta.webp');
+    background-image: url('../Imagenes/Food/Carta.webp');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
