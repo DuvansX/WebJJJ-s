@@ -21,6 +21,11 @@
       <i class='bx bxs-user-circle'></i>
     </div>
 
+    <!-- Botón de retroceso -->
+    <button class="back-btn" onclick="window.history.back()">
+        <i class='bx bx-x'></i>
+    </button>
+
 <script>
     window.addEventListener("load", function() {
         let loadingScreen = document.getElementById("loading-screen");
@@ -51,7 +56,9 @@
                         <input type="checkbox" id="remember">
                         <p>Recordar</p>
                     </label>
-                    <a href="#">¿Olvidó su contraseña?</a>
+                    <a href="#" id="forgotPasswordLink" style="color: #667eea; text-decoration: none; font-size: 14px;">
+    ¿Olvidaste tu contraseña?
+</a>
                 </div>
                 <button type="submit">Entrar</button>
                 <div class="social-buttons">
@@ -153,9 +160,6 @@
                     <button type="button" class="edit-profile-btn" onclick="editProfile()">
                         <i class='bx bx-edit'></i> Editar Perfil
                     </button>
-                    <button type="button" class="main-page-btn" onclick="goToMainPage()">
-                        <i class='bx bx-home'></i> Ir a Página Principal
-                    </button>
                     <button type="button" class="logout-btn" onclick="logoutUser()">
                         <i class='bx bx-log-out'></i> Cerrar Sesión
                     </button>
@@ -166,6 +170,8 @@
                     <small>Último acceso: <span id="lastLogin">--</span></small>
                 </div>
             </div>
+
+            <!-- FORMULARIO DE DATOS ADICIONALES -->
             <form id="additionalDataForm" class="form inactive additional-data-form">
                 <h2>Completa tu Perfil</h2>
                 <p class="subtitle">Necesitamos algunos datos adicionales para personalizar tu experiencia</p>
@@ -264,684 +270,656 @@
                 <button type="submit">Guardar y Continuar</button>
                 <button type="button" class="skip-button" onclick="skipAdditionalData()">Completar más tarde</button>
             </form>
+
+            <!-- FORMULARIO DE EDICIÓN DE PERFIL -->
+            <form id="editProfileForm" class="form inactive edit-profile-form">
+                <h2>Editar Perfil</h2>
+                <div class="input-field">
+                    <input type="text" id="editName" required>
+                    <label for="editName">Nombre completo</label>
+                </div>
+                
+                <div class="phone-input-container">
+                    <div class="input-field country-code">
+                        <select id="editCountryCode" required>
+                            <option value="+57">🇨🇴 +57</option>
+                        </select>
+                        <label for="editCountryCode">País</label>
+                    </div>
+                    <div class="input-field phone-number">
+                        <input type="tel" id="editPhoneNumber" required maxlength="10" pattern="[3][0-9]{9}">
+                        <label for="editPhoneNumber">Número de teléfono</label>
+                        <p class="error" id="editPhoneError">Ingresa un número válido (debe iniciar con 3)</p>
+                    </div>
+                </div>
+
+                <div class="document-container">
+                    <div class="input-field document-type">
+                        <select id="editDocumentType" required>
+                            <option value="">Tipo</option>
+                            <option value="CC">Cédula</option>
+                            <option value="TI">Tarjeta ID</option>
+                            <option value="CE">Cédula Ext</option>
+                            <option value="PP">Pasaporte</option>
+                        </select>
+                        <label for="editDocumentType">Documento</label>
+                    </div>
+                    <div class="input-field document-number">
+                        <input type="text" id="editDocumentNumber" required maxlength="15" pattern="[0-9]+">
+                        <label for="editDocumentNumber">Número de documento</label>
+                        <p class="error" id="editDocumentError">Solo números, sin puntos ni comas</p>
+                    </div>
+                </div>
+
+                <div class="department-city-container">
+                    <div class="input-field department-field">
+                        <select id="editDepartment" required>
+                            <option value="">Departamento</option>
+                            <option value="Amazonas">Amazonas</option>
+                            <option value="Antioquia">Antioquia</option>
+                            <option value="Arauca">Arauca</option>
+                            <option value="Atlántico">Atlántico</option>
+                            <option value="Bogotá D.C.">Bogotá D.C.</option>
+                            <option value="Bolívar">Bolívar</option>
+                            <option value="Boyacá">Boyacá</option>
+                            <option value="Caldas">Caldas</option>
+                            <option value="Caquetá">Caquetá</option>
+                            <option value="Casanare">Casanare</option>
+                            <option value="Cauca">Cauca</option>
+                            <option value="Cesar">Cesar</option>
+                            <option value="Chocó">Chocó</option>
+                            <option value="Córdoba">Córdoba</option>
+                            <option value="Cundinamarca">Cundinamarca</option>
+                            <option value="Guainía">Guainía</option>
+                            <option value="Guaviare">Guaviare</option>
+                            <option value="Huila">Huila</option>
+                            <option value="La Guajira">La Guajira</option>
+                            <option value="Magdalena">Magdalena</option>
+                            <option value="Meta">Meta</option>
+                            <option value="Nariño">Nariño</option>
+                            <option value="Norte de Santander">Norte de Santander</option>
+                            <option value="Putumayo">Putumayo</option>
+                            <option value="Quindío">Quindío</option>
+                            <option value="Risaralda">Risaralda</option>
+                            <option value="San Andrés y Providencia">San Andrés y Providencia</option>
+                            <option value="Santander">Santander</option>
+                            <option value="Sucre">Sucre</option>
+                            <option value="Tolima">Tolima</option>
+                            <option value="Valle del Cauca">Valle del Cauca</option>
+                            <option value="Vaupés">Vaupés</option>
+                            <option value="Vichada">Vichada</option>
+                        </select>
+                        <label for="editDepartment">Departamento</label>
+                    </div>
+                    <div class="input-field city-field">
+                        <input type="text" id="editCity" required>
+                        <label for="editCity">Ciudad</label>
+                        <p class="error" id="editCityError">Por favor, ingresa tu ciudad</p>
+                    </div>
+                </div>
+
+                <div class="input-field">
+                    <input type="text" id="editAddress" required>
+                    <label for="editAddress">Dirección completa</label>
+                    <p class="error" id="editAddressError">Por favor, ingresa tu dirección</p>
+                </div>
+
+                <button type="submit">Guardar Cambios</button>
+                <button type="button" class="cancel-button" onclick="cancelEditProfile()">Cancelar</button>
+            </form>
         </div>
     </div>
+    <!-- Modal para recuperación de contraseña -->
+<div id="passwordResetModal" class="reset-modal">
+  <div class="reset-modal-content">
+    <span class="close-reset-modal">&times;</span>
+    <div class="reset-modal-header">
+      <i class='bx bx-lock-alt'></i>
+      <h3>Recuperar contraseña</h3>
+    </div>
+    <div class="reset-modal-body">
+      <div class="input-field">
+        <input type="email" id="resetEmail" required>
+        <label for="resetEmail">Correo electrónico registrado</label>
+        <p class="error" id="resetEmailError"></p>
+      </div>
+    </div>
+    <div class="reset-modal-footer">
+      <button id="cancelResetBtn" class="cancel-btn">Cancelar</button>
+      <button id="confirmResetBtn" class="confirm-btn">Enviar enlace</button>
+    </div>
+  </div>
+</div>
 
     <script>
-        // ========== CONFIGURACIÓN DE FIREBASE ==========
-        const firebaseConfig = {
-            apiKey: "AIzaSyCbemUTCYHJYcbiX5U4DaQuaJa8Mh6EdyY",
-            authDomain: "login-pagina-9a2b2.firebaseapp.com",
-            projectId: "login-pagina-9a2b2",
-            storageBucket: "login-pagina-9a2b2.firebasestorage.app",
-            messagingSenderId: "676654795358",
-            appId: "1:676654795358:web:c455962c22670fd0b002cf",
-            measurementId: "G-TE86DMGMBV"
-        };
+    // ========== CONFIGURACIÓN DE FIREBASE ==========
+    const firebaseConfig = {
+        apiKey: "AIzaSyCbemUTCYHJYcbiX5U4DaQuaJa8Mh6EdyY",
+        authDomain: "login-pagina-9a2b2.firebaseapp.com",
+        projectId: "login-pagina-9a2b2",
+        storageBucket: "login-pagina-9a2b2.firebasestorage.app",
+        messagingSenderId: "676654795358",
+        appId: "1:676654795358:web:c455962c22670fd0b002cf",
+        measurementId: "G-TE86DMGMBV"
+    };
 
-        // Inicializar Firebase
-        let app, auth, db, storage;
+    // Inicializar Firebase
+    let app, auth, db, storage;
+    try {
+        app = firebase.initializeApp(firebaseConfig);
+        auth = firebase.auth();
+        db = firebase.firestore();
+        storage = firebase.storage();
+        console.log('✅ Firebase inicializado correctamente');
+    } catch (error) {
+        console.error('❌ Error al inicializar Firebase:', error);
+        alert('Error de configuración de Firebase. Revisa la consola para más detalles.');
+    }
+
+    // ========== VARIABLES GLOBALES ==========
+    let currentForm = 'login'; // 'login', 'register', 'additionalData', 'editProfile'
+    let currentUser = null;
+
+    // ========== PANTALLA DE CARGA ==========
+    window.addEventListener('load', function() {
+        setTimeout(() => {
+            const loadingScreen = document.getElementById('loading-screen');
+            loadingScreen.classList.add('hidden');
+            document.body.classList.remove('locked');
+        }, 2000);
+    });
+
+    // ========== FUNCIONES DE NAVEGACIÓN ==========
+    function showForm(formName) {
+        // Ocultar todos los formularios
+        document.querySelectorAll('.form').forEach(form => {
+            form.classList.remove('active');
+            form.classList.add('inactive');
+        });
+
+        // Mostrar formulario específico
+        let targetForm;
+        if (formName === 'user') {
+            targetForm = document.getElementById('userPanel');
+        } else if (formName === 'editProfile') {
+            targetForm = document.getElementById('editProfileForm');
+        } else {
+            targetForm = document.getElementById(formName + 'Form');
+        }
+        
+        if (targetForm) {
+            targetForm.classList.remove('inactive');
+            targetForm.classList.add('active');
+            currentForm = formName;
+        }
+    }
+
+    function toggleForms() {
+        if (currentForm === 'login') {
+            showForm('register');
+        } else {
+            showForm('login');
+        }
+        clearFormErrors();
+    }
+
+    function clearFormErrors() {
+        document.querySelectorAll('.error').forEach(error => error.classList.remove('show'));
+        document.querySelectorAll('.success').forEach(success => success.classList.remove('show'));
+    }
+
+    // ========== FUNCIONES DE VALIDACIÓN ==========
+    function validateEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    function validateColombianPhone(phone) {
+        const phoneRegex = /^3[0-9]{9}$/;
+        return phoneRegex.test(phone);
+    }
+
+    function validateDocument(docNumber) {
+        const docRegex = /^[0-9]+$/;
+        return docRegex.test(docNumber) && docNumber.length >= 6 && docNumber.length <= 15;
+    }
+
+    function checkPasswordStrength(password) {
+        const strengthElement = document.getElementById('passwordStrength');
+        let strength = 0;
+        let message = '';
+        
+        if (password.length >= 8) strength++;
+        if (/[A-Z]/.test(password)) strength++;
+        if (/[a-z]/.test(password)) strength++;
+        if (/[0-9]/.test(password)) strength++;
+        if (/[^A-Za-z0-9]/.test(password)) strength++;
+        
+        if (password.length < 6) {
+            strengthElement.className = 'password-strength weak';
+            message = 'Muy débil - Mínimo 6 caracteres';
+        } else if (strength <= 2) {
+            strengthElement.className = 'password-strength weak';
+            message = 'Débil - Usa mayúsculas, números y símbolos';
+        } else if (strength <= 3) {
+            strengthElement.className = 'password-strength medium';
+            message = 'Media - Agrega más variedad';
+        } else {
+            strengthElement.className = 'password-strength strong';
+            message = 'Fuerte ✓';
+        }
+        
+        strengthElement.textContent = message;
+    }
+
+    // ========== FUNCIONES DE AUTENTICACIÓN ==========
+    async function registerWithFirebase(email, password, name) {
         try {
-            app = firebase.initializeApp(firebaseConfig);
-            auth = firebase.auth();
-            db = firebase.firestore();
-            storage = firebase.storage();
-            console.log('✅ Firebase inicializado correctamente');
-        } catch (error) {
-            console.error('❌ Error al inicializar Firebase:', error);
-            alert('Error de configuración de Firebase. Revisa la consola para más detalles.');
-        }
-
-        // ========== VARIABLES GLOBALES ==========
-        let currentForm = 'login'; // 'login', 'register', 'additionalData'
-        let currentUser = null;
-
-        // ========== PANTALLA DE CARGA ==========
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                const loadingScreen = document.getElementById('loading-screen');
-                loadingScreen.classList.add('hidden');
-                document.body.classList.remove('locked');
-            }, 2000);
-        });
-
-        // ========== FUNCIONES DE NAVEGACIÓN ==========
-        function showForm(formName) {
-            // Ocultar todos los formularios
-            document.querySelectorAll('.form').forEach(form => {
-                form.classList.remove('active');
-                form.classList.add('inactive');
-            });
-
-            // Mostrar formulario específico
-            const targetForm = document.getElementById(formName + 'Form');
-            if (targetForm) {
-                targetForm.classList.remove('inactive');
-                targetForm.classList.add('active');
-                currentForm = formName;
-            }
-        }
-
-        function toggleForms() {
-            if (currentForm === 'login') {
-                showForm('register');
-            } else {
-                showForm('login');
-            }
-            clearFormErrors();
-        }
-
-        function clearFormErrors() {
-            document.querySelectorAll('.error').forEach(error => error.classList.remove('show'));
-            document.querySelectorAll('.success').forEach(success => success.classList.remove('show'));
-        }
-
-        // ========== FUNCIONES DE VALIDACIÓN ==========
-        function validateEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
-        }
-
-        function validateColombianPhone(phone) {
-            // Números colombianos: inician con 3 y tienen 10 dígitos
-            const phoneRegex = /^3[0-9]{9}$/;
-            return phoneRegex.test(phone);
-        }
-
-        function validateDocument(docNumber) {
-            // Solo números, sin puntos ni comas
-            const docRegex = /^[0-9]+$/;
-            return docRegex.test(docNumber) && docNumber.length >= 6 && docNumber.length <= 15;
-        }
-
-        function checkPasswordStrength(password) {
-            const strengthElement = document.getElementById('passwordStrength');
-            let strength = 0;
-            let message = '';
+            console.log('📝 Creando usuario:', email);
             
-            if (password.length >= 8) strength++;
-            if (/[A-Z]/.test(password)) strength++;
-            if (/[a-z]/.test(password)) strength++;
-            if (/[0-9]/.test(password)) strength++;
-            if (/[^A-Za-z0-9]/.test(password)) strength++;
+            const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+            const user = userCredential.user;
             
-            if (password.length < 6) {
-                strengthElement.className = 'password-strength weak';
-                message = 'Muy débil - Mínimo 6 caracteres';
-            } else if (strength <= 2) {
-                strengthElement.className = 'password-strength weak';
-                message = 'Débil - Usa mayúsculas, números y símbolos';
-            } else if (strength <= 3) {
-                strengthElement.className = 'password-strength medium';
-                message = 'Media - Agrega más variedad';
-            } else {
-                strengthElement.className = 'password-strength strong';
-                message = 'Fuerte ✓';
-            }
+            console.log('✅ Usuario creado en Auth:', user.uid);
             
-            strengthElement.textContent = message;
-        }
-
-        // ========== VALIDACIÓN EN TIEMPO REAL ==========
-        document.addEventListener('DOMContentLoaded', function() {
-            // Validación de email en registro
-            document.getElementById('registerEmail')?.addEventListener('input', function() {
-                const email = this.value;
-                const emailError = document.getElementById('registerEmailError');
-                const emailSuccess = document.getElementById('registerEmailSuccess');
-                
-                if (email && validateEmail(email)) {
-                    emailError.classList.remove('show');
-                    emailSuccess.classList.add('show');
-                } else if (email) {
-                    emailSuccess.classList.remove('show');
-                    emailError.classList.add('show');
-                } else {
-                    emailError.classList.remove('show');
-                    emailSuccess.classList.remove('show');
-                }
-            });
-
-            // Validación de contraseña
-            document.getElementById('registerPassword')?.addEventListener('input', function() {
-                const password = this.value;
-                if (password) {
-                    checkPasswordStrength(password);
-                } else {
-                    document.getElementById('passwordStrength').style.display = 'none';
-                }
-            });
-
-            // Validación de confirmación de contraseña
-            document.getElementById('confirmPassword')?.addEventListener('input', function() {
-                const password = document.getElementById('registerPassword').value;
-                const confirmPassword = this.value;
-                const confirmError = document.getElementById('confirmPasswordError');
-                const confirmSuccess = document.getElementById('confirmPasswordSuccess');
-                
-                if (confirmPassword && password === confirmPassword) {
-                    confirmError.classList.remove('show');
-                    confirmSuccess.classList.add('show');
-                } else if (confirmPassword) {
-                    confirmSuccess.classList.remove('show');
-                    confirmError.classList.add('show');
-                } else {
-                    confirmError.classList.remove('show');
-                    confirmSuccess.classList.remove('show');
-                }
-            });
-
-            // Validación de teléfono colombiano
-            document.getElementById('phoneNumber')?.addEventListener('input', function() {
-                const phone = this.value;
-                const phoneError = document.getElementById('phoneError');
-                const phoneSuccess = document.getElementById('phoneSuccess');
-                
-                if (phone && validateColombianPhone(phone)) {
-                    phoneError.classList.remove('show');
-                    phoneSuccess.classList.add('show');
-                } else if (phone) {
-                    phoneSuccess.classList.remove('show');
-                    phoneError.classList.add('show');
-                } else {
-                    phoneError.classList.remove('show');
-                    phoneSuccess.classList.remove('show');
-                }
-            });
-
-            // Validación de documento
-            document.getElementById('documentNumber')?.addEventListener('input', function() {
-                const docNumber = this.value;
-                const docError = document.getElementById('documentError');
-                const docSuccess = document.getElementById('documentSuccess');
-                
-                if (docNumber && validateDocument(docNumber)) {
-                    docError.classList.remove('show');
-                    docSuccess.classList.add('show');
-                } else if (docNumber) {
-                    docSuccess.classList.remove('show');
-                    docError.classList.add('show');
-                } else {
-                    docError.classList.remove('show');
-                    docSuccess.classList.remove('show');
-                }
-            });
-        });
-
-        // ========== FUNCIONES DE AUTENTICACIÓN ==========
-        async function registerWithFirebase(email, password, name) {
+            await user.updateProfile({ displayName: name });
+            
+            const userData = {
+                name: name,
+                email: email,
+                createdAt: new Date().toISOString(),
+                emailVerified: false,
+                provider: 'email',
+                uid: user.uid,
+                profileComplete: false,
+                photoURL: null
+            };
+            
+            await db.collection('users').doc(user.uid).set(userData);
+            console.log('✅ Usuario guardado en Firestore');
+            
             try {
-                console.log('📝 Creando usuario:', email);
-                
-                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-                const user = userCredential.user;
-                
-                console.log('✅ Usuario creado en Auth:', user.uid);
-                
-                await user.updateProfile({ displayName: name });
-                
-                const userData = {
-                    name: name,
-                    email: email,
-                    createdAt: new Date().toISOString(),
-                    emailVerified: false,
-                    provider: 'email',
+                await user.sendEmailVerification();
+                console.log('📧 Email de verificación enviado');
+            } catch (emailError) {
+                console.warn('⚠️ No se pudo enviar email de verificación:', emailError);
+            }
+            
+            return {
+                success: true,
+                user: userData
+            };
+        } catch (error) {
+            console.error('❌ Error en registro:', error);
+            return {
+                success: false,
+                error: error.code,
+                message: getFirebaseErrorMessage(error.code)
+            };
+        }
+    }
+
+    async function loginWithEmail(email, password) {
+        try {
+            console.log('🔐 Intentando login con:', email);
+            const userCredential = await auth.signInWithEmailAndPassword(email, password);
+            const user = userCredential.user;
+            
+            console.log('✅ Login exitoso:', user.uid);
+            
+            const userDoc = await db.collection('users').doc(user.uid).get();
+            const userData = userDoc.data();
+            
+            return {
+                success: true,
+                user: {
                     uid: user.uid,
-                    profileComplete: false, // Indica si completó datos adicionales
-                    photoURL: null
+                    email: user.email,
+                    name: user.displayName || userData?.name || 'Usuario',
+                    emailVerified: user.emailVerified,
+                    profileComplete: userData?.profileComplete || false,
+                    ...userData
+                }
+            };
+        } catch (error) {
+            console.error('❌ Error en login:', error);
+            return {
+                success: false,
+                error: error.code,
+                message: getFirebaseErrorMessage(error.code)
+            };
+        }
+    }
+
+    async function loginWithGoogle() {
+        try {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            const result = await auth.signInWithPopup(provider);
+            const user = result.user;
+            
+            console.log('✅ Login con Google exitoso:', user.uid);
+            
+            const userDoc = await db.collection('users').doc(user.uid).get();
+            let userData;
+            
+            if (userDoc.exists) {
+                userData = userDoc.data();
+                await db.collection('users').doc(user.uid).update({
+                    lastLogin: new Date().toISOString()
+                });
+            } else {
+                userData = {
+                    name: user.displayName,
+                    email: user.email,
+                    createdAt: new Date().toISOString(),
+                    provider: 'google',
+                    emailVerified: user.emailVerified,
+                    photoURL: user.photoURL,
+                    uid: user.uid,
+                    profileComplete: false,
+                    lastLogin: new Date().toISOString()
                 };
                 
                 await db.collection('users').doc(user.uid).set(userData);
-                console.log('✅ Usuario guardado en Firestore');
-                
-                try {
-                    await user.sendEmailVerification();
-                    console.log('📧 Email de verificación enviado');
-                } catch (emailError) {
-                    console.warn('⚠️ No se pudo enviar email de verificación:', emailError);
+            }
+            
+            return {
+                success: true,
+                user: {
+                    uid: user.uid,
+                    email: user.email,
+                    name: user.displayName,
+                    photoURL: user.photoURL,
+                    provider: 'google',
+                    emailVerified: user.emailVerified,
+                    profileComplete: userData.profileComplete || false,
+                    ...userData
                 }
-                
-                return {
-                    success: true,
-                    user: userData
-                };
-            } catch (error) {
-                console.error('❌ Error en registro:', error);
-                return {
-                    success: false,
-                    error: error.code,
-                    message: getFirebaseErrorMessage(error.code)
-                };
-            }
-        }
-
-        async function loginWithEmail(email, password) {
-            try {
-                console.log('🔐 Intentando login con:', email);
-                const userCredential = await auth.signInWithEmailAndPassword(email, password);
-                const user = userCredential.user;
-                
-                console.log('✅ Login exitoso:', user.uid);
-                
-                const userDoc = await db.collection('users').doc(user.uid).get();
-                const userData = userDoc.data();
-                
-                return {
-                    success: true,
-                    user: {
-                        uid: user.uid,
-                        email: user.email,
-                        name: user.displayName || userData?.name || 'Usuario',
-                        emailVerified: user.emailVerified,
-                        profileComplete: userData?.profileComplete || false,
-                        ...userData
-                    }
-                };
-            } catch (error) {
-                console.error('❌ Error en login:', error);
-                return {
-                    success: false,
-                    error: error.code,
-                    message: getFirebaseErrorMessage(error.code)
-                };
-            }
-        }
-
-        async function loginWithGoogle() {
-            try {
-                const provider = new firebase.auth.GoogleAuthProvider();
-                const result = await auth.signInWithPopup(provider);
-                const user = result.user;
-                
-                console.log('✅ Login con Google exitoso:', user.uid);
-                
-                // Verificar si el usuario ya tiene datos adicionales
-                const userDoc = await db.collection('users').doc(user.uid).get();
-                let userData;
-                
-                if (userDoc.exists) {
-                    userData = userDoc.data();
-                    // Actualizar última conexión
-                    await db.collection('users').doc(user.uid).update({
-                        lastLogin: new Date().toISOString()
-                    });
-                } else {
-                    // Primer login con Google, crear documento
-                    userData = {
-                        name: user.displayName,
-                        email: user.email,
-                        createdAt: new Date().toISOString(),
-                        provider: 'google',
-                        emailVerified: user.emailVerified,
-                        photoURL: user.photoURL,
-                        uid: user.uid,
-                        profileComplete: false,
-                        lastLogin: new Date().toISOString()
-                    };
-                    
-                    await db.collection('users').doc(user.uid).set(userData);
-                }
-                
-                return {
-                    success: true,
-                    user: {
-                        uid: user.uid,
-                        email: user.email,
-                        name: user.displayName,
-                        photoURL: user.photoURL,
-                        provider: 'google',
-                        emailVerified: user.emailVerified,
-                        profileComplete: userData.profileComplete || false,
-                        ...userData
-                    }
-                };
-            } catch (error) {
-                console.error('❌ Error en login con Google:', error);
-                return {
-                    success: false,
-                    error: error.code,
-                    message: getFirebaseErrorMessage(error.code)
-                };
-            }
-        }
-
-        async function saveAdditionalData(userData) {
-            try {
-                const user = auth.currentUser;
-                if (!user) throw new Error('No hay usuario autenticado');
-                
-                const additionalData = {
-                    phone: userData.phone,
-                    documentType: userData.documentType,
-                    documentNumber: userData.documentNumber,
-                    department: userData.department,
-                    city: userData.city,
-                    address: userData.address,
-                    profileComplete: true,
-                    profileCompletedAt: new Date().toISOString()
-                };
-                
-                await db.collection('users').doc(user.uid).update(additionalData);
-                console.log('✅ Datos adicionales guardados');
-                
-                return { success: true };
-            } catch (error) {
-                console.error('❌ Error guardando datos adicionales:', error);
-                return { success: false, message: error.message };
-            }
-        }
-
-        function getFirebaseErrorMessage(errorCode) {
-            const messages = {
-                'auth/user-not-found': 'No existe una cuenta con este correo electrónico.',
-                'auth/wrong-password': 'Contraseña incorrecta.',
-                'auth/email-already-in-use': 'Ya existe una cuenta con este correo electrónico.',
-                'auth/weak-password': 'La contraseña debe tener al menos 6 caracteres.',
-                'auth/invalid-email': 'El correo electrónico no es válido.',
-                'auth/too-many-requests': 'Demasiados intentos fallidos. Intenta más tarde.',
-                'auth/network-request-failed': 'Error de conexión. Verifica tu internet.',
-                'auth/popup-closed-by-user': 'Ventana de autenticación cerrada.',
-                'auth/cancelled-popup-request': 'Solicitud cancelada.',
-                'default': 'Error de autenticación. Intenta nuevamente.'
             };
-            return messages[errorCode] || messages['default'];
+        } catch (error) {
+            console.error('❌ Error en login con Google:', error);
+            return {
+                success: false,
+                error: error.code,
+                message: getFirebaseErrorMessage(error.code)
+            };
         }
+    }
 
-        // ========== GESTIÓN DE SESIÓN Y PANEL DE USUARIO ==========
-        function showUserPanel(user) {
-            console.log('👤 Mostrando panel de usuario:', user.name);
+    async function saveAdditionalData(userData) {
+        try {
+            const user = auth.currentUser;
+            if (!user) throw new Error('No hay usuario autenticado');
             
-            // Actualizar información del usuario en el panel
-            document.getElementById('userName').textContent = user.name || 'Usuario';
-            document.getElementById('userEmail').textContent = user.email || '';
+            const additionalData = {
+                phone: userData.phone,
+                documentType: userData.documentType,
+                documentNumber: userData.documentNumber,
+                department: userData.department,
+                city: userData.city,
+                address: userData.address,
+                profileComplete: true,
+                profileCompletedAt: new Date().toISOString()
+            };
             
-            // Avatar
-            const avatar = document.getElementById('userAvatar');
-            if (user.photoURL) {
-                avatar.src = user.photoURL;
-            }
+            await db.collection('users').doc(user.uid).update(additionalData);
+            console.log('✅ Datos adicionales guardados');
             
-            // Estado del perfil
-            const statusElement = document.getElementById('userStatus');
-            if (user.profileComplete) {
-                statusElement.textContent = '✅ Perfil Completo';
-                statusElement.className = 'status-badge complete';
-            } else {
-                statusElement.textContent = '⚠️ Perfil Incompleto';
-                statusElement.className = 'status-badge incomplete';
-            }
-            
-            // Información personal
-            document.getElementById('userPhone').textContent = user.phone || 'No registrado';
-            document.getElementById('userDocument').textContent = 
-                user.documentType && user.documentNumber ? 
-                `${user.documentType} ${user.documentNumber}` : 'No registrado';
-            document.getElementById('userLocation').textContent = 
-                user.city && user.department ? 
-                `${user.city}, ${user.department}` : 'No registrada';
-            document.getElementById('userAddress').textContent = user.address || 'No registrada';
-            
-            // Fechas
-            if (user.createdAt) {
-                const createdDate = new Date(user.createdAt).toLocaleDateString('es-CO');
-                document.getElementById('accountCreated').textContent = createdDate;
-            }
-            
-            if (user.lastLogin) {
-                const lastLoginDate = new Date(user.lastLogin).toLocaleString('es-CO');
-                document.getElementById('lastLogin').textContent = lastLoginDate;
-            }
-            
-            // Mostrar panel de usuario
-            showForm('user');
+            return { success: true };
+        } catch (error) {
+            console.error('❌ Error guardando datos adicionales:', error);
+            return { success: false, message: error.message };
         }
+    }
 
-        function showForm(formName) {
-            // Ocultar todos los formularios
-            document.querySelectorAll('.form').forEach(form => {
-                form.classList.remove('active');
-                form.classList.add('inactive');
-            });
+    function getFirebaseErrorMessage(errorCode) {
+        const messages = {
+            'auth/user-not-found': 'No existe una cuenta con este correo electrónico.',
+            'auth/wrong-password': 'Contraseña incorrecta.',
+            'auth/email-already-in-use': 'Ya existe una cuenta con este correo electrónico.',
+            'auth/weak-password': 'La contraseña debe tener al menos 6 caracteres.',
+            'auth/invalid-email': 'El correo electrónico no es válido.',
+            'auth/too-many-requests': 'Demasiados intentos fallidos. Intenta más tarde.',
+            'auth/network-request-failed': 'Error de conexión. Verifica tu internet.',
+            'auth/popup-closed-by-user': 'Ventana de autenticación cerrada.',
+            'auth/cancelled-popup-request': 'Solicitud cancelada.',
+            'default': 'Error de autenticación. Intenta nuevamente.'
+        };
+        return messages[errorCode] || messages['default'];
+    }
 
-            // Mostrar formulario específico
-            let targetForm;
-            if (formName === 'user') {
-                targetForm = document.getElementById('userPanel');
-            } else {
-                targetForm = document.getElementById(formName + 'Form');
-            }
-            
-            if (targetForm) {
-                targetForm.classList.remove('inactive');
-                targetForm.classList.add('active');
-                currentForm = formName;
-            }
-        }
-
-        async function checkExistingSession() {
-            return new Promise((resolve) => {
-                const unsubscribe = auth.onAuthStateChanged(async (user) => {
-                    unsubscribe(); // Dejar de escuchar después de la primera verificación
-                    
-                    if (user) {
-                        console.log('🔍 Usuario ya autenticado encontrado:', user.email);
-                        
-                        try {
-                            // Obtener datos completos del usuario desde Firestore
-                            const userDoc = await db.collection('users').doc(user.uid).get();
-                            const userData = userDoc.data();
-                            
-                            const completeUser = {
-                                uid: user.uid,
-                                email: user.email,
-                                name: user.displayName || userData?.name || 'Usuario',
-                                emailVerified: user.emailVerified,
-                                photoURL: user.photoURL || userData?.photoURL,
-                                profileComplete: userData?.profileComplete || false,
-                                ...userData
-                            };
-                            
-                            currentUser = completeUser;
-                            showUserPanel(completeUser);
-                            resolve(true);
-                        } catch (error) {
-                            console.error('Error obteniendo datos del usuario:', error);
-                            resolve(false);
-                        }
-                    } else {
-                        console.log('👤 No hay usuario autenticado');
-                        showForm('login');
-                        resolve(false);
-                    }
-                });
-            });
-        }
-
-        // ========== FUNCIONES DEL PANEL DE USUARIO ==========
-        function editProfile() {
-            if (currentUser) {
-                if (!currentUser.profileComplete) {
-                    // Si no tiene perfil completo, mostrar formulario de datos adicionales
-                    showForm('additionalData');
-                    
-                    // Pre-llenar campos si existen datos parciales
-                    if (currentUser.phone) {
-                        const phone = currentUser.phone.replace('+57', '');
-                        document.getElementById('phoneNumber').value = phone;
-                    }
-                    if (currentUser.documentType) {
-                        document.getElementById('documentType').value = currentUser.documentType;
-                    }
-                    if (currentUser.documentNumber) {
-                        document.getElementById('documentNumber').value = currentUser.documentNumber;
-                    }
-                    if (currentUser.department) {
-                        document.getElementById('department').value = currentUser.department;
-                    }
-                    if (currentUser.city) {
-                        document.getElementById('city').value = currentUser.city;
-                    }
-                    if (currentUser.address) {
-                        document.getElementById('address').value = currentUser.address;
-                    }
-                } else {
-                    alert('🔧 Editor de perfil completo en desarrollo\n\n' +
-                          'Por ahora puedes:\n' +
-                          '• Cambiar foto de perfil\n' +
-                          '• Cerrar sesión para usar otra cuenta\n' +
-                          '• Ir a la página principal');
-                }
-            }
-        }
-
-        function goToMainPage() {
-            if (currentUser) {
-                redirectToMainPage(currentUser);
-            }
-        }
-
-        function logoutUser() {
-            if (confirm('¿Estás seguro de que quieres cerrar sesión?')) {
-                auth.signOut().then(() => {
-                    console.log('👋 Sesión cerrada');
-                    currentUser = null;
-                    sessionStorage.removeItem('currentUser');
-                    showForm('login');
-                    
-                    // Limpiar formularios
-                    document.querySelectorAll('form').forEach(form => form.reset());
-                    clearFormErrors();
-                    
-                    alert('✅ Sesión cerrada exitosamente');
-                }).catch((error) => {
-                    console.error('Error al cerrar sesión:', error);
-                    alert('❌ Error al cerrar sesión');
-                });
-            }
-        }
-
-        function changeProfilePhoto() {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = 'image/*';
-            input.onchange = handlePhotoUpload;
-            input.click();
-        }
-
-        async function handlePhotoUpload(event) {
-            const file = event.target.files[0];
-            if (!file || !currentUser) return;
-            
-            // Validar tamaño (máximo 2MB)
-            if (file.size > 2 * 1024 * 1024) {
-                alert('❌ La imagen es muy grande. Máximo 2MB permitido.');
-                return;
-            }
-            
-            // Validar tipo
-            if (!file.type.startsWith('image/')) {
-                alert('❌ Por favor selecciona una imagen válida.');
-                return;
-            }
-            
-            try {
-                console.log('📸 Subiendo foto de perfil...');
-                
-                // Crear referencia de storage
-                const storageRef = storage.ref(`profile_photos/${currentUser.uid}/${Date.now()}_${file.name}`);
-                
-                // Subir archivo
-                const uploadTask = storageRef.put(file);
-                
-                // Mostrar progreso
-                const changeBtn = document.querySelector('.change-photo-btn');
-                changeBtn.innerHTML = '<i class="bx bx-loader bx-spin"></i>';
-                
-                uploadTask.on('state_changed',
-                    (snapshot) => {
-                        // Progreso
-                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                        console.log('Progreso:', progress.toFixed(0) + '%');
-                    },
-                    (error) => {
-                        // Error
-                        console.error('Error subiendo foto:', error);
-                        alert('❌ Error subiendo la foto');
-                        changeBtn.innerHTML = '<i class="bx bx-camera"></i>';
-                    },
-                    async () => {
-                        // Completado
-                        try {
-                            const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
-                            
-                            // Actualizar perfil de Firebase Auth
-                            await auth.currentUser.updateProfile({
-                                photoURL: downloadURL
-                            });
-                            
-                            // Actualizar Firestore
-                            await db.collection('users').doc(currentUser.uid).update({
-                                photoURL: downloadURL,
-                                updatedAt: new Date().toISOString()
-                            });
-                            
-                            // Actualizar UI
-                            document.getElementById('userAvatar').src = downloadURL;
-                            currentUser.photoURL = downloadURL;
-                            
-                            changeBtn.innerHTML = '<i class="bx bx-camera"></i>';
-                            
-                            console.log('✅ Foto de perfil actualizada');
-                            alert('✅ Foto de perfil actualizada correctamente');
-                            
-                        } catch (error) {
-                            console.error('Error actualizando foto:', error);
-                            alert('❌ Error actualizando la foto');
-                            changeBtn.innerHTML = '<i class="bx bx-camera"></i>';
-                        }
-                    }
-                );
-                
-            } catch (error) {
-                console.error('Error general subiendo foto:', error);
-                alert('❌ Error subiendo la foto');
-            }
-        }
-        function redirectToMainPage(user) {
-            // Guardar datos del usuario en sessionStorage
-            sessionStorage.setItem('currentUser', JSON.stringify(user));
-            
-            console.log('🚀 Redirigiendo a página principal...');
-            alert(`¡Bienvenido ${user.name}! 🎉\n\nRedirigiendo a la página principal...`);
-            
-            // Simular redirección (cambiar por tu página real)
+    // ========== MANEJO POST-LOGIN MODIFICADO ==========
+    function handlePostLogin(user) {
+        currentUser = user;
+        
+        // Mostrar pantalla de carga
+        const loadingScreen = document.getElementById('loading-screen');
+        loadingScreen.style.display = 'flex';
+        loadingScreen.classList.remove('hidden');
+        document.body.classList.add('locked');
+        
+        setTimeout(() => {
+            // Ocultar pantalla de carga
+            loadingScreen.classList.add('hidden');
             setTimeout(() => {
-                window.location.href = 'principal.html';
-            }, 2000);
-        }
-
-        function handlePostLogin(user) {
-            currentUser = user;
+                loadingScreen.style.display = 'none';
+                document.body.classList.remove('locked');
+            }, 1000);
             
             if (!user.profileComplete) {
                 console.log('📋 Usuario necesita completar perfil');
                 showForm('additionalData');
             } else {
                 console.log('✅ Usuario con perfil completo');
-                redirectToMainPage(user);
+                showUserPanel(user);
             }
-        }
+        }, 1500);
+    }
 
-        function skipAdditionalData() {
-            if (currentUser) {
-                console.log('⏭️ Usuario saltó datos adicionales');
-                redirectToMainPage(currentUser);
-            }
-        }
-
-        // ========== FORMULARIOS ==========
+    function showUserPanel(user) {
+        console.log('👤 Mostrando panel de usuario:', user.name);
         
-        // Login con email/contraseña
+        document.getElementById('userName').textContent = user.name || 'Usuario';
+        document.getElementById('userEmail').textContent = user.email || '';
+        
+        const avatar = document.getElementById('userAvatar');
+        if (user.photoURL) {
+            avatar.src = user.photoURL;
+        }
+        
+        const statusElement = document.getElementById('userStatus');
+        if (user.profileComplete) {
+            statusElement.textContent = '✅ Perfil Completo';
+            statusElement.className = 'status-badge complete';
+        } else {
+            statusElement.textContent = '⚠️ Perfil Incompleto';
+            statusElement.className = 'status-badge incomplete';
+        }
+        
+        document.getElementById('userPhone').textContent = user.phone || 'No registrado';
+        document.getElementById('userDocument').textContent = 
+            user.documentType && user.documentNumber ? 
+            `${user.documentType} ${user.documentNumber}` : 'No registrado';
+        document.getElementById('userLocation').textContent = 
+            user.city && user.department ? 
+            `${user.city}, ${user.department}` : 'No registrada';
+        document.getElementById('userAddress').textContent = user.address || 'No registrada';
+        
+        if (user.createdAt) {
+            const createdDate = new Date(user.createdAt).toLocaleDateString('es-CO');
+            document.getElementById('accountCreated').textContent = createdDate;
+        }
+        
+        if (user.lastLogin) {
+            const lastLoginDate = new Date(user.lastLogin).toLocaleString('es-CO');
+            document.getElementById('lastLogin').textContent = lastLoginDate;
+        }
+        
+        showForm('user');
+    }
+
+    function skipAdditionalData() {
+        if (currentUser) {
+            console.log('⏭️ Usuario saltó datos adicionales');
+            showUserPanel(currentUser);
+        }
+    }
+
+    // ========== FUNCIONES DEL PANEL DE USUARIO ==========
+    function editProfile() {
+        if (!currentUser) return;
+        
+        document.getElementById('editName').value = currentUser.name || '';
+        
+        if (currentUser.phone) {
+            const phone = currentUser.phone.replace('+57', '');
+            document.getElementById('editPhoneNumber').value = phone;
+        }
+        
+        if (currentUser.documentType) {
+            document.getElementById('editDocumentType').value = currentUser.documentType;
+        }
+        
+        if (currentUser.documentNumber) {
+            document.getElementById('editDocumentNumber').value = currentUser.documentNumber;
+        }
+        
+        if (currentUser.department) {
+            document.getElementById('editDepartment').value = currentUser.department;
+        }
+        
+        if (currentUser.city) {
+            document.getElementById('editCity').value = currentUser.city;
+        }
+        
+        if (currentUser.address) {
+            document.getElementById('editAddress').value = currentUser.address;
+        }
+        
+        showForm('editProfile');
+    }
+
+    function cancelEditProfile() {
+        showUserPanel(currentUser);
+    }
+
+    function logoutUser() {
+        if (confirm('¿Estás seguro de que quieres cerrar sesión?')) {
+            auth.signOut().then(() => {
+                console.log('👋 Sesión cerrada');
+                currentUser = null;
+                sessionStorage.removeItem('currentUser');
+                showForm('login');
+                
+                document.querySelectorAll('form').forEach(form => form.reset());
+                clearFormErrors();
+                
+                alert('✅ Sesión cerrada exitosamente');
+            }).catch((error) => {
+                console.error('Error al cerrar sesión:', error);
+                alert('❌ Error al cerrar sesión');
+            });
+        }
+    }
+
+    function changeProfilePhoto() {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*';
+        input.onchange = handlePhotoUpload;
+        input.click();
+    }
+
+    async function handlePhotoUpload(event) {
+        const file = event.target.files[0];
+        if (!file || !currentUser) return;
+        
+        if (file.size > 2 * 1024 * 1024) {
+            alert('❌ La imagen es muy grande. Máximo 2MB permitido.');
+            return;
+        }
+        
+        if (!file.type.startsWith('image/')) {
+            alert('❌ Por favor selecciona una imagen válida.');
+            return;
+        }
+        
+        try {
+            console.log('📸 Subiendo foto de perfil...');
+            
+            const storageRef = storage.ref(`profile_photos/${currentUser.uid}/${Date.now()}_${file.name}`);
+            const uploadTask = storageRef.put(file);
+            
+            const changeBtn = document.querySelector('.change-photo-btn');
+            changeBtn.innerHTML = '<i class="bx bx-loader bx-spin"></i>';
+            
+            uploadTask.on('state_changed',
+                (snapshot) => {
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Progreso:', progress.toFixed(0) + '%');
+                },
+                (error) => {
+                    console.error('Error subiendo foto:', error);
+                    alert('❌ Error subiendo la foto');
+                    changeBtn.innerHTML = '<i class="bx bx-camera"></i>';
+                },
+                async () => {
+                    try {
+                        const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
+                        
+                        await auth.currentUser.updateProfile({
+                            photoURL: downloadURL
+                        });
+                        
+                        await db.collection('users').doc(currentUser.uid).update({
+                            photoURL: downloadURL,
+                            updatedAt: new Date().toISOString()
+                        });
+                        
+                        document.getElementById('userAvatar').src = downloadURL;
+                        currentUser.photoURL = downloadURL;
+                        
+                        changeBtn.innerHTML = '<i class="bx bx-camera"></i>';
+                        
+                        console.log('✅ Foto de perfil actualizada');
+                        alert('✅ Foto de perfil actualizada correctamente');
+                        
+                    } catch (error) {
+                        console.error('Error actualizando foto:', error);
+                        alert('❌ Error actualizando la foto');
+                        changeBtn.innerHTML = '<i class="bx bx-camera"></i>';
+                    }
+                }
+            );
+            
+        } catch (error) {
+            console.error('Error general subiendo foto:', error);
+            alert('❌ Error subiendo la foto');
+        }
+    }
+
+    // ========== EVENT LISTENERS ==========
+    document.addEventListener('DOMContentLoaded', function() {
+        // Validación de email en registro
+        document.getElementById('registerEmail')?.addEventListener('input', function() {
+            const email = this.value;
+            const emailError = document.getElementById('registerEmailError');
+            const emailSuccess = document.getElementById('registerEmailSuccess');
+            
+            if (email && validateEmail(email)) {
+                emailError.classList.remove('show');
+                emailSuccess.classList.add('show');
+            } else if (email) {
+                emailSuccess.classList.remove('show');
+                emailError.classList.add('show');
+            } else {
+                emailError.classList.remove('show');
+                emailSuccess.classList.remove('show');
+            }
+        });
+
+        // ... (otros event listeners de validación) ...
+
         document.getElementById('loginForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -975,7 +953,6 @@
                 submitButton.textContent = '¡Bienvenido!';
                 submitButton.style.background = '#28a745';
                 
-                // Guardar email si está marcado recordar
                 if (remember) {
                     localStorage.setItem('rememberedEmail', email);
                 } else {
@@ -999,157 +976,15 @@
                 }
                 
                 setTimeout(() => {
-                    resetButton(submitButton, 'Entrar');
+                    submitButton.textContent = 'Entrar';
+                    submitButton.disabled = false;
+                    submitButton.style.background = '';
                 }, 2000);
             }
         });
 
-        // Registro
-        document.getElementById('registerForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('registerName').value.trim();
-            const email = document.getElementById('registerEmail').value.trim();
-            const password = document.getElementById('registerPassword').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            const submitButton = this.querySelector('button[type="submit"]');
-            
-            clearFormErrors();
-            
-            let hasErrors = false;
-            
-            if (!name || name.length < 2) {
-                document.getElementById('registerNameError').textContent = 'El nombre debe tener al menos 2 caracteres.';
-                document.getElementById('registerNameError').classList.add('show');
-                hasErrors = true;
-            }
-            
-            if (!email || !validateEmail(email)) {
-                document.getElementById('registerEmailError').textContent = 'Por favor, introduce un correo válido.';
-                document.getElementById('registerEmailError').classList.add('show');
-                hasErrors = true;
-            }
-            
-            if (!password || password.length < 6) {
-                document.getElementById('registerPasswordError').textContent = 'La contraseña debe tener al menos 6 caracteres.';
-                document.getElementById('registerPasswordError').classList.add('show');
-                hasErrors = true;
-            }
-            
-            if (password !== confirmPassword) {
-                document.getElementById('confirmPasswordError').textContent = 'Las contraseñas no coinciden.';
-                document.getElementById('confirmPasswordError').classList.add('show');
-                hasErrors = true;
-            }
-            
-            if (hasErrors) return;
-            
-            submitButton.textContent = 'Creando cuenta...';
-            submitButton.disabled = true;
-            
-            const result = await registerWithFirebase(email, password, name);
-            
-            if (result.success) {
-                submitButton.textContent = '¡Cuenta creada!';
-                submitButton.style.background = '#28a745';
-                
-                setTimeout(() => {
-                    handlePostLogin(result.user);
-                }, 1000);
-                
-            } else {
-                submitButton.textContent = 'Error al crear cuenta';
-                submitButton.style.background = '#dc3545';
-                
-                if (result.error === 'auth/email-already-in-use') {
-                    document.getElementById('registerEmailError').textContent = result.message;
-                    document.getElementById('registerEmailError').classList.add('show');
-                } else if (result.error === 'auth/weak-password') {
-                    document.getElementById('registerPasswordError').textContent = result.message;
-                    document.getElementById('registerPasswordError').classList.add('show');
-                }
-                
-                setTimeout(() => {
-                    resetButton(submitButton, 'Crear Cuenta');
-                }, 2000);
-            }
-        });
+        // ... (otros event listeners de formularios) ...
 
-        // Datos adicionales
-        document.getElementById('additionalDataForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const phone = document.getElementById('phoneNumber').value;
-            const documentType = document.getElementById('documentType').value;
-            const documentNumber = document.getElementById('documentNumber').value;
-            const department = document.getElementById('department').value;
-            const city = document.getElementById('city').value.trim();
-            const address = document.getElementById('address').value.trim();
-            const submitButton = this.querySelector('button[type="submit"]');
-            
-            clearFormErrors();
-            
-            let hasErrors = false;
-            
-            if (!phone || !validateColombianPhone(phone)) {
-                document.getElementById('phoneError').classList.add('show');
-                hasErrors = true;
-            }
-            
-            if (!documentType || !documentNumber || !validateDocument(documentNumber)) {
-                document.getElementById('documentError').classList.add('show');
-                hasErrors = true;
-            }
-            
-            if (!city) {
-                document.getElementById('cityError').classList.add('show');
-                hasErrors = true;
-            }
-            
-            if (!address) {
-                document.getElementById('addressError').classList.add('show');
-                hasErrors = true;
-            }
-            
-            if (hasErrors) return;
-            
-            submitButton.textContent = 'Guardando datos...';
-            submitButton.disabled = true;
-            
-            const userData = {
-                phone: `+57${phone}`,
-                documentType,
-                documentNumber,
-                department,
-                city,
-                address
-            };
-            
-            const result = await saveAdditionalData(userData);
-            
-            if (result.success) {
-                submitButton.textContent = '¡Datos guardados!';
-                submitButton.style.background = '#28a745';
-                
-                // Actualizar usuario actual
-                currentUser.profileComplete = true;
-                currentUser = { ...currentUser, ...userData };
-                
-                setTimeout(() => {
-                    redirectToMainPage(currentUser);
-                }, 1000);
-                
-            } else {
-                submitButton.textContent = 'Error al guardar';
-                submitButton.style.background = '#dc3545';
-                
-                setTimeout(() => {
-                    resetButton(submitButton, 'Guardar y Continuar');
-                }, 2000);
-            }
-        });
-
-        // Login con Google
         document.getElementById('googleSignInButton').addEventListener('click', async function() {
             const button = this;
             button.textContent = 'Conectando con Google...';
@@ -1169,92 +1004,145 @@
                 button.style.background = '#dc3545';
                 
                 setTimeout(() => {
-                    resetButton(button, 'Iniciar sesión con Google');
+                    button.textContent = 'Iniciar sesión con Google';
+                    button.disabled = false;
+                    button.style.background = '';
                 }, 2000);
             }
         });
 
-        // Facebook (placeholder)
-        document.querySelector('.facebook-button').addEventListener('click', function() {
-            alert('🔧 Facebook Login en desarrollo');
-        });
-
-        function resetButton(button, originalText) {
-            button.textContent = originalText;
-            button.disabled = false;
-            button.style.background = '';
-        }
-
-        // ========== FUNCIONES DE UTILIDAD ==========
-        function loadRememberedEmail() {
-            const remembered = localStorage.getItem('rememberedEmail');
-            if (remembered) {
-                document.getElementById('loginEmail').value = remembered;
-                document.getElementById('remember').checked = true;
-            }
-        }
-
-        function showFirebaseUsers() {
-            if (!db) return;
-            
-            db.collection('users').get().then((querySnapshot) => {
-                console.log('=== USUARIOS EN FIREBASE ===');
-                querySnapshot.forEach((doc) => {
-                    const data = doc.data();
-                    console.log(`${doc.id}:`, {
-                        nombre: data.name,
-                        email: data.email,
-                        telefono: data.phone || 'No registrado',
-                        documento: data.documentNumber || 'No registrado',
-                        ciudad: data.city || 'No registrada',
-                        perfilCompleto: data.profileComplete ? 'Sí' : 'No'
-                    });
+        // Inicialización
+        async function checkExistingSession() {
+            return new Promise((resolve) => {
+                const unsubscribe = auth.onAuthStateChanged(async (user) => {
+                    unsubscribe();
+                    
+                    if (user) {
+                        console.log('🔍 Usuario ya autenticado encontrado:', user.email);
+                        
+                        try {
+                            const userDoc = await db.collection('users').doc(user.uid).get();
+                            const userData = userDoc.data();
+                            
+                            const completeUser = {
+                                uid: user.uid,
+                                email: user.email,
+                                name: user.displayName || userData?.name || 'Usuario',
+                                emailVerified: user.emailVerified,
+                                photoURL: user.photoURL || userData?.photoURL,
+                                profileComplete: userData?.profileComplete || false,
+                                ...userData
+                            };
+                            
+                            currentUser = completeUser;
+                            showUserPanel(completeUser);
+                            resolve(true);
+                        } catch (error) {
+                            console.error('Error obteniendo datos del usuario:', error);
+                            resolve(false);
+                        }
+                    } else {
+                        console.log('👤 No hay usuario autenticado');
+                        showForm('login');
+                        resolve(false);
+                    }
                 });
-                console.log(`Total de usuarios: ${querySnapshot.size}`);
             });
         }
 
-        // ========== INICIALIZACIÓN ==========
-        document.addEventListener('DOMContentLoaded', async function() {
+        async function init() {
             console.log('🚀 Inicializando sistema...');
             
-            // Verificar si hay una sesión activa
             const hasActiveSession = await checkExistingSession();
             
             if (!hasActiveSession) {
-                // No hay sesión activa, cargar email recordado
-                loadRememberedEmail();
+                const remembered = localStorage.getItem('rememberedEmail');
+                if (remembered) {
+                    document.getElementById('loginEmail').value = remembered;
+                    document.getElementById('remember').checked = true;
+                }
             }
             
-            // Funciones globales disponibles
-            window.showFirebaseUsers = showFirebaseUsers;
             window.toggleForms = toggleForms;
             window.skipAdditionalData = skipAdditionalData;
             window.editProfile = editProfile;
-            window.goToMainPage = goToMainPage;
+            window.cancelEditProfile = cancelEditProfile;
             window.logoutUser = logoutUser;
             window.changeProfilePhoto = changeProfilePhoto;
             
-            console.log('=== SISTEMA COMPLETO DE AUTENTICACIÓN ===');
-            console.log('✅ Detección automática de sesión activa');
-            console.log('✅ Panel de usuario personalizado');
-            console.log('✅ Edición de foto de perfil');
-            console.log('✅ Login con email/contraseña');
-            console.log('✅ Login con Google');
-            console.log('✅ Registro de usuarios');
-            console.log('✅ Formulario de datos adicionales');
-            console.log('✅ Validación colombiana');
-            console.log('\n🎯 Funciones disponibles:');
-            console.log('• showFirebaseUsers() - Ver usuarios registrados');
-            console.log('\n🚀 ¡Sistema completamente funcional!');
+            console.log('=== SISTEMA LISTO ===');
+        }
+
+        init();
+    });
+    // Modal de recuperación
+        const modal = document.getElementById('passwordResetModal');
+        const resetButton = document.getElementById('forgotPasswordLink');
+        const closeModal = document.querySelector('.close-reset-modal'); // Cambiado a la clase correcta
+        const sendResetButton = document.getElementById('confirmResetBtn'); // Cambiado al ID correcto
+        const cancelButton = document.getElementById('cancelResetBtn'); // Añadido el botón cancelar
+
+        resetButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.style.display = 'block';
+        document.getElementById('resetEmail').value = ''; // Limpiar el campo
+        document.getElementById('resetEmailError').textContent = '';
         });
 
-        // Monitoreo de autenticación
-        auth?.onAuthStateChanged(function(user) {
-            if (user && currentForm !== 'additionalData') {
-                console.log('👤 Usuario ya autenticado:', user.email);
-            }
+        closeModal.addEventListener('click', () => {
+        modal.style.display = 'none';
         });
-    </script>
+
+        // Añadir evento para el botón Cancelar
+        cancelButton.addEventListener('click', () => {
+        modal.style.display = 'none';
+        });
+
+        sendResetButton.addEventListener('click', async () => {
+        const email = document.getElementById('resetEmail').value.trim();
+        const errorElement = document.getElementById('resetEmailError');
+        
+        if (!email || !validateEmail(email)) {
+            errorElement.textContent = 'Ingresa un correo válido';
+            return;
+        }
+        
+        sendResetButton.textContent = 'Enviando...';
+        sendResetButton.disabled = true;
+        
+        try {
+            await auth.sendPasswordResetEmail(email);
+            
+            // Feedback visual mejorado
+            const modalContent = document.querySelector('.reset-modal-content');
+            modalContent.innerHTML = `
+            <div class="reset-modal-header">
+                <i class='bx bx-check-circle success-icon'></i>
+                <h3>¡Enlace enviado!</h3>
+            </div>
+            <div class="reset-modal-body">
+                <p>Revisa tu correo electrónico <strong>${email}</strong> y sigue las instrucciones.</p>
+                <p>¿No lo ves? Revisa tu carpeta de spam.</p>
+            </div>
+            <div class="reset-modal-footer">
+                <button onclick="document.getElementById('passwordResetModal').style.display='none'" class="confirm-btn">Entendido</button>
+            </div>
+            `;
+            
+        } catch (error) {
+            sendResetButton.textContent = 'Enviar enlace';
+            sendResetButton.disabled = false;
+            errorElement.textContent = getFirebaseErrorMessage(error.code);
+        }
+        });
+
+        // Cierra el modal al hacer clic fuera
+        window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+        });
+
+</script>
 </body>
 </html>
