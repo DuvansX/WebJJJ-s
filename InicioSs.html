@@ -391,61 +391,38 @@
   </div>
 </div>
 
-    <script>
+<script>
     // ========== CONFIGURACIÓN DE FIREBASE ==========
     const firebaseConfig = {
         apiKey: "AIzaSyCbemUTCYHJYcbiX5U4DaQuaJa8Mh6EdyY",
         authDomain: "login-pagina-9a2b2.firebaseapp.com",
         projectId: "login-pagina-9a2b2",
-        storageBucket: "login-pagina-9a2b2.firebasestorage.app",
+        storageBucket: "login-pagina-9a2b2.appspot.com",
         messagingSenderId: "676654795358",
         appId: "1:676654795358:web:c455962c22670fd0b002cf",
         measurementId: "G-TE86DMGMBV"
     };
 
     // Inicializar Firebase
-    let app, auth, db, storage;
-    try {
-        app = firebase.initializeApp(firebaseConfig);
-        auth = firebase.auth();
-        db = firebase.firestore();
-        storage = firebase.storage();
-        console.log('✅ Firebase inicializado correctamente');
-    } catch (error) {
-        console.error('❌ Error al inicializar Firebase:', error);
-        alert('Error de configuración de Firebase. Revisa la consola para más detalles.');
-    }
+    const app = firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+    const storage = firebase.storage();
 
     // ========== VARIABLES GLOBALES ==========
-    let currentForm = 'login'; // 'login', 'register', 'additionalData', 'editProfile'
+    let currentForm = 'login';
     let currentUser = null;
-
-    // ========== PANTALLA DE CARGA ==========
-    window.addEventListener('load', function() {
-        setTimeout(() => {
-            const loadingScreen = document.getElementById('loading-screen');
-            loadingScreen.classList.add('hidden');
-            document.body.classList.remove('locked');
-        }, 2000);
-    });
 
     // ========== FUNCIONES DE NAVEGACIÓN ==========
     function showForm(formName) {
-        // Ocultar todos los formularios
         document.querySelectorAll('.form').forEach(form => {
             form.classList.remove('active');
             form.classList.add('inactive');
         });
 
-        // Mostrar formulario específico
-        let targetForm;
-        if (formName === 'user') {
-            targetForm = document.getElementById('userPanel');
-        } else if (formName === 'editProfile') {
-            targetForm = document.getElementById('editProfileForm');
-        } else {
-            targetForm = document.getElementById(formName + 'Form');
-        }
+        const targetForm = formName === 'user' ? document.getElementById('userPanel') :
+                          formName === 'editProfile' ? document.getElementById('editProfileForm') :
+                          document.getElementById(formName + 'Form');
         
         if (targetForm) {
             targetForm.classList.remove('inactive');
@@ -455,221 +432,26 @@
     }
 
     function toggleForms() {
-        if (currentForm === 'login') {
-            showForm('register');
-        } else {
-            showForm('login');
-        }
+        showForm(currentForm === 'login' ? 'register' : 'login');
         clearFormErrors();
     }
 
     function clearFormErrors() {
-        document.querySelectorAll('.error').forEach(error => error.classList.remove('show'));
-        document.querySelectorAll('.success').forEach(success => success.classList.remove('show'));
+        document.querySelectorAll('.error').forEach(el => el.classList.remove('show'));
+        document.querySelectorAll('.success').forEach(el => el.classList.remove('show'));
     }
 
     // ========== FUNCIONES DE VALIDACIÓN ==========
     function validateEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
 
     function validateColombianPhone(phone) {
-        const phoneRegex = /^3[0-9]{9}$/;
-        return phoneRegex.test(phone);
+        return /^3[0-9]{9}$/.test(phone);
     }
 
     function validateDocument(docNumber) {
-        const docRegex = /^[0-9]+$/;
-        return docRegex.test(docNumber) && docNumber.length >= 6 && docNumber.length <= 15;
-    }
-
-    function checkPasswordStrength(password) {
-        const strengthElement = document.getElementById('passwordStrength');
-        let strength = 0;
-        let message = '';
-        
-        if (password.length >= 8) strength++;
-        if (/[A-Z]/.test(password)) strength++;
-        if (/[a-z]/.test(password)) strength++;
-        if (/[0-9]/.test(password)) strength++;
-        if (/[^A-Za-z0-9]/.test(password)) strength++;
-        
-        if (password.length < 6) {
-            strengthElement.className = 'password-strength weak';
-            message = 'Muy débil - Mínimo 6 caracteres';
-        } else if (strength <= 2) {
-            strengthElement.className = 'password-strength weak';
-            message = 'Débil - Usa mayúsculas, números y símbolos';
-        } else if (strength <= 3) {
-            strengthElement.className = 'password-strength medium';
-            message = 'Media - Agrega más variedad';
-        } else {
-            strengthElement.className = 'password-strength strong';
-            message = 'Fuerte ✓';
-        }
-        
-        strengthElement.textContent = message;
-    }
-
-    // ========== FUNCIONES DE AUTENTICACIÓN ==========
-    async function registerWithFirebase(email, password, name) {
-        try {
-            console.log('📝 Creando usuario:', email);
-            
-            const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-            const user = userCredential.user;
-            
-            console.log('✅ Usuario creado en Auth:', user.uid);
-            
-            await user.updateProfile({ displayName: name });
-            
-            const userData = {
-                name: name,
-                email: email,
-                createdAt: new Date().toISOString(),
-                emailVerified: false,
-                provider: 'email',
-                uid: user.uid,
-                profileComplete: false,
-                photoURL: null
-            };
-            
-            await db.collection('users').doc(user.uid).set(userData);
-            console.log('✅ Usuario guardado en Firestore');
-            
-            try {
-                await user.sendEmailVerification();
-                console.log('📧 Email de verificación enviado');
-            } catch (emailError) {
-                console.warn('⚠️ No se pudo enviar email de verificación:', emailError);
-            }
-            
-            return {
-                success: true,
-                user: userData
-            };
-        } catch (error) {
-            console.error('❌ Error en registro:', error);
-            return {
-                success: false,
-                error: error.code,
-                message: getFirebaseErrorMessage(error.code)
-            };
-        }
-    }
-
-    async function loginWithEmail(email, password) {
-        try {
-            console.log('🔐 Intentando login con:', email);
-            const userCredential = await auth.signInWithEmailAndPassword(email, password);
-            const user = userCredential.user;
-            
-            console.log('✅ Login exitoso:', user.uid);
-            
-            const userDoc = await db.collection('users').doc(user.uid).get();
-            const userData = userDoc.data();
-            
-            return {
-                success: true,
-                user: {
-                    uid: user.uid,
-                    email: user.email,
-                    name: user.displayName || userData?.name || 'Usuario',
-                    emailVerified: user.emailVerified,
-                    profileComplete: userData?.profileComplete || false,
-                    ...userData
-                }
-            };
-        } catch (error) {
-            console.error('❌ Error en login:', error);
-            return {
-                success: false,
-                error: error.code,
-                message: getFirebaseErrorMessage(error.code)
-            };
-        }
-    }
-
-    async function loginWithGoogle() {
-        try {
-            const provider = new firebase.auth.GoogleAuthProvider();
-            const result = await auth.signInWithPopup(provider);
-            const user = result.user;
-            
-            console.log('✅ Login con Google exitoso:', user.uid);
-            
-            const userDoc = await db.collection('users').doc(user.uid).get();
-            let userData;
-            
-            if (userDoc.exists) {
-                userData = userDoc.data();
-                await db.collection('users').doc(user.uid).update({
-                    lastLogin: new Date().toISOString()
-                });
-            } else {
-                userData = {
-                    name: user.displayName,
-                    email: user.email,
-                    createdAt: new Date().toISOString(),
-                    provider: 'google',
-                    emailVerified: user.emailVerified,
-                    photoURL: user.photoURL,
-                    uid: user.uid,
-                    profileComplete: false,
-                    lastLogin: new Date().toISOString()
-                };
-                
-                await db.collection('users').doc(user.uid).set(userData);
-            }
-            
-            return {
-                success: true,
-                user: {
-                    uid: user.uid,
-                    email: user.email,
-                    name: user.displayName,
-                    photoURL: user.photoURL,
-                    provider: 'google',
-                    emailVerified: user.emailVerified,
-                    profileComplete: userData.profileComplete || false,
-                    ...userData
-                }
-            };
-        } catch (error) {
-            console.error('❌ Error en login con Google:', error);
-            return {
-                success: false,
-                error: error.code,
-                message: getFirebaseErrorMessage(error.code)
-            };
-        }
-    }
-
-    async function saveAdditionalData(userData) {
-        try {
-            const user = auth.currentUser;
-            if (!user) throw new Error('No hay usuario autenticado');
-            
-            const additionalData = {
-                phone: userData.phone,
-                documentType: userData.documentType,
-                documentNumber: userData.documentNumber,
-                department: userData.department,
-                city: userData.city,
-                address: userData.address,
-                profileComplete: true,
-                profileCompletedAt: new Date().toISOString()
-            };
-            
-            await db.collection('users').doc(user.uid).update(additionalData);
-            console.log('✅ Datos adicionales guardados');
-            
-            return { success: true };
-        } catch (error) {
-            console.error('❌ Error guardando datos adicionales:', error);
-            return { success: false, message: error.message };
-        }
+        return /^[0-9]+$/.test(docNumber) && docNumber.length >= 6 && docNumber.length <= 15;
     }
 
     function getFirebaseErrorMessage(errorCode) {
@@ -681,59 +463,120 @@
             'auth/invalid-email': 'El correo electrónico no es válido.',
             'auth/too-many-requests': 'Demasiados intentos fallidos. Intenta más tarde.',
             'auth/network-request-failed': 'Error de conexión. Verifica tu internet.',
-            'auth/popup-closed-by-user': 'Ventana de autenticación cerrada.',
-            'auth/cancelled-popup-request': 'Solicitud cancelada.',
             'default': 'Error de autenticación. Intenta nuevamente.'
         };
         return messages[errorCode] || messages['default'];
     }
 
-    // ========== MANEJO POST-LOGIN MODIFICADO ==========
-    function handlePostLogin(user) {
-        currentUser = user;
-        
-        // Mostrar pantalla de carga
-        const loadingScreen = document.getElementById('loading-screen');
-        loadingScreen.style.display = 'flex';
-        loadingScreen.classList.remove('hidden');
-        document.body.classList.add('locked');
-        
-        setTimeout(() => {
-            // Ocultar pantalla de carga
-            loadingScreen.classList.add('hidden');
-            setTimeout(() => {
-                loadingScreen.style.display = 'none';
-                document.body.classList.remove('locked');
-            }, 1000);
+    // ========== FUNCIONES DE AUTENTICACIÓN ==========
+    async function registerUser(email, password, name) {
+        try {
+            const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+            await userCredential.user.updateProfile({ displayName: name });
             
-            if (!user.profileComplete) {
-                console.log('📋 Usuario necesita completar perfil');
-                showForm('additionalData');
-            } else {
-                console.log('✅ Usuario con perfil completo');
-                showUserPanel(user);
+            const userData = {
+                name,
+                email,
+                createdAt: new Date().toISOString(),
+                profileComplete: false,
+                uid: userCredential.user.uid
+            };
+            
+            await db.collection('users').doc(userCredential.user.uid).set(userData);
+            return { success: true, user: userData };
+        } catch (error) {
+            return { success: false, message: getFirebaseErrorMessage(error.code) };
+        }
+    }
+
+    async function loginUser(email, password) {
+        try {
+            const userCredential = await auth.signInWithEmailAndPassword(email, password);
+            const userDoc = await db.collection('users').doc(userCredential.user.uid).get();
+            
+            return {
+                success: true,
+                user: {
+                    ...userDoc.data(),
+                    uid: userCredential.user.uid,
+                    email: userCredential.user.email
+                }
+            };
+        } catch (error) {
+            return { success: false, message: getFirebaseErrorMessage(error.code) };
+        }
+    }
+
+    async function loginWithGoogle() {
+        try {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            const result = await auth.signInWithPopup(provider);
+            const userDoc = await db.collection('users').doc(result.user.uid).get();
+            
+            if (!userDoc.exists) {
+                await db.collection('users').doc(result.user.uid).set({
+                    name: result.user.displayName,
+                    email: result.user.email,
+                    photoURL: result.user.photoURL,
+                    createdAt: new Date().toISOString(),
+                    profileComplete: false
+                });
             }
-        }, 1500);
+            
+            return {
+                success: true,
+                user: {
+                    ...(userDoc.exists ? userDoc.data() : {
+                        name: result.user.displayName,
+                        email: result.user.email,
+                        photoURL: result.user.photoURL,
+                        profileComplete: false
+                    }),
+                    uid: result.user.uid
+                }
+            };
+        } catch (error) {
+            return { success: false, message: getFirebaseErrorMessage(error.code) };
+        }
+    }
+
+    // ========== FUNCIONES DE PERFIL ==========
+    async function saveProfileData(userId, data) {
+        try {
+            await db.collection('users').doc(userId).update({
+                ...data,
+                profileComplete: true,
+                updatedAt: new Date().toISOString()
+            });
+            return { success: true };
+        } catch (error) {
+            return { success: false, message: 'Error al guardar los datos' };
+        }
+    }
+
+    async function skipAdditionalData() {
+        if (!currentUser) return;
+        
+        try {
+            await db.collection('users').doc(currentUser.uid).update({
+                profileComplete: false,
+                skippedAt: new Date().toISOString()
+            });
+            
+            currentUser.profileComplete = false;
+            showUserPanel(currentUser);
+        } catch (error) {
+            console.error('Error al saltar datos:', error);
+            alert('Error al continuar sin completar el perfil');
+        }
     }
 
     function showUserPanel(user) {
-        console.log('👤 Mostrando panel de usuario:', user.name);
-        
         document.getElementById('userName').textContent = user.name || 'Usuario';
-        document.getElementById('userEmail').textContent = user.email || '';
+        document.getElementById('userEmail').textContent = user.email;
         
-        const avatar = document.getElementById('userAvatar');
         if (user.photoURL) {
-            avatar.src = user.photoURL;
-        }
-        
-        const statusElement = document.getElementById('userStatus');
-        if (user.profileComplete) {
-            statusElement.textContent = '✅ Perfil Completo';
-            statusElement.className = 'status-badge complete';
-        } else {
-            statusElement.textContent = '⚠️ Perfil Incompleto';
-            statusElement.className = 'status-badge incomplete';
+            document.getElementById('userAvatar').src = user.photoURL;
         }
         
         document.getElementById('userPhone').textContent = user.phone || 'No registrado';
@@ -746,403 +589,276 @@
         document.getElementById('userAddress').textContent = user.address || 'No registrada';
         
         if (user.createdAt) {
-            const createdDate = new Date(user.createdAt).toLocaleDateString('es-CO');
-            document.getElementById('accountCreated').textContent = createdDate;
-        }
-        
-        if (user.lastLogin) {
-            const lastLoginDate = new Date(user.lastLogin).toLocaleString('es-CO');
-            document.getElementById('lastLogin').textContent = lastLoginDate;
+            document.getElementById('accountCreated').textContent = 
+                new Date(user.createdAt).toLocaleDateString('es-CO');
         }
         
         showForm('user');
     }
 
-    function skipAdditionalData() {
-        if (currentUser) {
-            console.log('⏭️ Usuario saltó datos adicionales');
-            showUserPanel(currentUser);
-        }
-    }
-
-    // ========== FUNCIONES DEL PANEL DE USUARIO ==========
     function editProfile() {
         if (!currentUser) return;
         
         document.getElementById('editName').value = currentUser.name || '';
-        
-        if (currentUser.phone) {
-            const phone = currentUser.phone.replace('+57', '');
-            document.getElementById('editPhoneNumber').value = phone;
-        }
-        
-        if (currentUser.documentType) {
-            document.getElementById('editDocumentType').value = currentUser.documentType;
-        }
-        
-        if (currentUser.documentNumber) {
-            document.getElementById('editDocumentNumber').value = currentUser.documentNumber;
-        }
-        
-        if (currentUser.department) {
-            document.getElementById('editDepartment').value = currentUser.department;
-        }
-        
-        if (currentUser.city) {
-            document.getElementById('editCity').value = currentUser.city;
-        }
-        
-        if (currentUser.address) {
-            document.getElementById('editAddress').value = currentUser.address;
-        }
+        document.getElementById('editPhoneNumber').value = currentUser.phone ? currentUser.phone.replace('+57', '') : '';
+        document.getElementById('editDocumentType').value = currentUser.documentType || '';
+        document.getElementById('editDocumentNumber').value = currentUser.documentNumber || '';
+        document.getElementById('editDepartment').value = currentUser.department || '';
+        document.getElementById('editCity').value = currentUser.city || '';
+        document.getElementById('editAddress').value = currentUser.address || '';
         
         showForm('editProfile');
     }
 
-    function cancelEditProfile() {
-        showUserPanel(currentUser);
+    async function updateProfile() {
+        const userId = currentUser?.uid;
+        if (!userId) return;
+        
+        const updatedData = {
+            name: document.getElementById('editName').value.trim(),
+            phone: `+57${document.getElementById('editPhoneNumber').value.trim()}`,
+            documentType: document.getElementById('editDocumentType').value,
+            documentNumber: document.getElementById('editDocumentNumber').value.trim(),
+            department: document.getElementById('editDepartment').value,
+            city: document.getElementById('editCity').value.trim(),
+            address: document.getElementById('editAddress').value.trim()
+        };
+        
+        const result = await saveProfileData(userId, updatedData);
+        if (result.success) {
+            currentUser = { ...currentUser, ...updatedData, profileComplete: true };
+            showUserPanel(currentUser);
+        } else {
+            alert(result.message);
+        }
     }
 
     function logoutUser() {
-        if (confirm('¿Estás seguro de que quieres cerrar sesión?')) {
-            auth.signOut().then(() => {
-                console.log('👋 Sesión cerrada');
-                currentUser = null;
-                sessionStorage.removeItem('currentUser');
-                showForm('login');
-                
-                document.querySelectorAll('form').forEach(form => form.reset());
-                clearFormErrors();
-                
-                alert('✅ Sesión cerrada exitosamente');
-            }).catch((error) => {
-                console.error('Error al cerrar sesión:', error);
-                alert('❌ Error al cerrar sesión');
-            });
-        }
-    }
-
-    function changeProfilePhoto() {
-        const input = document.createElement('input');
-        input.type = 'file';
-        input.accept = 'image/*';
-        input.onchange = handlePhotoUpload;
-        input.click();
-    }
-
-    async function handlePhotoUpload(event) {
-        const file = event.target.files[0];
-        if (!file || !currentUser) return;
-        
-        if (file.size > 2 * 1024 * 1024) {
-            alert('❌ La imagen es muy grande. Máximo 2MB permitido.');
-            return;
-        }
-        
-        if (!file.type.startsWith('image/')) {
-            alert('❌ Por favor selecciona una imagen válida.');
-            return;
-        }
-        
-        try {
-            console.log('📸 Subiendo foto de perfil...');
-            
-            const storageRef = storage.ref(`profile_photos/${currentUser.uid}/${Date.now()}_${file.name}`);
-            const uploadTask = storageRef.put(file);
-            
-            const changeBtn = document.querySelector('.change-photo-btn');
-            changeBtn.innerHTML = '<i class="bx bx-loader bx-spin"></i>';
-            
-            uploadTask.on('state_changed',
-                (snapshot) => {
-                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    console.log('Progreso:', progress.toFixed(0) + '%');
-                },
-                (error) => {
-                    console.error('Error subiendo foto:', error);
-                    alert('❌ Error subiendo la foto');
-                    changeBtn.innerHTML = '<i class="bx bx-camera"></i>';
-                },
-                async () => {
-                    try {
-                        const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
-                        
-                        await auth.currentUser.updateProfile({
-                            photoURL: downloadURL
-                        });
-                        
-                        await db.collection('users').doc(currentUser.uid).update({
-                            photoURL: downloadURL,
-                            updatedAt: new Date().toISOString()
-                        });
-                        
-                        document.getElementById('userAvatar').src = downloadURL;
-                        currentUser.photoURL = downloadURL;
-                        
-                        changeBtn.innerHTML = '<i class="bx bx-camera"></i>';
-                        
-                        console.log('✅ Foto de perfil actualizada');
-                        alert('✅ Foto de perfil actualizada correctamente');
-                        
-                    } catch (error) {
-                        console.error('Error actualizando foto:', error);
-                        alert('❌ Error actualizando la foto');
-                        changeBtn.innerHTML = '<i class="bx bx-camera"></i>';
-                    }
-                }
-            );
-            
-        } catch (error) {
-            console.error('Error general subiendo foto:', error);
-            alert('❌ Error subiendo la foto');
-        }
+        auth.signOut().then(() => {
+            currentUser = null;
+            showForm('login');
+            document.querySelectorAll('form').forEach(form => form.reset());
+        });
     }
 
     // ========== EVENT LISTENERS ==========
     document.addEventListener('DOMContentLoaded', function() {
-        // Validación de email en registro
-        document.getElementById('registerEmail')?.addEventListener('input', function() {
-            const email = this.value;
-            const emailError = document.getElementById('registerEmailError');
-            const emailSuccess = document.getElementById('registerEmailSuccess');
-            
-            if (email && validateEmail(email)) {
-                emailError.classList.remove('show');
-                emailSuccess.classList.add('show');
-            } else if (email) {
-                emailSuccess.classList.remove('show');
-                emailError.classList.add('show');
-            } else {
-                emailError.classList.remove('show');
-                emailSuccess.classList.remove('show');
-            }
-        });
-
-        // ... (otros event listeners de validación) ...
-
+        // Login Form
         document.getElementById('loginForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const email = document.getElementById('loginEmail').value.trim();
             const password = document.getElementById('loginPassword').value;
-            const remember = document.getElementById('remember').checked;
-            const submitButton = this.querySelector('button[type="submit"]');
+            const button = this.querySelector('button[type="submit"]');
             
-            clearFormErrors();
-            
-            let hasErrors = false;
-            
-            if (!email || !validateEmail(email)) {
+            if (!validateEmail(email)) {
                 document.getElementById('loginEmailError').classList.add('show');
-                hasErrors = true;
+                return;
             }
             
-            if (!password || password.length < 6) {
-                document.getElementById('loginPasswordError').classList.add('show');
-                hasErrors = true;
-            }
+            button.disabled = true;
+            button.textContent = 'Iniciando sesión...';
             
-            if (hasErrors) return;
-            
-            submitButton.textContent = 'Iniciando sesión...';
-            submitButton.disabled = true;
-            
-            const result = await loginWithEmail(email, password);
+            const result = await loginUser(email, password);
             
             if (result.success) {
-                submitButton.textContent = '¡Bienvenido!';
-                submitButton.style.background = '#28a745';
-                
-                if (remember) {
-                    localStorage.setItem('rememberedEmail', email);
-                } else {
-                    localStorage.removeItem('rememberedEmail');
-                }
-                
-                setTimeout(() => {
-                    handlePostLogin(result.user);
-                }, 1000);
-                
+                currentUser = result.user;
+                handlePostLogin(result.user);
             } else {
-                submitButton.textContent = 'Error de acceso';
-                submitButton.style.background = '#dc3545';
-                
-                if (result.error === 'auth/user-not-found') {
-                    document.getElementById('loginEmailError').textContent = result.message;
-                    document.getElementById('loginEmailError').classList.add('show');
-                } else if (result.error === 'auth/wrong-password') {
-                    document.getElementById('loginPasswordError').textContent = result.message;
-                    document.getElementById('loginPasswordError').classList.add('show');
-                }
-                
-                setTimeout(() => {
-                    submitButton.textContent = 'Entrar';
-                    submitButton.disabled = false;
-                    submitButton.style.background = '';
-                }, 2000);
+                document.getElementById('loginPasswordError').textContent = result.message;
+                document.getElementById('loginPasswordError').classList.add('show');
+                button.textContent = 'Entrar';
+                button.disabled = false;
             }
         });
 
-        // ... (otros event listeners de formularios) ...
+        // Register Form
+        document.getElementById('registerForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('registerName').value.trim();
+            const email = document.getElementById('registerEmail').value.trim();
+            const password = document.getElementById('registerPassword').value;
+            const button = this.querySelector('button[type="submit"]');
+            
+            if (!name || !validateEmail(email) || password.length < 6) {
+                if (!name) document.getElementById('registerNameError').classList.add('show');
+                if (!validateEmail(email)) document.getElementById('registerEmailError').classList.add('show');
+                if (password.length < 6) document.getElementById('registerPasswordError').classList.add('show');
+                return;
+            }
+            
+            button.disabled = true;
+            button.textContent = 'Creando cuenta...';
+            
+            const result = await registerUser(email, password, name);
+            
+            if (result.success) {
+                currentUser = result.user;
+                handlePostLogin(result.user);
+            } else {
+                document.getElementById('registerEmailError').textContent = result.message;
+                document.getElementById('registerEmailError').classList.add('show');
+                button.textContent = 'Crear Cuenta';
+                button.disabled = false;
+            }
+        });
 
+        // Additional Data Form
+        document.getElementById('additionalDataForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const data = {
+                phone: `+57${document.getElementById('phoneNumber').value.trim()}`,
+                documentType: document.getElementById('documentType').value,
+                documentNumber: document.getElementById('documentNumber').value.trim(),
+                department: document.getElementById('department').value,
+                city: document.getElementById('city').value.trim(),
+                address: document.getElementById('address').value.trim()
+            };
+            
+            const button = this.querySelector('button[type="submit"]');
+            button.disabled = true;
+            button.textContent = 'Guardando...';
+            
+            const result = await saveProfileData(currentUser.uid, data);
+            
+            if (result.success) {
+                currentUser = { ...currentUser, ...data, profileComplete: true };
+                showUserPanel(currentUser);
+            } else {
+                alert(result.message);
+                button.textContent = 'Guardar y Continuar';
+                button.disabled = false;
+            }
+        });
+
+        // Edit Profile Form
+        document.getElementById('editProfileForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            updateProfile();
+        });
+
+        // Google Login
         document.getElementById('googleSignInButton').addEventListener('click', async function() {
             const button = this;
-            button.textContent = 'Conectando con Google...';
             button.disabled = true;
+            button.textContent = 'Conectando...';
             
             const result = await loginWithGoogle();
             
             if (result.success) {
-                button.textContent = '¡Bienvenido!';
-                button.style.background = '#28a745';
-                
-                setTimeout(() => {
-                    handlePostLogin(result.user);
-                }, 1000);
+                currentUser = result.user;
+                handlePostLogin(result.user);
             } else {
-                button.textContent = 'Error con Google';
-                button.style.background = '#dc3545';
-                
-                setTimeout(() => {
-                    button.textContent = 'Iniciar sesión con Google';
-                    button.disabled = false;
-                    button.style.background = '';
-                }, 2000);
+                alert(result.message);
+                button.textContent = 'Iniciar con Google';
+                button.disabled = false;
             }
         });
 
-        // Inicialización
-        async function checkExistingSession() {
-            return new Promise((resolve) => {
-                const unsubscribe = auth.onAuthStateChanged(async (user) => {
-                    unsubscribe();
-                    
-                    if (user) {
-                        console.log('🔍 Usuario ya autenticado encontrado:', user.email);
-                        
-                        try {
-                            const userDoc = await db.collection('users').doc(user.uid).get();
-                            const userData = userDoc.data();
-                            
-                            const completeUser = {
-                                uid: user.uid,
-                                email: user.email,
-                                name: user.displayName || userData?.name || 'Usuario',
-                                emailVerified: user.emailVerified,
-                                photoURL: user.photoURL || userData?.photoURL,
-                                profileComplete: userData?.profileComplete || false,
-                                ...userData
-                            };
-                            
-                            currentUser = completeUser;
-                            showUserPanel(completeUser);
-                            resolve(true);
-                        } catch (error) {
-                            console.error('Error obteniendo datos del usuario:', error);
-                            resolve(false);
-                        }
-                    } else {
-                        console.log('👤 No hay usuario autenticado');
-                        showForm('login');
-                        resolve(false);
-                    }
-                });
-            });
-        }
-
-        async function init() {
-            console.log('🚀 Inicializando sistema...');
-            
-            const hasActiveSession = await checkExistingSession();
-            
-            if (!hasActiveSession) {
-                const remembered = localStorage.getItem('rememberedEmail');
-                if (remembered) {
-                    document.getElementById('loginEmail').value = remembered;
-                    document.getElementById('remember').checked = true;
-                }
-            }
-            
-            window.toggleForms = toggleForms;
-            window.skipAdditionalData = skipAdditionalData;
-            window.editProfile = editProfile;
-            window.cancelEditProfile = cancelEditProfile;
-            window.logoutUser = logoutUser;
-            window.changeProfilePhoto = changeProfilePhoto;
-            
-            console.log('=== SISTEMA LISTO ===');
-        }
-
-        init();
-    });
-    // Modal de recuperación
+        // Modal de recuperación de contraseña
         const modal = document.getElementById('passwordResetModal');
         const resetButton = document.getElementById('forgotPasswordLink');
-        const closeModal = document.querySelector('.close-reset-modal'); // Cambiado a la clase correcta
-        const sendResetButton = document.getElementById('confirmResetBtn'); // Cambiado al ID correcto
-        const cancelButton = document.getElementById('cancelResetBtn'); // Añadido el botón cancelar
+        const closeModal = document.querySelector('.close-reset-modal');
+        const sendResetButton = document.getElementById('confirmResetBtn');
+        const cancelButton = document.getElementById('cancelResetBtn');
 
         resetButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        modal.style.display = 'block';
-        document.getElementById('resetEmail').value = ''; // Limpiar el campo
-        document.getElementById('resetEmailError').textContent = '';
+            e.preventDefault();
+            modal.style.display = 'block';
+            document.getElementById('resetEmail').value = '';
+            document.getElementById('resetEmailError').textContent = '';
         });
 
         closeModal.addEventListener('click', () => {
-        modal.style.display = 'none';
+            modal.style.display = 'none';
         });
 
-        // Añadir evento para el botón Cancelar
         cancelButton.addEventListener('click', () => {
-        modal.style.display = 'none';
+            modal.style.display = 'none';
         });
 
         sendResetButton.addEventListener('click', async () => {
-        const email = document.getElementById('resetEmail').value.trim();
-        const errorElement = document.getElementById('resetEmailError');
-        
-        if (!email || !validateEmail(email)) {
-            errorElement.textContent = 'Ingresa un correo válido';
-            return;
-        }
-        
-        sendResetButton.textContent = 'Enviando...';
-        sendResetButton.disabled = true;
-        
-        try {
-            await auth.sendPasswordResetEmail(email);
+            const email = document.getElementById('resetEmail').value.trim();
+            const errorElement = document.getElementById('resetEmailError');
             
-            // Feedback visual mejorado
-            const modalContent = document.querySelector('.reset-modal-content');
-            modalContent.innerHTML = `
-            <div class="reset-modal-header">
-                <i class='bx bx-check-circle success-icon'></i>
-                <h3>¡Enlace enviado!</h3>
-            </div>
-            <div class="reset-modal-body">
-                <p>Revisa tu correo electrónico <strong>${email}</strong> y sigue las instrucciones.</p>
-                <p>¿No lo ves? Revisa tu carpeta de spam.</p>
-            </div>
-            <div class="reset-modal-footer">
-                <button onclick="document.getElementById('passwordResetModal').style.display='none'" class="confirm-btn">Entendido</button>
-            </div>
-            `;
+            if (!email || !validateEmail(email)) {
+                errorElement.textContent = 'Ingresa un correo válido';
+                return;
+            }
             
-        } catch (error) {
-            sendResetButton.textContent = 'Enviar enlace';
-            sendResetButton.disabled = false;
-            errorElement.textContent = getFirebaseErrorMessage(error.code);
-        }
+            sendResetButton.textContent = 'Enviando...';
+            sendResetButton.disabled = true;
+            
+            try {
+                await auth.sendPasswordResetEmail(email);
+                
+                const modalContent = document.querySelector('.reset-modal-content');
+                modalContent.innerHTML = `
+                <div class="reset-modal-header">
+                    <i class='bx bx-check-circle success-icon'></i>
+                    <h3>¡Enlace enviado!</h3>
+                </div>
+                <div class="reset-modal-body">
+                    <p>Revisa tu correo electrónico <strong>${email}</strong> y sigue las instrucciones.</p>
+                    <p>¿No lo ves? Revisa tu carpeta de spam.</p>
+                </div>
+                <div class="reset-modal-footer">
+                    <button onclick="document.getElementById('passwordResetModal').style.display='none'" class="confirm-btn">Entendido</button>
+                </div>
+                `;
+                
+            } catch (error) {
+                sendResetButton.textContent = 'Enviar enlace';
+                sendResetButton.disabled = false;
+                errorElement.textContent = getFirebaseErrorMessage(error.code);
+            }
         });
 
-        // Cierra el modal al hacer clic fuera
         window.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.style.display = 'none';
-        }
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
         });
 
+        // Cerrar modal
+        document.querySelector('.close-reset-modal').addEventListener('click', function() {
+            document.getElementById('passwordResetModal').style.display = 'none';
+        });
+
+        // Inicialización
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                const userDoc = await db.collection('users').doc(user.uid).get();
+                currentUser = { ...userDoc.data(), uid: user.uid, email: user.email };
+                handlePostLogin(currentUser);
+            } else {
+                showForm('login');
+            }
+        });
+
+        // Funciones globales
+        window.toggleForms = toggleForms;
+        window.skipAdditionalData = skipAdditionalData;
+        window.editProfile = editProfile;
+        window.cancelEditProfile = () => showUserPanel(currentUser);
+        window.logoutUser = logoutUser;
+    });
+
+    function handlePostLogin(user) {
+        const loadingScreen = document.getElementById('loading-screen');
+        loadingScreen.style.display = 'flex';
+        
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+            if (!user.profileComplete) {
+                showForm('additionalData');
+            } else {
+                showUserPanel(user);
+            }
+        }, 1500);
+    }
 </script>
 </body>
 </html>
