@@ -132,6 +132,18 @@ const productos = [
     { nombre: "Onix sello negro nada a medias todo al 100", id: "Onix sello negro nada a medias todo al 100", pagina: "ProductosCigarreria.html" },
     { nombre: "Coca-Cola", id: "coca-cola", pagina: "Producto.html" },
     { nombre: "Pepsi", id: "pepsi", pagina: "Producto.html" },
+    { nombre: "mexicano", id: "mexicano", pagina: "Producto.html" },
+    { nombre: "Burger Ranch", id: "Burger Ranch", pagina: "Producto.html" },
+    { nombre: "Hambuerguesa mixta", id: "Hambuerguesa mixta", pagina: "Producto.html" },
+    { nombre: "Tacos Pollo maíz", id: "Tacos Pollo maíz", pagina: "Producto.html" },
+    { nombre: "Tacos madurito crunch", id: "Tacos madurito crunch", pagina: "Producto.html" },
+    { nombre: "Tacos Carnitas", id: "Tacos Carnitas", pagina: "Producto.html" },
+    { nombre: "Picada tradicional", id: "Picada tradicional", pagina: "Producto.html" },
+    { nombre: "Perro americano", id: "Perro americano", pagina: "Producto.html" },
+    { nombre: "Tocimiel", id: "Tocimiel", pagina: "Producto.html" },
+    { nombre: "Entrada platanitos", id: "Entrada platanitos", pagina: "Producto.html" },
+    { nombre: "Papas locas 38", id: "Papas locas 38k", pagina: "Producto.html" },
+    { nombre: "Papas locas 55", id: "Papas locas 55k", pagina: "Producto.html" },
 ];
 
 const searchInput = document.getElementById('searchInput');
