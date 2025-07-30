@@ -803,6 +803,84 @@ const productos = [
         nombre: "Onix sello negro nada a medias todo al 100",
         precio: 55000,
         imagen: "Bebidas/Tequila/Onix sello negro nada a medias todo al 100.webp"
+    },
+    {
+        id: "Mexico",
+        nombre: "Mexico",
+        precio: 20000,
+        imagen: "Comida/Mexico.webp"
+    },
+    {
+        id: "Burger Ranch",
+        nombre: "MBurger Ranch",
+        precio: 28000,
+        imagen: "Comida/Burger Ranch.webp"
+    },
+    {
+        id: "Hamburguesa mixta",
+        nombre: "Hamburguesa mixta",
+        precio: 28000,
+        imagen: "Comida/Hamburguesa mixta.webp"
+    },
+    {
+        id: "Hamburguesa mixta",
+        nombre: "Hamburguesa mixta",
+        precio: 25000,
+        imagen: "Comida/Hamburguesa mixta.webp"
+    },
+    {
+        id: "Tacos pollo maiz",
+        nombre: "Tacos pollo maiz",
+        precio: 22000,
+        imagen: "Comida/Tacos pollo maiz.webp"
+    },
+    {
+        id: "Tacos madurito crunch",
+        nombre: "Tacos madurito crunch",
+        precio: 24000,
+        imagen: "Comida/Tacos madurito crunch.webp"
+    },
+    {
+        id: "Tacos de carnitas",
+        nombre: "Tacos de carnitas",
+        precio: 20000,
+        imagen: "Comida/Tacos de carnitas.webp"
+    },
+    {
+        id: "Picada tradiciona",
+        nombre: "Picada tradiciona",
+        precio: 35000,
+        imagen: "Comida/Picada tradicional.webp"
+    },
+    {
+        id: "Perro americano",
+        nombre: "Perro americano",
+        precio: 15000,
+        imagen: "Comida/Perro americano.webp"
+    },
+    {
+        id: "Ticimiel",
+        nombre: "Ticimiel",
+        precio: 15000,
+        imagen: "Comida/Ticimiel.webp"
+    },
+    {
+        id: "Entrada platanitos",
+        nombre: "Entrada platanitos",
+        precio: 25000,
+        imagen: "Comida/Entrada platanitos.webp"
+    },
+    {
+        id: "Papas locs 38k",
+        nombre: "Papas locs 38k",
+        precio: 38000,
+        imagen: "Comida/Papas locs 38k.webp"
+    },
+    {
+        id: "Papas locs 55k",
+        nombre: "Papas locs 55k",
+        precio: 38000,
+        imagen: "Comida/Papas locs 55k.webp"
     }
 ];
 
