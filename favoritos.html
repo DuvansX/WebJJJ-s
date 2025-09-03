@@ -6,17 +6,42 @@
     <link rel="stylesheet" href="CSS/estilos.css">
     <link rel="icon" href="Imagenes/Logo Restaurante.PNG">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://kit.fontawesome.com/tu-key-de-fontawesome.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<!-- Botón de volver -->
-<button class="volver-btn" onclick="window.history.back()">
-    <i class="fas fa-arrow-left"></i>
-</button>
 
 <h1>Mis Productos Favoritos</h1>
 <div id="favoritos-container" class="productos-grid"></div>
 
+<!-- Barra lateral -->
+    <div class="sidebar1">
+        <div class="logo_content1">
+            <div class="logo1">
+                <img src="Imagenes/Logo Licor.png" alt="Logo del Restaurante" width="53" height="50">
+                <div class="logo_name1">JJJ´s Beer</div>
+            </div>
+            <i class='bx bx-menu' id='btn1'></i>
+        </div>
+        <div class="src1" style="position: relative;">
+            <i class='bx bx-search-alt' id="srcBtn1"></i>
+            <input type="text" id="searchInput" placeholder="Buscar..." autocomplete="off">
+            <div id="suggestions" class="suggestions"></div>
+        </div>
+        <ul class="nav1">
+            <li><a href="index.html"><i class='bx bx-store-alt'></i><span class="link_name1">Principal</span></a></li>
+            <li><a href="InicioSs.html"><i class='bx bxs-user-circle'></i><span class="link_name1">Inicia sesión</span></a></li>
+            <li><a href="Producto.html"><i class='bx bxs-pizza'></i><span class="link_name1">Productos Food</span></a></li>
+            <li><a href="ProductosCigarreria.html"><i class='bx bxs-drink'></i><span class="link_name1">Productos Beer</span></a><span class="tooltip1">Productos Beer</span></li>
+            <li><a href="Pedidos.html"><i class='bx bx-package'></i><span class="link_name1">Pedidos</span></a></li>
+            <li><a href="Nosotros.html"><i class='bx bx-conversation'></i><span class="link_name1">Nosotros</span></a></li>
+            <li><a href="Horarios.html"><i class='bx bxs-calendar'></i><span class="link_name1">Horarios</span></a></li>
+            <li><a href="favoritos.html"><i class='bx bxs-heart-circle'></i><span class="link_name1">Favoritos</span></a></li>
+        </ul>
+    </div>
+
 <script src="JS/favoritos.js"></script>
+<script src="JS/Buscador.js"></script>
+<script src="JS/Siderbar.js"></script>
 </body>
 </html>
