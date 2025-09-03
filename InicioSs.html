@@ -454,6 +454,40 @@
         return /^[0-9]+$/.test(docNumber) && docNumber.length >= 6 && docNumber.length <= 15;
     }
 
+    // Función para crear un ID personalizado basado en el nombre
+    function createCustomId(name) {
+        return name.toLowerCase()
+            .normalize('NFD') // Descomponer caracteres con tildes
+            .replace(/[\u0300-\u036f]/g, '') // Eliminar tildes
+            .replace(/\s+/g, '_') // Espacios por guiones bajos
+            .replace(/[^a-z0-9_]/g, '') // Solo letras, números y guiones bajos
+            .substring(0, 50); // Limitar longitud
+    }
+
+    // Función para verificar si un ID ya existe
+    async function checkIdExists(customId) {
+        try {
+            const doc = await db.collection('users').doc(customId).get();
+            return doc.exists;
+        } catch (error) {
+            return false;
+        }
+    }
+
+    // Función para generar un ID único
+    async function generateUniqueId(name) {
+        let baseId = createCustomId(name);
+        let customId = baseId;
+        let counter = 1;
+        
+        while (await checkIdExists(customId)) {
+            customId = `${baseId}_${counter}`;
+            counter++;
+        }
+        
+        return customId;
+    }
+
     function getFirebaseErrorMessage(errorCode) {
         const messages = {
             'auth/user-not-found': 'No existe una cuenta con este correo electrónico.',
@@ -474,16 +508,21 @@
             const userCredential = await auth.createUserWithEmailAndPassword(email, password);
             await userCredential.user.updateProfile({ displayName: name });
             
+            // Generar ID personalizado único
+            const customId = await generateUniqueId(name);
+            
             const userData = {
                 name,
                 email,
                 createdAt: new Date().toISOString(),
                 profileComplete: false,
-                uid: userCredential.user.uid
+                uid: userCredential.user.uid,
+                customId: customId // Guardamos también el ID personalizado
             };
             
-            await db.collection('users').doc(userCredential.user.uid).set(userData);
-            return { success: true, user: userData };
+            // Usar el ID personalizado en lugar del UID automático
+            await db.collection('users').doc(customId).set(userData);
+            return { success: true, user: { ...userData, docId: customId } };
         } catch (error) {
             return { success: false, message: getFirebaseErrorMessage(error.code) };
         }
@@ -492,14 +531,32 @@
     async function loginUser(email, password) {
         try {
             const userCredential = await auth.signInWithEmailAndPassword(email, password);
-            const userDoc = await db.collection('users').doc(userCredential.user.uid).get();
+            
+            // Buscar el documento del usuario por UID o email
+            let userDoc = null;
+            let docId = null;
+            
+            // Primero intentar buscar por customId si existe
+            const querySnapshot = await db.collection('users')
+                .where('uid', '==', userCredential.user.uid)
+                .get();
+            
+            if (!querySnapshot.empty) {
+                userDoc = querySnapshot.docs[0];
+                docId = userDoc.id;
+            } else {
+                // Si no existe, buscar por el UID original
+                userDoc = await db.collection('users').doc(userCredential.user.uid).get();
+                docId = userCredential.user.uid;
+            }
             
             return {
                 success: true,
                 user: {
                     ...userDoc.data(),
                     uid: userCredential.user.uid,
-                    email: userCredential.user.email
+                    email: userCredential.user.email,
+                    docId: docId
                 }
             };
         } catch (error) {
@@ -511,28 +568,42 @@
         try {
             const provider = new firebase.auth.GoogleAuthProvider();
             const result = await auth.signInWithPopup(provider);
-            const userDoc = await db.collection('users').doc(result.user.uid).get();
             
-            if (!userDoc.exists) {
-                await db.collection('users').doc(result.user.uid).set({
+            // Buscar si el usuario ya existe
+            const querySnapshot = await db.collection('users')
+                .where('uid', '==', result.user.uid)
+                .get();
+            
+            let userDoc = null;
+            let docId = null;
+            
+            if (!querySnapshot.empty) {
+                userDoc = querySnapshot.docs[0];
+                docId = userDoc.id;
+            } else {
+                // Si no existe, crear nuevo documento con ID personalizado
+                const customId = await generateUniqueId(result.user.displayName);
+                const userData = {
                     name: result.user.displayName,
                     email: result.user.email,
                     photoURL: result.user.photoURL,
                     createdAt: new Date().toISOString(),
-                    profileComplete: false
-                });
+                    profileComplete: false,
+                    uid: result.user.uid,
+                    customId: customId
+                };
+                
+                await db.collection('users').doc(customId).set(userData);
+                docId = customId;
+                userDoc = { data: () => userData };
             }
             
             return {
                 success: true,
                 user: {
-                    ...(userDoc.exists ? userDoc.data() : {
-                        name: result.user.displayName,
-                        email: result.user.email,
-                        photoURL: result.user.photoURL,
-                        profileComplete: false
-                    }),
-                    uid: result.user.uid
+                    ...userDoc.data(),
+                    uid: result.user.uid,
+                    docId: docId
                 }
             };
         } catch (error) {
@@ -541,9 +612,9 @@
     }
 
     // ========== FUNCIONES DE PERFIL ==========
-    async function saveProfileData(userId, data) {
+    async function saveProfileData(docId, data) {
         try {
-            await db.collection('users').doc(userId).update({
+            await db.collection('users').doc(docId).update({
                 ...data,
                 profileComplete: true,
                 updatedAt: new Date().toISOString()
@@ -558,7 +629,7 @@
         if (!currentUser) return;
         
         try {
-            await db.collection('users').doc(currentUser.uid).update({
+            await db.collection('users').doc(currentUser.docId || currentUser.uid).update({
                 profileComplete: false,
                 skippedAt: new Date().toISOString()
             });
@@ -611,8 +682,8 @@
     }
 
     async function updateProfile() {
-        const userId = currentUser?.uid;
-        if (!userId) return;
+        const docId = currentUser?.docId || currentUser?.uid;
+        if (!docId) return;
         
         const updatedData = {
             name: document.getElementById('editName').value.trim(),
@@ -624,7 +695,7 @@
             address: document.getElementById('editAddress').value.trim()
         };
         
-        const result = await saveProfileData(userId, updatedData);
+        const result = await saveProfileData(docId, updatedData);
         if (result.success) {
             currentUser = { ...currentUser, ...updatedData, profileComplete: true };
             showUserPanel(currentUser);
@@ -721,7 +792,7 @@
             button.disabled = true;
             button.textContent = 'Guardando...';
             
-            const result = await saveProfileData(currentUser.uid, data);
+            const result = await saveProfileData(currentUser.docId || currentUser.uid, data);
             
             if (result.success) {
                 currentUser = { ...currentUser, ...data, profileComplete: true };
@@ -830,9 +901,35 @@
         // Inicialización
         auth.onAuthStateChanged(async (user) => {
             if (user) {
-                const userDoc = await db.collection('users').doc(user.uid).get();
-                currentUser = { ...userDoc.data(), uid: user.uid, email: user.email };
-                handlePostLogin(currentUser);
+                // Buscar el documento del usuario
+                const querySnapshot = await db.collection('users')
+                    .where('uid', '==', user.uid)
+                    .get();
+                
+                if (!querySnapshot.empty) {
+                    const userDoc = querySnapshot.docs[0];
+                    currentUser = { 
+                        ...userDoc.data(), 
+                        uid: user.uid, 
+                        email: user.email,
+                        docId: userDoc.id
+                    };
+                } else {
+                    // Documento con UID original
+                    const userDoc = await db.collection('users').doc(user.uid).get();
+                    if (userDoc.exists) {
+                        currentUser = { 
+                            ...userDoc.data(), 
+                            uid: user.uid, 
+                            email: user.email,
+                            docId: user.uid
+                        };
+                    }
+                }
+                
+                if (currentUser) {
+                    handlePostLogin(currentUser);
+                }
             } else {
                 showForm('login');
             }
