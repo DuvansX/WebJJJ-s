@@ -493,4 +493,11 @@ body {
     line-height: 22px;
   }
 
-  
+  /* Estilos específicos para videos en slides */
+.slide video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background-color: #000;
+}
