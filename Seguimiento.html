@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tu Pedido JJJ's - Rastreo en Tiempo Real</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="Imagenes/Logo Restaurante.PNG">
+  <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: url('../Imagenes/Food/Fondo Perros.jpeg') no-repeat center center/cover;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .tracking-container {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 100%;
+      padding: 30px;
+      text-align: center;
+      position: relative;
+    }
+
+    h1 {
+      color: #2d3748;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 16px 50px 16px 20px;
+      border: 2px solid #e2e8f0;
+      border-radius: 16px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      background: white;
+    }
+
+    .input-group input:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    .input-group i {
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #667eea;
+      font-size: 18px;
+    }
+
+    .btn-track {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 16px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+      color: white;
+      margin-bottom: 20px;
+    }
+
+ 
+
+    .status-card {
+      background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-left: 4px solid #667eea;
+      text-align: left;
+    }
+
+    .status-card.error {
+      border-left-color: #e53e3e;
+    }
+
+    .status-card.success {
+      border-left-color: #48bb78;
+    }
+
+    .status-card.warning {
+      border-left-color: #ed8936;
+    }
+
+    .status-info {
+      font-size: 16px;
+      color: #4a5568;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .coordinates {
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      color: #718096;
+      background: #f7fafc;
+      padding: 8px;
+      border-radius: 8px;
+      margin: 5px 0;
+    }
+
+    #map-container {
+      height: 400px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+      display: none;
+      position: relative;
+    }
+
+    .map-overlay {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 10px 15px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #2d3748;
+      z-index: 1000;
+    }
+
+    .live-indicator {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(72, 187, 120, 0.9);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      z-index: 1000;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.7; }
+      100% { opacity: 1; }
+    }
+
+    .distance-info {
+      background: rgba(102, 126, 234, 0.1);
+      border-radius: 12px;
+      padding: 15px;
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    .distance-value {
+      font-size: 24px;
+      font-weight: 600;
+      color: #667eea;
+      margin-bottom: 5px;
+    }
+
+    .distance-label {
+      font-size: 14px;
+      color: #718096;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 18px;
+      right: 24px;
+      background: none;
+      border: none;
+      color: #2d3748;
+      font-size: 2.2rem;
+      cursor: pointer;
+      z-index: 10;
+      transition: color 0.2s;
+    }
+
+    .close-btn:hover {
+      color: #e53e3e;
+    }
+  </style>
+</head>
+<body>
+  <div class="tracking-container">
+    <button class="close-btn" onclick="window.location.href='Pedidos.html'">&times;</button>
+    <h1>
+      <i class="fas fa-map-marker-alt"></i>
+      Rastrear Pedido en Tiempo Real
+    </h1>
+    
+    <div class="input-group">
+      <input type="text" id="order-id" placeholder="Ingresa tu ID de pedido" />
+      <i class="fas fa-search"></i>
+    </div>
+    
+    <button class="btn-track" onclick="trackOrder()">
+      <i class="fas fa-satellite-dish"></i>
+      Rastrear Pedido
+    </button>
+    
+    <div id="status-container"></div>
+    
+    <div id="map-container">
+      <div class="map-overlay" id="map-status">
+        <i class="fas fa-crosshairs"></i> Cargando mapa...
+      </div>
+      <div class="live-indicator">
+        <i class="fas fa-broadcast-tower"></i> EN VIVO
+      </div>
+      <div id="map" style="height: 100%; width: 100%;"></div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFirestore, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyD7s5mmGYkvAFbCXZrYNwefh9RnmNwQuzi0",
+      authDomain: "idtrabajadores.firebaseapp.com",
+      projectId: "idtrabajadores",
+      storageBucket: "idtrabajadores.appspot.com",
+      messagingSenderId: "476040391869",
+      appId: "1:476040391869:web:342d794ed1aaf54ce49bd4",
+      measurementId: "G-9XR5E02ZZ2"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    let map = null;
+    let deliveryMarker = null;
+    let destinationMarker = null;
+    let routeLine = null;
+    let unsubscribe = null;
+
+    // Inicializar Google Maps
+    function initializeMap() {
+      map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 15,
+        center: { lat: 5.5331, lng: -73.3678 }, // Tunja por defecto
+        mapTypeControl: false,
+        streetViewControl: false,
+        fullscreenControl: false,
+        zoomControl: true,
+        gestureHandling: 'greedy'
+      });
+      
+      console.log('🗺️ Mapa inicializado correctamente');
+    }
+
+    function showStatus(message, type = 'info', showCoordinates = null) {
+      const container = document.getElementById('status-container');
+      let coordinatesHtml = '';
+      
+      if (showCoordinates) {
+        coordinatesHtml = `
+          <div class="coordinates">
+            📍 Repartidor: ${showCoordinates.delivery.lat.toFixed(8)}, ${showCoordinates.delivery.lng.toFixed(8)}<br>
+            🎯 Destino: ${showCoordinates.destination.lat.toFixed(6)}, ${showCoordinates.destination.lng.toFixed(6)}
+          </div>
+        `;
+      }
+      
+      container.innerHTML = `
+        <div class="status-card ${type}">
+          <div class="status-info">
+            ${message}
+          </div>
+          ${coordinatesHtml}
+        </div>
+      `;
+    }
+
+    function showDistance(distance) {
+      const container = document.getElementById('status-container');
+      const existingCard = container.querySelector('.status-card');
+      
+      if (existingCard) {
+        const distanceHtml = `
+          <div class="distance-info">
+            <div class="distance-value">${distance.toFixed(2)} km</div>
+            <div class="distance-label">Distancia estimada</div>
+          </div>
+        `;
+        existingCard.insertAdjacentHTML('beforeend', distanceHtml);
+      }
+    }
+
+    function calculateDistance(pos1, pos2) {
+      const R = 6371; // Radio de la Tierra en km
+      const dLat = (pos2.lat - pos1.lat) * Math.PI / 180;
+      const dLng = (pos2.lng - pos1.lng) * Math.PI / 180;
+      const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+              Math.cos(pos1.lat * Math.PI / 180) * Math.cos(pos2.lat * Math.PI / 180) *
+              Math.sin(dLng/2) * Math.sin(dLng/2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+      return R * c;
+    }
+
+    function updateMap(deliveryPos, destinationPos, orderData) {
+      if (!map) {
+        console.error('❌ Mapa no inicializado');
+        return;
+      }
+
+      // Actualizar marcador del repartidor
+      if (deliveryMarker) {
+        deliveryMarker.setPosition(deliveryPos);
+      } else {
+        deliveryMarker = new google.maps.Marker({
+          position: deliveryPos,
+          map: map,
+          title: "Repartidor en camino",
+          icon: {
+            url: "https://cdn-icons-png.flaticon.com/512/5637/5637217.png",
+            scaledSize: new google.maps.Size(40, 40),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(20, 20)
+          },
+          animation: google.maps.Animation.BOUNCE
+        });
+
+        // Parar animación después de 3 segundos
+        setTimeout(() => {
+          if (deliveryMarker) deliveryMarker.setAnimation(null);
+        }, 3000);
+      }
+
+      // Crear marcador de destino si no existe
+      if (!destinationMarker) {
+        destinationMarker = new google.maps.Marker({
+          position: destinationPos,
+          map: map,
+          title: "Destino del pedido",
+          icon: {
+            path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+            scale: 8,
+            fillColor: "#EA4335",
+            fillOpacity: 1,
+            strokeColor: "#ffffff",
+            strokeWeight: 2
+          }
+        });
+      }
+
+      // Actualizar línea de ruta
+      if (routeLine) {
+        routeLine.setMap(null);
+      }
+      
+      routeLine = new google.maps.Polyline({
+        path: [deliveryPos, destinationPos],
+        geodesic: true,
+        strokeColor: "#4285F4",
+        strokeOpacity: 1.0,
+        strokeWeight: 4,
+        map: map
+      });
+
+      // Centrar mapa en repartidor
+      map.setCenter(deliveryPos);
+      map.setZoom(17);
+
+      // Actualizar overlay del mapa
+      const distance = calculateDistance(deliveryPos, destinationPos);
+      document.getElementById('map-status').innerHTML = 
+        `<i class="fas fa-route"></i> Repartidor a ${distance.toFixed(2)} km del destino`;
+
+      console.log(`🚚 Ubicación actualizada: ${deliveryPos.lat.toFixed(8)}, ${deliveryPos.lng.toFixed(8)}`);
+    }
+
+    window.trackOrder = async function() {
+      const orderId = document.getElementById('order-id').value.trim();
+      
+      if (!orderId) {
+        showStatus('<i class="fas fa-exclamation-triangle"></i> Por favor ingresa un ID de pedido', 'error');
+        return;
+      }
+
+      // Detener suscripción anterior si existe
+      if (unsubscribe) {
+        unsubscribe();
+        unsubscribe = null;
+      }
+
+      showStatus('<i class="fas fa-search"></i> Buscando pedido...', 'info');
+
+      try {
+        const orderRef = doc(db, "pedidos", orderId);
+        
+        // Suscribirse a cambios en tiempo real
+        unsubscribe = onSnapshot(orderRef, (docSnap) => {
+          if (!docSnap.exists()) {
+            showStatus('<i class="fas fa-exclamation-circle"></i> ID de pedido no encontrado', 'error');
+            document.getElementById('map-container').style.display = 'none';
+            return;
+          }
+
+          const data = docSnap.data();
+          console.log('📦 Datos del pedido:', data);
+          
+          // Verificar estructura de datos - CORREGIR AQUÍ
+          const origen = data.ubicacionOrigen;
+          const destino = data.ubicacionDestino;
+
+          if (!origen || !destino) {
+            showStatus('<i class="fas fa-clock"></i> Esperando ubicación del repartidor...', 'warning');
+            document.getElementById('map-container').style.display = 'none';
+            return;
+          }
+
+          // CORRECCIÓN: Manejar ambos formatos de coordenadas
+          let deliveryPos, destinationPos;
+          
+          // Para origen (repartidor) - puede venir como lat/lng o lat/lon
+          if (origen.lat !== undefined && origen.lng !== undefined) {
+            deliveryPos = { lat: origen.lat, lng: origen.lng };
+          } else if (origen.lat !== undefined && origen.lon !== undefined) {
+            deliveryPos = { lat: origen.lat, lng: origen.lon };
+          } else {
+            console.error('❌ Formato de coordenadas de origen inválido:', origen);
+            return;
+          }
+
+          // Para destino - puede venir como lat/lng o lat/lon  
+          if (destino.lat !== undefined && destino.lng !== undefined) {
+            destinationPos = { lat: destino.lat, lng: destino.lng };
+          } else if (destino.lat !== undefined && destino.lon !== undefined) {
+            destinationPos = { lat: destino.lat, lng: destino.lon };
+          } else {
+            console.error('❌ Formato de coordenadas de destino inválido:', destino);
+            return;
+          }
+
+          // Mostrar estado del pedido
+          const isActive = data.activo;
+          const lastUpdate = data.ultimaActualizacion || data.timestamp;
+          const updateTime = lastUpdate ? new Date(lastUpdate.toDate ? lastUpdate.toDate() : lastUpdate).toLocaleTimeString() : 'Desconocida';
+          
+          let statusMessage = '';
+          let statusType = 'success';
+          
+          if (isActive) {
+            statusMessage = `<i class="fas fa-shipping-fast"></i> Repartidor en camino - Actualizado: ${updateTime}`;
+          } else {
+            statusMessage = `<i class="fas fa-check-circle"></i> Pedido finalizado - Última actualización: ${updateTime}`;
+            statusType = 'warning';
+          }
+
+          showStatus(statusMessage, statusType, {
+            delivery: deliveryPos,
+            destination: destinationPos
+          });
+
+          // Mostrar mapa y actualizar ubicaciones
+          document.getElementById('map-container').style.display = 'block';
+          
+          // Inicializar mapa si no existe
+          if (!map) {
+            initializeMap();
+            // Dar tiempo para que se inicialice antes de actualizar
+            setTimeout(() => {
+              updateMap(deliveryPos, destinationPos, data);
+            }, 500);
+          } else {
+            updateMap(deliveryPos, destinationPos, data);
+          }
+
+          // Calcular y mostrar distancia
+          const distance = calculateDistance(deliveryPos, destinationPos);
+          showDistance(distance);
+
+        }, (error) => {
+          console.error('❌ Error escuchando cambios:', error);
+          showStatus('<i class="fas fa-exclamation-triangle"></i> Error conectando con el servidor', 'error');
+        });
+
+      } catch (error) {
+        console.error('❌ Error al rastrear pedido:', error);
+        showStatus('<i class="fas fa-exclamation-triangle"></i> Error al conectar con la base de datos', 'error');
+      }
+    };
+
+    // Función global para Google Maps callback
+    window.initMap = function() {
+      console.log('🗺️ Google Maps API cargada correctamente');
+    };
+
+    // Permitir buscar con Enter
+    document.getElementById('order-id').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        window.trackOrder();
+      }
+    });
+
+    console.log('🚀 Sistema de rastreo inicializado');
+  </script>
+
+  <!-- Google Maps API -->
+  <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGD7q6pdLPd5FV7gyy0h1bK6a1F2eFnsY&callback=initMap">
+  </script>
+</body>
+</html>
