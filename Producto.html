@@ -101,144 +101,11 @@
 
 <main>
     <div class="product-list">
-        <!-- Ejemplo de productos -->
-        <div class="product">
-            <img src="Comida/Burger Junior Kinds.webp" alt="Burger Junior Kinds">
-            <h2>Burger Junior Kinds</h2>
-            <p class="price">$28.000</p>
-            <button onclick="addToCart('Burger Junior Kinds', 28)">
-                <i class="fas fa-shopping-cart"></i> Agregar al Carrito
-            </button>
+        <!-- Los productos se cargarán aquí dinámicamente -->
+        <div class="loading-products" style="text-align: center; padding: 50px; color: #666;">
+            <i class="fas fa-spinner fa-spin" style="font-size: 30px; margin-bottom: 15px;"></i>
+            <p>Cargando productos...</p>
         </div>
-        
-        <div class="product">
-            <img src="Comida/Burger Choclo.webp" alt="Burger Choclo">
-            <h2>Burger Choclo</h2>
-            <p class="price">$28.000</p>
-            <button onclick="addToCart('Burger Choclo', 28)">Agregar al Carrito</button>
-        </div>
-
-        <div class="product">
-            <img src="Comida/Burger Ranch.webp" alt="Burger Ranch">
-            <h2>Burger Ranch</h2>
-            <p class="price">$28.000</p>
-            <button onclick="addToCart('Burger Ranch', 28)">Agregar al Carrito</button>
-        </div>
-
-        <div class="product">
-            <img src="Comida/Burger Mexicana.webp" alt="Burger Mexicana">
-            <h2>Burger Mexicana</h2>
-            <p class="price">$28.000</p>
-            <button onclick="addToCart('Burger Mexicana', 28)">Agregar al Carrito</button>
-        </div>
-
-        <div class="product">
-            <img src="Comida/Burger Los JJJ's.webp" alt="Burger Los JJJ's">
-            <h2>Burger Los JJJ's</h2>
-            <p class="price">$28.000</p>
-            <button onclick="addToCart('Burger Los JJJ s', 28)">Agregar al Carrito</button>
-        </div>
-
-        <div class="product">
-            <img src="Comida/Burger Mixta.webp" alt="Burger Mixta">
-            <h2>Burger Mixta</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Burger Mixta', 25)">Agregar al Carrito</button>
-        </div>
-
-        <div class="product">
-            <img src="Comida/Burger Hawaina.webp" alt="Burger Hawaina">
-            <h2>Burger Hawaina</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Burger Hawaina', 25)">Agregar al Carrito</button>
-        </div>
-
-        <div class="product">
-            <img src="Comida/Burger Doble Carne.webp" alt="Burger Doble Carne">
-            <h2>Burger Doble Carne</h2>
-            <p class="price">$25.000</p>
-            <button onclick="addToCart('Burger Doble Carne', 25)">Agregar al Carrito</button>
-        </div>
-
-        <div class="product">
-            <img src="Comida/Burger Pork.webp" alt="Burger Pork">
-            <h2>Burger Pork</h2>
-            <p class="price">$20.000</p>
-            <button onclick="addToCart('Burger Pork', 20)">Agregar al Carrito</button>
-        </div>
-
-        <div class="product">
-            <img src="Comida/Burger Chiken.webp" alt="Burger Chiken">
-            <h2>Burger Chiken</h2>
-            <p class="price">$20.000</p>
-            <button onclick="addToCart('Burger Chiken', 20)">Agregar al Carrito</button>
-        </div>
-
-        <div class="product">
-            <img src="Comida/Burger Tocimiel.webp" alt="Burger Tocimiel">
-            <h2>Burger Tocimiel</h2>
-            <p class="price">$20.000</p>
-            <button onclick="addToCart('Burger Tocimiel', 20)">Agregar al Carrito</button>
-        </div>
-
-        <div class="product">
-            <img src="Comida/Burger Tradicional.webp" alt="Burger Tradicional">
-            <h2>Burger Tradicional</h2>
-            <p class="price">$15.000</p>
-            <button onclick="addToCart('Burger Tradicional', 15)">Agregar al Carrito</button>
-        </div>
-
-         <!-- perros calientes -->
-
-        <div class="product">
-            <img src="Comida/Perro Hawaiano.webp" alt="Perro Hawaiano">
-            <h2>Perro Hawaiano</h2>
-            <p class="price">$15.000</p>
-            <button onclick="addToCart('Perro Hawaiano', 15)">Agregar al Carrito</button>
-        </div>
-
-        <div class="product">
-            <img src="Comida/Perro Criollo.webp" alt="Perro Criollo">
-            <h2>Perro Criollo</h2>
-            <p class="price">$18.000</p>
-            <button onclick="addToCart('Perro Criollo', 18)">Agregar al Carrito</button>
-        </div>
-
-        <div class="product">
-            <img src="Comida/Perrote.webp" alt="Perrote">
-            <h2>Perrote</h2>
-            <p class="price">$20.000</p>
-            <button onclick="addToCart('Perrote', 20)">Agregar al Carrito</button>
-        </div>
-
-        <div class="product">
-            <img src="Comida/Perro Americano.webp" alt="Perro Americano">
-            <h2>Perro Americano</h2>
-            <p class="price">$15.000</p>
-            <button onclick="addToCart('Perro Americano', 15)">Agregar al Carrito</button>
-        </div>
-
-        <div class="product">
-            <img src="Comida/Perro Choclo.webp" alt="Perro Choclo">
-            <h2>Perro Choclo</h2>
-            <p class="price">$19.000</p>
-            <button onclick="addToCart('Perro Choclo', 19)">Agregar al Carrito</button>
-        </div>
-
-        <div class="product">
-            <img src="Comida/Perro Mexicano.webp" alt="Perro Mexicano">
-            <h2>Perro Mexicano</h2>
-            <p class="price">$20.000</p>
-            <button onclick="addToCart('Perro Mexicano', 20)">Agregar al Carrito</button>
-        </div>
-
-        <div class="product">
-            <img src="Comida/Perro Ranchero.webp" alt="Perro Ranchero">
-            <h2>Perro Ranchero</h2>
-            <p class="price">$18.000</p>
-            <button onclick="addToCart('Perro Ranchero', 18)">Agregar al Carrito</button>
-        </div>
-
     </div>
 </main>
 
@@ -259,9 +126,9 @@
 <button class="carta-btn" onclick="toggleCarta()">Carta</button>
 
 <div class="carta-container" id="carta" onclick="toggleZoom(event)">
-    <button class="toggle-img-btn btn-up" id="btnUp" onclick="toggleImagen(event)">⬆</button>
+    <button class="toggle-img-btn btn-up" id="btnUp" onclick="toggleImagen(event)">â¬†</button>
     <img src="Imagenes/carta.jpg" alt="Carta del Restaurante" id="cartaImg">
-    <button class="toggle-img-btn btn-down" id="btnDown" onclick="toggleImagen(event)">⬇</button>
+    <button class="toggle-img-btn btn-down" id="btnDown" onclick="toggleImagen(event)">â¬‡</button>
     <button id="volverBtn" onclick="toggleCarta()">Volver</button>
 </div>
 
@@ -272,6 +139,181 @@
 <script src="JS/Siderbar.js"></script>
 <script src="JS/Bot.js"></script>
 <script src="JS/Seleccion.js"></script>
+
+<!-- NUEVO SCRIPT PARA PRODUCTOS DINÁMICOS -->
+<script>
+// Función para cargar productos desde localStorage
+function loadProductsFromStorage() {
+    const stored = localStorage.getItem('productos_jjj');
+    if (stored) {
+        return JSON.parse(stored);
+    }
+    
+    // Si no hay productos guardados, usar los productos por defecto
+    const defaultProducts = [
+        {
+            id: 1,
+            name: "Burger Junior Kinds",
+            price: 28,
+            image: "Comida/Burger Junior Kinds.webp",
+            category: "burger"
+        },
+        {
+            id: 2,
+            name: "Burger Choclo",
+            price: 28,
+            image: "Comida/Burger Choclo.webp",
+            category: "burger"
+        },
+        {
+            id: 3,
+            name: "Burger Ranch",
+            price: 28,
+            image: "Comida/Burger Ranch.webp",
+            category: "burger"
+        },
+        {
+            id: 4,
+            name: "Burger Mexicana",
+            price: 28,
+            image: "Comida/Burger Mexicana.webp",
+            category: "burger"
+        },
+        {
+            id: 5,
+            name: "Burger Los JJJ's",
+            price: 28,
+            image: "Comida/Burger Los JJJ's.webp",
+            category: "burger"
+        },
+        {
+            id: 6,
+            name: "Burger Mixta",
+            price: 25,
+            image: "Comida/Burger Mixta.webp",
+            category: "burger"
+        },
+        {
+            id: 7,
+            name: "Burger Hawaina",
+            price: 25,
+            image: "Comida/Burger Hawaina.webp",
+            category: "burger"
+        },
+        {
+            id: 8,
+            name: "Burger Doble Carne",
+            price: 25,
+            image: "Comida/Burger Doble Carne.webp",
+            category: "burger"
+        },
+        {
+            id: 9,
+            name: "Burger Pork",
+            price: 20,
+            image: "Comida/Burger Pork.webp",
+            category: "burger"
+        },
+        {
+            id: 10,
+            name: "Burger Chiken",
+            price: 20,
+            image: "Comida/Burger Chiken.webp",
+            category: "burger"
+        },
+        {
+            id: 11,
+            name: "Burger Tocimiel",
+            price: 20,
+            image: "Comida/Burger Tocimiel.webp",
+            category: "burger"
+        },
+        {
+            id: 12,
+            name: "Burger Tradicional",
+            price: 15,
+            image: "Comida/Burger Tradicional.webp",
+            category: "burger"
+        }
+    ];
+    
+    // Guardar productos por defecto la primera vez
+    localStorage.setItem('productos_jjj', JSON.stringify(defaultProducts));
+    return defaultProducts;
+}
+
+// Función para formatear precio
+function formatPrice(price) {
+    return (price * 1000).toLocaleString('es-CO');
+}
+
+// Función para limpiar nombres para JavaScript
+function cleanName(name) {
+    return name.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, ' ').trim();
+}
+
+// Función para renderizar productos dinámicamente
+function renderDynamicProducts() {
+    const productos = loadProductsFromStorage();
+    const productList = document.querySelector('.product-list');
+    
+    if (!productList) {
+        console.error('No se encontró el contenedor .product-list');
+        return;
+    }
+    
+    // Limpiar productos existentes
+    productList.innerHTML = '';
+    
+    // Crear productos dinámicamente
+    productos.forEach(producto => {
+        const productDiv = document.createElement('div');
+        productDiv.className = 'product';
+        
+        productDiv.innerHTML = `
+            <img src="${producto.image}" alt="${producto.name}" onerror="this.src='https://via.placeholder.com/300x200?text=Sin+Imagen'">
+            <h2>${producto.name}</h2>
+            <p class="price">$${formatPrice(producto.price)}</p>
+            <button onclick="addToCart('${cleanName(producto.name)}', ${producto.price})">
+                <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+            </button>
+        `;
+        
+        productList.appendChild(productDiv);
+    });
+    
+    console.log(`Se cargaron ${productos.length} productos dinámicamente`);
+}
+
+// Función para detectar cambios y actualizar automáticamente
+function watchStorageChanges() {
+    // Verificar cambios cada 2 segundos
+    setInterval(function() {
+        const currentData = localStorage.getItem('productos_jjj');
+        if (currentData !== window.lastProductData) {
+            window.lastProductData = currentData;
+            renderDynamicProducts();
+            console.log('Productos actualizados automáticamente');
+        }
+    }, 2000);
+}
+
+// Función removida - no se muestra botón admin a los clientes
+
+// Inicializar cuando se carga la página
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Iniciando carga de productos dinámicos...');
+    
+    // Esperar un poco para asegurar que el DOM esté completamente cargado
+    setTimeout(function() {
+        renderDynamicProducts();
+        watchStorageChanges();
+        
+        // Guardar datos iniciales para comparación
+        window.lastProductData = localStorage.getItem('productos_jjj');
+    }, 500);
+});
+</script>
 
 </body>
 </html>
