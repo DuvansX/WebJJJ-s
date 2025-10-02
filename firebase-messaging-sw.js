@@ -10,17 +10,14 @@ firebase.initializeApp({
   appId: "1:476040391869:web:342d794edaaf54ce49bd4"
 });
 
-const messaging = firebase.messaging();
-
 messaging.onBackgroundMessage((payload) => {
   console.log('[firebase-messaging-sw.js] Notificación recibida:', payload);
 
   const notificationTitle = payload.notification?.title || 'Nueva notificación';
   const notificationOptions = {
     body: payload.notification?.body || '',
-    icon: '/WebJJJ-s/Imagenes/Logo%20Restaurante.PNG',
-    badge: '/WebJJJ-s/Imagenes/Logo%20Restaurante.PNG',
-
+    icon: '/WebJJJ-s/Imagenes/Logo%20Restaurante.PNG',  // logo grande a color
+    badge: '/WebJJJ-s/Imagenes/badge-72.png'            // logo pequeño en vez de la D
   };
 
   self.registration.showNotification(notificationTitle, notificationOptions);
