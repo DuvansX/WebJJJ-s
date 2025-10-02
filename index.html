@@ -30,6 +30,30 @@
         });
     </script>
 
+      <!-- Contenedor de animaciones para el bot -->
+    <div id="bot-animation-container">
+        <div class="bot-ripple"></div>
+        <div class="bot-ripple"></div>
+        <div class="bot-ripple"></div>
+    </div>
+
+        <!-- Esto es lo del bot XD no falte q me olvide-->
+    <div id="bot-welcome-popup" class="hidden">
+        <div class="popup-header">
+            <span class="popup-icon">🤖</span>
+            <h3 class="popup-title">¡Hola!</h3>
+        </div>
+        <p class="popup-message">
+            ¿Necesitas ayuda? Aquí está tu asistente virtual listo para responder todas tus preguntas.
+        </p>
+        <div class="popup-checkbox-container">
+            <input type="checkbox" id="dont-show-again">
+            <label for="dont-show-again">No volver a mostrar</label>
+        </div>
+        <button class="popup-button" onclick="closeWelcomePopup()">OK, Entendido</button>
+    </div>
+
+
     <body class="locked">
         <!-- Pantalla de carga -->
         <div id="loading-screen">
@@ -119,6 +143,7 @@
             </ul>
         </div>
 
+    
         <!-- Sliders -->
         <div class="slider-wrapper">
             <!-- Slider 1 -->
@@ -146,6 +171,12 @@
                 <button class="arrow left" onclick="prevSlide(2)">◀</button>
                 <a href="ProductosCigarreria.html"><img class="slide active" src="Imagenes/ImagenesPrincipal/10.webp" alt="Imagen del slider A"></a>
                 <a href="ProductosCigarreria.html"><img class="slide" src="Imagenes/ImagenesPrincipal/11.webp" alt="Imagen del slider B"></a>
+                <div class="slide">
+            <video muted preload="metadata">
+               <source src="Videos/2.mp4" type="video/mp4">
+                Su navegador no soporta videos.
+            </video>
+            </div>
                 <a href="ProductosCigarreria.html"><img class="slide" src="Imagenes/ImagenesPrincipal/12.webp" alt="Imagen del slider C"></a>
                 <button class="arrow right" onclick="nextSlide(2)">▶</button>
             </div>
@@ -158,5 +189,56 @@
         <script src="JS/SelectorImagenes.js"></script>
         <script src="JS/Seleccion.js"></script>
         <script src="JS/Bot.js"></script>
+        <script>
+    function shouldShowPopup() {
+        // Verificar si ya se mostró en esta sesión
+        const shownThisSession = sessionStorage.getItem('botPopupShown');
+        if (shownThisSession) return false;
+        
+        // Verificar si el usuario eligió no mostrar por 30 días
+        const lastShown = localStorage.getItem('botPopupLastShown');
+        if (!lastShown) return true;
+        
+        const daysSinceLastShown = (Date.now() - parseInt(lastShown)) / (1000 * 60 * 60 * 24);
+        return daysSinceLastShown >= 30;
+    }
+
+    function closeWelcomePopup() {
+        const popup = document.getElementById('bot-welcome-popup');
+        const dontShowAgain = document.getElementById('dont-show-again').checked;
+        const animationContainer = document.getElementById('bot-animation-container');
+        
+        popup.classList.add('hidden');
+        animationContainer.classList.add('hidden');
+        
+        // Marcar que ya se mostró en esta sesión
+        sessionStorage.setItem('botPopupShown', 'true');
+        
+        // Si marcó "No volver a mostrar", guardar por 30 días
+        if (dontShowAgain) {
+            localStorage.setItem('botPopupLastShown', Date.now().toString());
+        }
+    }
+
+    // Mostrar el popup después de 3 segundos (después de la pantalla de carga)
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            if (shouldShowPopup()) {
+                document.getElementById('bot-welcome-popup').classList.remove('hidden');
+                document.getElementById('bot-animation-container').classList.remove('hidden');
+            } else {
+                document.getElementById('bot-animation-container').classList.add('hidden');
+            }
+        }, 3000);
+    });
+</script>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-messaging-compat.js"></script>
+
+<!-- Tu sistema de notificaciones -->
+<script src="JS/notificaciones.js"></script>
+
     </body>
 </html>
