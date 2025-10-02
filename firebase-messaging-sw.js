@@ -13,10 +13,15 @@ firebase.initializeApp({
 const messaging = firebase.messaging();
 
 messaging.onBackgroundMessage((payload) => {
+  console.log('[firebase-messaging-sw.js] Notificación recibida:', payload);
+
   const notificationTitle = payload.notification?.title || 'Nueva notificación';
   const notificationOptions = {
     body: payload.notification?.body || '',
-    icon: '/icon-192x192.png'
+    icon: '/WebJJJ-s/Imagenes/Logo%20Restaurante.PNG',
+    badge: '/WebJJJ-s/Imagenes/Logo%20Restaurante.PNG',
+
   };
+
   self.registration.showNotification(notificationTitle, notificationOptions);
 });
