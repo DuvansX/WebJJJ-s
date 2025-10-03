@@ -42,18 +42,117 @@
     </ul>
   </div>
 
-  <div class="pedido-container">
-    <h2><i data-lucide="shopping-cart" class="icon-title"></i> Tu Pedido</h2>
-    <div id="pedido-lista" class="pedido-lista"></div>
-    <div class="pedido-total">
-      <span><i data-lucide="wallet" class="icon-inline"></i> Total:</span>
-      <span id="total-precio">$0</span>
+  <div class="main-content">
+    <!-- Contenedor del carrito -->
+    <div class="pedido-container">
+      <h2><i data-lucide="shopping-cart" class="icon-title"></i> Tu Pedido</h2>
+      <div id="pedido-lista" class="pedido-lista">
+        <!-- Estado vacío (se mostrará si no hay productos) -->
+        <div class="empty-state">
+          <i class='bx bx-cart-alt'></i>
+          <h3>Tu carrito está vacío</h3>
+          <p>¡Agrega deliciosos productos y comienza tu pedido!</p>
+          <a href="Producto.html" class="btn-browse">Explorar Productos</a>
+        </div>
+      </div>
+      <div class="pedido-total">
+        <span><i data-lucide="wallet" class="icon-inline"></i> Total:</span>
+        <span id="total-precio">$0</span>
+      </div>
+      <button class="btn-confirmar" onclick="sendWhatsAppOrder()">
+        <i data-lucide="check-circle" class="icon-inline"></i> Confirmar Pedido
+      </button>
     </div>
-    <button class="btn-confirmar" onclick="sendWhatsAppOrder()">
-      <i data-lucide="check-circle" class="icon-inline"></i> Confirmar Pedido
-    </button>
+
+    <!-- Sidebar de información -->
+    <div class="info-sidebar">
+      
+      <!-- Tarjeta: Métodos de Pago -->
+      <div class="info-card">
+        <h3><i class='bx bx-credit-card'></i> Métodos de Pago</h3>
+        <div class="payment-methods">
+          <div class="payment-item">
+            <i class='bx bxl-visa' style="color: #1A1F71;"></i>
+            <span>Bancolombia</span>
+          </div>
+          <div class="payment-item">
+            <img src="Imagenes/Pedidos/nequi.jpeg" alt="Logo Nequi" class="payment-logo">
+            <span>Nequi</span>
+          </div>
+          <div class="payment-item">
+            <img src="Imagenes/Pedidos/Daviplata.jpeg" alt="Logo Daviplata" class="payment-logo">
+            <span>Daviplata</span>
+          </div>
+          <div class="payment-item">
+            <i class='bx bx-money' style="color: #2A9D8F;"></i>
+            <span>Efectivo</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta: Información de Entrega -->
+      <div class="info-card">
+        <h3><i class='bx bxs-truck'></i> Información de Entrega</h3>
+        <div class="delivery-info">
+          <div class="delivery-item">
+            <i class='bx bx-time-five'></i>
+            <div class="delivery-text">
+              <h4>Tiempo de entrega</h4>
+              <p>20-35 minutos aproximadamente</p>
+            </div>
+          </div>
+          <div class="delivery-item">
+            <i class='bx bx-map'></i>
+            <div class="delivery-text">
+              <h4>Zona de cobertura</h4>
+              <p>Todo Sogamoso</p>
+            </div>
+          </div>
+          <div class="delivery-item">
+            <i class='bx bx-dollar-circle'></i>
+            <div class="delivery-text">
+              <h4>Costo de envío</h4>
+              <p>Consultar según ubicación y pedido</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta: Contacto y Ayuda -->
+      <div class="info-card">
+        <h3><i class='bx bx-help-circle'></i> ¿Necesitas Ayuda?</h3>
+        <div class="delivery-info">
+          <div class="delivery-item">
+            <i class='bx bxl-whatsapp' style="color: #25D366;"></i>
+            <div class="delivery-text">
+              <h4>WhatsApp</h4>
+              <p>Escríbenos para cualquier duda</p>
+            </div>
+          </div>
+          <div class="delivery-item">
+            <i class='bx bx-shield-quarter'></i>
+            <div class="delivery-text">
+              <h4>Compra segura</h4>
+              <p>Tus datos están protegidos</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta: Contacto y Ayuda -->
+      <div class="info-card">
+       <h3><i class='bx bx-navigation'></i> Información de ID</h3>
+            <div class="delivery-text">
+              <h4>Nuestros Rastreo-Estado</h4>
+              <p>Los pedidos se identifican mediante un ID único, el cual se solicita directamente a través de WhatsApp con nuestro trabajador; una vez tengas tu ID podrás ingresarlo en la sección ID Pedido de la página para consultar el estado actual de tu pedido, y para más información o asistencia adicional puedes comunicarte con nuestro canal oficial de WhatsApp.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
+  <!-- Modal de formulario -->
   <div id="modal-formulario" class="modal">
     <div class="modal-contenido">
       <button class="cerrar-modal" onclick="cerrarFormulario()">✖</button>
@@ -71,10 +170,12 @@
     </div>
   </div>
 
+  <!-- Botón rastreo -->
   <button class="btn-abrir-rastreo" onclick="window.location.href='Seguimiento.html'">
     <i class="fas fa-map-marker-alt"></i> ID Pedido
   </button>
 
+  <!-- Modal de rastreo -->
   <div id="modal-rastreo" class="rastreo-modal">
     <div class="rastreo-modal-contenido">
       <button class="cerrar-rastreo-modal" onclick="cerrarRastreo()">✖</button>
@@ -86,13 +187,18 @@
     </div>
   </div>
 
+  <!-- Scripts -->
   <script src="JS/Pedidos.js"></script>
   <script src="JS/PantallaCarga.js"></script>
   <script src="JS/Buscador.js"></script>
   <script src="JS/Siderbar.js"></script>
   <script src="JS/Bot.js"></script>
   <script src="JS/Seleccion.js"></script>
+  
   <script>
+    // Inicializar iconos de Lucide
+    lucide.createIcons();
+
     function abrirRastreo() {
       document.getElementById("modal-rastreo").classList.add("active");
     }
