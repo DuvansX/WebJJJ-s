@@ -4,18 +4,16 @@
   padding: 0;
 }
 
-
 body {
   position: relative;
   min-height: 100vh;
   width: 100%;
   background: url("../Imagenes/ImagenesPrincipal/Perros.webp") no-repeat center center fixed;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   font-family: 'Poppins', sans-serif;
 }
-
 
 .sidebar1 {
   position: fixed;
@@ -194,55 +192,369 @@ body {
   color: rgb(0, 0, 0);
 }
 
-
-
-
-
-
-
-     
-    /* Centrado vertical y horizontal del contenedor */
-body {
+/* Contenedor principal mejorado */
+.main-content {
   display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  padding-left: 90px;
   align-items: center;
-  justify-content: center;
-  min-height: 100vh; /* Altura completa de la pantalla */
-  margin: 0;
-  background-color: #f5f5f5; /* Fondo suave */
+  box-sizing: border-box;
+}
+
+@media (max-width: 968px) {
+  .main-content {
+    padding-left: 70px;
+    padding-right: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding-left: 65px;
+    padding-right: 12px;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-content {
+    padding-left: 60px;
+    padding-right: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding-left: 55px;
+    padding-right: 8px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .main-content {
+    padding-left: 50px;
+    padding-right: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
 }
 
 /* Contenedor del pedido */
 .pedido-container {
-  max-width: 500px; /* Más ancho */
   width: 100%;
-  background: url("../Imagenes/Pedidos/FondoRC.jpg") no-repeat center center fixed;
+  max-width: 550px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
   border-radius: 16px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  padding: 30px; /* Más padding */
+  padding: 30px;
   animation: fadeIn 0.5s ease-in-out;
-  max-height: 90vh; /* Más largo visualmente */
+  max-height: 90vh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
 
-/* Estilos específicos para móviles */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .pedido-container {
-    max-width: 66%; /* Que use el 80% del ancho disponible */
-    padding: 20px; /* Menos padding si quieres */
-    border-radius: 12px; /* Menor borde redondeado si deseas */
-    max-height: none; /* Si quieres que crezca más */
-    height: auto; /* Para que se ajuste al contenido */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra más sutil */
-
-    margin-left: 85px; /* Esto lo alinea a la derecha */
+    max-width: 85%;
+    border-radius: 14px;
+     margin-left: auto; /* empuja hacia la derecha */
+    margin-right: 5px;   /* opcional, asegura que quede pegado */
+    margin-top: 50px; /* agrega espacio arriba */
   }
 }
 
+@media (max-width: 600px) {
+  .pedido-container {
+    padding: 15px;
+    border-radius: 12px;
+  }
+}
 
+@media (max-width: 400px) {
+  .pedido-container {
+    padding: 12px;
+    border-radius: 10px;
+  }
+}
 
-/* Título */
+/* Sidebar de informaciÃ³n */
+.info-sidebar {
+  width: 100%;
+  max-width: 1100px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  gap: 20px;
+  animation: fadeIn 0.6s ease-in-out;
+  box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+  .info-sidebar {
+    grid-template-columns: 1fr;
+    max-width: 85%;
+    gap: 15px;
+    margin-left: auto; /* empuja hacia la derecha */
+    margin-right: 5px;   /* opcional, asegura que quede pegado */
+  }
+}
+
+@media (max-width: 600px) {
+  .info-sidebar {
+    gap: 12px;
+  }
+  
+  .payment-methods {
+    gap: 10px;
+  }
+  
+  .payment-item {
+    padding: 12px 8px;
+  }
+  
+  .payment-item i {
+    font-size: 2em;
+  }
+  
+  .payment-item span {
+    font-size: 0.8em;
+  }
+  
+  .info-card {
+    padding: 15px;
+  }
+  
+  .info-card h3 {
+    font-size: 1.05em;
+  }
+  
+  .delivery-item {
+    padding: 10px;
+  }
+  
+  .delivery-item i {
+    font-size: 1.5em;
+  }
+  
+  .delivery-text h4 {
+    font-size: 0.9em;
+  }
+  
+  .delivery-text p {
+    font-size: 0.8em;
+  }
+  
+  .pedido-container h2 {
+    font-size: 1.4em;
+  }
+  
+  .btn-confirmar {
+    padding: 12px;
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 400px) {
+  .info-sidebar {
+    gap: 10px;
+  }
+  
+  .info-card {
+    padding: 12px;
+  }
+  
+  .info-card h3 {
+    font-size: 1em;
+    margin-bottom: 12px;
+  }
+  
+  .payment-item {
+    padding: 10px 6px;
+  }
+  
+  .payment-item i {
+    font-size: 1.8em;
+  }
+  
+  .payment-item span {
+    font-size: 0.75em;
+  }
+  
+  .pedido-container h2 {
+    font-size: 1.2em;
+  }
+}
+
+/* Tarjetas de informaciÃ³n */
+.info-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.info-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #2c3e50;
+  font-size: 1.3em;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.info-card h3 i {
+  color: #ffb700;
+  font-size: 1.4em;
+}
+
+/* MÃ©todos de pago */
+.payment-methods {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.payment-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px 10px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  transition: none;
+  cursor: default;
+  box-sizing: border-box;
+}
+
+.payment-item i {
+  font-size: 2.5em;
+  flex-shrink: 0;
+}
+
+.payment-item span {
+  font-size: 0.9em;
+  font-weight: 500;
+  color: #2c3e50;
+  text-align: center;
+}
+
+/* InformaciÃ³n de entrega */
+.delivery-info {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.delivery-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.delivery-item i {
+  font-size: 1.8em;
+  color: #ffb700;
+}
+
+.delivery-text h4 {
+  color: #2c3e50;
+  font-size: 1em;
+  margin-bottom: 4px;
+}
+
+.delivery-text p {
+  color: #666;
+  font-size: 0.85em;
+  margin: 0;
+}
+
+/* Promociones */
+.promo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #ffb700 0%, #ff9500 100%);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 0.9em;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Estado vacÃ­o */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.empty-state i {
+  font-size: 5em;
+  color: #ddd;
+  margin-bottom: 20px;
+}
+
+.empty-state h3 {
+  color: #2c3e50;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.empty-state p {
+  color: #666;
+  margin-bottom: 25px;
+  font-size: 1em;
+}
+
+.btn-browse {
+  background: #ffb700;
+  color: #000;
+  padding: 12px 30px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.btn-browse:hover {
+  background: #000;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* TÃ­tulo */
 .pedido-container h2 {
   text-align: center;
   color: #2c3e50;
@@ -254,24 +566,21 @@ body {
   gap: 8px;
 }
 
-/* Lista de productos, con scroll más alto */
+/* Lista de productos */
 .pedido-lista {
-  max-height: 350px; /* Más alto que antes */
+  max-height: 350px;
   overflow-y: auto;
-  flex: 1; /* Que ocupe todo el espacio disponible */
+  flex: 1;
   margin-bottom: 20px;
 }
 
-
-/* Estilos específicos para móviles */
 @media (max-width: 600px) {
   .pedido-lista {
-    max-height: 380px; /* Más bajo si quieres que se vea menos en móvil */
-    margin-bottom: 15px; /* Menos margen inferior */
-    padding-right: 5px; /* Por si quieres espacio con scroll */
+    max-height: 380px;
+    margin-bottom: 15px;
+    padding-right: 5px;
   }
 }
-
 
 .producto-item {
   display: flex;
@@ -375,10 +684,15 @@ body {
   vertical-align: middle;
 }
 
-/* Animación de entrada */
+/* Animaciones */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 /* Scroll estilizado */
@@ -389,12 +703,6 @@ body {
   background-color: #79797983;
   border-radius: 3px;
 }
-
-
-
-
-
-
 
 #loading-screen {
   position: fixed;
@@ -434,10 +742,6 @@ body {
   display: none;
 }
 
-
-
-
-
 #suggestions {
   position: absolute;
   top: 110%;
@@ -454,7 +758,6 @@ body {
   z-index: 1000;
 }
 
-/* Cada item sugerido */
 #suggestions div {
   padding: 12px 15px;
   cursor: pointer;
@@ -466,14 +769,12 @@ body {
   background-color: #f5f5f5;
 }
 
-/* Responsive para móviles */
 @media (max-width: 600px) {
   #suggestions div {
       font-size: 14px;
       padding: 10px 12px;
   }
 }
-
 
 .modal {
   display: none;
@@ -485,23 +786,23 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
-/* ✅ Caja blanca centrada perfectamente */
 .modal-contenido {
   background-color: #fff;
   padding: 2rem 1.5rem;
   border-radius: 20px;
-  width: 90%; /* Ocupa el 90% del ancho en pantallas grandes */
-  max-width: 350px; /* Ancho máximo en pantallas grandes */
+  width: 90%;
+  max-width: 350px;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* 👈 centrado real */
+  transform: translate(-50%, -50%);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   animation: aparecer 0.3s ease;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
-  font-family: 'Poppins', sans-serif; /* 👈 Aplicamos la fuente Poppins aquí */
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
 }
 
 @keyframes aparecer {
@@ -514,7 +815,7 @@ body {
   font-size: 1.3rem;
   text-align: center;
   color: #333;
-  font-family: 'Poppins', sans-serif; /* Aseguramos que el título también use Poppins */
+  font-family: 'Poppins', sans-serif;
 }
 
 .modal-contenido input,
@@ -525,7 +826,7 @@ body {
   font-size: 1rem;
   width: 100%;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif; /* Aseguramos que los inputs y selects usen Poppins */
+  font-family: 'Poppins', sans-serif;
 }
 
 .modal-contenido button {
@@ -537,25 +838,25 @@ body {
   border-radius: 12px;
   cursor: pointer;
   transition: background-color 0.3s;
-  font-family: 'Poppins', sans-serif; /* Aseguramos que los botones usen Poppins */
+  font-family: 'Poppins', sans-serif;
 }
 
 .modal-contenido button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
-  font-family: 'Poppins', sans-serif; /* Aseguramos que el botón disabled use Poppins */
+  font-family: 'Poppins', sans-serif;
 }
 
 .cerrar-modal {
   position: absolute;
   top: 10px;
   right: 15px;
-  background-color: #eee;        /* Fondo suave */
+  background-color: #eee;
   color: #000;
   border: none;
-  width: 36px;                   /* Ancho fijo */
-  height: 36px;                  /* Alto fijo */
-  border-radius: 50%;            /* 👈 Esto lo hace circular */
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
   font-size: 1.2rem;
   cursor: pointer;
   color: #000000;
@@ -563,7 +864,7 @@ body {
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s ease, color 0.3s ease;
-  font-family: 'Poppins', sans-serif; /* Opcional: aplica Poppins al botón de cerrar también */
+  font-family: 'Poppins', sans-serif;
 }
 
 .cerrar-modal:hover {
@@ -574,28 +875,27 @@ body {
 select:focus {
   outline: none;
   border-color: #ffb700;
-  box-shadow: 0 0 0 3px rgba(255, 230, 0, 0.2); /* Glow verde */
+  box-shadow: 0 0 0 3px rgba(255, 230, 0, 0.2);
 }
 
-/* 📱 Media query para pantallas más pequeñas (ejemplo: hasta 768px de ancho) */
 @media (max-width: 768px) {
   .modal-contenido {
-    width: 95%; /* Ocupa un poco más de ancho en pantallas pequeñas */
-    max-width: 90%; /* El ancho máximo ahora es un porcentaje de la pantalla */
-    padding: 1.5rem 1rem; /* Reduce el padding para más espacio */
-    gap: 1rem; /* Reduce el espacio entre elementos */
-    font-size: 0.95rem; /* Ajusta el tamaño de la fuente si es necesario */
+    width: 95%;
+    max-width: 90%;
+    padding: 1rem 1rem;
+    gap: 1rem;
+    font-size: 0.95rem;
   }
 
   .modal-contenido h3 {
-    font-size: 1.1rem; /* Reduce el tamaño del título */
+    font-size: 1.1rem;
   }
 
   .modal-contenido input,
   .modal-contenido select,
   .modal-contenido button {
-    font-size: 0.9rem; /* Reduce el tamaño de la fuente de los elementos */
-    padding: 0.6rem; /* Reduce el padding de los elementos */
+    font-size: 0.9rem;
+    padding: 0.6rem;
   }
 
   .cerrar-modal {
@@ -607,12 +907,11 @@ select:focus {
   }
 }
 
-/* 📱 Media query para pantallas aún más pequeñas (ejemplo: hasta 480px de ancho) */
 @media (max-width: 480px) {
   .modal-contenido {
-    padding: 1rem 0.8rem;
+    padding: rem 0.8rem;
     gap: 0.8rem;
-    font-size: 0.9rem; /* Ajusta el tamaño de la fuente si es necesario */
+    font-size: 0.9rem;
   }
 
   .modal-contenido h3 {
@@ -651,99 +950,122 @@ select:focus {
 }
 
 .btn-abrir-rastreo {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 10000;
-      background-color: #000000;
-      color: white;
-      border: none;
-      padding: 4px 14px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    #rastreo-estado {
-      margin-top: 15px;
-      font-size: 18px;
-      font-weight: 500;
-      color: #000;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-    #rastreo-estado::before {
-      content: "";
-      display: inline-block;
-      width: 24px;
-      height: 24px;
-      background-image: url('https://i.imgur.com/jTJ7Rkp.png');
-      background-size: contain;
-      background-repeat: no-repeat;
-    }
-    .rastreo-modal {
-      position: fixed;
-      inset: 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0, 0, 0, 0.6);
-      z-index: 9999;
-      padding: 1rem;
-    }
-    .rastreo-modal.active {
-      display: flex;
-    }
-    .rastreo-modal-contenido {
-      background: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      width: 100%;
-      max-width: 500px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-    .cerrar-rastreo-modal {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      background: none;
-      border: none;
-      font-size: 20px;
-      cursor: pointer;
-      color: #666;
-    }
-    #rastreo-input-id {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 16px;
-    }
-    .rastreo-modal-contenido button {
-      padding: 5px;
-      font-size: 16px;
-      background: #000000;
-      color: #fff;
-      border: none;
-      border-radius: 15px;
-      cursor: pointer;
-    }
-    #rastreo-mapa {
-      height: 300px;
-      width: 100%;
-      position: hidden;
-      border: 2px solid #000000;
-      border-radius: 10px;
-    }
-    @media (min-width: 768px) {
-      #rastreo-mapa {
-        height: 400px;
-      }
-    }
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+  background-color: #000000;
+  color: white;
+  border: none;
+  padding: 4px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#rastreo-estado {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #000;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+#rastreo-estado::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-image: url('https://i.imgur.com/jTJ7Rkp.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.rastreo-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  padding: 1rem;
+}
+
+.rastreo-modal.active {
+  display: flex;
+}
+
+.rastreo-modal-contenido {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.cerrar-rastreo-modal {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #666;
+}
+
+#rastreo-input-id {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.rastreo-modal-contenido button {
+  padding: 5px;
+  font-size: 16px;
+  background: #000000;
+  color: #fff;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+#rastreo-mapa {
+  height: 300px;
+  width: 100%;
+  position: hidden;
+  border: 2px solid #000000;
+  border-radius: 10px;
+}
+
+@media (min-width: 768px) {
+  #rastreo-mapa {
+    height: 400px;
+  }
+}
+
+.payment-logo {
+  width: 60px;
+  border-radius: 10px;
+  height: auto;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+
+
