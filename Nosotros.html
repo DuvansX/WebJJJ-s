@@ -7,6 +7,8 @@
     <link rel="icon" href="Imagenes/Logo Restaurante.PNG">
     <link rel="stylesheet" href="CSS/Nosotros.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 <body class="locked">
     <!-- Pantalla de carga -->
@@ -133,6 +135,83 @@
         </div>
     </div>
 
+    <!-- NUEVAS SECCIONES -->
+
+    <!-- Por qué elegirnos -->
+    <div class="benefits-section">
+        <h2 class="section-title">¿Por Qué Elegirnos?</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <i class='bx bx-run'></i>
+                <h3>Entrega Rápida</h3>
+                <p>Tu pedido listo en tiempo récord</p>
+            </div>
+            <div class="benefit-card">
+                <i class='bx bx-leaf'></i>
+                <h3>Ingredientes Frescos</h3>
+                <p>Calidad garantizada en cada platillo</p>
+            </div>
+            <div class="benefit-card">
+                <i class='bx bx-dollar-circle'></i>
+                <h3>Precios Justos</h3>
+                <p>La mejor relación calidad-precio</p>
+            </div>
+            <div class="benefit-card">
+                <i class='bx bx-headphone'></i>
+                <h3>Atención Personalizada</h3>
+                <p>Siempre listos para atenderte</p>
+            </div>
+            <div class="benefit-card">
+                <i class='bx bx-map-pin'></i>
+                <h3>Ubicación Estratégica</h3>
+                <p>Cerca de ti, fácil de encontrar</p>
+            </div>
+            <div class="benefit-card">
+                <i class='bx bx-heart'></i>
+                <h3>Hecho con Amor</h3>
+                <p>Pasión en cada preparación</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonios -->
+    <div class="testimonials-section">
+        <h2 class="section-title">Lo Que Dicen Nuestros Clientes</h2>
+        <div class="testimonials-container">
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"La mejor comida cerca de UniBoyacá. Siempre fresco y delicioso. ¡El servicio es excepcional!"</p>
+                <p class="testimonial-author"> 
+                    <i class="fa-solid fa-user"></i> - Juan Pérez
+                </p>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"La cigarrería tiene una variedad increíble. Los cócteles son lo mejor que he probado en Tunja."</p>
+                <p class="testimonial-author">
+                    <i class="fa-solid fa-user"></i> - María González
+                </p>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"Atención personalizada, precios justos y comida deliciosa. Mi lugar favorito para comer."</p>
+                <p class="testimonial-author">
+                    <i class="fa-solid fa-user"></i> - Carlos Rodríguez
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="newsletter-section">
+       <h2><i class="fa-solid fa-envelope" style="color: white; margin-right:8px;"></i> Únete a Nuestra Comunidad JJJ´s</h2>
+        <p>Suscríbete y recibe ofertas exclusivas, nuevos productos y promociones especiales</p>
+        <form class="newsletter-form" id="newsletterForm">
+            <input type="email" class="newsletter-input" placeholder="Tu correo electrónico" required>
+            <button type="submit" class="newsletter-btn">Suscribirme</button>
+        </form>
+    </div>
+
     <!-- Redes sociales -->
     <div class="social-icons">
         <a href="https://wa.me/573105813873" class="icon whatsapp"><i class="bx bxl-whatsapp"></i></a>
@@ -147,6 +226,17 @@
     <script src="JS/Buscador.js"></script>
     <script src="JS/Siderbar.js"></script>
     <script src="JS/Seleccion.js"></script>
+    
+    <!-- Script adicional solo para newsletter -->
+    <script>
+        // Newsletter submit
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            alert('¡Gracias por suscribirte! Te enviaremos nuestras mejores ofertas a ' + email);
+            this.reset();
+        });
+    </script>
     
 </body>
 </html>
