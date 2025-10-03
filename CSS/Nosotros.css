@@ -321,12 +321,27 @@ body {
 
 .section-title {
     text-align: center;
-    font-size: 2.5rem;
-    color: #ffb700;
-    text-shadow: 3px 3px 9px rgb(0, 0, 0);
-    margin-bottom: 40px;
-    font-weight: 700;
+    font-size: 3rem;
+    color: #ffffff; /* Texto blanco */
+    font-weight: 900;
+    margin-bottom: 50px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    /* Borde al texto para máxima legibilidad */
+    -webkit-text-stroke: 1.5px #ffb700;
+
+    /* Efecto glow más marcado */
+    text-shadow: 
+        0 0 12px #000000,
+        0 0 24px #000000,
+        0 0 48px #000000,
+        0 0 96px #000000;
 }
+
+
+
+
 
 /* Por qué elegirnos */
 .benefits-grid {
@@ -658,3 +673,4 @@ body {
     min-height: 100vh;
 }
 }
+
