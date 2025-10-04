@@ -674,3 +674,187 @@ body {
 }
 }
 
+/* ============ ANIMACIONES SCROLL REVEAL ============ */
+
+/* Clase base para elementos que se revelarÃ¡n */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Cuando el elemento es visible */
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Variaciones de entrada desde diferentes direcciones */
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal-left.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.reveal-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal-right.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Efecto de zoom */
+.reveal-zoom {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal-zoom.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Efecto de rotaciÃ³n */
+.reveal-rotate {
+    opacity: 0;
+    transform: rotate(-10deg) scale(0.9);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal-rotate.active {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+/* Efecto de difuminado */
+.reveal-blur {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal-blur.active {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+}
+
+/* Delays escalonados para mÃºltiples elementos */
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+.reveal-delay-6 { transition-delay: 0.6s; }
+
+/* AnimaciÃ³n especial para los tÃ­tulos de secciÃ³n */
+.section-title.reveal {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.9);
+    transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.section-title.reveal.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* AnimaciÃ³n especial para las tarjetas */
+.card.reveal {
+    opacity: 0;
+    transform: translateY(50px) rotateX(20deg);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card.reveal.active {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+}
+
+/* AnimaciÃ³n para las benefit-cards */
+.benefit-card.reveal {
+    opacity: 0;
+    transform: scale(0.8) translateY(30px);
+    transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.benefit-card.reveal.active {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+/* AnimaciÃ³n para testimonios */
+.testimonial-card.reveal {
+    opacity: 0;
+    transform: translateX(-30px) scale(0.95);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.testimonial-card.reveal.active {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+}
+
+/* AnimaciÃ³n para newsletter */
+.newsletter-section.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.newsletter-section.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* AnimaciÃ³n para iconos sociales */
+.icon.reveal {
+    opacity: 0;
+    transform: scale(0) rotate(180deg);
+    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.icon.reveal.active {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+}
+
+/* Responsive - Reducir movimiento en dispositivos mÃ³viles */
+@media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .reveal-left,
+    .reveal-right,
+    .reveal-zoom,
+    .reveal-rotate,
+    .reveal-blur {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    /* Reducir el desplazamiento en mÃ³vil para mejor rendimiento */
+    .reveal {
+        transform: translateY(30px);
+    }
+    
+    .reveal-left {
+        transform: translateX(-30px);
+    }
+    
+    .reveal-right {
+        transform: translateX(30px);
+    }
+}
