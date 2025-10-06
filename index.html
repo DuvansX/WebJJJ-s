@@ -8,21 +8,22 @@
     <link rel="stylesheet" href="CSS/Principal.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
+<body class="locked">
 
-<body>
+    <!-- =========================
+         ANUNCIO POPUP
+    ========================== -->
     <div class="anuncio-overlay" id="anuncioOverlay" style="display: none;">
         <div class="anuncio">
             <button class="cerrar" onclick="cerrarAnuncio()">×</button>
             <img src="Imagenes/ImagenesPrincipal/Anuncio.png" alt="Anuncio">
         </div>
     </div>
-
     <script>
         function cerrarAnuncio() {
             document.getElementById('anuncioOverlay').style.display = 'none';
             sessionStorage.setItem('anuncioMostrado', 'true');
         }
-
         window.addEventListener('pageshow', () => {
             if (!sessionStorage.getItem('anuncioMostrado')) {
                 document.getElementById('anuncioOverlay').style.display = 'flex';
@@ -30,14 +31,14 @@
         });
     </script>
 
-      <!-- Contenedor de animaciones para el bot -->
+    <!-- =========================
+         BOT ANIMACIÓN Y POPUP
+    ========================== -->
     <div id="bot-animation-container">
         <div class="bot-ripple"></div>
         <div class="bot-ripple"></div>
         <div class="bot-ripple"></div>
     </div>
-
-        <!-- Esto es lo del bot XD no falte q me olvide-->
     <div id="bot-welcome-popup" class="hidden">
         <div class="popup-header">
             <span class="popup-icon">🤖</span>
@@ -53,283 +54,189 @@
         <button class="popup-button" onclick="closeWelcomePopup()">OK, Entendido</button>
     </div>
 
+    <!-- =========================
+         PANTALLA DE CARGA
+    ========================== -->
+    <div id="loading-screen">
+        <i class='bx bx-store-alt'></i>
+    </div>
 
-    <body class="locked">
-        <!-- Pantalla de carga -->
-        <div id="loading-screen">
-            <i class='bx bx-store-alt'></i>
-        </div>
+    <!-- =========================
+         IMAGEN PRINCIPAL
+    ========================== -->
+    <div class="contenedor">
+        <img src="Imagenes/Logo Pricipal.png" alt="Imagen Movible" class="imagen-ajustable" />
+    </div>
 
-        <div class="contenedor">
-            <img src="Imagenes/Logo Pricipal.png" alt="Imagen Movible" class="imagen-ajustable" />
-        </div>
-        <div class="top-center">
-            <span class="black">Welcome to</span>
-        </div>
+    <!-- =========================
+         TEXTO SUPERIOR
+    ========================== -->
+    <div class="top-center">
+        <span class="black">Welcome to</span>
+    </div>
 
-        <!-- Barra lateral -->
-        <div class="sidebar1">
-            <div class="logo_content1">
-                <div class="logo1">
-                    <img src="Imagenes/Logo JJJs.png" alt="Logo del restaurante JJJ's" width="150" height="50">
-                    <div class="logo_name1"></div>
-                </div>
-                <i class='bx bx-menu' id='btn1'></i>
+    <!-- =========================
+         SIDEBAR DE NAVEGACIÓN
+    ========================== -->
+    <div class="sidebar1">
+        <div class="logo_content1">
+            <div class="logo1">
+                <img src="Imagenes/Logo JJJs.png" alt="Logo del restaurante JJJ's" width="150" height="50">
+                <div class="logo_name1"></div>
             </div>
-            <!-- Buscador -->
-            <div class="src1">
-                <i class='bx bx-search-alt' id="srcBtn1"></i>
-                <input type="text" id="searchInput" placeholder="Buscar..." autocomplete="off">
-                <div id="suggestions" class="suggestions"></div>
-            </div>
-            <!-- Navegación -->
-            <ul class="nav1">
-                <li>
-                    <a href="index.html">
-                        <i class='bx bx-store-alt'></i>
-                        <span class="link_name1">Principal</span>
-                    </a>
-                    <span class="tooltip1">Principal</span>
-                </li>
-                <li>
-                    <a href="InicioSs.html">
-                        <i class='bx bxs-user-circle'></i>
-                        <span class="link_name1">Inicia sesión</span>
-                    </a>
-                    <span class="tooltip1">Inicia sesión</span>
-                </li>
-                <li>
-                    <a href="Producto.html">
-                        <i class='bx bxs-pizza'></i>
-                        <span class="link_name1">Productos Food</span>
-                    </a>
-                    <span class="tooltip1">Productos Food</span>
-                </li>
-                <li>
-                    <a href="ProductosCigarreria.html">
-                        <i class='bx bxs-drink'></i>
-                        <span class="link_name1">Productos Beer</span>
-                    </a>
-                    <span class="tooltip1">Productos Beer</span>
-                </li>
-                <li>
-                    <a href="Pedidos.html">
-                        <i class='bx bx-package'></i>
-                        <span class="link_name1">Pedidos</span>
-                    </a>
-                    <span class="tooltip1">Pedidos</span>
-                </li>
-                <li>
-                    <a href="Nosotros.html">
-                        <i class='bx bx-conversation'></i>
-                        <span class="link_name1">Nosotros</span>
-                    </a>
-                    <span class="tooltip1">Nosotros</span>
-                </li>
-                <li>
-                    <a href="Horarios.html">
-                        <i class='bx bxs-calendar'></i>
-                        <span class="link_name1">Horarios</span>
-                    </a>
-                    <span class="tooltip1">Horarios</span>
-                </li>
-                <li>
-                    <a href="favoritos.html">
-                        <i class='bx bxs-heart-circle'></i>
-                        <span class="link_name1">Favoritos</span>
-                    </a>
-                    <span class="tooltip1">Favoritos</span>
-                </li>
-            </ul>
+            <i class='bx bx-menu' id='btn1'></i>
         </div>
-
-    
-        <!-- Sliders -->
-        <div class="slider-wrapper">
-            <!-- Slider 1 -->
-            <div class="slider" id="slider1">
-                <button class="arrow left" onclick="prevSlide(1)">◀</button>
-                <a href="Producto.html"><img class="slide active" src="Imagenes/ImagenesPrincipal/1.webp" alt="Imagen del slider 1"></a>
-                <div class="slide">
-            <video muted preload="metadata">
-               <source src="Videos/1.mp4" type="video/mp4">
-                Su navegador no soporta videos.
-            </video>
-            </div>
-                <a href="Producto.html"><img class="slide" src="Imagenes/ImagenesPrincipal/2.webp" alt="Imagen del slider 2"></a>
-                <a href="Producto.html"><img class="slide" src="Imagenes/ImagenesPrincipal/3.webp" alt="Imagen del slider 3"></a>
-                <a href="Producto.html"><img class="slide" src="Imagenes/ImagenesPrincipal/4.webp" alt="Imagen del slider 4"></a>
-                <a href="Producto.html"><img class="slide" src="Imagenes/ImagenesPrincipal/5.webp" alt="Imagen del slider 5"></a>
-                <a href="Producto.html"><img class="slide" src="Imagenes/ImagenesPrincipal/6.webp" alt="Imagen del slider 6"></a>
-                <a href="Producto.html"><img class="slide" src="Imagenes/ImagenesPrincipal/7.webp" alt="Imagen del slider 7"></a>
-                <a href="Producto.html"><img class="slide" src="Imagenes/ImagenesPrincipal/8.webp" alt="Imagen del slider 8"></a>
-                <button class="arrow right" onclick="nextSlide(1)">▶</button>
-            </div>
-
-            <!-- Slider 2 -->
-            <div class="slider" id="slider2">
-                <button class="arrow left" onclick="prevSlide(2)">◀</button>
-                <a href="ProductosCigarreria.html"><img class="slide active" src="Imagenes/ImagenesPrincipal/10.webp" alt="Imagen del slider A"></a>
-                <a href="ProductosCigarreria.html"><img class="slide" src="Imagenes/ImagenesPrincipal/11.webp" alt="Imagen del slider B"></a>
-                <div class="slide">
-            <video muted preload="metadata">
-               <source src="Videos/2.mp4" type="video/mp4">
-                Su navegador no soporta videos.
-            </video>
-            </div>
-                <a href="ProductosCigarreria.html"><img class="slide" src="Imagenes/ImagenesPrincipal/12.webp" alt="Imagen del slider C"></a>
-                <button class="arrow right" onclick="nextSlide(2)">▶</button>
-            </div>
+        <!-- Buscador -->
+        <div class="src1">
+            <i class='bx bx-search-alt' id="srcBtn1"></i>
+            <input type="text" id="searchInput" placeholder="Buscar..." autocomplete="off">
+            <div id="suggestions" class="suggestions"></div>
         </div>
+        <!-- Navegación -->
+        <ul class="nav1">
+            <li>
+                <a href="index.html">
+                    <i class='bx bx-store-alt'></i>
+                    <span class="link_name1">Principal</span>
+                </a>
+                <span class="tooltip1">Principal</span>
+            </li>
+            <li>
+                <a href="InicioSs.html">
+                    <i class='bx bxs-user-circle'></i>
+                    <span class="link_name1">Inicia sesión</span>
+                </a>
+                <span class="tooltip1">Inicia sesión</span>
+            </li>
+            <li>
+                <a href="Producto.html">
+                    <i class='bx bxs-pizza'></i>
+                    <span class="link_name1">Productos Food</span>
+                </a>
+                <span class="tooltip1">Productos Food</span>
+            </li>
+            <li>
+                <a href="ProductosCigarreria.html">
+                    <i class='bx bxs-drink'></i>
+                    <span class="link_name1">Productos Beer</span>
+                </a>
+                <span class="tooltip1">Productos Beer</span>
+            </li>
+            <li>
+                <a href="Pedidos.html">
+                    <i class='bx bx-package'></i>
+                    <span class="link_name1">Pedidos</span>
+                </a>
+                <span class="tooltip1">Pedidos</span>
+            </li>
+            <li>
+                <a href="Nosotros.html">
+                    <i class='bx bx-conversation'></i>
+                    <span class="link_name1">Nosotros</span>
+                </a>
+                <span class="tooltip1">Nosotros</span>
+            </li>
+            <li>
+                <a href="Horarios.html">
+                    <i class='bx bxs-calendar'></i>
+                    <span class="link_name1">Horarios</span>
+                </a>
+                <span class="tooltip1">Horarios</span>
+            </li>
+            <li>
+                <a href="favoritos.html">
+                    <i class='bx bxs-heart-circle'></i>
+                    <span class="link_name1">Favoritos</span>
+                </a>
+                <span class="tooltip1">Favoritos</span>
+            </li>
+        </ul>
+    </div>
 
-<!-- Sección Visión y Misión -->
-<section class="vision-mision-section">
-    <div class="container-info">
-        <div class="info-card vision-card">
-            <div class="icon-container">
-                <i class='bx bx-bullseye'></i>
+    <!-- =========================
+         SLIDERS PRINCIPALES
+    ========================== -->
+    <div class="slider-wrapper">
+        <!-- Slider 1 -->
+        <div class="slider" id="slider1">
+            <button class="arrow left" onclick="prevSlide(1)">◀</button>
+            <a href="Producto.html"><img class="slide active" src="Imagenes/ImagenesPrincipal/1.webp" alt="Imagen del slider 1"></a>
+            <div class="slide">
+                <video muted preload="metadata">
+                    <source src="Videos/1.mp4" type="video/mp4">
+                    Su navegador no soporta videos.
+                </video>
             </div>
-            <h2>Nuestra Visión</h2>
-            <p>Ser el restaurante líder en Sogamoso, reconocido por nuestra calidad excepcional, servicio personalizado y compromiso con la satisfacción de nuestros clientes. Buscamos expandir nuestra presencia y convertirnos en la primera opción para disfrutar de comida deliciosa.</p>
+            <a href="Producto.html"><img class="slide" src="Imagenes/ImagenesPrincipal/2.webp" alt="Imagen del slider 2"></a>
+            <a href="Producto.html"><img class="slide" src="Imagenes/ImagenesPrincipal/3.webp" alt="Imagen del slider 3"></a>
+            <a href="Producto.html"><img class="slide" src="Imagenes/ImagenesPrincipal/4.webp" alt="Imagen del slider 4"></a>
+            <a href="Producto.html"><img class="slide" src="Imagenes/ImagenesPrincipal/5.webp" alt="Imagen del slider 5"></a>
+            <a href="Producto.html"><img class="slide" src="Imagenes/ImagenesPrincipal/6.webp" alt="Imagen del slider 6"></a>
+            <a href="Producto.html"><img class="slide" src="Imagenes/ImagenesPrincipal/7.webp" alt="Imagen del slider 7"></a>
+            <a href="Producto.html"><img class="slide" src="Imagenes/ImagenesPrincipal/8.webp" alt="Imagen del slider 8"></a>
+            <button class="arrow right" onclick="nextSlide(1)">▶</button>
         </div>
-        
-        <div class="info-card mision-card">
-            <div class="icon-container">
-                <i class='bx bx-trophy'></i>
+        <!-- Slider 2 -->
+        <div class="slider" id="slider2">
+            <button class="arrow left" onclick="prevSlide(2)">◀</button>
+            <a href="ProductosCigarreria.html"><img class="slide active" src="Imagenes/ImagenesPrincipal/10.webp" alt="Imagen del slider A"></a>
+            <a href="ProductosCigarreria.html"><img class="slide" src="Imagenes/ImagenesPrincipal/11.webp" alt="Imagen del slider B"></a>
+            <div class="slide">
+                <video muted preload="metadata">
+                    <source src="Videos/2.mp4" type="video/mp4">
+                    Su navegador no soporta videos.
+                </video>
             </div>
-            <h2>Nuestra Misión</h2>
-            <p>Ofrecer experiencias gastronómicas memorables a través de productos de alta calidad, preparados con dedicación y servidos con calidez. Nos comprometemos a superar las expectativas de nuestros clientes en cada visita, creando momentos especiales alrededor de la buena comida.</p>
+            <a href="ProductosCigarreria.html"><img class="slide" src="Imagenes/ImagenesPrincipal/12.webp" alt="Imagen del slider C"></a>
+            <button class="arrow right" onclick="nextSlide(2)">▶</button>
         </div>
     </div>
-</section>
 
-<!-- Sección de Ubicación -->
-<section class="ubicacion-section">
-    <h2 class="section-title">Encuéntranos</h2>
-    <div class="ubicacion-container">
-        <div class="ubicacion-info">
-            <div class="info-item">
-                <i class='bx bx-map'></i>
-                <div>
-                    <h3>Dirección</h3>
-                    <p> Sogamoso, Boyacá</p>
-                </div>
-            </div>
-            <div class="info-item">
-                <i class='bx bx-time'></i>
-                <div>
-                    <h3>Horarios</h3>
-                    <p>Lunes a Domingo</p>
-                </div>
-            </div>
-            <div class="info-item">
-                <i class='bx bx-phone'></i>
-                <div>
-                    <h3>Contáctanos</h3>
-                    <p>+57 310 581 3873</p>
-                </div>
-            </div>
-        </div>
-        <div class="mapa-container">
-            <!-- Reemplaza el src con tu ubicación real de Google Maps -->
-            <iframe 
-                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15888.823007681472!2d-72.95150795!3d5.720081749999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e6aef3c9b62dbff%3A0xa8f274dd49a09f86!2sSogamoso%2C%20Boyac%C3%A1!5e0!3m2!1ses!2sco!4v1733373654321!5m2!1ses!2sco"
-                allowfullscreen="" 
-                loading="lazy">
-            </iframe>
-        </div>
-    </div>
-</section>
-
-<!-- Sección de Redes Sociales -->
-<section class="redes-sociales-section">
-    <h2 class="section-title1">Síguenos en Redes Sociales</h2>
-    <div class="redes-container">
-        <a href="https://www.facebook.com/share/163NAzH8kZ/?mibextid=wwXIfr" target="_blank" class="red-social facebook">
-            <i class='bx bxl-facebook'></i>
-            <span>Facebook</span>
-            <p>los3jjjs</p>
-        </a>
-        
-        <a href="https://www.instagram.com/los3jjjs?igsh=ZHJ2NnE2aGtldm10" target="_blank" class="red-social instagram">
-            <i class='bx bxl-instagram'></i>
-            <span>Instagram</span>
-            <p>los3jjjs</p>
-        </a>
-        
-        <a href="https://www.tiktok.com/@licores_losjjjs" target="_blank" class="red-social tiktok">
-            <i class='bx bxl-tiktok'></i>
-            <span>TikTok</span>
-            <p>@licores_losjjjs</p>
-        </a>
-    </div>
-</section>
-
-<!-- Footer -->
-<footer class="footer">
-    <div class="footer-content">
-        <p>&copy; 2025 JJJ's Food. Todos los derechos reservados.</p>
-        <p>Sogamoso, Boyacá</p>
-    </div>
-</footer>
-
-        <!-- Scripts -->
-        <script src="JS/PantallaCarga.js"></script>
-        <script src="JS/Buscador.js"></script>
-        <script src="JS/Siderbar.js"></script>
-        <script src="JS/SelectorImagenes.js"></script>
-        <script src="JS/Seleccion.js"></script>
-        <script src="JS/Bot.js"></script>
-        <script>
-    function shouldShowPopup() {
-        // Verificar si ya se mostró en esta sesión
-        const shownThisSession = sessionStorage.getItem('botPopupShown');
-        if (shownThisSession) return false;
-        
-        // Verificar si el usuario eligió no mostrar por 30 días
-        const lastShown = localStorage.getItem('botPopupLastShown');
-        if (!lastShown) return true;
-        
-        const daysSinceLastShown = (Date.now() - parseInt(lastShown)) / (1000 * 60 * 60 * 24);
-        return daysSinceLastShown >= 30;
-    }
-
-    function closeWelcomePopup() {
-        const popup = document.getElementById('bot-welcome-popup');
-        const dontShowAgain = document.getElementById('dont-show-again').checked;
-        const animationContainer = document.getElementById('bot-animation-container');
-        
-        popup.classList.add('hidden');
-        animationContainer.classList.add('hidden');
-        
-        // Marcar que ya se mostró en esta sesión
-        sessionStorage.setItem('botPopupShown', 'true');
-        
-        // Si marcó "No volver a mostrar", guardar por 30 días
-        if (dontShowAgain) {
-            localStorage.setItem('botPopupLastShown', Date.now().toString());
+    <!-- =========================
+         SCRIPTS JS Y FIREBASE
+    ========================== -->
+    <script src="JS/PantallaCarga.js"></script>
+    <script src="JS/Buscador.js"></script>
+    <script src="JS/Siderbar.js"></script>
+    <script src="JS/SelectorImagenes.js"></script>
+    <script src="JS/Seleccion.js"></script>
+    <script src="JS/Bot.js"></script>
+    <script>
+        // Lógica para mostrar el popup del bot
+        function shouldShowPopup() {
+            const shownThisSession = sessionStorage.getItem('botPopupShown');
+            if (shownThisSession) return false;
+            const lastShown = localStorage.getItem('botPopupLastShown');
+            if (!lastShown) return true;
+            const daysSinceLastShown = (Date.now() - parseInt(lastShown)) / (1000 * 60 * 60 * 24);
+            return daysSinceLastShown >= 30;
         }
-    }
-
-    // Mostrar el popup después de 3 segundos (después de la pantalla de carga)
-    window.addEventListener('load', function() {
-        setTimeout(function() {
-            if (shouldShowPopup()) {
-                document.getElementById('bot-welcome-popup').classList.remove('hidden');
-                document.getElementById('bot-animation-container').classList.remove('hidden');
-            } else {
-                document.getElementById('bot-animation-container').classList.add('hidden');
+        function closeWelcomePopup() {
+            const popup = document.getElementById('bot-welcome-popup');
+            const dontShowAgain = document.getElementById('dont-show-again').checked;
+            const animationContainer = document.getElementById('bot-animation-container');
+            popup.classList.add('hidden');
+            animationContainer.classList.add('hidden');
+            sessionStorage.setItem('botPopupShown', 'true');
+            if (dontShowAgain) {
+                localStorage.setItem('botPopupLastShown', Date.now().toString());
             }
-        }, 3000);
-    });
-</script>
-
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-messaging-compat.js"></script>
-
-<!-- Tu sistema de notificaciones -->
-<script src="JS/notificaciones.js"></script>
-
-    </body>
+        }
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                if (shouldShowPopup()) {
+                    document.getElementById('bot-welcome-popup').classList.remove('hidden');
+                    document.getElementById('bot-animation-container').classList.remove('hidden');
+                } else {
+                    document.getElementById('bot-animation-container').classList.add('hidden');
+                }
+            }, 3000);
+        });
+    </script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-messaging-compat.js"></script>
+    <!-- Sistema de notificaciones -->
+    <script src="JS/notificaciones.js"></script>
+</body>
 </html>
