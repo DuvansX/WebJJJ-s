@@ -269,11 +269,12 @@ main {
 }
 
 .product {
-    background-image: url('../Imagenes/Food/Carta.webp');
+    background-image: url('../Imagenes/Food/fondo\ para\ comida.jpeg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     border-radius: 8px;
+    border: 2px solid #ffb700;
     padding: 10px;
     text-align: center;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
@@ -315,6 +316,7 @@ main {
     object-fit: contain;
     display: block;
     margin: 0 auto;
+    border: 2px solid #000000;
     border-radius: 15px;
 }
 
