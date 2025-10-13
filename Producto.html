@@ -1,356 +1,368 @@
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tu Pedido JJJ´s</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="CSS/Pedidos.css">
-  <link rel="icon" href="Imagenes/Logo Restaurante.PNG">
-  <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos Food JJJ´s</title>
+    <link rel="icon" href="Imagenes/Logo Restaurante.PNG">
+    <link rel="stylesheet" href="CSS/Producto.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body class="locked">
+    <!-- Pantalla de carga -->
+    <div id="loading-screen">
+      <i class="fa-solid fa-burger"></i>
+    </div>
 
-  <div id="loading-screen">
-    <i class='bx bx-package'></i>
-  </div>
-
-  <div class="sidebar1">
+<div class="sidebar1">
     <div class="logo_content1">
-      <div class="logo1">
-        <img src="Imagenes/Logo JJJs.png" alt="Logo Restaurante" width="150" height="50">
-      </div>
-      <i class='bx bx-menu' id='btn1'></i>
+        <div class="logo1">
+            <img src="Imagenes/Logo Restaurante.PNG" alt="Logo del Restaurante" width="53" height="50">
+            <div class="logo_name1">JJJ´s Food</div>
+        </div>
+        <i class='bx bx-menu' id='btn1'></i>
     </div>
     <div class="src1" style="position: relative;">
-      <i class='bx bx-search-alt' id="srcBtn1"></i>
-      <input type="text" id="searchInput" placeholder="Buscar..." autocomplete="off">
-      <div id="suggestions" class="suggestions"></div>
+        <i class='bx bx-search-alt' id="srcBtn1"></i>
+        <input type="text" id="searchInput" placeholder="Buscar..." autocomplete="off">
+        <div id="suggestions" class="suggestions"></div>
     </div>
+    
     <ul class="nav1">
-      <li><a href="index.html"><i class='bx bx-store-alt'></i><span class="link_name1">Principal</span></a></li>
-      <li><a href="InicioSs.html"><i class='bx bxs-user-circle'></i><span class="link_name1">Inicia sesión</span></a></li>
-      <li><a href="Producto.html"><i class='bx bxs-pizza'></i><span class="link_name1">Productos Food</span></a></li>
-      <li><a href="ProductosCigarreria.html"><i class='bx bxs-drink'></i><span class="link_name1">Productos Beer</span></a></li>
-      <li><a href="Pedidos.html"><i class='bx bx-package'></i><span class="link_name1">Pedidos</span></a></li>
-      <li><a href="Nosotros.html"><i class='bx bx-conversation'></i><span class="link_name1">Nosotros</span></a></li>
-      <li><a href="Horarios.html"><i class='bx bxs-calendar'></i><span class="link_name1">Horarios</span></a></li>
-      <li><a href="favoritos.html"><i class='bx bxs-heart-circle'></i><span class="link_name1">Favoritos</span></a></li>
+        <li>
+            <a href="index.html">
+                <i class='bx bx-store-alt'></i>
+                <span class="link_name1">Principal</span>
+            </a>
+            <span class="tooltip1">Principal</span>
+        </li> 
+        <li>
+            <a href="InicioSs.html">
+                <i class='bx bxs-user-circle'></i>
+                <span class="link_name1">Inicia sesión</span>
+            </a>
+            <span class="tooltip1">Inicia sesión</span>
+        </li>
+        <li>
+            <a href="Producto.html">
+                <i class='bx bxs-pizza'></i>
+                <span class="link_name1">Productos Food</span>
+            </a>
+            <span class="tooltip1">Productos Food</span>
+        </li>
+        <li>
+            <a href="ProductosCigarreria.html">
+                <i class='bx bxs-drink'></i>
+                <span class="link_name1">Productos Beer</span>
+            </a>
+            <span class="tooltip1">Productos Beer</span>
+        </li> 
+        <li>
+            <a href="Pedidos.html">
+                <i class='bx bx-package'></i>
+                <span class="link_name1">Pedidos</span>
+            </a>
+            <span class="tooltip1">Pedidos</span>
+        </li> 
+        <li>
+            <a href="Nosotros.html">
+                <i class='bx bx-conversation'></i>
+                <span class="link_name1">Nosotros</span>
+            </a>
+            <span class="tooltip1">Nosotros</span>
+        </li> 
+        <li>
+            <a href="Horarios.html">
+                <i class='bx bxs-calendar'></i>
+                <span class="link_name1">Horarios</span>
+            </a>
+            <span class="tooltip1">Horarios</span>
+        </li> 
+        <li>
+            <a href="favoritos.html">
+                <i class='bx bxs-heart-circle'></i>
+                <span class="link_name1">Favoritos</span>
+            </a>
+            <span class="tooltip1">Favoritos</span>
+        </li>
     </ul>
-  </div>
+</div>
 
-  <div class="main-content">
-    <!-- Contenedor del carrito -->
-    <div class="pedido-container">
-      <h2><i data-lucide="shopping-cart" class="icon-title"></i> Tu Pedido</h2>
-      <div id="pedido-lista" class="pedido-lista">
-        <!-- Estado vacío (se mostrará si no hay productos) -->
-        <div class="empty-state">
-          <i class='bx bx-cart-alt'></i>
-          <h3>Tu carrito está vacío</h3>
-          <p>¡Agrega deliciosos productos y comienza tu pedido!</p>
-          <a href="Producto.html" class="btn-browse">Explorar Productos</a>
-        </div>
-      </div>
-      <div class="pedido-total">
-        <span><i data-lucide="wallet" class="icon-inline"></i> Total:</span>
-        <span id="total-precio">$0</span>
-      </div>
-      <button class="btn-confirmar" onclick="sendWhatsAppOrder()">
-        <i data-lucide="check-circle" class="icon-inline"></i> Confirmar Pedido
-      </button>
+<header class="nav-bar">
+    <div class="cart-icon" onclick="toggleCart()">
+        <img src="Imagenes/Food/CarritoDeCompras.png" alt="Carrito de compras" width="35">
+        <span id="cart-count">0</span>
     </div>
+    <h1>Productos JJJ´s Food</h1>
+</header>
 
-    <!-- Sidebar de información -->
-    <div class="info-sidebar">
-      
-      <!-- Tarjeta: Métodos de Pago -->
-      <div class="info-card">
-        <h3><i class='bx bx-credit-card'></i> Métodos de Pago</h3>
-        <div class="payment-methods">
-          <div class="payment-item">
-            <i class='bx bxl-visa' style="color: #1A1F71;"></i>
-            <span>Bancolombia</span>
-          </div>
-          <div class="payment-item">
-            <img src="Imagenes/Pedidos/nequi.jpeg" alt="Logo Nequi" class="payment-logo">
-            <span>Nequi</span>
-          </div>
-          <div class="payment-item">
-            <img src="Imagenes/Pedidos/Daviplata.jpeg" alt="Logo Daviplata" class="payment-logo">
-            <span>Daviplata</span>
-          </div>
-          <div class="payment-item">
-            <i class='bx bx-money' style="color: #2A9D8F;"></i>
-            <span>Efectivo</span>
-          </div>
+<main>
+    <div class="product-list">
+        <!-- Ejemplo de productos -->
+        <div class="product">
+            <img src="Comida/Burger Junior Kinds.webp" alt="Burger Junior Kinds">
+            <h2>Burger Junior Kinds</h2>
+            <p class="price">$28.000</p>
+            <button onclick="addToCart('Burger Junior Kinds', 28)">
+                <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+            </button>
         </div>
-      </div>
+        
+        <div class="product">
+            <img src="Comida/Burger Choclo.webp" alt="Burger Choclo">
+            <h2>Burger Choclo</h2>
+            <p class="price">$28.000</p>
+            <button onclick="addToCart('Burger Choclo', 28)">Agregar al Carrito</button>
+        </div>
 
-      <!-- Tarjeta: Información de Entrega -->
-      <div class="info-card">
-        <h3><i class='bx bxs-truck'></i> Información de Entrega</h3>
-        <div class="delivery-info">
-          <div class="delivery-item">
-            <i class='bx bx-time-five'></i>
-            <div class="delivery-text">
-              <h4>Tiempo de entrega</h4>
-              <p>20-35 minutos aproximadamente</p>
-            </div>
-          </div>
-          <div class="delivery-item">
-            <i class='bx bx-map'></i>
-            <div class="delivery-text">
-              <h4>Zona de cobertura</h4>
-              <p>Todo Sogamoso</p>
-            </div>
-          </div>
-          <div class="delivery-item">
-            <i class='bx bx-dollar-circle'></i>
-            <div class="delivery-text">
-              <h4>Costo de envío</h4>
-              <p>Consultar según ubicación y pedido</p>
-            </div>
-          </div>
+        <div class="product">
+            <img src="Comida/Burger Ranch.webp" alt="Burger Ranch">
+            <h2>Burger Ranch</h2>
+            <p class="price">$28.000</p>
+            <button onclick="addToCart('Burger Ranch', 28)">Agregar al Carrito</button>
         </div>
-      </div>
 
-      <!-- Tarjeta: Contacto y Ayuda -->
-      <div class="info-card">
-        <h3><i class='bx bx-help-circle'></i> ¿Necesitas Ayuda?</h3>
-        <div class="delivery-info">
-          <div class="delivery-item">
-            <i class='bx bxl-whatsapp' style="color: #25D366;"></i>
-            <div class="delivery-text">
-              <h4>WhatsApp</h4>
-              <p>Escríbenos para cualquier duda</p>
-            </div>
-          </div>
-          <div class="delivery-item">
-            <i class='bx bx-shield-quarter'></i>
-            <div class="delivery-text">
-              <h4>Compra segura</h4>
-              <p>Tus datos están protegidos</p>
-            </div>
-          </div>
+        <div class="product">
+            <img src="Comida/Burger Mexicana.webp" alt="Burger Mexicana">
+            <h2>Burger Mexicana</h2>
+            <p class="price">$28.000</p>
+            <button onclick="addToCart('Burger Mexicana', 28)">Agregar al Carrito</button>
         </div>
-      </div>
 
-      <!-- Tarjeta: Contacto y Ayuda -->
-      <div class="info-card">
-       <h3><i class='bx bx-navigation'></i> Información de ID</h3>
-            <div class="delivery-text">
-              <h4>Nuestros Rastreo-Estado</h4>
-              <p>Los pedidos se identifican mediante un ID único, el cual se solicita directamente a través de WhatsApp con nuestro trabajador; una vez tengas tu ID podrás ingresarlo en la sección ID Pedido de la página para consultar el estado actual de tu pedido, y para más información o asistencia adicional puedes comunicarte con nuestro canal oficial de WhatsApp.</p>
-            </div>
-          </div>
+        <div class="product">
+            <img src="Comida/Burger Los JJJ's.webp" alt="Burger Los JJJ's">
+            <h2>Burger Los JJJ's</h2>
+            <p class="price">$28.000</p>
+            <button onclick="addToCart('Burger Los JJJ s', 28)">Agregar al Carrito</button>
         </div>
-      </div>
+
+        <div class="product">
+            <img src="Comida/Burger Mixta.webp" alt="Burger Mixta">
+            <h2>Burger Mixta</h2>
+            <p class="price">$25.000</p>
+            <button onclick="addToCart('Burger Mixta', 25)">Agregar al Carrito</button>
+        </div>
+
+        <div class="product">
+            <img src="Comida/Burger Hawaina.webp" alt="Burger Hawaina">
+            <h2>Burger Hawaina</h2>
+            <p class="price">$25.000</p>
+            <button onclick="addToCart('Burger Hawaina', 25)">Agregar al Carrito</button>
+        </div>
+
+        <div class="product">
+            <img src="Comida/Burger Doble Carne.webp" alt="Burger Doble Carne">
+            <h2>Burger Doble Carne</h2>
+            <p class="price">$25.000</p>
+            <button onclick="addToCart('Burger Doble Carne', 25)">Agregar al Carrito</button>
+        </div>
+
+        <div class="product">
+            <img src="Comida/Burger Pork.webp" alt="Burger Pork">
+            <h2>Burger Pork</h2>
+            <p class="price">$20.000</p>
+            <button onclick="addToCart('Burger Pork', 20)">Agregar al Carrito</button>
+        </div>
+
+        <div class="product">
+            <img src="Comida/Burger Chiken.webp" alt="Burger Chiken">
+            <h2>Burger Chiken</h2>
+            <p class="price">$20.000</p>
+            <button onclick="addToCart('Burger Chiken', 20)">Agregar al Carrito</button>
+        </div>
+
+        <div class="product">
+            <img src="Comida/Burger Tocimiel.webp" alt="Burger Tocimiel">
+            <h2>Burger Tocimiel</h2>
+            <p class="price">$20.000</p>
+            <button onclick="addToCart('Burger Tocimiel', 20)">Agregar al Carrito</button>
+        </div>
+
+        <div class="product">
+            <img src="Comida/Burger Tradicional.webp" alt="Burger Tradicional">
+            <h2>Burger Tradicional</h2>
+            <p class="price">$15.000</p>
+            <button onclick="addToCart('Burger Tradicional', 15)">Agregar al Carrito</button>
+        </div>
+
+         <!-- perros calientes -->
+
+        <div class="product">
+            <img src="Comida/Perro Hawaiano.webp" alt="Perro Hawaiano">
+            <h2>Perro Hawaiano</h2>
+            <p class="price">$15.000</p>
+            <button onclick="addToCart('Perro Hawaiano', 15)">Agregar al Carrito</button>
+        </div>
+
+        <div class="product">
+            <img src="Comida/Perro Criollo.webp" alt="Perro Criollo">
+            <h2>Perro Criollo</h2>
+            <p class="price">$18.000</p>
+            <button onclick="addToCart('Perro Criollo', 18)">Agregar al Carrito</button>
+        </div>
+
+        <div class="product">
+            <img src="Comida/Perrote.webp" alt="Perrote">
+            <h2>Perrote</h2>
+            <p class="price">$20.000</p>
+            <button onclick="addToCart('Perrote', 20)">Agregar al Carrito</button>
+        </div>
+
+        <div class="product">
+            <img src="Comida/Perro Americano.webp" alt="Perro Americano">
+            <h2>Perro Americano</h2>
+            <p class="price">$15.000</p>
+            <button onclick="addToCart('Perro Americano', 15)">Agregar al Carrito</button>
+        </div>
+
+        <div class="product">
+            <img src="Comida/Perro Choclo.webp" alt="Perro Choclo">
+            <h2>Perro Choclo</h2>
+            <p class="price">$19.000</p>
+            <button onclick="addToCart('Perro Choclo', 19)">Agregar al Carrito</button>
+        </div>
+
+        <div class="product">
+            <img src="Comida/Perro Mexicano.webp" alt="Perro Mexicano">
+            <h2>Perro Mexicano</h2>
+            <p class="price">$20.000</p>
+            <button onclick="addToCart('Perro Mexicano', 20)">Agregar al Carrito</button>
+        </div>
+
+        <div class="product">
+            <img src="Comida/Perro Ranchero.webp" alt="Perro Ranchero">
+            <h2>Perro Ranchero</h2>
+            <p class="price">$18.000</p>
+            <button onclick="addToCart('Perro Ranchero', 18)">Agregar al Carrito</button>
+        </div>
+
+        <!-- Taquitos -->
+
+        <div class="product">
+            <img src="Comida/Carnitas.webp" alt="Carnitas">
+            <h2>Carnitas</h2>
+            <p class="price">$20.000</p>
+            <button onclick="addToCart('Carnitas', 20)">Agregar al Carrito</button>
+        </div>
+
+        <div class="product">
+            <img src="Comida/Pollo Maíz.webp" alt="Pollo Maíz">
+            <h2>Pollo Maíz</h2>
+            <p class="price">$18.000</p>
+            <button onclick="addToCart('Pollo Maíz', 22)">Agregar al Carrito</button>
+        </div>
+
+        <div class="product">
+            <img src="Comida/Maduro Cronch.webp" alt="Maduro Cronch">
+            <h2>Maduro Cronch</h2>
+            <p class="price">$24.000</p>
+            <button onclick="addToCart('Maduro Cronch', 24)">Agregar al Carrito</button>
+        </div>
+
+         <!-- Patacones -->
+
+        <div class="product">
+            <img src="Comida/Maduro Los JJJ's.webp" alt="Maduro Los JJJ's">
+            <h2>Maduro Los JJJ's</h2>
+            <p class="price">$22.000</p>
+            <button onclick="addToCart('Maduro Los JJJ s', 22)">Agregar al Carrito</button>
+        </div>
+
+        <div class="product">
+            <img src="Comida/Maduros Carnivoros.webp" alt="Maduros Carnivoros">
+            <h2>Maduros Carnivoros</h2>
+            <p class="price">$22.000</p>
+            <button onclick="addToCart('Maduro Cronch', 22)">Agregar al Carrito</button>
+        </div>
+
+         <!-- Picadas -->
+
+        <div class="product">
+            <img src="Comida/Tradicional.webp" alt="Tradicional">
+            <h2>Tradicional</h2>
+            <p class="price">$35.000</p>
+            <button onclick="addToCart('Tradicional', 35)">Agregar al Carrito</button>
+        </div>
+
+        <div class="product">
+            <img src="Comida/Criolla.webp" alt="Criollo">
+            <h2>Criollo</h2>
+            <p class="price">$35.000</p>
+            <button onclick="addToCart('Criollo', 35)">Agregar al Carrito</button>
+        </div>
+
+        <!-- Nachos -->
+
+        <div class="product">
+            <img src="Comida/Nachos.webp" alt="Nachos">
+            <h2>Nachos</h2>
+            <p class="price">$20.000</p>
+            <button onclick="addToCart('Nachos', 20)">Agregar al Carrito</button>
+        </div>
+
+        <!-- Nachos -->
+
+        <div class="product">
+            <img src="Comida/Burrito Vegetariano.webp" alt="Burrito Vegetariano">
+            <h2>Burrito Vegetariano</h2>
+            <p class="price">$20.000</p>
+            <button onclick="addToCart('Burrito Vegetariano', 20)">Agregar al Carrito</button>
+        </div>
+
+        <div class="product">
+            <img src="Comida/Burrito crunch.webp" alt="Burrito crunch">
+            <h2>Burrito crunch</h2>
+            <p class="price">$25.000</p>
+            <button onclick="addToCart('Burrito crunch', 25)">Agregar al Carrito</button>
+        </div>
+
+        <div class="product">
+            <img src="Comida/Burrito Ranch.webp" alt="Burrito Ranch">
+            <h2>Burrito Ranch</h2>
+            <p class="price">$25.000</p>
+            <button onclick="addToCart('Burrito Ranch', 25)">Agregar al Carrito</button>
+        </div>
+
     </div>
-  </div>
+</main>
 
-  <!-- Modal de formulario -->
-  <div id="modal-formulario" class="modal">
-    <div class="modal-contenido">
-      <button class="cerrar-modal" onclick="cerrarFormulario()">✖</button>
-      <h3>Completa tus datos</h3>
-      <input type="text" id="direccion" placeholder="Dirección">
-      <input type="text" id="telefono" placeholder="Teléfono">
-      <select id="metodo-pago">
-        <option value="">Selecciona un método de pago</option>
-        <option value="Bancolombia">🏦 Bancolombia</option>
-        <option value="Nequi">📲 Nequi</option>
-        <option value="Daviplata">💳 Daviplata</option>
-        <option value="Físico">💵 Pago físico</option>
-      </select>
-      <button id="enviar-pedido" disabled>Enviar pedido por WhatsApp</button>
-    </div>
-  </div>
+<script>
+    localStorage.setItem("tipoProducto", "comida");
+</script>
 
-  <!-- Botón rastreo -->
-  <button class="btn-abrir-rastreo" onclick="window.location.href='Seguimiento.html'">
-    <i class="fas fa-map-marker-alt"></i> ID Pedido
-  </button>
+<div class="cart-details" id="cart-details">
+    <h2>Tu Carrito</h2>
+    <ul id="cart-items"></ul>
+    <p class="total">
+        Total: <span id="cart-total">0</span>
+        <span id="cart-warning" class="cart-warning"></span>
+    </p>
+    <button onclick="window.location.href='Pedidos.html'" class="buy-button">Comprar</button>
+</div>
 
-  <!-- Modal de rastreo -->
-  <div id="modal-rastreo" class="rastreo-modal">
-    <div class="rastreo-modal-contenido">
-      <button class="cerrar-rastreo-modal" onclick="cerrarRastreo()">✖</button>
-      <h3>Rastrear Pedido</h3>
-      <input type="text" id="rastreo-input-id" placeholder="Ingresa tu ID de pedido" />
-      <button onclick="verUbicacion()">Ver ubicación</button>
-      <div id="rastreo-mapa"></div>
-      <p id="rastreo-estado" class="estado-pedido"></p>
-    </div>
-  </div>
+<button class="carta-btn" onclick="toggleCarta()">Carta</button>
 
-  <!-- Scripts -->
-  <script src="JS/Pedidos.js"></script>
-  <script src="JS/PantallaCarga.js"></script>
-  <script src="JS/Buscador.js"></script>
-  <script src="JS/Siderbar.js"></script>
-  <script src="JS/Bot.js"></script>
-  <script src="JS/Seleccion.js"></script>
-  
-  <script>
-    // Inicializar iconos de Lucide
-    lucide.createIcons();
+<div class="carta-container" id="carta" onclick="toggleZoom(event)">
+    <button class="toggle-img-btn btn-up" id="btnUp" onclick="toggleImagen(event)">⬆</button>
+    <img src="Imagenes/carta.jpg" alt="Carta del Restaurante" id="cartaImg">
+    <button class="toggle-img-btn btn-down" id="btnDown" onclick="toggleImagen(event)">⬇</button>
+    <button id="volverBtn" onclick="toggleCarta()">Volver</button>
+</div>
 
-    function abrirRastreo() {
-      document.getElementById("modal-rastreo").classList.add("active");
-    }
+<script src="JS/Producto.js"></script>
+<script src="JS/CartaProductos.js"></script>
+<script src="JS/PantallaCarga.js"></script>
+<script src="JS/Buscador.js"></script>
+<script src="JS/Siderbar.js"></script>
+<script src="JS/Bot.js"></script>
+<script src="JS/Seleccion.js"></script>
 
-    function cerrarRastreo() {
-      document.getElementById("modal-rastreo").classList.remove("active");
-      document.getElementById("rastreo-mapa").style.display = "none";
-      document.getElementById("rastreo-estado").innerHTML = "";
-      if (rastreoMapa) rastreoMapa.iniciado = false;
-      marcadorOrigen = null;
-      marcadorDestino = null;
-      lineaRuta = null;
-    }
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyD7s5mmGYkvAFbCXZrYNwefh9RnmNwQuzi0",
-      authDomain: "idtrabajadores.firebaseapp.com",
-      projectId: "idtrabajadores",
-      storageBucket: "idtrabajadores.appspot.com",
-      messagingSenderId: "476040391869",
-      appId: "1:476040391869:web:342d794ed1aaf54ce49bd4",
-      measurementId: "G-9XR5E02ZZ2"
-    };
-
-    let app, db, rastreoMapa;
-    let marcadorOrigen, marcadorDestino, lineaRuta;
-
-    async function initMap() {
-      const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js");
-      const { getFirestore } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
-
-      app = initializeApp(firebaseConfig);
-      db = getFirestore(app);
-
-      rastreoMapa = new google.maps.Map(document.getElementById("rastreo-mapa"), {
-        center: { lat: 4.60971, lng: -74.08175 },
-        zoom: 13,
-        minZoom: 13,
-        maxZoom: 17,
-        mapTypeControl: false,
-        streetViewControl: false,
-        fullscreenControl: false,
-        zoomControl: true,
-        rotateControl: false,
-        scaleControl: false
-      });
-
-      document.getElementById("rastreo-mapa").style.display = "none";
-      rastreoMapa.iniciado = false;
-    }
-
-    async function verUbicacion() {
-      const id = document.getElementById("rastreo-input-id").value.trim();
-      const estadoElem = document.getElementById("rastreo-estado");
-
-      if (!id || !db) {
-        estadoElem.innerHTML = `<i class='bx bx-error-circle' style="font-size: 22px;"></i> Ingresa un ID válido.`;
-        document.getElementById("rastreo-mapa").style.display = "none";
-        return;
-      }
-
-      const { doc, onSnapshot } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
-      const docRef = doc(db, "pedidos", id);
-
-      onSnapshot(docRef, (docSnap) => {
-        if (!docSnap.exists()) {
-          estadoElem.innerHTML = `<i class='bx bx-error-circle' style="font-size: 22px;"></i> ID no encontrado.`;
-          document.getElementById("rastreo-mapa").style.display = "none";
-          return;
-        }
-
-        const data = docSnap.data();
-        const origen = data.ubicacionOrigen;
-        const destino = data.ubicacionDestino;
-
-        if (origen && destino) {
-          document.getElementById("rastreo-mapa").style.display = "block";
-
-          if (data.activo) {
-            estadoElem.innerHTML = `<i class='bx bxs-truck' style="font-size: 22px;"></i> Repartidor en camino...`;
-          } else {
-            estadoElem.innerHTML = `<i class='bx bx-check-circle' style="font-size: 22px;"></i> Pedido finalizado.`;
-          }
-
-          mostrarRastreoMapa(origen, destino);
-        } else {
-          estadoElem.innerHTML = `<i class='bx bx-time-five' style="font-size: 22px;"></i> Ubicación no disponible aún.`;
-          document.getElementById("rastreo-mapa").style.display = "none";
-        }
-      });
-    }
-
-    function mostrarRastreoMapa(origen, destino) {
-      const posOrigen = { lat: origen.lat, lng: origen.lon };
-      const posDestino = { lat: destino.lat, lng: destino.lon };
-
-      const motoIcon = {
-        url: "https://cdn-icons-png.flaticon.com/512/5637/5637217.png",
-        scaledSize: new google.maps.Size(40, 40),
-        origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(20, 20)
-      };
-
-      if (!marcadorOrigen) {
-        marcadorOrigen = new google.maps.Marker({
-          position: posOrigen,
-          map: rastreoMapa,
-          icon: motoIcon,
-          title: "Ubicación Origen (Repartidor)"
-        });
-      } else {
-        marcadorOrigen.setPosition(posOrigen);
-      }
-
-      if (!marcadorDestino) {
-        marcadorDestino = new google.maps.Marker({
-          position: posDestino,
-          map: rastreoMapa,
-          label: "🏠",
-          title: "Destino del pedido"
-        });
-      } else {
-        marcadorDestino.setPosition(posDestino);
-      }
-
-      if (lineaRuta) {
-        lineaRuta.setMap(null);
-      }
-      lineaRuta = new google.maps.Polyline({
-        path: [posOrigen, posDestino],
-        geodesic: true,
-        strokeColor: "#00BFFF",
-        strokeOpacity: 1.0,
-        strokeWeight: 4,
-        map: rastreoMapa
-      });
-
-      if (!rastreoMapa.iniciado) {
-        rastreoMapa.setCenter(posOrigen);
-        rastreoMapa.setZoom(15);
-        rastreoMapa.iniciado = true;
-      }
-    }
-
-    window.initMap = initMap;
-    window.verUbicacion = verUbicacion;
-    window.abrirRastreo = abrirRastreo;
-    window.cerrarRastreo = cerrarRastreo;
-  </script>
-
-  <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGD7q6pdLPd5FV7gyy0h1bK6a1F2eFnsY&callback=initMap">
-  </script>
 </body>
 </html>
+
+
