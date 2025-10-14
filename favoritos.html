@@ -2,24 +2,25 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Mis Favoritos</title>
-    <link rel="stylesheet" href="CSS/estilos.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos Favoritos</title>
+    <link rel="stylesheet" href="CSS/Favoritos.css">
     <link rel="icon" href="Imagenes/Logo Restaurante.PNG">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script src="https://kit.fontawesome.com/tu-key-de-fontawesome.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body>
+<body class="locked">
+    <!-- Pantalla de carga -->
+    <div id="loading-screen">
+      <i class='bx bxs-calendar'></i>
+    </div>
 
-<h1>Mis Productos Favoritos</h1>
-<div id="favoritos-container" class="productos-grid"></div>
-
-<!-- Barra lateral -->
+    <!-- Barra lateral -->
     <div class="sidebar1">
         <div class="logo_content1">
             <div class="logo1">
-                <img src="Imagenes/Logo Licor.png" alt="Logo del Restaurante" width="53" height="50">
-                <div class="logo_name1">JJJ´s Beer</div>
+                <img src="Imagenes/Logo JJJs.png" alt="Logo Restaurante" width="150" height="50">
+                <div class="logo_name1"></div>
             </div>
             <i class='bx bx-menu' id='btn1'></i>
         </div>
@@ -29,19 +30,107 @@
             <div id="suggestions" class="suggestions"></div>
         </div>
         <ul class="nav1">
-            <li><a href="index.html"><i class='bx bx-store-alt'></i><span class="link_name1">Principal</span></a></li>
-            <li><a href="InicioSs.html"><i class='bx bxs-user-circle'></i><span class="link_name1">Inicia sesión</span></a></li>
-            <li><a href="Producto.html"><i class='bx bxs-pizza'></i><span class="link_name1">Productos Food</span></a></li>
-            <li><a href="ProductosCigarreria.html"><i class='bx bxs-drink'></i><span class="link_name1">Productos Beer</span></a><span class="tooltip1">Productos Beer</span></li>
-            <li><a href="Pedidos.html"><i class='bx bx-package'></i><span class="link_name1">Pedidos</span></a></li>
-            <li><a href="Nosotros.html"><i class='bx bx-conversation'></i><span class="link_name1">Nosotros</span></a></li>
-            <li><a href="Horarios.html"><i class='bx bxs-calendar'></i><span class="link_name1">Horarios</span></a></li>
-            <li><a href="favoritos.html"><i class='bx bxs-heart-circle'></i><span class="link_name1">Favoritos</span></a></li>
+            <li>
+                <a href="index.html">
+                    <i class='bx bx-store-alt'></i>
+                    <span class="link_name1">Principal</span>
+                </a>
+                <span class="tooltip1">Principal</span>
+            </li>
+            <li>
+                <a href="InicioSs.html">
+                    <i class='bx bxs-user-circle'></i>
+                    <span class="link_name1">Inicia sesión</span>
+                </a>
+                <span class="tooltip1">Inicia sesión</span>
+            </li>
+            <li>
+                <a href="Producto.html">
+                    <i class='bx bxs-pizza'></i>
+                    <span class="link_name1">Productos Food</span>
+                </a>
+                <span class="tooltip1">Productos Food</span>
+            </li>
+            <li>
+                <a href="ProductosCigarreria.html">
+                    <i class='bx bxs-drink'></i>
+                    <span class="link_name1">Productos Beer</span>
+                </a>
+                <span class="tooltip1">Productos Beer</span>
+            </li>
+            <li>
+                <a href="Pedidos.html">
+                    <i class='bx bx-package'></i>
+                    <span class="link_name1">Pedidos</span>
+                </a>
+                <span class="tooltip1">Pedidos</span>
+            </li>
+            <li>
+                <a href="Nosotros.html">
+                  <i class='bx bx-conversation'></i>
+                  <span class="link_name1">Nosotros</span>
+                </a>
+                <span class="tooltip1">Nosotros</span>
+              </li>
+            <li>
+                <a href="Horarios.html">
+                    <i class='bx bxs-calendar'></i>
+                    <span class="link_name1">Horarios</span>
+                </a>
+                <span class="tooltip1">Horarios</span>
+            </li>
+            <li>
+                <a href="favoritos.html" class="active">
+                    <i class='bx bxs-heart-circle'></i>
+                    <span class="link_name1">favoritos</span>
+                </a>
+                <span class="tooltip1">favoritos</span>
+            </li>
         </ul>
     </div>
 
-<script src="JS/favoritos.js"></script>
-<script src="JS/Buscador.js"></script>
-<script src="JS/Siderbar.js"></script>
+    <!-- Contenido principal de favoritos -->
+    <div class="home_content1">
+        <header class="favorites-header">
+            <h1><i class='bx bxs-heart'></i> Mis Favoritos</h1>
+            <p class="subtitle">Aquí están todos tus productos favoritos</p>
+        </header>
+
+        <main class="favorites-main">
+            <!-- Contador de favoritos -->
+            <div class="favorites-counter">
+                <span id="favoritesCount">0</span> productos favoritos
+            </div>
+
+            <!-- Contenedor de productos favoritos -->
+            <div id="favoritos-container" class="product-list">
+                <!-- Los productos favoritos se cargarán aquí dinámicamente desde favoritos.js -->
+            </div>
+
+            <!-- Mensaje cuando no hay favoritos -->
+            <div id="empty-favorites" class="empty-state">
+                <i class='bx bxs-heart-circle'></i>
+                <h2>¡Aún no tienes favoritos! 💛</h2>
+                <p>Explora nuestros deliciosos productos y guarda tus favoritos haciendo clic en el <i class='bx bxs-heart' style="color: #ff4757;"></i></p>
+                <div class="empty-buttons">
+                    <a href="Producto.html" class="btn-explore">
+                        <i class='bx bxs-pizza'></i> Explorar Comidas
+                    </a>
+                    <a href="ProductosCigarreria.html" class="btn-explore">
+                        <i class='bx bxs-drink'></i> Explorar Bebidas
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="JS/Producto.js"></script>
+    <script src="JS/Siderbar.js"></script>
+    <script src="JS/PantallaCarga.js"></script>
+    <script src="JS/Buscador.js"></script>
+    <script src="JS/Bot.js"></script>
+    <script src="JS/Seleccion.js"></script>
+    <script src="JS/favoritos.js"></script>
 </body>
 </html>
