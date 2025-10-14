@@ -1,0 +1,547 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;1,400&display=swap');
+
+/* =======================
+   RESET & BASE
+======================= */
+* {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    background: url("../Imagenes/PERROS BLACK 4.png") no-repeat center center fixed;
+    background-size: cover;
+    background-position: center;
+    overflow-x: hidden;
+    touch-action: pan-y;
+}
+
+/* =======================
+   SIDEBAR
+======================= */
+.sidebar1 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 78px;
+    background: #000000;
+    padding: 6px 14px;
+    height: 100%;
+    box-shadow: 5px 0 30px rgba(0, 0, 0, .1);
+    transition: all .5s ease;
+    z-index: 9995;
+}
+
+.sidebar1.active1 {
+    width: 240px;
+}
+
+.sidebar1 .logo_content1 .logo1 {
+    display: flex;
+    color: #ffb700;
+    height: 50px;
+    width: 100%;
+    font-size: 30px;
+    margin-left: 30px;
+    margin-top: 6px; 
+    align-items: center;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.sidebar1.active1 .logo_content1 .logo1 {
+    opacity: 1;
+}
+
+.sidebar1 .logo_content1 .logo1 .logo_name1 {
+    font-size: 23px;
+    font-weight: 600;
+    margin: 0 10px;
+}
+
+.sidebar1 #btn1 {
+    position: absolute;
+    color: #ffffff;
+    left: 50%;
+    top: 6px;
+    font-size: 20px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    transform: translate(-50%);
+}
+
+.sidebar1.active1 #btn1 {
+    left: 85%;
+}
+
+.sidebar1 .src1 {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.sidebar1 .src1 input {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    background: #ffffff;
+    padding-left: 50px;
+    font-size: 15px;
+    color: #000000;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+    transition: all .5s ease;
+}
+
+.sidebar1 .src1 .bx-search-alt {
+    position: absolute;
+    z-index: 99;
+    font-size: 22px;
+    color: #000000;
+    transition: all .5s ease;
+}
+
+.sidebar1 .src1 .bx-search-alt:hover ~ input {
+    background: #ffffff;
+}
+
+.sidebar1 i {
+    height: 50px;
+    min-width: 50px;
+    border-radius: 12px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 25px;
+}
+
+.sidebar1 ul {
+    margin-top: 20px;
+}
+
+.sidebar1 ul li {
+    position: relative;
+    height: 53px;
+    width: 100%;
+    margin: 0;
+    list-style: none;
+    line-height: 50px;
+}
+
+.sidebar1 ul li a {
+    color: #ffffff;
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    border-radius: 20px;
+    font-size: 13px;
+    white-space: nowrap;
+    transition: all .5s ease;
+}
+
+.sidebar1 ul li a:hover {
+    color: #000000;
+    background: #ffb700;
+}
+
+.sidebar1 .link_name1 {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sidebar1.active1 .link_name1 {
+    opacity: 1;
+    font-weight: 550;
+    pointer-events: auto;
+}
+
+.sidebar1 ul li .tooltip1 {
+    position: absolute;
+    left: 140px;
+    top: 0;
+    transform: translate(-45%, -50%);
+    border-radius: 10px;
+    height: 35px;
+    width: 130px;
+    background: #ffffff;
+    line-height: 35px;
+    text-align: center;
+    font-size: 13px;
+    display: block;
+    color: #242424;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.sidebar1.active1 ul li .tooltip1 {
+    display: none;
+}
+
+.sidebar1 ul li:hover .tooltip1 {
+    opacity: 1;
+    top: 50%;
+}
+
+.nav1 a.active {
+    background-color: #ffb700;
+    pointer-events: none; 
+    cursor: default; 
+    color: rgb(0, 0, 0);
+}
+
+/* =======================
+   SEARCH SUGGESTIONS
+======================= */
+#suggestions {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+    z-index: 1000;
+}
+
+#suggestions div {
+    padding: 12px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.2s;
+}
+
+#suggestions div:hover {
+    background-color: #f5f5f5;
+}
+
+@media (max-width: 600px) {
+    #suggestions div {
+        font-size: 14px;
+        padding: 10px 12px;
+    }
+}
+
+/* =======================
+   CONTENIDO DE FAVORITOS
+======================= */
+.home_content1 {
+    position: relative;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    min-height: 100vh;
+    left: 78px;
+    width: calc(100% - 78px);
+    padding: 20px;
+    transition: all 0.5s ease;
+}
+
+.sidebar1.active1 ~ .home_content1 {
+    left: 240px;
+    width: calc(100% - 240px);
+}
+
+.favorites-header {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #fff;
+    padding-top: 20px;
+}
+
+.favorites-header h1 {
+    font-size: 2.5rem;
+    color: #ffb700;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.favorites-header .subtitle {
+    font-size: 1.1rem;
+    color: #ddd;
+}
+
+.favorites-counter {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #ffb700;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.favorites-counter span {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* Grid de productos */
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.product {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(255, 183, 0, 0.4);
+}
+
+.product img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.product h2 {
+    font-size: 1.3rem;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product .price {
+    font-size: 1.6rem;
+    color: #ffb700;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.product-actions {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    margin-top: auto;
+}
+
+.btn-cart, .btn-remove {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-cart {
+    background: #ffb700;
+    color: #000;
+}
+
+.btn-cart:hover {
+    background: #ffa500;
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(255, 183, 0, 0.4);
+}
+
+.btn-remove {
+    background: #ff4757;
+    color: #fff;
+}
+
+.btn-remove:hover {
+    background: #ff3838;
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(255, 71, 87, 0.4);
+}
+
+/* Estado vacío */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    text-align: center;
+    color: #fff;
+    padding: 40px;
+}
+
+.empty-state i.bxs-heart-circle {
+    font-size: 8rem;
+    color: #ffb700;
+    margin-bottom: 30px;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+.empty-state i.bxs-heart {
+    font-size: 1.2rem;
+    vertical-align: middle;
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+.empty-state h2 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    color: #fff;
+    font-weight: 600;
+}
+
+.empty-state p {
+    font-size: 1.2rem;
+    color: #ddd;
+    margin-bottom: 40px;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+.empty-buttons {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn-explore {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 35px;
+    background: #ffb700;
+    color: #000;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1.15rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn-explore:hover {
+    background: #ffa500;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(255, 183, 0, 0.6);
+}
+
+.btn-explore i {
+    font-size: 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .home_content1 {
+        left: 78px;
+        width: calc(100% - 78px);
+        padding: 10px;
+    }
+    
+    .product-list {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+        padding: 10px;
+    }
+    
+    .favorites-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .favorites-counter {
+        font-size: 1rem;
+    }
+    
+    .favorites-counter span {
+        font-size: 1.5rem;
+    }
+    
+    .product h2 {
+        font-size: 1.1rem;
+        min-height: 40px;
+    }
+    
+    .product img {
+        height: 180px;
+    }
+    
+    .empty-state i.bxs-heart-circle {
+        font-size: 5rem;
+    }
+    
+    .empty-state h2 {
+        font-size: 1.6rem;
+    }
+    
+    .empty-state p {
+        font-size: 1rem;
+    }
+    
+    .empty-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .btn-explore {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .empty-state {
+        padding: 20px;
+    }
+    
+    .empty-state h2 {
+        font-size: 1.4rem;
+    }
+}
