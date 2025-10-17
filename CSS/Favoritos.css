@@ -20,7 +20,7 @@ body {
     width: 100%;
     font-family: 'Poppins', sans-serif;
     color: #fff;
-    background: url("../Imagenes/PERROS BLACK 4.png") no-repeat center center fixed;
+    background: url("../Imagenes/ImagenesPrincipal/Perros.webp") no-repeat center center fixed;
     background-size: cover;
     background-position: center;
     overflow-x: hidden;
@@ -305,32 +305,39 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 25px;
     padding: 20px;
-    max-width: 1400px;
+    max-width: 1300px;
     margin: 0 auto;
 }
 
 .product {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 15px;
+    background: rgba(238, 238, 238, 0.767) url("../Imagenes/textura.webp") center/cover no-repeat;
+    background-blend-mode: soft-light;
+    border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
 }
 
-.product:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(255, 183, 0, 0.4);
-}
 
+
+
+
+
+
+/* Forzamos un espacio igual para TODAS las imágenes */
 .product img {
     width: 100%;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 15px;
+    max-width: 250px;      
+    height: 220px;         
+    display: block;
+    margin: 0 auto 15px auto;
+    object-fit: contain;
+    object-position: center; 
+
 }
+
 
 .product h2 {
     font-size: 1.3rem;
@@ -358,41 +365,60 @@ body {
     margin-top: auto;
 }
 
-.btn-cart, .btn-remove {
-    padding: 12px;
+.product-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: auto;
+    justify-content: center;
+}
+
+/* Botón Agregar al Carrito */
+.add-cart-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #ffb700, #ffcc33);
+    color: #000;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px 10px 0px 0px;
     font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
     font-weight: 600;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-}
-
-.btn-cart {
-    background: #ffb700;
-    color: #000;
-}
-
-.btn-cart:hover {
-    background: #ffa500;
-    transform: scale(1.05);
+    gap: 10px;
+    transition: all 0.3s ease;
     box-shadow: 0 4px 10px rgba(255, 183, 0, 0.4);
 }
 
-.btn-remove {
-    background: #ff4757;
-    color: #fff;
+.add-cart-btn i {
+    font-size: 1.2rem;
 }
 
-.btn-remove:hover {
-    background: #ff3838;
-    transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(255, 71, 87, 0.4);
+
+/* Botón Like / Quitar favorito */
+.like-button {
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(135deg, #000000, #1f1f1f);
+    color: #fff;
+    border: none;
+    border-radius: 0 0 15px 15px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
+
+.like-button i {
+    font-size: 1.2rem;
+}
+
 
 /* Estado vacío */
 .empty-state {
@@ -544,4 +570,44 @@ body {
     .empty-state h2 {
         font-size: 1.4rem;
     }
+}
+
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+}
+
+#loading-screen i {
+    color: #ffb700; /* Puedes cambiar a rojo si quieres */
+    font-size: 6rem;
+    filter: drop-shadow(0 0 12px #ffb700aa);
+    animation: spinBounce 2s ease-in-out infinite;
+}
+
+@keyframes spinBounce {
+    0%   { transform: rotate(0deg) scale(1); }
+    25%  { transform: rotate(90deg) scale(1.1); }
+    50%  { transform: rotate(180deg) scale(1); }
+    75%  { transform: rotate(270deg) scale(1.1); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Para bloquear el scroll mientras carga */
+.locked {
+    pointer-events: none;
+    user-select: none;
+    overflow: hidden;
+}
+
+/* Para ocultarla después */
+.hidden {
+    display: none;
 }
