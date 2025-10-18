@@ -5,28 +5,39 @@ let startY = 0;
 let currentX = 0;
 let currentY = 0;
 let lastTouchTime = 0;
-let touchStartTime = 0; // Para detectar tap vs drag
-let lastTapTime = 0; // Agrega esta línea al inicio
+let touchStartTime = 0;
+let lastTapTime = 0;
 
 function toggleCarta() {
-    let carta = document.getElementById("carta");
-    let cartaImg = document.getElementById("cartaImg");
-    let btnUp = document.getElementById("btnUp");
-    let btnDown = document.getElementById("btnDown");
-
-    if (carta.style.display === "flex") {
-        // Cerrar carta
-        carta.style.display = "none";
-        document.body.style.overflow = "auto";
+    // Detectar si es móvil
+    let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+                   ('ontouchstart' in window) || 
+                   (navigator.maxTouchPoints > 0);
+    
+    if (isMobile) {
+        // En móvil: abrir PDF directamente en nueva pestaña
+        window.open('Doc/Carta.pdf', '_blank');
     } else {
-        // Abrir carta
-        carta.style.display = "flex";
-        document.body.style.overflow = "hidden";
+        // En PC: mostrar el modal con zoom
+        let carta = document.getElementById("carta");
+        let cartaImg = document.getElementById("cartaImg");
+        let btnUp = document.getElementById("btnUp");
+        let btnDown = document.getElementById("btnDown");
 
-        // Reiniciar completamente
-        resetearImagen();
-        btnDown.style.display = "block";
-        btnUp.style.display = "none";
+        if (carta.style.display === "flex") {
+            // Cerrar carta
+            carta.style.display = "none";
+            document.body.style.overflow = "auto";
+        } else {
+            // Abrir carta
+            carta.style.display = "flex";
+            document.body.style.overflow = "hidden";
+
+            // Reiniciar completamente
+            resetearImagen();
+            btnDown.style.display = "block";
+            btnUp.style.display = "none";
+        }
     }
 }
 
@@ -36,8 +47,8 @@ function resetearImagen() {
     cartaImg.style.transform = "scale(1)";
     cartaImg.style.transformOrigin = "center center";
     cartaImg.style.transition = "transform 0.2s ease";
-    cartaImg.style.borderRadius = "15px"; // Borde redondo
-    cartaImg.style.overflow = "hidden"; // Para que el borde se vea bien
+    cartaImg.style.borderRadius = "15px";
+    cartaImg.style.overflow = "hidden";
     
     // Resetear variables
     zoomActivo = false;
@@ -105,7 +116,7 @@ function activarZoom(event, cartaImg) {
     
     // Detectar dispositivo
     let isMobile = detectarMobile();
-    let zoomLevel = isMobile ? 3 : 2.2; // Zoom más moderado
+    let zoomLevel = isMobile ? 3 : 2.2;
     
     cartaImg.style.transformOrigin = `${offsetX * 100}% ${offsetY * 100}%`;
     cartaImg.style.transform = `scale(${zoomLevel})`;
@@ -219,7 +230,7 @@ function iniciarToque(event) {
     if (zoomActivo && event.touches.length === 1) {
         // Detectar doble tap en móvil
         let currentTime = Date.now();
-        if (currentTime - lastTapTime < 350) { // 350ms para doble tap
+        if (currentTime - lastTapTime < 350) {
             let cartaImg = document.getElementById("cartaImg");
             desactivarZoom(cartaImg);
             lastTapTime = 0;
@@ -240,11 +251,11 @@ function arrastrarToque(event) {
     if (isDragging && zoomActivo && event.touches.length === 1) {
         // Throttle para mejor rendimiento
         let now = Date.now();
-        if (now - lastTouchTime < 16) return; // ~60fps
+        if (now - lastTouchTime < 16) return;
         lastTouchTime = now;
         
-        // Calcular movimiento con MUCHA menos sensibilidad en mobile
-        let deltaX = (event.touches[0].clientX - startX) * 0.4; // 40% sensibilidad (era 80%)
+        // Calcular movimiento con menos sensibilidad en mobile
+        let deltaX = (event.touches[0].clientX - startX) * 0.4;
         let deltaY = (event.touches[0].clientY - startY) * 0.4;
         
         // Límites más restrictivos para mobile
@@ -271,10 +282,26 @@ function terminarToque() {
     }
 }
 
+function manejarTouchEnd(event) {
+    terminarToque();
+}
+
 function aplicarTransform() {
     let cartaImg = document.getElementById("cartaImg");
     let isMobile = detectarMobile();
     let zoomLevel = isMobile ? 3 : 2.2;
     
     cartaImg.style.transform = `scale(${zoomLevel}) translate(${currentX}px, ${currentY}px)`;
+}
+
+// Función para descargar la carta (ya existente en tu HTML)
+function descargarCarta(event) {
+    event.stopPropagation();
+    
+    const link = document.createElement('a');
+    link.href = 'Doc/Carta.pdf';
+    link.download = 'Carta JJJs Food.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 }
