@@ -351,8 +351,26 @@
     <button class="toggle-img-btn btn-up" id="btnUp" onclick="toggleImagen(event)">⬆</button>
     <img src="Imagenes/carta.jpg" alt="Carta del Restaurante" id="cartaImg">
     <button class="toggle-img-btn btn-down" id="btnDown" onclick="toggleImagen(event)">⬇</button>
+    <button id="descargarBtn" onclick="descargarCarta(event)">
+        <i class='bx bx-download'></i> Descargar Carta
+    </button>
     <button id="volverBtn" onclick="toggleCarta()">Volver</button>
 </div>
+
+<!-- Script para la descarga - Agregar antes del cierre de </body> o en tu archivo JS -->
+<script>
+function descargarCarta(event) {
+    event.stopPropagation(); // Evita que se active el zoom
+    
+    // Crear elemento temporal para la descarga
+    const link = document.createElement('a');
+    link.href = 'Doc/Carta.pdf';
+    link.download = 'Carta JJJs Food.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+</script>
 
 <script src="JS/Producto.js"></script>
 <script src="JS/CartaProductos.js"></script>
