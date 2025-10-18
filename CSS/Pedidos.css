@@ -25,7 +25,7 @@ body {
   height: 100%;
   box-shadow: 5px 0 30px rgba(0,0,0,.1);
   transition: all .5s ease;
-  z-index: 9998;
+  z-index: 9999;
 }
 
 .sidebar1.active1 {
@@ -953,7 +953,7 @@ select:focus {
   position: fixed;
   top: 20px;
   right: 20px;
-  z-index: 10000;
+  z-index: 9998;
   background-color: #000000;
   color: white;
   border: none;
@@ -1066,6 +1066,8 @@ select:focus {
   vertical-align: middle;
   margin-right: 8px;
 }
+
+
 
 
 

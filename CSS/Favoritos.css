@@ -40,8 +40,9 @@ body {
     height: 100%;
     box-shadow: 5px 0 30px rgba(0, 0, 0, .1);
     transition: all .5s ease;
-    z-index: 9995;
+    z-index: 9995; /* Ya lo tienes, perfecto */
 }
+
 
 .sidebar1.active1 {
     width: 240px;
@@ -259,10 +260,7 @@ body {
     transition: all 0.5s ease;
 }
 
-.sidebar1.active1 ~ .home_content1 {
-    left: 240px;
-    width: calc(100% - 240px);
-}
+
 
 .favorites-header {
     text-align: center;

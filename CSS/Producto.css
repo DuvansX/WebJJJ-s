@@ -516,14 +516,14 @@ main {
     position: absolute;
     top: 20px;
     left: 150px;
-    background-color: black;
-    color: #ffb700;
+    background: linear-gradient(135deg, #141414 0%, #000000 100%);  
+    box-shadow: #000000 2px 2px 8px;
+    color: #ffffff;
     padding: 7px 15px;
-    border: 2px solid black;
     cursor: pointer;
     font-size: 16px;
     font-weight: bold;
-    border-radius: 15px;
+    border-radius: 10px;
     z-index: 998;
 }
 
@@ -649,5 +649,46 @@ main {
     #suggestions div {
         font-size: 14px;
         padding: 10px 12px;
+    }
+}
+
+#descargarBtn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 5px 24px;
+    background: linear-gradient(135deg, #161616 0%, #000000 100%);      
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    z-index: 1001;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+
+
+#descargarBtn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 10px rgba(102, 126, 234, 0.4);
+}
+
+#descargarBtn i {
+    font-size: 18px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
     }
 }
